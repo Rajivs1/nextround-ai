@@ -154,11 +154,11 @@ export default function Result() {
                           }`}
                         >
                           <div className="flex items-start justify-between mb-3">
-                            <h4 className="text-white font-semibold">
+                            <h4 className="text-white font-semibold whitespace-pre-wrap font-mono flex-1 pr-4">
                               Q{index + 1}. {q.question}
                             </h4>
                             <div
-                              className={`px-3 py-1 rounded-full text-sm font-semibold ${
+                              className={`px-3 py-1 rounded-full text-sm font-semibold flex-shrink-0 ${
                                 isCorrect
                                   ? "bg-green-500 text-white"
                                   : "bg-red-500 text-white"
@@ -172,14 +172,18 @@ export default function Result() {
                               <span className="font-semibold">
                                 Your answer:
                               </span>{" "}
-                              {q.options[userAnswer] || "Not answered"}
+                              <span className="whitespace-pre-wrap font-mono">
+                                {q.options[userAnswer] || "Not answered"}
+                              </span>
                             </div>
                             {!isCorrect && (
                               <div className="text-green-400">
                                 <span className="font-semibold">
                                   Correct answer:
                                 </span>{" "}
-                                {q.options[q.correct]}
+                                <span className="whitespace-pre-wrap font-mono">
+                                  {q.options[q.correct]}
+                                </span>
                               </div>
                             )}
                           </div>

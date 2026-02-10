@@ -12,8 +12,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 import {
   signOut,
   deleteUser,
-  reauthenticateWithCredential,
-  EmailAuthProvider,
 } from "firebase/auth";
 import { auth } from "../firebase";
 
@@ -37,10 +35,7 @@ export default function Dashboard() {
   const [deleteConfirmText, setDeleteConfirmText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [activeTab, setActiveTab] = useState("dashboard");
-  const [showReauthModal, setShowReauthModal] = useState(false);
-  const [reauthPassword, setReauthPassword] = useState("");
   const [isUploadingImage, setIsUploadingImage] = useState(false);
-  const [imagePreview, setImagePreview] = useState(null);
 
   // Force refresh when coming from result page
   useEffect(() => {
@@ -129,7 +124,6 @@ export default function Dashboard() {
           alert("Failed to upload image. Please try again.");
         } finally {
           setIsUploadingImage(false);
-          setImagePreview(null);
         }
       };
 
@@ -144,16 +138,6 @@ export default function Dashboard() {
       console.error("Error uploading image:", error);
       alert("Failed to upload image. Please try again.");
       setIsUploadingImage(false);
-      setImagePreview(null);
-    }
-  };
-
-  const handleImagePreview = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => setImagePreview(e.target.result);
-      reader.readAsDataURL(file);
     }
   };
 
@@ -279,11 +263,11 @@ export default function Dashboard() {
       <div className="relative z-10">
         {/* Header */}
         <header className="border-b border-gray-800 bg-gray-900/50 backdrop-blur-sm">
-          <div className="max-w-7xl mx-auto px-6 py-6">
-            <div className="flex justify-between items-center">
-              <div className="flex items-center space-x-4">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+              <div className="flex items-center space-x-3 sm:space-x-4">
                 {/* Profile Picture in Header */}
-                <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-gray-600 bg-gray-700 flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-gray-600 bg-gray-700 flex items-center justify-center flex-shrink-0">
                   {profile?.profilePicture ? (
                     <img
                       src={profile.profilePicture}
@@ -307,32 +291,33 @@ export default function Dashboard() {
                 </div>
 
                 <div>
-                  <h1 className="text-4xl font-black bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                  <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
                     NextRound AI
                   </h1>
-                  <p className="text-gray-400 mt-1">
+                  <p className="text-gray-400 mt-1 text-sm sm:text-base">
                     Welcome back,{" "}
                     {profile.username || profile.email?.split("@")[0]}!
                   </p>
                 </div>
               </div>
-              <div className="flex gap-4">
+              <div className="flex flex-wrap gap-2 sm:gap-4">
                 <button
                   onClick={handleRefresh}
-                  className="px-6 py-3 border border-gray-600 rounded-xl text-gray-300 hover:border-blue-400 hover:text-blue-400 transition-all duration-300"
+                  className="px-3 sm:px-6 py-2 sm:py-3 border border-gray-600 rounded-xl text-gray-300 hover:border-blue-400 hover:text-blue-400 transition-all duration-300 text-sm sm:text-base"
                   title="Refresh data"
                 >
-                  🔄 Refresh
+                  🔄 <span className="hidden sm:inline">Refresh</span>
                 </button>
                 <button
                   onClick={() => navigate("/interview")}
-                  className="px-8 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold rounded-xl hover:from-blue-600 hover:to-purple-600 transition-all duration-300 shadow-lg hover:shadow-blue-500/25 hover:scale-105"
+                  className="px-4 sm:px-8 py-2 sm:py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold rounded-xl hover:from-blue-600 hover:to-purple-600 transition-all duration-300 shadow-lg hover:shadow-blue-500/25 hover:scale-105 text-sm sm:text-base"
                 >
-                  Start Practice
+                  <span className="hidden sm:inline">Start Practice</span>
+                  <span className="sm:hidden">Practice</span>
                 </button>
                 <button
                   onClick={handleLogout}
-                  className="px-6 py-3 border border-gray-600 rounded-xl text-gray-300 hover:border-gray-400 hover:text-white transition-all duration-300"
+                  className="px-3 sm:px-6 py-2 sm:py-3 border border-gray-600 rounded-xl text-gray-300 hover:border-gray-400 hover:text-white transition-all duration-300 text-sm sm:text-base"
                 >
                   Logout
                 </button>
@@ -341,29 +326,39 @@ export default function Dashboard() {
           </div>
         </header>
 
-        <div className="max-w-7xl mx-auto px-6 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
           {/* Tab Navigation */}
-          <div className="mb-12">
-            <div className="flex space-x-1 bg-gray-900/50 p-1 rounded-2xl backdrop-blur-sm border border-gray-700/50 max-w-md mx-auto">
+          <div className="mb-8 sm:mb-12">
+            <div className="flex space-x-1 bg-gray-900/50 p-1 rounded-2xl backdrop-blur-sm border border-gray-700/50 max-w-2xl mx-auto overflow-x-auto">
               <button
                 onClick={() => setActiveTab("dashboard")}
-                className={`flex-1 px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                className={`flex-1 px-3 sm:px-6 py-2 sm:py-3 rounded-xl font-semibold transition-all duration-300 text-sm sm:text-base whitespace-nowrap ${
                   activeTab === "dashboard"
                     ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg"
                     : "text-gray-400 hover:text-white hover:bg-gray-800/50"
                 }`}
               >
-                📊 Dashboard
+                📊 <span className="hidden sm:inline">Dashboard</span>
+              </button>
+              <button
+                onClick={() => setActiveTab("solved")}
+                className={`flex-1 px-3 sm:px-6 py-2 sm:py-3 rounded-xl font-semibold transition-all duration-300 text-sm sm:text-base whitespace-nowrap ${
+                  activeTab === "solved"
+                    ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg"
+                    : "text-gray-400 hover:text-white hover:bg-gray-800/50"
+                }`}
+              >
+                ✅ <span className="hidden sm:inline">Solved</span>
               </button>
               <button
                 onClick={() => setActiveTab("profile")}
-                className={`flex-1 px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                className={`flex-1 px-3 sm:px-6 py-2 sm:py-3 rounded-xl font-semibold transition-all duration-300 text-sm sm:text-base whitespace-nowrap ${
                   activeTab === "profile"
                     ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg"
                     : "text-gray-400 hover:text-white hover:bg-gray-800/50"
                 }`}
               >
-                👤 Profile
+                👤 <span className="hidden sm:inline">Profile</span>
               </button>
             </div>
           </div>
@@ -372,20 +367,20 @@ export default function Dashboard() {
           {activeTab === "dashboard" && (
             <>
               {/* Welcome Section */}
-              <div className="mb-12 text-center">
-                <h2 className="text-5xl font-black mb-4">
+              <div className="mb-8 sm:mb-12 text-center px-4">
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black mb-4">
                   Your Interview{" "}
                   <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
                     Dashboard
                   </span>
                 </h2>
-                <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+                <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto">
                   {getProgressMessage()}
                 </p>
               </div>
 
               {/* Stats Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 mb-8 sm:mb-12">
                 <div className="group p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 hover:scale-105">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-xl font-bold text-white">
@@ -435,9 +430,9 @@ export default function Dashboard() {
               </div>
 
               {/* Chart and Quick Actions */}
-              <div className="grid lg:grid-cols-4 gap-8">
+              <div className="grid lg:grid-cols-4 gap-6 sm:gap-8">
                 {/* Chart */}
-                <div className="lg:col-span-3 p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50">
+                <div className="lg:col-span-3 p-4 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50">
                   <div className="flex items-center justify-between mb-8">
                     <h3 className="text-2xl font-bold text-white">
                       Performance Trend
@@ -446,7 +441,7 @@ export default function Dashboard() {
                   </div>
 
                   {scores.length > 0 ? (
-                    <div style={{ width: "100%", height: "400px" }}>
+                    <div style={{ width: "100%", height: "300px" }} className="sm:h-[400px]">
                       <ResponsiveContainer width="100%" height="100%">
                         <LineChart
                           data={data}
@@ -534,23 +529,107 @@ export default function Dashboard() {
             </>
           )}
 
+          {/* Solved Questions Tab Content */}
+          {activeTab === "solved" && (
+            <div className="max-w-7xl mx-auto">
+              <div className="text-center mb-8 sm:mb-12 px-4">
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black mb-4">
+                  Your{" "}
+                  <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                    Solved Questions
+                  </span>
+                </h2>
+                <p className="text-lg sm:text-xl text-gray-300">
+                  Review your solutions and track your progress
+                </p>
+              </div>
+
+              {profile.solvedQuestions && profile.solvedQuestions.length > 0 ? (
+                <div className="grid gap-4 sm:gap-6">
+                  {profile.solvedQuestions
+                    .sort((a, b) => new Date(b.solvedAt) - new Date(a.solvedAt))
+                    .map((solution, index) => (
+                      <div
+                        key={index}
+                        className="p-4 sm:p-6 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300"
+                      >
+                        <div className="flex flex-col sm:flex-row items-start justify-between mb-4 gap-3">
+                          <div className="flex-1 min-w-0">
+                            <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-2">
+                              <h3 className="text-lg sm:text-2xl font-bold text-white">
+                                {solution.questionTitle}
+                              </h3>
+                              <span className="px-2 sm:px-3 py-1 rounded-lg bg-blue-500/20 text-blue-300 text-xs sm:text-sm font-semibold border border-blue-500/30">
+                                {solution.topicName}
+                              </span>
+                              <span className="px-2 sm:px-3 py-1 rounded-lg bg-purple-500/20 text-purple-300 text-xs sm:text-sm font-semibold border border-purple-500/30">
+                                {solution.language === 'javascript' ? '🟨 JS' : solution.language === 'cpp' ? '🔵 C++' : '☕ Java'}
+                              </span>
+                            </div>
+                            <p className="text-gray-400 text-xs sm:text-sm">
+                              Solved on {new Date(solution.solvedAt).toLocaleDateString()} at {new Date(solution.solvedAt).toLocaleTimeString()}
+                            </p>
+                          </div>
+                          <button
+                            onClick={() => navigate(`/practice?topic=${solution.topic}&question=${solution.questionId}`)}
+                            className="px-3 sm:px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors duration-300 text-sm whitespace-nowrap w-full sm:w-auto"
+                          >
+                            View Problem
+                          </button>
+                        </div>
+
+                        <div className="mt-4">
+                          <div className="bg-[#1e1e1e] rounded-xl overflow-hidden border border-gray-700">
+                            <div className="bg-[#252526] px-3 sm:px-4 py-2 border-b border-gray-700">
+                              <span className="text-gray-300 text-xs sm:text-sm font-medium">
+                                Your Solution
+                              </span>
+                            </div>
+                            <pre className="p-3 sm:p-4 text-xs sm:text-sm text-gray-300 overflow-x-auto">
+                              <code>{solution.code}</code>
+                            </pre>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                </div>
+              ) : (
+                <div className="text-center py-20">
+                  <div className="text-8xl mb-6">📝</div>
+                  <h3 className="text-3xl font-bold text-white mb-4">
+                    No Solutions Yet
+                  </h3>
+                  <p className="text-xl text-gray-400 mb-8">
+                    Start solving problems to see your solutions here!
+                  </p>
+                  <button
+                    onClick={() => navigate("/problems")}
+                    className="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold rounded-xl hover:from-blue-600 hover:to-purple-600 transition-all duration-300 shadow-lg hover:shadow-blue-500/25"
+                  >
+                    Browse Problems
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
+
           {/* Profile Tab Content */}
           {activeTab === "profile" && (
             <div className="max-w-4xl mx-auto">
               {/* Profile Header */}
-              <div className="text-center mb-12">
-                <h2 className="text-5xl font-black mb-4">
+              <div className="text-center mb-8 sm:mb-12 px-4">
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black mb-4">
                   Your{" "}
                   <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
                     Profile
                   </span>
                 </h2>
-                <p className="text-xl text-gray-300">
+                <p className="text-lg sm:text-xl text-gray-300">
                   Manage your account settings and preferences
                 </p>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-8">
+              <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
                 {/* Profile Picture & Account Information */}
                 <div className="p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50">
                   <div className="flex items-center justify-between mb-6">
@@ -605,7 +684,6 @@ export default function Dashboard() {
                               type="file"
                               accept="image/*"
                               onChange={(e) => {
-                                handleImagePreview(e);
                                 handleImageUpload(e);
                               }}
                               className="hidden"

@@ -51,27 +51,33 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
       {/* Navigation - Different for logged-in vs logged-out users */}
-      <nav className="relative z-10 px-6 py-6">
+      <nav className="relative z-10 px-4 sm:px-6 py-4 sm:py-6">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+          <div className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
             NextRound AI
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             {user ? (
               // Logged-in user navigation
               <>
-                <span className="text-gray-300">
+                <span className="text-gray-300 text-sm sm:text-base hidden md:block">
                   Welcome, <span className="text-white font-semibold">{displayName}</span>
                 </span>
                 <Link
+                  to="/problems"
+                  className="px-3 sm:px-6 py-2 text-sm sm:text-base text-gray-300 hover:text-white transition-colors"
+                >
+                  Practice
+                </Link>
+                <Link
                   to="/dashboard"
-                  className="px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full hover:from-blue-600 hover:to-purple-600 transition-all duration-300"
+                  className="px-3 sm:px-6 py-2 text-sm sm:text-base bg-gradient-to-r from-blue-500 to-purple-500 rounded-full hover:from-blue-600 hover:to-purple-600 transition-all duration-300"
                 >
                   Dashboard
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="px-6 py-2 text-gray-300 hover:text-white transition-colors"
+                  className="px-3 sm:px-6 py-2 text-sm sm:text-base text-gray-300 hover:text-white transition-colors hidden sm:block"
                 >
                   Logout
                 </button>
@@ -81,13 +87,13 @@ export default function Home() {
               <>
                 <Link
                   to="/login"
-                  className="px-6 py-2 text-gray-300 hover:text-white transition-colors"
+                  className="px-3 sm:px-6 py-2 text-sm sm:text-base text-gray-300 hover:text-white transition-colors"
                 >
                   Login
                 </Link>
                 <Link
                   to="/signup"
-                  className="px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full hover:from-blue-600 hover:to-purple-600 transition-all duration-300"
+                  className="px-3 sm:px-6 py-2 text-sm sm:text-base bg-gradient-to-r from-blue-500 to-purple-500 rounded-full hover:from-blue-600 hover:to-purple-600 transition-all duration-300"
                 >
                   Sign Up
                 </Link>
@@ -98,7 +104,7 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative px-6 py-32 text-center overflow-hidden">
+      <section className="relative px-4 sm:px-6 py-16 sm:py-24 lg:py-32 text-center overflow-hidden">
         {/* Enhanced Background Effects */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/30 via-purple-900/30 to-pink-900/30"></div>
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
@@ -111,21 +117,22 @@ export default function Home() {
         <div className="absolute bottom-32 left-1/3 w-2 h-2 bg-pink-400 rounded-full animate-ping delay-1000"></div>
 
         <div className="relative z-10 max-w-7xl mx-auto">
-          <div className="mb-12">
-            <span className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full text-lg font-semibold border border-blue-500/30 backdrop-blur-sm">
-              <span className="mr-2 text-2xl">🚀</span>
-              AI-Powered Interview Preparation Platform
+          <div className="mb-8 sm:mb-12">
+            <span className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full text-sm sm:text-lg font-semibold border border-blue-500/30 backdrop-blur-sm">
+              <span className="mr-2 text-xl sm:text-2xl">🚀</span>
+              <span className="hidden sm:inline">AI-Powered Interview Preparation Platform</span>
+              <span className="sm:hidden">AI Interview Prep</span>
             </span>
           </div>
 
-          <h1 className="text-7xl md:text-9xl font-black mb-12 leading-tight">
-            <span className="block mb-4">Crack Your Next</span>
-            <span className="bg-gradient-to-r from-blue-400 via-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent animate-pulse">
+          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-9xl font-black mb-8 sm:mb-12 leading-tight">
+            <span className="block mb-2 sm:mb-4">Crack Your Next</span>
+            <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-pulse">
               Interview
             </span>
           </h1>
 
-          <p className="text-2xl md:text-3xl text-gray-300 mb-16 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-300 mb-12 sm:mb-16 max-w-4xl mx-auto leading-relaxed px-4">
             Master technical interviews and DSA problems with{" "}
             <span className="font-bold bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
               AI-powered practice sessions
@@ -133,26 +140,26 @@ export default function Home() {
             . Get personalized feedback and land your dream job.
           </p>
 
-          <div className="flex flex-col lg:flex-row gap-8 justify-center items-center mb-16">
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 justify-center items-center mb-12 sm:mb-16 px-4">
             {user ? (
               // Buttons for logged-in users
               <>
                 <Link
                   to="/interview"
-                  className="group relative px-12 py-6 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full text-xl font-bold hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 transition-all duration-500 shadow-2xl hover:shadow-purple-500/50 hover:scale-110"
+                  className="group relative px-8 sm:px-12 py-4 sm:py-6 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full text-lg sm:text-xl font-bold hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 transition-all duration-500 shadow-2xl hover:shadow-purple-500/50 hover:scale-110 w-full sm:w-auto"
                 >
-                  <span className="relative z-10 flex items-center">
+                  <span className="relative z-10 flex items-center justify-center">
                     Start New Assessment
-                    <span className="ml-3 group-hover:translate-x-2 transition-transform text-2xl">
+                    <span className="ml-3 group-hover:translate-x-2 transition-transform text-xl sm:text-2xl">
                       →
                     </span>
                   </span>
                 </Link>
                 <Link
                   to="/dashboard"
-                  className="group px-12 py-6 border-2 border-gray-600 rounded-full text-xl font-semibold hover:border-purple-400 hover:bg-purple-900/20 transition-all duration-300 backdrop-blur-sm"
+                  className="group px-8 sm:px-12 py-4 sm:py-6 border-2 border-gray-600 rounded-full text-lg sm:text-xl font-semibold hover:border-purple-400 hover:bg-purple-900/20 transition-all duration-300 backdrop-blur-sm w-full sm:w-auto"
                 >
-                  <span className="flex items-center">
+                  <span className="flex items-center justify-center">
                     View Progress
                     <span className="ml-2 group-hover:translate-x-1 transition-transform">📊</span>
                   </span>
@@ -163,11 +170,11 @@ export default function Home() {
               <>
                 <Link
                   to="/signup"
-                  className="group relative px-12 py-6 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full text-xl font-bold hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 transition-all duration-500 shadow-2xl hover:shadow-purple-500/50 hover:scale-110"
+                  className="group relative px-8 sm:px-12 py-4 sm:py-6 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full text-lg sm:text-xl font-bold hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 transition-all duration-500 shadow-2xl hover:shadow-purple-500/50 hover:scale-110 w-full sm:w-auto"
                 >
-                  <span className="relative z-10 flex items-center">
+                  <span className="relative z-10 flex items-center justify-center">
                     Start Practicing Now
-                    <span className="ml-3 group-hover:translate-x-2 transition-transform text-2xl">
+                    <span className="ml-3 group-hover:translate-x-2 transition-transform text-xl sm:text-2xl">
                       →
                     </span>
                   </span>
@@ -175,10 +182,11 @@ export default function Home() {
                 </Link>
                 <Link
                   to="/login"
-                  className="group px-12 py-6 border-2 border-gray-600 rounded-full text-xl font-semibold hover:border-purple-400 hover:bg-purple-900/20 transition-all duration-300 backdrop-blur-sm"
+                  className="group px-8 sm:px-12 py-4 sm:py-6 border-2 border-gray-600 rounded-full text-lg sm:text-xl font-semibold hover:border-purple-400 hover:bg-purple-900/20 transition-all duration-300 backdrop-blur-sm w-full sm:w-auto"
                 >
-                  <span className="flex items-center">
-                    Already have an account?
+                  <span className="flex items-center justify-center">
+                    <span className="hidden sm:inline">Already have an account?</span>
+                    <span className="sm:hidden">Login</span>
                     <span className="ml-2 group-hover:translate-x-1 transition-transform">
                       →
                     </span>
@@ -189,25 +197,25 @@ export default function Home() {
           </div>
 
           {/* Quick Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-3xl mx-auto">
+          <div className="grid grid-cols-3 gap-4 sm:gap-8 max-w-3xl mx-auto px-4">
             <div className="text-center">
-              <div className="text-4xl font-black text-white mb-2">10K+</div>
-              <div className="text-gray-400">Active Users</div>
+              <div className="text-2xl sm:text-4xl font-black text-white mb-1 sm:mb-2">10K+</div>
+              <div className="text-xs sm:text-base text-gray-400">Active Users</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-black text-white mb-2">95%</div>
-              <div className="text-gray-400">Success Rate</div>
+              <div className="text-2xl sm:text-4xl font-black text-white mb-1 sm:mb-2">95%</div>
+              <div className="text-xs sm:text-base text-gray-400">Success Rate</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-black text-white mb-2">24/7</div>
-              <div className="text-gray-400">AI Support</div>
+              <div className="text-2xl sm:text-4xl font-black text-white mb-1 sm:mb-2">24/7</div>
+              <div className="text-xs sm:text-base text-gray-400">AI Support</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="relative px-6 py-32 bg-gradient-to-b from-black via-gray-900 to-black">
+      <section className="relative px-4 sm:px-6 py-16 sm:py-24 lg:py-32 bg-gradient-to-b from-black via-gray-900 to-black">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
             <div className="mb-6">
@@ -215,18 +223,18 @@ export default function Home() {
                 ✨ Powerful Features
               </span>
             </div>
-            <h2 className="text-6xl md:text-7xl font-black mb-8">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-6 sm:mb-8">
               Everything You Need to{" "}
               <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
                 Succeed
               </span>
             </h2>
-            <p className="text-2xl text-gray-400 max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto px-4">
               Comprehensive tools designed to make you interview-ready in record time
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             <div className="group relative p-10 rounded-3xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 hover:border-blue-500/50 transition-all duration-500 hover:scale-105 backdrop-blur-sm">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="relative z-10">
@@ -315,21 +323,21 @@ export default function Home() {
       </section>
 
       {/* How It Works Section */}
-      <section className="relative px-6 py-24 bg-gradient-to-b from-gray-900 to-black">
+      <section className="relative px-4 sm:px-6 py-16 sm:py-24 bg-gradient-to-b from-gray-900 to-black">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-6xl font-bold mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
               How It{" "}
               <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
                 Works
               </span>
             </h2>
-            <p className="text-xl text-gray-400">
+            <p className="text-lg sm:text-xl text-gray-400">
               Get started in just three simple steps
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-12">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-12">
             <div className="text-center group">
               <div className="relative mb-8">
                 <div className="w-24 h-24 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white text-3xl font-bold mx-auto group-hover:scale-110 transition-transform shadow-2xl">
@@ -382,7 +390,7 @@ export default function Home() {
       </section>
 
       {/* Call to Action Section */}
-      <section className="relative px-6 py-32 overflow-hidden bg-gradient-to-b from-black to-gray-900">
+      <section className="relative px-4 sm:px-6 py-16 sm:py-24 lg:py-32 overflow-hidden bg-gradient-to-b from-black to-gray-900">
         {/* Professional Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.15),transparent_70%)]"></div>
@@ -401,7 +409,7 @@ export default function Home() {
               </span>
             </div>
 
-            <h2 className="text-6xl md:text-7xl font-black mb-8 leading-tight">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-6 sm:mb-8 leading-tight">
               <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                 Ready to Ace Your
               </span>
@@ -411,14 +419,14 @@ export default function Home() {
               </span>
             </h2>
 
-            <p className="text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed mb-16">
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed mb-12 sm:mb-16 px-4">
               Join <span className="font-bold text-blue-400">10,000+</span>{" "}
               students who transformed their careers with NextRound AI
             </p>
           </div>
 
           {/* Stats Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20 max-w-4xl mx-auto">
+          <div className="grid sm:grid-cols-3 gap-6 sm:gap-8 mb-16 sm:mb-20 max-w-4xl mx-auto">
             <div className="text-center p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 backdrop-blur-sm">
               <div className="text-5xl font-black text-white mb-3">10K+</div>
               <div className="text-gray-400 text-lg">Students Trained</div>
@@ -434,11 +442,11 @@ export default function Home() {
           </div>
 
           {/* Testimonials */}
-          <div className="mb-20">
-            <h3 className="text-3xl font-bold text-center text-white mb-12">
+          <div className="mb-16 sm:mb-20">
+            <h3 className="text-2xl sm:text-3xl font-bold text-center text-white mb-8 sm:mb-12 px-4">
               What Our Students Say
             </h3>
-            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto">
               <div className="p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 backdrop-blur-sm">
                 <div className="flex items-center mb-6">
                   <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white text-xl font-bold mr-4">
@@ -472,26 +480,26 @@ export default function Home() {
           </div>
 
           {/* CTA Button Section */}
-          <div className="text-center mb-16">
+          <div className="text-center mb-12 sm:mb-16 px-4">
             {user ? (
               <Link
                 to="/interview"
-                className="group inline-flex items-center px-16 py-6 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full text-2xl font-bold text-white hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 transition-all duration-500 shadow-2xl hover:shadow-purple-500/50 hover:scale-110"
+                className="group inline-flex items-center px-10 sm:px-16 py-4 sm:py-6 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full text-lg sm:text-2xl font-bold text-white hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 transition-all duration-500 shadow-2xl hover:shadow-purple-500/50 hover:scale-110"
               >
                 <span className="relative z-10">Start Assessment Now</span>
-                <span className="ml-4 text-3xl group-hover:rotate-12 transition-transform">🚀</span>
+                <span className="ml-4 text-2xl sm:text-3xl group-hover:rotate-12 transition-transform">🚀</span>
               </Link>
             ) : (
               <Link
                 to="/signup"
-                className="group inline-flex items-center px-16 py-6 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full text-2xl font-bold text-white hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 transition-all duration-500 shadow-2xl hover:shadow-purple-500/50 hover:scale-110"
+                className="group inline-flex items-center px-10 sm:px-16 py-4 sm:py-6 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full text-lg sm:text-2xl font-bold text-white hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 transition-all duration-500 shadow-2xl hover:shadow-purple-500/50 hover:scale-110"
               >
                 <span className="relative z-10">Start Your Journey</span>
-                <span className="ml-4 text-3xl group-hover:rotate-12 transition-transform">🚀</span>
+                <span className="ml-4 text-2xl sm:text-3xl group-hover:rotate-12 transition-transform">🚀</span>
               </Link>
             )}
 
-            <div className="flex justify-center items-center gap-6 mt-8">
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 mt-6 sm:mt-8">
               <div className="flex -space-x-3">
                 <div className="w-12 h-12 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full border-2 border-gray-800"></div>
                 <div className="w-12 h-12 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full border-2 border-gray-800"></div>
@@ -500,7 +508,7 @@ export default function Home() {
                   +1K
                 </div>
               </div>
-              <div className="text-gray-300">
+              <div className="text-gray-300 text-sm sm:text-base">
                 <span className="font-semibold text-white">1,247</span> students joined this week
               </div>
             </div>

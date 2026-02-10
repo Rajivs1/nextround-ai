@@ -305,7 +305,7 @@ export default function Interview() {
                 </div>
                 
                 <div className="mb-8">
-                  <p className="text-xl text-gray-100 leading-relaxed">
+                  <p className="text-xl text-gray-100 leading-relaxed whitespace-pre-wrap font-mono">
                     {currentQuestion?.question}
                   </p>
                 </div>
@@ -322,15 +322,15 @@ export default function Interview() {
                           : 'border-gray-600 bg-gray-800/50 text-gray-300 hover:border-gray-500 hover:bg-gray-700/50'
                       }`}
                     >
-                      <div className="flex items-center">
-                        <div className={`w-6 h-6 rounded-full border-2 mr-4 flex items-center justify-center ${
+                      <div className="flex items-start">
+                        <div className={`w-6 h-6 rounded-full border-2 mr-4 flex items-center justify-center flex-shrink-0 mt-1 ${
                           selectedAnswer === index ? 'border-blue-500 bg-blue-500' : 'border-gray-500'
                         }`}>
                           {selectedAnswer === index && (
                             <div className="w-2 h-2 bg-white rounded-full"></div>
                           )}
                         </div>
-                        <span className="text-lg">{option}</span>
+                        <span className="text-lg whitespace-pre-wrap font-mono break-words flex-1">{option}</span>
                       </div>
                     </button>
                   ))}

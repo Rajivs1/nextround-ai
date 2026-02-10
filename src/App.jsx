@@ -5,6 +5,8 @@ import Signup from "./auth/Signup";
 import Dashboard from "./pages/Dashboard";
 import Interview from "./pages/Interview";
 import Result from "./pages/Result";
+import Problems from "./pages/Problems";
+import Practice from "./pages/Practice";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 export default function App() {
@@ -36,6 +38,22 @@ export default function App() {
           element={
             <ProtectedRoute>
               <Result />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/problems"
+          element={
+            <ProtectedRoute>
+              <Problems />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/practice"
+          element={
+            <ProtectedRoute>
+              <Practice />
             </ProtectedRoute>
           }
         />
