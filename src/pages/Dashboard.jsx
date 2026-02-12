@@ -291,7 +291,10 @@ export default function Dashboard() {
                 </div>
 
                 <div>
-                  <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                  <h1 
+                    onClick={() => navigate('/')}
+                    className="text-2xl sm:text-3xl lg:text-4xl font-black bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent cursor-pointer hover:scale-105 transition-transform duration-200"
+                  >
                     NextRound AI
                   </h1>
                   <p className="text-gray-400 mt-1 text-sm sm:text-base">
@@ -307,6 +310,12 @@ export default function Dashboard() {
                   title="Refresh data"
                 >
                   🔄 <span className="hidden sm:inline">Refresh</span>
+                </button>
+                <button
+                  onClick={() => navigate("/chat")}
+                  className="px-3 sm:px-6 py-2 sm:py-3 border border-green-600 rounded-xl text-green-400 hover:border-green-400 hover:bg-green-900/20 transition-all duration-300 text-sm sm:text-base"
+                >
+                  💬 <span className="hidden sm:inline">AI Chat</span>
                 </button>
                 <button
                   onClick={() => navigate("/interview")}
@@ -429,6 +438,60 @@ export default function Dashboard() {
                 </div>
               </div>
 
+              {/* Features Section */}
+              <div className="mb-8 sm:mb-12">
+                <h3 className="text-2xl font-bold text-white mb-6 text-center">
+                  🚀 Featured Tools
+                </h3>
+                <div className="grid md:grid-cols-2 gap-6">
+                  {/* Interview Practice Card */}
+                  <div 
+                    onClick={() => navigate("/interview")}
+                    className="group p-6 rounded-2xl bg-gradient-to-br from-blue-900/40 to-purple-900/40 border border-blue-500/30 hover:border-blue-500/60 transition-all duration-300 cursor-pointer hover:scale-105"
+                  >
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="text-4xl">🎯</div>
+                      <svg className="w-6 h-6 text-blue-400 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                      </svg>
+                    </div>
+                    <h4 className="text-xl font-bold text-white mb-2">
+                      AI Interview Practice
+                    </h4>
+                    <p className="text-gray-300 text-sm mb-4">
+                      Practice with AI-powered mock interviews and get instant feedback on your answers
+                    </p>
+                    <div className="flex items-center gap-2 text-blue-400 font-semibold text-sm">
+                      <span>Start Practice</span>
+                      <span>→</span>
+                    </div>
+                  </div>
+
+                  {/* Resume Analyzer Card */}
+                  <div 
+                    onClick={() => navigate("/resume-analyzer")}
+                    className="group p-6 rounded-2xl bg-gradient-to-br from-indigo-900/40 to-purple-900/40 border border-indigo-500/30 hover:border-indigo-500/60 transition-all duration-300 cursor-pointer hover:scale-105"
+                  >
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="text-4xl">📄</div>
+                      <svg className="w-6 h-6 text-indigo-400 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                      </svg>
+                    </div>
+                    <h4 className="text-xl font-bold text-white mb-2">
+                      AI Resume Analyzer
+                    </h4>
+                    <p className="text-gray-300 text-sm mb-4">
+                      Get AI-powered insights and suggestions to improve your resume and increase interview chances
+                    </p>
+                    <div className="flex items-center gap-2 text-indigo-400 font-semibold text-sm">
+                      <span>Analyze Resume</span>
+                      <span>→</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               {/* Chart and Quick Actions */}
               <div className="grid lg:grid-cols-4 gap-6 sm:gap-8">
                 {/* Chart */}
@@ -515,6 +578,12 @@ export default function Dashboard() {
                         className="w-full p-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold rounded-xl hover:from-blue-600 hover:to-purple-600 transition-all duration-300"
                       >
                         Start New Interview
+                      </button>
+                      <button
+                        onClick={() => navigate("/resume-analyzer")}
+                        className="w-full p-3 bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-semibold rounded-xl hover:from-indigo-600 hover:to-purple-600 transition-all duration-300"
+                      >
+                        📄 Analyze Resume
                       </button>
                       <button
                         onClick={() => navigate("/")}

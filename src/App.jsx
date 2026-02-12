@@ -7,6 +7,8 @@ import Interview from "./pages/Interview";
 import Result from "./pages/Result";
 import Problems from "./pages/Problems";
 import Practice from "./pages/Practice";
+import ResumeAnalyzer from "./pages/ResumeAnalyzer";
+import ChatAssistant from "./pages/ChatAssistant";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 export default function App() {
@@ -54,6 +56,22 @@ export default function App() {
           element={
             <ProtectedRoute>
               <Practice />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/resume-analyzer"
+          element={
+            <ProtectedRoute>
+              <ResumeAnalyzer />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/chat"
+          element={
+            <ProtectedRoute>
+              <ChatAssistant />
             </ProtectedRoute>
           }
         />

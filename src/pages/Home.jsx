@@ -70,6 +70,12 @@ export default function Home() {
                   Practice
                 </Link>
                 <Link
+                  to="/chat"
+                  className="px-3 sm:px-6 py-2 text-sm sm:text-base text-gray-300 hover:text-white transition-colors"
+                >
+                  AI Chat
+                </Link>
+                <Link
                   to="/dashboard"
                   className="px-3 sm:px-6 py-2 text-sm sm:text-base bg-gradient-to-r from-blue-500 to-purple-500 rounded-full hover:from-blue-600 hover:to-purple-600 transition-all duration-300"
                 >
@@ -156,6 +162,15 @@ export default function Home() {
                   </span>
                 </Link>
                 <Link
+                  to="/chat"
+                  className="group px-8 sm:px-12 py-4 sm:py-6 border-2 border-green-500 rounded-full text-lg sm:text-xl font-semibold hover:bg-green-500 hover:border-green-400 transition-all duration-300 backdrop-blur-sm w-full sm:w-auto"
+                >
+                  <span className="flex items-center justify-center">
+                    Chat with AI
+                    <span className="ml-2 group-hover:translate-x-1 transition-transform">💬</span>
+                  </span>
+                </Link>
+                <Link
                   to="/dashboard"
                   className="group px-8 sm:px-12 py-4 sm:py-6 border-2 border-gray-600 rounded-full text-lg sm:text-xl font-semibold hover:border-purple-400 hover:bg-purple-900/20 transition-all duration-300 backdrop-blur-sm w-full sm:w-auto"
                 >
@@ -235,6 +250,30 @@ export default function Home() {
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+            <Link
+              to="/chat"
+              className="group relative p-10 rounded-3xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 hover:border-green-500/50 transition-all duration-500 hover:scale-105 backdrop-blur-sm cursor-pointer"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-blue-500/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="relative z-10">
+                <div className="text-6xl mb-8 group-hover:scale-125 transition-transform duration-500">
+                  💬
+                </div>
+                <h3 className="text-2xl font-bold mb-6 text-white">
+                  AI Chat Assistant
+                </h3>
+                <p className="text-gray-400 leading-relaxed mb-6">
+                  Chat with your personal AI coach for interview tips, career advice, and coding help 24/7
+                </p>
+                <div className="flex items-center text-green-400 font-semibold">
+                  <span>Start chatting</span>
+                  <span className="ml-2 group-hover:translate-x-1 transition-transform">
+                    →
+                  </span>
+                </div>
+              </div>
+            </Link>
+
             <div className="group relative p-10 rounded-3xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 hover:border-blue-500/50 transition-all duration-500 hover:scale-105 backdrop-blur-sm">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               <div className="relative z-10">
@@ -547,7 +586,7 @@ export default function Home() {
 
           <div className="pt-8 border-t border-gray-800">
             <p className="text-gray-600">
-              © 2024 NextRound AI. Empowering the next generation of developers.
+              © 2026 NextRound AI. Empowering the next generation of developers.
             </p>
           </div>
         </div>

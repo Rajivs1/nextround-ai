@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test AI DSA Problem Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+
+        .subtitle {
+            color: #6b7280;
+            margin-bottom: 30px;
+        }
+
+        .api-key-section {
+            background: #f3f4f6;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #374151;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .config-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            width: 100%;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        button:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .results {
+            margin-top: 30px;
+        }
+
+        .problem-card {
+            background: #f9fafb;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+
+        .problem-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .problem-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .difficulty {
+            padding: 6px 14px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .difficulty.Easy {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .difficulty.Medium {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .difficulty.Hard {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .problem-description {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            color: #374151;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+
+        .problem-example {
+            background: #eff6ff;
+            border: 2px solid #dbeafe;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #1e40af;
+            white-space: pre-wrap;
+        }
+
+        .starter-code {
+            background: #1f2937;
+            color: #10b981;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            overflow-x: auto;
+            white-space: pre;
+        }
+
+        .section-title {
+            font-weight: 600;
+            color: #6b7280;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            padding: 18px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .spinner {
+            border: 4px solid #f3f4f6;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error {
+            background: #fee2e2;
+            color: #991b1b;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #dc2626;
+        }
+
+        .help-text {
+            font-size: 14px;
+            color: #6b7280;
+            margin-top: 8px;
+        }
+
+        .topic-badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 Test AI DSA Problem Generator</h1>
+        <p class="subtitle">Generate coding problems with AI for Data Structures & Algorithms</p>
+
+        <div class="api-key-section">
+            <label for="apiKey">Groq API Key</label>
+            <input type="password" id="apiKey" placeholder="gsk_..." value="">
+            <p class="help-text">Get your free API key at <a href="https://console.groq.com/keys" target="_blank">console.groq.com/keys</a></p>
+        </div>
+
+        <div class="config-grid">
+            <div>
+                <label for="topic">Topic</label>
+                <select id="topic">
+                    <option value="arrays">📊 Arrays</option>
+                    <option value="strings">📝 Strings</option>
+                    <option value="stack">📚 Stack</option>
+                    <option value="queue">🎯 Queue</option>
+                    <option value="linkedlist">🔗 Linked List</option>
+                    <option value="recursion">🔄 Recursion</option>
+                    <option value="patterns">🎨 Patterns</option>
+                    <option value="functions">⚡ Functions</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="count">Problem Count</label>
+                <select id="count">
+                    <option value="3">3 Problems</option>
+                    <option value="5" selected>5 Problems</option>
+                    <option value="8">8 Problems</option>
+                    <option value="10">10 Problems</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="difficulty">Difficulty</label>
+                <select id="difficulty">
+                    <option value="mixed" selected>Mixed</option>
+                    <option value="easy">Easy Only</option>
+                    <option value="medium">Medium Only</option>
+                    <option value="hard">Hard Only</option>
+                </select>
+            </div>
+        </div>
+
+        <button id="generateBtn" onclick="generateProblems()">🚀 Generate Coding Problems</button>
+
+        <div id="results" class="results"></div>
+    </div>
+
+    <script>
+        async function generateProblems() {
+            const apiKey = document.getElementById('apiKey').value;
+            const topic = document.getElementById('topic').value;
+            const count = parseInt(document.getElementById('count').value);
+            const difficulty = document.getElementById('difficulty').value;
+            const resultsDiv = document.getElementById('results');
+            const generateBtn = document.getElementById('generateBtn');
+
+            if (!apiKey) {
+                resultsDiv.innerHTML = '<div class="error">❌ Please enter your Groq API key</div>';
+                return;
+            }
+
+            generateBtn.disabled = true;
+            generateBtn.textContent = '⏳ Generating...';
+            resultsDiv.innerHTML = `
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p><strong>Generating ${count} coding problems for ${topic}...</strong></p>
+                    <p class="help-text">This may take 15-45 seconds</p>
+                </div>
+            `;
+
+            try {
+                const startTime = Date.now();
+                const problems = await generateDSAProblems(apiKey, topic, count, difficulty);
+                const endTime = Date.now();
+                const duration = ((endTime - startTime) / 1000).toFixed(1);
+
+                displayResults(problems, duration, topic);
+            } catch (error) {
+                resultsDiv.innerHTML = `
+                    <div class="error">
+                        <strong>❌ Error:</strong> ${error.message}
+                    </div>
+                `;
+            } finally {
+                generateBtn.disabled = false;
+                generateBtn.textContent = '🚀 Generate Coding Problems';
+            }
+        }
+
+        async function generateDSAProblems(apiKey, topic, count, difficulty) {
+            const topicDescriptions = {
+                arrays: "Array manipulation, searching, sorting, two pointers, sliding window",
+                strings: "String manipulation, pattern matching, substrings, palindromes",
+                stack: "Stack operations, balanced parentheses, infix/postfix",
+                queue: "Queue operations, circular queue, deque",
+                linkedlist: "Linked list traversal, reversal, cycle detection",
+                recursion: "Recursive algorithms, backtracking, divide and conquer",
+                patterns: "Pattern printing, number patterns, star patterns",
+                functions: "Function composition, higher-order functions"
+            };
+
+            const difficultyText = difficulty === "mixed" 
+                ? "Mix difficulty: some Easy, some Medium, some Hard"
+                : `All problems should be ${difficulty} difficulty`;
+
+            const prompt = `Generate exactly ${count} coding problems about ${topicDescriptions[topic]}.
+
+CRITICAL REQUIREMENTS:
+1. Return ONLY a JSON array
+2. Each problem: title, difficulty, description, example, starterCode
+3. ${difficultyText}
+4. Clear input/output examples
+5. JavaScript starter code
+
+JSON FORMAT:
+[
+  {
+    "id": 1,
+    "title": "Problem Title",
+    "difficulty": "Easy",
+    "description": "Problem description with constraints.",
+    "example": "Input: arr = [1,2,3]\\nOutput: 6\\nExplanation: Sum is 1+2+3 = 6",
+    "starterCode": "function solve(param) {\\n  // Write your code here\\n  \\n}"
+  }
+]
+
+Generate ${count} ${topic} problems. Return ONLY JSON, no markdown.`;
+
+            const models = ['llama-3.1-8b-instant', 'mixtral-8x7b-32768', 'llama-3.3-70b-versatile'];
+            
+            for (const model of models) {
+                try {
+                    console.log(`Trying model: ${model}`);
+                    
+                    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${apiKey}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            model: model,
+                            messages: [{ role: 'user', content: prompt }],
+                            temperature: 0.7,
+                            max_tokens: 8000
+                        })
+                    });
+
+                    if (!response.ok) {
+                        const error = await response.json();
+                        throw new Error(error.error?.message || `HTTP ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    let content = data.choices[0].message.content;
+
+                    // Parse JSON
+                    let jsonText = content.trim();
+                    const jsonMatch = jsonText.match(/```(?:json)?\s*\n?([\s\S]*?)\n?```/);
+                    if (jsonMatch) jsonText = jsonMatch[1].trim();
+
+                    const jsonStart = jsonText.indexOf('[');
+                    const jsonEnd = jsonText.lastIndexOf(']');
+                    if (jsonStart !== -1 && jsonEnd !== -1) {
+                        jsonText = jsonText.substring(jsonStart, jsonEnd + 1);
+                    }
+
+                    const problems = JSON.parse(jsonText);
+                    
+                    if (Array.isArray(problems) && problems.length > 0) {
+                        console.log(`✅ Success with ${model}`);
+                        return problems;
+                    }
+                } catch (error) {
+                    console.warn(`Model ${model} failed:`, error.message);
+                }
+            }
+
+            throw new Error('All models failed to generate problems');
+        }
+
+        function displayResults(problems, duration, topic) {
+            const resultsDiv = document.getElementById('results');
+            
+            const easyCount = problems.filter(p => p.difficulty === 'Easy').length;
+            const mediumCount = problems.filter(p => p.difficulty === 'Medium').length;
+            const hardCount = problems.filter(p => p.difficulty === 'Hard').length;
+
+            let html = `
+                <h2>✅ Generated ${problems.length} ${topic} Problems</h2>
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-value">${duration}s</div>
+                        <div class="stat-label">Generation Time</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">${easyCount}</div>
+                        <div class="stat-label">Easy</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">${mediumCount}</div>
+                        <div class="stat-label">Medium</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">${hardCount}</div>
+                        <div class="stat-label">Hard</div>
+                    </div>
+                </div>
+            `;
+
+            problems.forEach((problem, index) => {
+                html += `
+                    <div class="problem-card">
+                        <div class="problem-header">
+                            <div class="problem-title">${index + 1}. ${problem.title}</div>
+                            <span class="difficulty ${problem.difficulty}">${problem.difficulty}</span>
+                        </div>
+                        
+                        <span class="topic-badge">${topic.toUpperCase()}</span>
+                        
+                        <div class="section-title">Description</div>
+                        <div class="problem-description">${problem.description}</div>
+                        
+                        <div class="section-title">Example</div>
+                        <div class="problem-example">${problem.example}</div>
+                        
+                        <div class="section-title">Starter Code</div>
+                        <div class="starter-code">${problem.starterCode}</div>
+                    </div>
+                `;
+            });
+
+            resultsDiv.innerHTML = html;
+        }
+    </script>
+</body>
+</html>

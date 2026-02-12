@@ -49,7 +49,10 @@ export default function Result() {
             <div className="max-w-6xl mx-auto px-6 py-6">
               <div className="flex justify-between items-center">
                 <div>
-                  <h1 className="text-3xl font-black bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                  <h1 
+                    onClick={() => navigate("/")}
+                    className="text-3xl font-black bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent cursor-pointer hover:scale-105 transition-transform duration-200"
+                  >
                     NextRound AI
                   </h1>
                   <p className="text-gray-400 mt-1">

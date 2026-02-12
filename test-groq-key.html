@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Groq API Key</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff; 
+            padding: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .container {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+        h1 { text-align: center; margin-bottom: 10px; }
+        .key-display {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-family: monospace;
+            word-break: break-all;
+            border-left: 4px solid #10b981;
+        }
+        button {
+            width: 100%;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        button:hover { 
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(16,185,129,0.4);
+        }
+        #output {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            min-height: 100px;
+        }
+        .success { color: #10b981; font-weight: bold; font-size: 18px; }
+        .error { color: #ef4444; font-weight: bold; }
+        .info { color: #fff; }
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .next-steps {
+            background: rgba(16,185,129,0.2);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #10b981;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Test Your Groq API Key</h1>
+        <p style="text-align: center; opacity: 0.9;">Let's verify your Groq API key works!</p>
+        
+        <div class="key-display">
+            <strong>Your Groq API Key:</strong><br>
+            your_groq_api_key_here
+        </div>
+        
+        <button onclick="testAPI()">🧪 Test API Key Now</button>
+        
+        <div id="output"></div>
+    </div>
+
+    <script>
+        const API_KEY = 'your_groq_api_key_here';
+        const output = document.getElementById('output');
+        
+        function log(msg, type = 'info') {
+            const div = document.createElement('div');
+            div.className = type;
+            div.innerHTML = msg;
+            output.appendChild(div);
+        }
+        
+        async function testAPI() {
+            output.innerHTML = '';
+            log('<div class="spinner"></div> Testing Groq API...<br><br>', 'info');
+            
+            try {
+                const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${API_KEY}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        model: 'llama-3.3-70b-versatile',
+                        messages: [{
+                            role: 'user',
+                            content: 'Say "Groq API is working perfectly!" in one enthusiastic sentence.'
+                        }],
+                        temperature: 0.7,
+                        max_tokens: 100
+                    })
+                });
+                
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.error?.message || `HTTP ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                output.innerHTML = '';
+                log('🎉 <strong>SUCCESS!</strong> Your Groq API key is working perfectly!<br><br>', 'success');
+                log('<div class="info"><strong>🤖 Response from Groq AI:</strong><br>"' + data.choices[0].message.content + '"</div><br>', 'info');
+                
+                const nextSteps = document.createElement('div');
+                nextSteps.className = 'next-steps';
+                nextSteps.innerHTML = `
+                    <strong style="font-size: 20px;">✅ Your Resume Analyzer is Ready!</strong><br><br>
+                    <strong>📝 Next Steps:</strong><br>
+                    <ol style="line-height: 1.8; margin: 10px 0;">
+                        <li><strong>Restart your dev server:</strong><br>
+                            <code style="background: rgba(0,0,0,0.3); padding: 5px 10px; border-radius: 5px; display: inline-block; margin: 5px 0;">Ctrl+C</code> (stop)<br>
+                            <code style="background: rgba(0,0,0,0.3); padding: 5px 10px; border-radius: 5px; display: inline-block; margin: 5px 0;">npm run dev</code> (start)
+                        </li>
+                        <li><strong>Wait 30 seconds</strong> for server to fully start</li>
+                        <li><strong>Go to Resume Analyzer</strong> in your app</li>
+                        <li><strong>Turn OFF Demo Mode</strong> (click the toggle)</li>
+                        <li><strong>Upload a resume file</strong></li>
+                        <li><strong>Click "Analyze Resume with AI"</strong></li>
+                        <li><strong>Watch the magic happen!</strong> 🎉</li>
+                    </ol>
+                    <br>
+                    <strong>🔍 How to verify it's working:</strong><br>
+                    Press <strong>F12</strong> to open Console. You should see:<br>
+                    <code style="background: rgba(0,0,0,0.3); padding: 5px 10px; border-radius: 5px; display: inline-block; margin: 5px 0; color: #10b981;">
+                    🎯 AI Provider: groq<br>
+                    🚀 Using Groq API<br>
+                    ✅ Groq analysis complete
+                    </code>
+                `;
+                output.appendChild(nextSteps);
+                
+            } catch (error) {
+                output.innerHTML = '';
+                log('❌ <strong>Error:</strong> ' + error.message + '<br><br>', 'error');
+                log('<strong>Possible issues:</strong><br>', 'info');
+                log('• API key might be invalid<br>', 'info');
+                log('• Network/firewall blocking the request<br>', 'info');
+                log('• Groq service temporarily down<br><br>', 'info');
+                log('<strong>💡 Try:</strong><br>', 'info');
+                log('1. Get a new key from: https://console.groq.com/keys<br>', 'info');
+                log('2. Check your internet connection<br>', 'info');
+                log('3. Try again in a few minutes', 'info');
+            }
+        }
+        
+        // Auto-run test on page load
+        window.onload = () => {
+            setTimeout(testAPI, 500);
+        };
+    </script>
+</body>
+</html>

@@ -4,6 +4,7 @@ import { doc, updateDoc, arrayUnion } from "firebase/firestore";
 import { db } from "../firebase";
 import { useAuth } from "../context/AuthContext";
 import { roles, getQuestionsForRole, calculateMCQScore } from "../services/interviewQuestions";
+import { generateInterviewQuestions } from "../services/aiMCQGenerator";
 import Timer from "../components/Timer";
 
 export default function Interview() {
@@ -19,6 +20,8 @@ export default function Interview() {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [timerActive, setTimerActive] = useState(false);
+  const [useAI, setUseAI] = useState(false);
+  const [isGeneratingQuestions, setIsGeneratingQuestions] = useState(false);
 
   useEffect(() => {
     // Reset selected answer when question changes
@@ -27,13 +30,32 @@ export default function Interview() {
     }
   }, [currentQuestionIndex, assessmentStarted, questions.length, answers]);
 
-  const startAssessment = (roleId) => {
-    const roleQuestions = getQuestionsForRole(roleId, 25);
-    setQuestions(roleQuestions);
-    setSelectedRole(roleId);
-    setAssessmentStarted(true);
-    setTimerActive(true);
-    setAnswers(new Array(roleQuestions.length).fill(null));
+  const startAssessment = async (roleId) => {
+    setIsGeneratingQuestions(true);
+    
+    try {
+      let roleQuestions;
+      
+      if (useAI) {
+        // Generate AI questions
+        console.log('🤖 Generating AI questions...');
+        roleQuestions = await generateInterviewQuestions(roleId, 25);
+      } else {
+        // Use hard-coded questions
+        roleQuestions = getQuestionsForRole(roleId, 25);
+      }
+      
+      setQuestions(roleQuestions);
+      setSelectedRole(roleId);
+      setAssessmentStarted(true);
+      setTimerActive(true);
+      setAnswers(new Array(roleQuestions.length).fill(null));
+    } catch (error) {
+      console.error('Error generating questions:', error);
+      alert('Failed to generate questions. Please try again or use standard questions.');
+    } finally {
+      setIsGeneratingQuestions(false);
+    }
   };
 
   const handleAnswerSelect = (answerIndex) => {
@@ -155,7 +177,10 @@ export default function Interview() {
             <div className="max-w-6xl mx-auto px-6 py-6">
               <div className="flex justify-between items-center">
                 <div>
-                  <h1 className="text-3xl font-black bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                  <h1 
+                    onClick={() => navigate("/")}
+                    className="text-3xl font-black bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent cursor-pointer hover:scale-105 transition-transform duration-200"
+                  >
                     NextRound AI
                   </h1>
                   <p className="text-gray-400 mt-1">Choose Your Assessment</p>
@@ -172,16 +197,48 @@ export default function Interview() {
 
           <div className="max-w-6xl mx-auto px-6 py-12">
             {/* Header Section */}
-            <div className="text-center mb-16">
+            <div className="text-center mb-12">
               <h2 className="text-5xl font-black mb-6">
                 Choose Your{" "}
                 <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
                   Interview Role
                 </span>
               </h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
                 Select the role you're preparing for and take a comprehensive 25-question MCQ assessment
               </p>
+              
+              {/* AI Toggle */}
+              <div className="max-w-2xl mx-auto mb-8">
+                <div className="inline-flex items-center gap-4 bg-gradient-to-r from-gray-900/90 to-gray-800/90 border border-gray-700/50 rounded-2xl p-4">
+                  <span className="text-gray-300 font-medium">Question Type:</span>
+                  <button
+                    onClick={() => setUseAI(false)}
+                    className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                      !useAI
+                        ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg scale-105'
+                        : 'bg-gray-800 text-gray-400 hover:text-white'
+                    }`}
+                  >
+                    📚 Standard Questions
+                  </button>
+                  <button
+                    onClick={() => setUseAI(true)}
+                    className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
+                      useAI
+                        ? 'bg-gradient-to-r from-emerald-500 to-green-500 text-white shadow-lg scale-105'
+                        : 'bg-gray-800 text-gray-400 hover:text-white'
+                    }`}
+                  >
+                    🤖 AI-Generated Questions
+                  </button>
+                </div>
+                {useAI && (
+                  <p className="text-sm text-emerald-400 mt-3 animate-pulse">
+                    ✨ Questions will be dynamically generated by AI for you!
+                  </p>
+                )}
+              </div>
             </div>
 
             {/* Role Cards */}
@@ -189,8 +246,10 @@ export default function Interview() {
               {roles.map((role) => (
                 <div
                   key={role.id}
-                  className="group p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 hover:border-gray-500/50 transition-all duration-300 hover:scale-105 cursor-pointer"
-                  onClick={() => startAssessment(role.id)}
+                  className={`group p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 hover:border-gray-500/50 transition-all duration-300 hover:scale-105 ${
+                    isGeneratingQuestions ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
+                  }`}
+                  onClick={() => !isGeneratingQuestions && startAssessment(role.id)}
                 >
                   <div className="text-center">
                     <div className="text-6xl mb-6 group-hover:scale-110 transition-transform duration-300">
@@ -202,13 +261,39 @@ export default function Interview() {
                     <p className="text-gray-400 mb-6 leading-relaxed">
                       {role.description}
                     </p>
-                    <button className={`w-full py-3 bg-gradient-to-r ${role.color} text-white font-semibold rounded-xl hover:scale-105 transition-all duration-300 shadow-lg`}>
-                      Start Assessment
+                    <button 
+                      disabled={isGeneratingQuestions}
+                      className={`w-full py-3 bg-gradient-to-r ${role.color} text-white font-semibold rounded-xl hover:scale-105 transition-all duration-300 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed`}
+                    >
+                      {isGeneratingQuestions ? 'Generating...' : 'Start Assessment'}
                     </button>
                   </div>
                 </div>
               ))}
             </div>
+            
+            {/* Loading Indicator */}
+            {isGeneratingQuestions && (
+              <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center">
+                <div className="bg-gradient-to-br from-gray-900 to-gray-800 p-8 rounded-2xl border border-gray-700 max-w-md mx-4 text-center">
+                  <div className="animate-spin text-6xl mb-6">🤖</div>
+                  <h3 className="text-2xl font-bold text-white mb-4">
+                    {useAI ? 'Generating AI Questions...' : 'Loading Questions...'}
+                  </h3>
+                  <p className="text-gray-400">
+                    {useAI 
+                      ? 'Creating personalized questions tailored for you. This may take 10-20 seconds.'
+                      : 'Preparing your assessment...'
+                    }
+                  </p>
+                  <div className="mt-6 flex gap-2 justify-center">
+                    <div className="w-3 h-3 bg-blue-500 rounded-full animate-bounce" style={{animationDelay: '0s'}}></div>
+                    <div className="w-3 h-3 bg-purple-500 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+                    <div className="w-3 h-3 bg-pink-500 rounded-full animate-bounce" style={{animationDelay: '0.4s'}}></div>
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* Assessment Info */}
             <div className="max-w-4xl mx-auto p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50">
@@ -256,7 +341,10 @@ export default function Interview() {
           <div className="max-w-6xl mx-auto px-6 py-6">
             <div className="flex justify-between items-center">
               <div>
-                <h1 className="text-3xl font-black bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                <h1 
+                  onClick={() => navigate("/")}
+                  className="text-3xl font-black bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent cursor-pointer hover:scale-105 transition-transform duration-200"
+                >
                   NextRound AI
                 </h1>
                 <p className="text-gray-400 mt-1">{roleInfo?.name} Assessment</p>

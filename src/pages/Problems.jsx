@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { arrayQuestions } from '../data/questions/arrays';
 import { stringQuestions } from '../data/questions/strings';
@@ -8,6 +8,7 @@ import { linkedListQuestions } from '../data/questions/linkedlist';
 import { recursionQuestions } from '../data/questions/recursion';
 import { patternQuestions } from '../data/questions/patterns';
 import { functionQuestions } from '../data/questions/functions';
+import { generateDSAProblems } from '../services/aiDSAGenerator';
 
 const TOPICS = [
   { id: 'arrays', name: 'Arrays', icon: '📊', color: 'from-blue-500 to-cyan-500', questions: arrayQuestions },
@@ -25,6 +26,52 @@ export default function Problems() {
   const [selectedTopics, setSelectedTopics] = useState(['arrays']);
   const [searchQuery, setSearchQuery] = useState('');
   const [difficultyFilter, setDifficultyFilter] = useState('All');
+  const [useAI, setUseAI] = useState(false);
+  const [aiProblems, setAiProblems] = useState({});
+  const [isGeneratingProblems, setIsGeneratingProblems] = useState(false);
+  const [generationError, setGenerationError] = useState('');
+
+  // Generate AI problems when AI mode is enabled
+  useEffect(() => {
+    if (useAI && selectedTopics.length > 0) {
+      generateProblemsForSelectedTopics();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [useAI]);
+
+  const generateProblemsForSelectedTopics = async () => {
+    setIsGeneratingProblems(true);
+    setGenerationError('');
+    
+    try {
+      const newAiProblems = {};
+      
+      for (const topicId of selectedTopics) {
+        // Skip if already generated for this topic
+        if (aiProblems[topicId] && aiProblems[topicId].length > 0) {
+          newAiProblems[topicId] = aiProblems[topicId];
+          continue;
+        }
+        
+        console.log(`🤖 Generating problems for ${topicId}...`);
+        const problems = await generateDSAProblems(topicId, 8, 'mixed');
+        newAiProblems[topicId] = problems;
+        
+        // Small delay between topics
+        if (selectedTopics.indexOf(topicId) < selectedTopics.length - 1) {
+          await new Promise(resolve => setTimeout(resolve, 1000));
+        }
+      }
+      
+      setAiProblems(prev => ({ ...prev, ...newAiProblems }));
+    } catch (error) {
+      console.error('Error generating problems:', error);
+      setGenerationError('Failed to generate AI problems. Using standard problems instead.');
+      setUseAI(false);
+    } finally {
+      setIsGeneratingProblems(false);
+    }
+  };
 
   const toggleTopic = (topicId) => {
     if (selectedTopics.includes(topicId)) {
@@ -33,15 +80,37 @@ export default function Problems() {
       }
     } else {
       setSelectedTopics([...selectedTopics, topicId]);
+      
+      // Generate AI problems for newly selected topic if in AI mode
+      if (useAI && (!aiProblems[topicId] || aiProblems[topicId].length === 0)) {
+        generateDSAProblems(topicId, 8, 'mixed')
+          .then(problems => {
+            setAiProblems(prev => ({ ...prev, [topicId]: problems }));
+          })
+          .catch(error => {
+            console.error(`Failed to generate problems for ${topicId}:`, error);
+          });
+      }
     }
   };
 
   const getFilteredQuestions = () => {
     const allQuestions = TOPICS
       .filter(topic => selectedTopics.includes(topic.id))
-      .flatMap(topic => 
-        topic.questions.map(q => ({ ...q, topic: topic.name, topicId: topic.id, topicIcon: topic.icon, topicColor: topic.color }))
-      );
+      .flatMap(topic => {
+        // Use AI problems if available and AI mode is on
+        const questionsSource = (useAI && aiProblems[topic.id]) 
+          ? aiProblems[topic.id] 
+          : topic.questions;
+        
+        return questionsSource.map(q => ({ 
+          ...q, 
+          topic: topic.name, 
+          topicId: topic.id, 
+          topicIcon: topic.icon, 
+          topicColor: topic.color 
+        }));
+      });
 
     return allQuestions.filter(q => {
       const matchesSearch = q.title.toLowerCase().includes(searchQuery.toLowerCase());
@@ -51,15 +120,6 @@ export default function Problems() {
   };
 
   const filteredQuestions = getFilteredQuestions();
-
-  const getDifficultyColor = (difficulty) => {
-    switch(difficulty) {
-      case 'Easy': return 'text-emerald-400';
-      case 'Medium': return 'text-amber-400';
-      case 'Hard': return 'text-rose-400';
-      default: return 'text-gray-400';
-    }
-  };
 
   const getDifficultyBadge = (difficulty) => {
     switch(difficulty) {
@@ -102,18 +162,102 @@ export default function Problems() {
                 <p className="text-sm text-purple-300">Choose a problem and start coding</p>
               </div>
             </div>
-            <button
-              onClick={() => navigate('/')}
-              className="px-5 py-2.5 bg-white/5 hover:bg-white/10 text-white rounded-xl transition-all duration-300 border border-white/10 backdrop-blur-sm flex items-center gap-2 group"
-            >
-              <span className="group-hover:-translate-x-1 transition-transform">←</span>
-              <span>Back to Home</span>
-            </button>
+            <div className="flex items-center gap-4">
+              {/* AI/Standard Toggle */}
+              <div className="flex items-center gap-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl px-4 py-2">
+                <span className="text-sm text-gray-300">Problem Source:</span>
+                <button
+                  onClick={() => setUseAI(false)}
+                  disabled={isGeneratingProblems}
+                  className={`px-4 py-1.5 rounded-lg text-sm font-semibold transition-all duration-300 ${
+                    !useAI
+                      ? 'bg-blue-500 text-white'
+                      : 'bg-transparent text-gray-400 hover:text-white'
+                  }`}
+                >
+                  📚 Standard
+                </button>
+                <button
+                  onClick={() => setUseAI(true)}
+                  disabled={isGeneratingProblems}
+                  className={`px-4 py-1.5 rounded-lg text-sm font-semibold transition-all duration-300 ${
+                    useAI
+                      ? 'bg-emerald-500 text-white'
+                      : 'bg-transparent text-gray-400 hover:text-white'
+                  }`}
+                >
+                  🤖 AI-Generated
+                </button>
+              </div>
+              
+              <button
+                onClick={() => navigate('/')}
+                className="px-5 py-2.5 bg-white/5 hover:bg-white/10 text-white rounded-xl transition-all duration-300 border border-white/10 backdrop-blur-sm flex items-center gap-2 group"
+              >
+                <span className="group-hover:-translate-x-1 transition-transform">←</span>
+                <span>Back to Home</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-8 py-8">
+        {/* AI Mode Banner */}
+        {useAI && (
+          <div className="mb-6 p-4 bg-gradient-to-r from-emerald-900/30 to-green-900/30 border border-emerald-500/30 rounded-xl">
+            <div className="flex items-start gap-3">
+              <span className="text-2xl">🤖</span>
+              <div>
+                <p className="text-emerald-300 font-semibold">AI-Generated Problems Active</p>
+                <p className="text-emerald-200/80 text-sm mt-1">
+                  {isGeneratingProblems 
+                    ? 'Generating fresh coding problems with AI...' 
+                    : 'You\'re solving AI-generated problems! Each problem is uniquely created.'}
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Error Message */}
+        {generationError && (
+          <div className="mb-6 p-4 bg-red-900/30 border border-red-500/30 rounded-xl">
+            <div className="flex items-start gap-3">
+              <span className="text-2xl">⚠️</span>
+              <div>
+                <p className="text-red-300 font-semibold">Generation Error</p>
+                <p className="text-red-200/80 text-sm mt-1">{generationError}</p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Loading Overlay */}
+        {isGeneratingProblems && (
+          <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center">
+            <div className="bg-gradient-to-br from-gray-900 to-gray-800 p-8 rounded-2xl border border-gray-700 max-w-md mx-4 text-center">
+              <div className="animate-spin text-6xl mb-6">🤖</div>
+              <h3 className="text-2xl font-bold text-white mb-4">
+                Generating AI Problems...
+              </h3>
+              <p className="text-gray-400 mb-4">
+                Creating fresh coding challenges for {selectedTopics.map(t => 
+                  TOPICS.find(topic => topic.id === t)?.name
+                ).join(', ')}
+              </p>
+              <p className="text-sm text-gray-500">
+                This may take 10-30 seconds per topic
+              </p>
+              <div className="mt-6 flex gap-2 justify-center">
+                <div className="w-3 h-3 bg-blue-500 rounded-full animate-bounce" style={{animationDelay: '0s'}}></div>
+                <div className="w-3 h-3 bg-purple-500 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+                <div className="w-3 h-3 bg-pink-500 rounded-full animate-bounce" style={{animationDelay: '0.4s'}}></div>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Topic Selection Cards */}
         <div className="mb-8">
           <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
