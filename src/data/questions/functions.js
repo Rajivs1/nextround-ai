@@ -13,7 +13,12 @@ function addDeclaration(a, b) {
 // Function Expression
 const addExpression = function(a, b) {
   // Write your code here
-};`
+};`,
+    testCases: [
+      { input: [5, 3], expected: 8 },
+      { input: [10, 20], expected: 30 },
+      { input: [-5, 5], expected: 0 }
+    ]
   },
   {
     id: 2,
@@ -24,7 +29,12 @@ const addExpression = function(a, b) {
     starterCode: `const doubleNumbers = (arr) => {
   // Write your code here
   
-};`
+};`,
+    testCases: [
+      { input: [[1, 2, 3, 4]], expected: [2, 4, 6, 8] },
+      { input: [[5, 10, 15]], expected: [10, 20, 30] },
+      { input: [[0, -1, 2]], expected: [0, -2, 4] }
+    ]
   },
   {
     id: 3,
@@ -35,7 +45,11 @@ const addExpression = function(a, b) {
     starterCode: `function callTwice(fn) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [(x => x * 2), 5], expected: [10, 10] },
+      { input: [(x => x + 1), 3], expected: [4, 4] }
+    ]
   },
   {
     id: 4,
@@ -46,7 +60,11 @@ const addExpression = function(a, b) {
     starterCode: `function createCounter() {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [[]], expected: [1, 2, 3] },
+      { input: [[]], expected: [1, 2, 3, 4, 5] }
+    ]
   },
   {
     id: 5,
@@ -57,7 +75,11 @@ const addExpression = function(a, b) {
     starterCode: `function curry(fn) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [(a, b, c) => a + b + c, 1, 2, 3], expected: 6 },
+      { input: [(a, b) => a * b, 5, 4], expected: 20 }
+    ]
   },
   {
     id: 6,
@@ -68,7 +90,11 @@ const addExpression = function(a, b) {
     starterCode: `function compose(...fns) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [[(x) => x * 2, (x) => x + 1], 3], expected: 8 },
+      { input: [[(x) => x + 10, (x) => x * 3], 2], expected: 16 }
+    ]
   },
   {
     id: 7,
@@ -79,7 +105,11 @@ const addExpression = function(a, b) {
     starterCode: `function memoize(fn) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [(n) => n * 2, 5], expected: 10 },
+      { input: [(a, b) => a + b, 3, 4], expected: 7 }
+    ]
   },
   {
     id: 8,
@@ -90,7 +120,11 @@ const addExpression = function(a, b) {
     starterCode: `function debounce(fn, delay) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [(x) => x + 1, 100, 5], expected: 6 },
+      { input: [(x) => x * 2, 50, 10], expected: 20 }
+    ]
   },
   {
     id: 9,
@@ -101,7 +135,11 @@ const addExpression = function(a, b) {
     starterCode: `function throttle(fn, limit) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [(x) => x + 5, 100, 10], expected: 15 },
+      { input: [(x) => x * 3, 50, 7], expected: 21 }
+    ]
   },
   {
     id: 10,
@@ -112,7 +150,11 @@ const addExpression = function(a, b) {
     starterCode: `function partial(fn, ...fixedArgs) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [(a, b) => a + b, 5, 10], expected: 15 },
+      { input: [(a, b, c) => a + b + c, 2, 3, 4], expected: 9 }
+    ]
   },
   {
     id: 11,
@@ -123,7 +165,11 @@ const addExpression = function(a, b) {
     starterCode: `function pipe(...fns) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [[(x) => x + 1, (x) => x * 2], 3], expected: 8 },
+      { input: [[(x) => x * 3, (x) => x + 10], 2], expected: 16 }
+    ]
   },
   {
     id: 12,
@@ -134,6 +180,10 @@ const addExpression = function(a, b) {
     starterCode: `function once(fn) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [(a, b) => a + b, 2, 3], expected: 5 },
+      { input: [(a, b) => a * b, 4, 5], expected: 20 }
+    ]
   }
 ];

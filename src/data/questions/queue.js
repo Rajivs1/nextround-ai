@@ -25,7 +25,10 @@ export const queueQuestions = [
   empty() {
     // Check if queue is empty
   }
-}`
+}`,
+    testCases: [
+      { input: [["push",1,"push",2,"peek","pop","empty"]], expected: [undefined,undefined,1,1,false] }
+    ]
   },
   {
     id: 2,
@@ -41,7 +44,10 @@ export const queueQuestions = [
   ping(t) {
     // Add request and return count
   }
-}`
+}`,
+    testCases: [
+      { input: [["ping",1,"ping",100,"ping",3001,"ping",3002]], expected: [1,2,3,3] }
+    ]
   },
   {
     id: 3,
@@ -77,7 +83,10 @@ export const queueQuestions = [
   isFull() {
     // Check if full
   }
-}`
+}`,
+    testCases: [
+      { input: [[3,"enQueue",1,"enQueue",2,"enQueue",3,"enQueue",4,"Rear","isFull","deQueue","enQueue",4,"Rear"]], expected: [undefined,true,true,true,false,3,true,true,true,4] }
+    ]
   },
   {
     id: 4,
@@ -93,7 +102,10 @@ export const queueQuestions = [
   next(val) {
     // Add value and return moving average
   }
-}`
+}`,
+    testCases: [
+      { input: [[3,"next",1,"next",10,"next",3,"next",5]], expected: [undefined,1,5.5,4.666666666666667,6] }
+    ]
   },
   {
     id: 5,
@@ -104,7 +116,12 @@ export const queueQuestions = [
     starterCode: `function firstUniqChar(s) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: ["leetcode"], expected: 0 },
+      { input: ["loveleetcode"], expected: 2 },
+      { input: ["aabb"], expected: -1 }
+    ]
   },
   {
     id: 6,
@@ -115,7 +132,12 @@ export const queueQuestions = [
     starterCode: `function maxSlidingWindow(nums, k) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [[1,3,-1,-3,5,3,6,7], 3], expected: [3,3,5,5,6,7] },
+      { input: [[1], 1], expected: [1] },
+      { input: [[1,-1], 1], expected: [1,-1] }
+    ]
   },
   {
     id: 7,
@@ -126,7 +148,12 @@ export const queueQuestions = [
     starterCode: `function leastInterval(tasks, n) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [["A","A","A","B","B","B"], 2], expected: 8 },
+      { input: [["A","A","A","B","B","B"], 0], expected: 6 },
+      { input: [["A","A","A","A","A","A","B","C","D","E","F","G"], 2], expected: 16 }
+    ]
   },
   {
     id: 8,
@@ -146,7 +173,10 @@ export const queueQuestions = [
   getHits(timestamp) {
     // Return hits in past 300 seconds
   }
-}`
+}`,
+    testCases: [
+      { input: [["hit",1,"hit",2,"hit",3,"getHits",4,"hit",300,"getHits",300,"getHits",301]], expected: [undefined,undefined,undefined,3,undefined,4,3] }
+    ]
   },
   {
     id: 9,
@@ -157,7 +187,12 @@ export const queueQuestions = [
     starterCode: `function predictPartyVictory(senate) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: ["RD"], expected: "Radiant" },
+      { input: ["RDD"], expected: "Dire" },
+      { input: ["RRDDD"], expected: "Dire" }
+    ]
   },
   {
     id: 10,
@@ -168,7 +203,11 @@ export const queueQuestions = [
     starterCode: `function deckRevealedIncreasing(deck) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [[17,13,11,2,3,5,7]], expected: [2,13,3,11,5,17,7] },
+      { input: [[1,1000]], expected: [1,1000] }
+    ]
   },
   {
     id: 11,
@@ -179,7 +218,11 @@ export const queueQuestions = [
     starterCode: `function timeRequiredToBuy(tickets, k) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [[2,3,2], 2], expected: 6 },
+      { input: [[5,1,1,1], 0], expected: 8 }
+    ]
   },
   {
     id: 12,
@@ -190,6 +233,11 @@ export const queueQuestions = [
     starterCode: `function maxResult(nums, k) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [[1,-1,-2,4,-7,3], 2], expected: 7 },
+      { input: [[10,-5,-2,4,0,3], 3], expected: 17 },
+      { input: [[1,-5,-20,4,-1,3,-6,-3], 2], expected: 0 }
+    ]
   }
 ];

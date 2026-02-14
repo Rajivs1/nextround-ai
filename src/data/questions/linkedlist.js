@@ -8,7 +8,12 @@ export const linkedListQuestions = [
     starterCode: `function reverseList(head) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [[1,2,3,4,5]], expected: [5,4,3,2,1] },
+      { input: [[1,2]], expected: [2,1] },
+      { input: [[]], expected: [] }
+    ]
   },
   {
     id: 2,
@@ -19,7 +24,12 @@ export const linkedListQuestions = [
     starterCode: `function mergeTwoLists(list1, list2) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [[1,2,4], [1,3,4]], expected: [1,1,2,3,4,4] },
+      { input: [[], []], expected: [] },
+      { input: [[], [0]], expected: [0] }
+    ]
   },
   {
     id: 3,
@@ -30,7 +40,12 @@ export const linkedListQuestions = [
     starterCode: `function hasCycle(head) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [[3,2,0,-4]], expected: false },
+      { input: [[1,2]], expected: false },
+      { input: [[1]], expected: false }
+    ]
   },
   {
     id: 4,
@@ -41,7 +56,12 @@ export const linkedListQuestions = [
     starterCode: `function removeNthFromEnd(head, n) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [[1,2,3,4,5], 2], expected: [1,2,3,5] },
+      { input: [[1], 1], expected: [] },
+      { input: [[1,2], 1], expected: [1] }
+    ]
   },
   {
     id: 5,
@@ -52,7 +72,11 @@ export const linkedListQuestions = [
     starterCode: `function middleNode(head) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [[1,2,3,4,5]], expected: [3,4,5] },
+      { input: [[1,2,3,4,5,6]], expected: [4,5,6] }
+    ]
   },
   {
     id: 6,
@@ -63,7 +87,12 @@ export const linkedListQuestions = [
     starterCode: `function isPalindrome(head) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [[1,2,2,1]], expected: true },
+      { input: [[1,2]], expected: false },
+      { input: [[1]], expected: true }
+    ]
   },
   {
     id: 7,
@@ -74,7 +103,11 @@ export const linkedListQuestions = [
     starterCode: `function getIntersectionNode(headA, headB) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [[4,1,8,4,5], [5,6,1,8,4,5]], expected: null },
+      { input: [[1,9,1,2,4], [3,2,4]], expected: null }
+    ]
   },
   {
     id: 8,
@@ -85,7 +118,12 @@ export const linkedListQuestions = [
     starterCode: `function addTwoNumbers(l1, l2) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [[2,4,3], [5,6,4]], expected: [7,0,8] },
+      { input: [[0], [0]], expected: [0] },
+      { input: [[9,9,9,9,9,9,9], [9,9,9,9]], expected: [8,9,9,9,0,0,0,1] }
+    ]
   },
   {
     id: 9,
@@ -96,7 +134,11 @@ export const linkedListQuestions = [
     starterCode: `function reorderList(head) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [[1,2,3,4]], expected: [1,4,2,3] },
+      { input: [[1,2,3,4,5]], expected: [1,5,2,4,3] }
+    ]
   },
   {
     id: 10,
@@ -107,7 +149,11 @@ export const linkedListQuestions = [
     starterCode: `function copyRandomList(head) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [[[7,null],[13,0],[11,4],[10,2],[1,0]]], expected: [[7,null],[13,0],[11,4],[10,2],[1,0]] },
+      { input: [[[1,1],[2,1]]], expected: [[1,1],[2,1]] }
+    ]
   },
   {
     id: 11,
@@ -118,7 +164,12 @@ export const linkedListQuestions = [
     starterCode: `function mergeKLists(lists) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [[[1,4,5],[1,3,4],[2,6]]], expected: [1,1,2,3,4,4,5,6] },
+      { input: [[]], expected: [] },
+      { input: [[[]]], expected: [] }
+    ]
   },
   {
     id: 12,
@@ -129,6 +180,11 @@ export const linkedListQuestions = [
     starterCode: `function reverseKGroup(head, k) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [[1,2,3,4,5], 2], expected: [2,1,4,3,5] },
+      { input: [[1,2,3,4,5], 3], expected: [3,2,1,4,5] },
+      { input: [[1,2,3,4,5], 1], expected: [1,2,3,4,5] }
+    ]
   }
 ];

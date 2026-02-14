@@ -8,7 +8,12 @@ export const patternQuestions = [
     starterCode: `function printSquare(n) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [3], expected: "***\n***\n***" },
+      { input: [2], expected: "**\n**" },
+      { input: [1], expected: "*" }
+    ]
   },
   {
     id: 2,
@@ -19,7 +24,12 @@ export const patternQuestions = [
     starterCode: `function printRightTriangle(n) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [3], expected: "*\n**\n***" },
+      { input: [4], expected: "*\n**\n***\n****" },
+      { input: [1], expected: "*" }
+    ]
   },
   {
     id: 3,
@@ -30,7 +40,12 @@ export const patternQuestions = [
     starterCode: `function printInvertedTriangle(n) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [3], expected: "***\n**\n*" },
+      { input: [4], expected: "****\n***\n**\n*" },
+      { input: [1], expected: "*" }
+    ]
   },
   {
     id: 4,
@@ -41,7 +56,12 @@ export const patternQuestions = [
     starterCode: `function printPyramid(n) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [3], expected: "  *\n ***\n*****" },
+      { input: [2], expected: " *\n***" },
+      { input: [1], expected: "*" }
+    ]
   },
   {
     id: 5,
@@ -52,7 +72,11 @@ export const patternQuestions = [
     starterCode: `function printDiamond(n) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [3], expected: "  *\n ***\n*****\n ***\n  *" },
+      { input: [2], expected: " *\n***\n *" }
+    ]
   },
   {
     id: 6,
@@ -63,7 +87,12 @@ export const patternQuestions = [
     starterCode: `function printNumberTriangle(n) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [3], expected: "1\n12\n123" },
+      { input: [4], expected: "1\n12\n123\n1234" },
+      { input: [1], expected: "1" }
+    ]
   },
   {
     id: 7,
@@ -74,7 +103,11 @@ export const patternQuestions = [
     starterCode: `function printFloydsTriangle(n) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [3], expected: "1\n2 3\n4 5 6" },
+      { input: [4], expected: "1\n2 3\n4 5 6\n7 8 9 10" }
+    ]
   },
   {
     id: 8,
@@ -85,7 +118,12 @@ export const patternQuestions = [
     starterCode: `function generate(numRows) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [5], expected: [[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]] },
+      { input: [1], expected: [[1]] },
+      { input: [3], expected: [[1],[1,1],[1,2,1]] }
+    ]
   },
   {
     id: 9,
@@ -96,7 +134,11 @@ export const patternQuestions = [
     starterCode: `function printHollowSquare(n) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [3], expected: "***\n* *\n***" },
+      { input: [4], expected: "****\n*  *\n*  *\n****" }
+    ]
   },
   {
     id: 10,
@@ -107,7 +149,11 @@ export const patternQuestions = [
     starterCode: `function printButterfly(n) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [3], expected: "*    *\n**  **\n******\n******\n**  **\n*    *" },
+      { input: [2], expected: "*  *\n****\n****\n*  *" }
+    ]
   },
   {
     id: 11,
@@ -118,7 +164,11 @@ export const patternQuestions = [
     starterCode: `function printHourglass(n) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [3], expected: "*****\n ***\n  *\n ***\n*****" },
+      { input: [2], expected: "***\n *\n***" }
+    ]
   },
   {
     id: 12,
@@ -129,6 +179,11 @@ export const patternQuestions = [
     starterCode: `function generateMatrix(n) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [3], expected: [[1,2,3],[8,9,4],[7,6,5]] },
+      { input: [1], expected: [[1]] },
+      { input: [2], expected: [[1,2],[4,3]] }
+    ]
   }
 ];

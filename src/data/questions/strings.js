@@ -8,7 +8,13 @@ export const stringQuestions = [
     starterCode: `function isAnagram(s, t) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: ["anagram", "nagaram"], expected: true },
+      { input: ["rat", "car"], expected: false },
+      { input: ["listen", "silent"], expected: true },
+      { input: ["hello", "world"], expected: false }
+    ]
   },
   {
     id: 2,
@@ -19,7 +25,13 @@ export const stringQuestions = [
     starterCode: `function isPalindrome(s) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: ["A man, a plan, a canal: Panama"], expected: true },
+      { input: ["race a car"], expected: false },
+      { input: [" "], expected: true },
+      { input: ["Was it a car or a cat I saw?"], expected: true }
+    ]
   },
   {
     id: 3,
@@ -30,7 +42,13 @@ export const stringQuestions = [
     starterCode: `function lengthOfLongestSubstring(s) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: ["abcabcbb"], expected: 3 },
+      { input: ["bbbbb"], expected: 1 },
+      { input: ["pwwkew"], expected: 3 },
+      { input: [""], expected: 0 }
+    ]
   },
   {
     id: 4,
@@ -41,7 +59,13 @@ export const stringQuestions = [
     starterCode: `function longestPalindrome(s) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: ["babad"], expected: "bab" },
+      { input: ["cbbd"], expected: "bb" },
+      { input: ["a"], expected: "a" },
+      { input: ["ac"], expected: "a" }
+    ]
   },
   {
     id: 5,
@@ -52,7 +76,12 @@ export const stringQuestions = [
     starterCode: `function groupAnagrams(strs) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [["eat","tea","tan","ate","nat","bat"]], expected: [["bat"],["nat","tan"],["ate","eat","tea"]] },
+      { input: [[""]], expected: [[""]] },
+      { input: [["a"]], expected: [["a"]] }
+    ]
   },
   {
     id: 6,
@@ -63,7 +92,13 @@ export const stringQuestions = [
     starterCode: `function isValid(s) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: ["()"], expected: true },
+      { input: ["()[]{}"], expected: true },
+      { input: ["(]"], expected: false },
+      { input: ["([)]"], expected: false }
+    ]
   },
   {
     id: 7,
@@ -74,7 +109,12 @@ export const stringQuestions = [
     starterCode: `function longestCommonPrefix(strs) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [["flower","flow","flight"]], expected: "fl" },
+      { input: [["dog","racecar","car"]], expected: "" },
+      { input: [["ab","a"]], expected: "a" }
+    ]
   },
   {
     id: 8,
@@ -85,7 +125,13 @@ export const stringQuestions = [
     starterCode: `function myAtoi(s) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: ["42"], expected: 42 },
+      { input: ["   -42"], expected: -42 },
+      { input: ["4193 with words"], expected: 4193 },
+      { input: ["words and 987"], expected: 0 }
+    ]
   },
   {
     id: 9,
@@ -96,7 +142,13 @@ export const stringQuestions = [
     starterCode: `function strStr(haystack, needle) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: ["sadbutsad", "sad"], expected: 0 },
+      { input: ["leetcode", "leeto"], expected: -1 },
+      { input: ["hello", "ll"], expected: 2 },
+      { input: ["", ""], expected: 0 }
+    ]
   },
   {
     id: 10,
@@ -107,7 +159,12 @@ export const stringQuestions = [
     starterCode: `function reverseWords(s) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: ["the sky is blue"], expected: "blue is sky the" },
+      { input: ["  hello world  "], expected: "world hello" },
+      { input: ["a good   example"], expected: "example good a" }
+    ]
   },
   {
     id: 11,
@@ -118,7 +175,12 @@ export const stringQuestions = [
     starterCode: `function minWindow(s, t) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: ["ADOBECODEBANC", "ABC"], expected: "BANC" },
+      { input: ["a", "a"], expected: "a" },
+      { input: ["a", "aa"], expected: "" }
+    ]
   },
   {
     id: 12,
@@ -129,6 +191,12 @@ export const stringQuestions = [
     starterCode: `function decodeString(s) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: ["3[a]2[bc]"], expected: "aaabcbc" },
+      { input: ["3[a2[c]]"], expected: "accaccacc" },
+      { input: ["2[abc]3[cd]ef"], expected: "abcabccdcdcdef" },
+      { input: ["abc3[cd]xyz"], expected: "abccdcdcdxyz" }
+    ]
   }
 ];

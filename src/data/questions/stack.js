@@ -25,7 +25,11 @@ export const stackQuestions = [
   isEmpty() {
     // Check if stack is empty
   }
-}`
+}`,
+    testCases: [
+      { input: [["push",1,"push",2,"pop","peek"]], expected: [undefined,undefined,2,1] },
+      { input: [["push",5,"isEmpty","pop","isEmpty"]], expected: [undefined,false,5,true] }
+    ]
   },
   {
     id: 2,
@@ -53,7 +57,10 @@ export const stackQuestions = [
   getMin() {
     // Retrieve minimum element
   }
-}`
+}`,
+    testCases: [
+      { input: [["push",-2,"push",0,"push",-3,"getMin","pop","top","getMin"]], expected: [undefined,undefined,undefined,-3,undefined,0,-2] }
+    ]
   },
   {
     id: 3,
@@ -64,7 +71,13 @@ export const stackQuestions = [
     starterCode: `function isValid(s) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: ["()"], expected: true },
+      { input: ["()[]{}"], expected: true },
+      { input: ["(]"], expected: false },
+      { input: ["([)]"], expected: false }
+    ]
   },
   {
     id: 4,
@@ -75,7 +88,12 @@ export const stackQuestions = [
     starterCode: `function evalRPN(tokens) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [["2","1","+","3","*"]], expected: 9 },
+      { input: [["4","13","5","/","+"]], expected: 6 },
+      { input: [["10","6","9","3","+","-11","*","/","*","17","+","5","+"]], expected: 22 }
+    ]
   },
   {
     id: 5,
@@ -86,7 +104,12 @@ export const stackQuestions = [
     starterCode: `function dailyTemperatures(temperatures) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [[73,74,75,71,69,72,76,73]], expected: [1,1,4,2,1,1,0,0] },
+      { input: [[30,40,50,60]], expected: [1,1,1,0] },
+      { input: [[30,60,90]], expected: [1,1,0] }
+    ]
   },
   {
     id: 6,
@@ -97,7 +120,11 @@ export const stackQuestions = [
     starterCode: `function nextGreaterElement(nums1, nums2) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [[4,1,2], [1,3,4,2]], expected: [-1,3,-1] },
+      { input: [[2,4], [1,2,3,4]], expected: [3,-1] }
+    ]
   },
   {
     id: 7,
@@ -108,7 +135,12 @@ export const stackQuestions = [
     starterCode: `function largestRectangleArea(heights) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [[2,1,5,6,2,3]], expected: 10 },
+      { input: [[2,4]], expected: 4 },
+      { input: [[1,1]], expected: 2 }
+    ]
   },
   {
     id: 8,
@@ -119,7 +151,12 @@ export const stackQuestions = [
     starterCode: `function simplifyPath(path) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: ["/home/"], expected: "/home" },
+      { input: ["/../"], expected: "/" },
+      { input: ["/home//foo/"], expected: "/home/foo" }
+    ]
   },
   {
     id: 9,
@@ -130,7 +167,12 @@ export const stackQuestions = [
     starterCode: `function removeDuplicates(s) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: ["abbaca"], expected: "ca" },
+      { input: ["azxxzy"], expected: "ay" },
+      { input: ["aabbcc"], expected: "" }
+    ]
   },
   {
     id: 10,
@@ -141,7 +183,12 @@ export const stackQuestions = [
     starterCode: `function decodeString(s) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: ["3[a]2[bc]"], expected: "aaabcbc" },
+      { input: ["3[a2[c]]"], expected: "accaccacc" },
+      { input: ["2[abc]3[cd]ef"], expected: "abcabccdcdcdef" }
+    ]
   },
   {
     id: 11,
@@ -152,7 +199,13 @@ export const stackQuestions = [
     starterCode: `function asteroidCollision(asteroids) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [[5,10,-5]], expected: [5,10] },
+      { input: [[8,-8]], expected: [] },
+      { input: [[10,2,-5]], expected: [10] },
+      { input: [[-2,-1,1,2]], expected: [-2,-1,1,2] }
+    ]
   },
   {
     id: 12,
@@ -163,6 +216,11 @@ export const stackQuestions = [
     starterCode: `function calculate(s) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: ["3+2*2"], expected: 7 },
+      { input: [" 3/2 "], expected: 1 },
+      { input: [" 3+5 / 2 "], expected: 5 }
+    ]
   }
 ];

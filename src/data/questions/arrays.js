@@ -156,7 +156,13 @@ export const arrayQuestions = [
     starterCode: `function merge(intervals) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [[[1,3],[2,6],[8,10],[15,18]]], expected: [[1,6],[8,10],[15,18]] },
+      { input: [[[1,4],[4,5]]], expected: [[1,5]] },
+      { input: [[[1,4],[0,4]]], expected: [[0,4]] },
+      { input: [[[1,4],[2,3]]], expected: [[1,4]] }
+    ]
   },
   {
     id: 11,
@@ -167,7 +173,13 @@ export const arrayQuestions = [
     starterCode: `function rotate(nums, k) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [[1,2,3,4,5,6,7], 3], expected: [5,6,7,1,2,3,4] },
+      { input: [[-1,-100,3,99], 2], expected: [3,99,-1,-100] },
+      { input: [[1,2], 3], expected: [2,1] },
+      { input: [[1], 0], expected: [1] }
+    ]
   },
   {
     id: 12,
@@ -178,6 +190,12 @@ export const arrayQuestions = [
     starterCode: `function trap(height) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [[0,1,0,2,1,0,1,3,2,1,2,1]], expected: 6 },
+      { input: [[4,2,0,3,2,5]], expected: 9 },
+      { input: [[4,2,3]], expected: 1 },
+      { input: [[3,0,2,0,4]], expected: 7 }
+    ]
   }
 ];

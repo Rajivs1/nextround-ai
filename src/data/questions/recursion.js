@@ -8,7 +8,13 @@ export const recursionQuestions = [
     starterCode: `function fib(n) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [2], expected: 1 },
+      { input: [3], expected: 2 },
+      { input: [4], expected: 3 },
+      { input: [5], expected: 5 }
+    ]
   },
   {
     id: 2,
@@ -19,7 +25,13 @@ export const recursionQuestions = [
     starterCode: `function climbStairs(n) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [2], expected: 2 },
+      { input: [3], expected: 3 },
+      { input: [4], expected: 5 },
+      { input: [5], expected: 8 }
+    ]
   },
   {
     id: 3,
@@ -30,7 +42,13 @@ export const recursionQuestions = [
     starterCode: `function isPowerOfTwo(n) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [1], expected: true },
+      { input: [16], expected: true },
+      { input: [3], expected: false },
+      { input: [4], expected: true }
+    ]
   },
   {
     id: 4,
@@ -41,7 +59,12 @@ export const recursionQuestions = [
     starterCode: `function generateParenthesis(n) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [1], expected: ["()"] },
+      { input: [2], expected: ["(())","()()"] },
+      { input: [3], expected: ["((()))","(()())","(())()","()(())","()()()"] }
+    ]
   },
   {
     id: 5,
@@ -52,7 +75,12 @@ export const recursionQuestions = [
     starterCode: `function subsets(nums) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [[1,2,3]], expected: [[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]] },
+      { input: [[0]], expected: [[],[0]] },
+      { input: [[1,2]], expected: [[],[1],[2],[1,2]] }
+    ]
   },
   {
     id: 6,
@@ -63,7 +91,12 @@ export const recursionQuestions = [
     starterCode: `function permute(nums) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [[1,2,3]], expected: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]] },
+      { input: [[0,1]], expected: [[0,1],[1,0]] },
+      { input: [[1]], expected: [[1]] }
+    ]
   },
   {
     id: 7,
@@ -74,7 +107,12 @@ export const recursionQuestions = [
     starterCode: `function combinationSum(candidates, target) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [[2,3,6,7], 7], expected: [[2,2,3],[7]] },
+      { input: [[2,3,5], 8], expected: [[2,2,2,2],[2,3,3],[3,5]] },
+      { input: [[2], 1], expected: [] }
+    ]
   },
   {
     id: 8,
@@ -85,7 +123,12 @@ export const recursionQuestions = [
     starterCode: `function letterCombinations(digits) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: ["23"], expected: ["ad","ae","af","bd","be","bf","cd","ce","cf"] },
+      { input: [""], expected: [] },
+      { input: ["2"], expected: ["a","b","c"] }
+    ]
   },
   {
     id: 9,
@@ -96,7 +139,12 @@ export const recursionQuestions = [
     starterCode: `function exist(board, word) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [[["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "ABCCED"], expected: true },
+      { input: [[["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "SEE"], expected: true },
+      { input: [[["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "ABCB"], expected: false }
+    ]
   },
   {
     id: 10,
@@ -107,7 +155,11 @@ export const recursionQuestions = [
     starterCode: `function solveNQueens(n) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [1], expected: [["Q"]] },
+      { input: [4], expected: [[".Q..","...Q","Q...","..Q."],["..Q.","Q...","...Q",".Q.."]] }
+    ]
   },
   {
     id: 11,
@@ -118,7 +170,10 @@ export const recursionQuestions = [
     starterCode: `function solveSudoku(board) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [[["5","3",".",".","7",".",".",".","."],["6",".",".","1","9","5",".",".","."],[".","9","8",".",".",".",".","6","."],["8",".",".",".","6",".",".",".","3"],["4",".",".","8",".","3",".",".","1"],["7",".",".",".","2",".",".",".","6"],[".","6",".",".",".",".","2","8","."],[".",".",".","4","1","9",".",".","5"],[".",".",".",".","8",".",".","7","9"]]], expected: [["5","3","4","6","7","8","9","1","2"],["6","7","2","1","9","5","3","4","8"],["1","9","8","3","4","2","5","6","7"],["8","5","9","7","6","1","4","2","3"],["4","2","6","8","5","3","7","9","1"],["7","1","3","9","2","4","8","5","6"],["9","6","1","5","3","7","2","8","4"],["2","8","7","4","1","9","6","3","5"],["3","4","5","2","8","6","1","7","9"]] }
+    ]
   },
   {
     id: 12,
@@ -129,6 +184,10 @@ export const recursionQuestions = [
     starterCode: `function maxPathSum(root) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [[1,2,3]], expected: 6 },
+      { input: [[-10,9,20,null,null,15,7]], expected: 42 }
+    ]
   }
 ];
