@@ -51,9 +51,9 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
       {/* Navigation - Different for logged-in vs logged-out users */}
-      <nav className="relative z-10 px-4 sm:px-6 py-4 sm:py-6">
+      <nav className="relative z-10 px-4 sm:px-6 py-4 sm:py-6 backdrop-blur-sm bg-black/20">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+          <div className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient cursor-pointer hover:scale-105 transition-transform">
             NextRound AI
           </div>
           <div className="flex items-center gap-2 sm:gap-4">
@@ -65,25 +65,25 @@ export default function Home() {
                 </span>
                 <Link
                   to="/problems"
-                  className="px-3 sm:px-6 py-2 text-sm sm:text-base text-gray-300 hover:text-white transition-colors"
+                  className="px-3 sm:px-6 py-2 text-sm sm:text-base text-gray-300 hover:text-white transition-all duration-300 hover:scale-105"
                 >
                   Practice
                 </Link>
                 <Link
                   to="/chat"
-                  className="px-3 sm:px-6 py-2 text-sm sm:text-base text-gray-300 hover:text-white transition-colors"
+                  className="px-3 sm:px-6 py-2 text-sm sm:text-base text-gray-300 hover:text-white transition-all duration-300 hover:scale-105"
                 >
                   AI Chat
                 </Link>
                 <Link
                   to="/dashboard"
-                  className="px-3 sm:px-6 py-2 text-sm sm:text-base bg-gradient-to-r from-blue-500 to-purple-500 rounded-full hover:from-blue-600 hover:to-purple-600 transition-all duration-300"
+                  className="px-3 sm:px-6 py-2 text-sm sm:text-base bg-gradient-to-r from-blue-500 to-purple-500 rounded-full hover:from-blue-600 hover:to-purple-600 transition-all duration-300 shadow-lg hover:shadow-blue-500/50 hover:scale-105"
                 >
                   Dashboard
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="px-3 sm:px-6 py-2 text-sm sm:text-base text-gray-300 hover:text-white transition-colors hidden sm:block"
+                  className="px-3 sm:px-6 py-2 text-sm sm:text-base text-gray-300 hover:text-white transition-all duration-300 hidden sm:block hover:scale-105"
                 >
                   Logout
                 </button>
@@ -93,13 +93,13 @@ export default function Home() {
               <>
                 <Link
                   to="/login"
-                  className="px-3 sm:px-6 py-2 text-sm sm:text-base text-gray-300 hover:text-white transition-colors"
+                  className="px-3 sm:px-6 py-2 text-sm sm:text-base text-gray-300 hover:text-white transition-all duration-300 hover:scale-105"
                 >
                   Login
                 </Link>
                 <Link
                   to="/signup"
-                  className="px-3 sm:px-6 py-2 text-sm sm:text-base bg-gradient-to-r from-blue-500 to-purple-500 rounded-full hover:from-blue-600 hover:to-purple-600 transition-all duration-300"
+                  className="px-3 sm:px-6 py-2 text-sm sm:text-base bg-gradient-to-r from-blue-500 to-purple-500 rounded-full hover:from-blue-600 hover:to-purple-600 transition-all duration-300 shadow-lg hover:shadow-purple-500/50 hover:scale-105"
                 >
                   Sign Up
                 </Link>
@@ -112,15 +112,17 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative px-4 sm:px-6 py-16 sm:py-24 lg:py-32 text-center overflow-hidden">
         {/* Enhanced Background Effects */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/30 via-purple-900/30 to-pink-900/30"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/30 via-purple-900/30 to-pink-900/30 animate-gradient"></div>
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-cyan-500/10 to-pink-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-cyan-500/10 to-pink-500/10 rounded-full blur-3xl animate-float-slow"></div>
 
         {/* Floating particles */}
         <div className="absolute top-20 left-20 w-2 h-2 bg-blue-400 rounded-full animate-ping"></div>
-        <div className="absolute top-40 right-32 w-3 h-3 bg-purple-400 rounded-full animate-ping delay-500"></div>
-        <div className="absolute bottom-32 left-1/3 w-2 h-2 bg-pink-400 rounded-full animate-ping delay-1000"></div>
+        <div className="absolute top-40 right-32 w-3 h-3 bg-purple-400 rounded-full animate-ping" style={{animationDelay: '0.5s'}}></div>
+        <div className="absolute bottom-32 left-1/3 w-2 h-2 bg-pink-400 rounded-full animate-ping" style={{animationDelay: '1s'}}></div>
+        <div className="absolute top-1/3 right-1/4 w-2 h-2 bg-cyan-400 rounded-full animate-ping" style={{animationDelay: '1.5s'}}></div>
+        <div className="absolute bottom-1/3 left-1/4 w-3 h-3 bg-yellow-400 rounded-full animate-ping" style={{animationDelay: '2s'}}></div>
 
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="mb-8 sm:mb-12">
@@ -132,7 +134,7 @@ export default function Home() {
           </div>
 
           <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-9xl font-black mb-8 sm:mb-12 leading-tight">
-            <span className="block mb-2 sm:mb-4">Crack Your Next</span>
+            <span className="block mb-2 sm:mb-4 text-gradient-animate">Crack Your Next</span>
             <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-pulse">
               Interview
             </span>
@@ -252,11 +254,12 @@ export default function Home() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             <Link
               to="/chat"
-              className="group relative p-10 rounded-3xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 hover:border-green-500/50 transition-all duration-500 hover:scale-105 backdrop-blur-sm cursor-pointer"
+              className="group relative p-10 rounded-3xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 hover:border-green-500/50 transition-all duration-500 hover:scale-105 backdrop-blur-sm cursor-pointer hover-lift overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-blue-500/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="absolute inset-0 animate-shimmer opacity-0 group-hover:opacity-100"></div>
               <div className="relative z-10">
-                <div className="text-6xl mb-8 group-hover:scale-125 transition-transform duration-500">
+                <div className="text-6xl mb-8 group-hover:scale-125 transition-transform duration-500 animate-float-slow">
                   💬
                 </div>
                 <h3 className="text-2xl font-bold mb-6 text-white">
@@ -274,10 +277,11 @@ export default function Home() {
               </div>
             </Link>
 
-            <div className="group relative p-10 rounded-3xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 hover:border-blue-500/50 transition-all duration-500 hover:scale-105 backdrop-blur-sm">
+            <div className="group relative p-10 rounded-3xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 hover:border-blue-500/50 transition-all duration-500 hover:scale-105 backdrop-blur-sm hover-lift overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="absolute inset-0 animate-shimmer opacity-0 group-hover:opacity-100"></div>
               <div className="relative z-10">
-                <div className="text-6xl mb-8 group-hover:scale-125 transition-transform duration-500">
+                <div className="text-6xl mb-8 group-hover:scale-125 transition-transform duration-500 animate-float-slow" style={{animationDelay: '0.5s'}}>
                   🤖
                 </div>
                 <h3 className="text-2xl font-bold mb-6 text-white">
@@ -295,10 +299,11 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="group relative p-10 rounded-3xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 hover:border-purple-500/50 transition-all duration-500 hover:scale-105 backdrop-blur-sm">
+            <div className="group relative p-10 rounded-3xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 hover:border-purple-500/50 transition-all duration-500 hover:scale-105 backdrop-blur-sm hover-lift overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="absolute inset-0 animate-shimmer opacity-0 group-hover:opacity-100"></div>
               <div className="relative z-10">
-                <div className="text-6xl mb-8 group-hover:scale-125 transition-transform duration-500">
+                <div className="text-6xl mb-8 group-hover:scale-125 transition-transform duration-500 animate-float-slow" style={{animationDelay: '1s'}}>
                   💻
                 </div>
                 <h3 className="text-2xl font-bold mb-6 text-white">
@@ -316,10 +321,11 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="group relative p-10 rounded-3xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 hover:border-pink-500/50 transition-all duration-500 hover:scale-105 backdrop-blur-sm">
+            <div className="group relative p-10 rounded-3xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 hover:border-pink-500/50 transition-all duration-500 hover:scale-105 backdrop-blur-sm hover-lift overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 to-cyan-500/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="absolute inset-0 animate-shimmer opacity-0 group-hover:opacity-100"></div>
               <div className="relative z-10">
-                <div className="text-6xl mb-8 group-hover:scale-125 transition-transform duration-500">
+                <div className="text-6xl mb-8 group-hover:scale-125 transition-transform duration-500 animate-float-slow" style={{animationDelay: '1.5s'}}>
                   📊
                 </div>
                 <h3 className="text-2xl font-bold mb-6 text-white">
@@ -337,10 +343,11 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="group relative p-10 rounded-3xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-500 hover:scale-105 backdrop-blur-sm">
+            <div className="group relative p-10 rounded-3xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-500 hover:scale-105 backdrop-blur-sm hover-lift overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-blue-500/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="absolute inset-0 animate-shimmer opacity-0 group-hover:opacity-100"></div>
               <div className="relative z-10">
-                <div className="text-6xl mb-8 group-hover:scale-125 transition-transform duration-500">
+                <div className="text-6xl mb-8 group-hover:scale-125 transition-transform duration-500 animate-float-slow" style={{animationDelay: '2s'}}>
                   🎯
                 </div>
                 <h3 className="text-2xl font-bold mb-6 text-white">

@@ -8,7 +8,13 @@ export const arrayQuestions = [
     starterCode: `function twoSum(nums, target) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [[2, 7, 11, 15], 9], expected: [0, 1] },
+      { input: [[3, 2, 4], 6], expected: [1, 2] },
+      { input: [[3, 3], 6], expected: [0, 1] },
+      { input: [[1, 5, 3, 7, 9], 12], expected: [2, 4] }
+    ]
   },
   {
     id: 2,
@@ -19,7 +25,13 @@ export const arrayQuestions = [
     starterCode: `function maxProfit(prices) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [[7, 1, 5, 3, 6, 4]], expected: 5 },
+      { input: [[7, 6, 4, 3, 1]], expected: 0 },
+      { input: [[1, 2, 3, 4, 5]], expected: 4 },
+      { input: [[2, 4, 1]], expected: 2 }
+    ]
   },
   {
     id: 3,
@@ -30,7 +42,13 @@ export const arrayQuestions = [
     starterCode: `function containsDuplicate(nums) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [[1, 2, 3, 1]], expected: true },
+      { input: [[1, 2, 3, 4]], expected: false },
+      { input: [[1, 1, 1, 3, 3, 4, 3, 2, 4, 2]], expected: true },
+      { input: [[1]], expected: false }
+    ]
   },
   {
     id: 4,
@@ -41,7 +59,12 @@ export const arrayQuestions = [
     starterCode: `function productExceptSelf(nums) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [[1, 2, 3, 4]], expected: [24, 12, 8, 6] },
+      { input: [[-1, 1, 0, -3, 3]], expected: [0, 0, 9, 0, 0] },
+      { input: [[2, 3, 4, 5]], expected: [60, 40, 30, 24] }
+    ]
   },
   {
     id: 5,
@@ -52,7 +75,13 @@ export const arrayQuestions = [
     starterCode: `function maxSubArray(nums) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [[-2, 1, -3, 4, -1, 2, 1, -5, 4]], expected: 6 },
+      { input: [[1]], expected: 1 },
+      { input: [[5, 4, -1, 7, 8]], expected: 23 },
+      { input: [[-1, -2, -3, -4]], expected: -1 }
+    ]
   },
   {
     id: 6,
@@ -63,7 +92,12 @@ export const arrayQuestions = [
     starterCode: `function threeSum(nums) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [[-1, 0, 1, 2, -1, -4]], expected: [[-1, -1, 2], [-1, 0, 1]] },
+      { input: [[0, 1, 1]], expected: [] },
+      { input: [[0, 0, 0]], expected: [[0, 0, 0]] }
+    ]
   },
   {
     id: 7,
@@ -74,7 +108,12 @@ export const arrayQuestions = [
     starterCode: `function maxArea(height) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [[1, 8, 6, 2, 5, 4, 8, 3, 7]], expected: 49 },
+      { input: [[1, 1]], expected: 1 },
+      { input: [[4, 3, 2, 1, 4]], expected: 16 }
+    ]
   },
   {
     id: 8,
@@ -85,7 +124,12 @@ export const arrayQuestions = [
     starterCode: `function findMin(nums) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [[3, 4, 5, 1, 2]], expected: 1 },
+      { input: [[4, 5, 6, 7, 0, 1, 2]], expected: 0 },
+      { input: [[11, 13, 15, 17]], expected: 11 }
+    ]
   },
   {
     id: 9,
@@ -96,7 +140,12 @@ export const arrayQuestions = [
     starterCode: `function search(nums, target) {
   // Write your code here
   
-}`
+}`,
+    testCases: [
+      { input: [[4, 5, 6, 7, 0, 1, 2], 0], expected: 4 },
+      { input: [[4, 5, 6, 7, 0, 1, 2], 3], expected: -1 },
+      { input: [[1], 0], expected: -1 }
+    ]
   },
   {
     id: 10,

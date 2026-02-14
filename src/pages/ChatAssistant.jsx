@@ -124,15 +124,20 @@ What would you like to work on today?`,
   };
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-black text-white relative overflow-hidden">
+      {/* Animated Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-purple-900/10 to-pink-900/10 animate-gradient"></div>
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-green-500/5 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+      
       {/* Header */}
-      <header className="bg-gray-900 border-b border-gray-800 sticky top-0 z-10">
+      <header className="bg-gray-900/80 border-b border-gray-800 sticky top-0 z-10 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <button
                 onClick={() => navigate("/dashboard")}
-                className="text-gray-400 hover:text-white transition-colors"
+                className="text-gray-400 hover:text-white transition-colors hover:scale-110 transform duration-200"
               >
                 <svg
                   className="w-6 h-6"
@@ -149,7 +154,7 @@ What would you like to work on today?`,
                 </svg>
               </button>
               <div>
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-green-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
                   AI Chat Assistant
                 </h1>
                 <p className="text-sm text-gray-400">
@@ -160,7 +165,7 @@ What would you like to work on today?`,
 
             <button
               onClick={clearChat}
-              className="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-lg transition-colors text-sm flex items-center gap-2"
+              className="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-lg transition-all duration-300 text-sm flex items-center gap-2 hover:scale-105"
             >
               <svg
                 className="w-4 h-4"
@@ -182,7 +187,7 @@ What would you like to work on today?`,
       </header>
 
       {/* Chat Container */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-6 flex flex-col h-[calc(100vh-88px)]">
+      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 py-6 flex flex-col h-[calc(100vh-88px)]">
         {/* Messages Area */}
         <div className="flex-1 overflow-y-auto mb-4 space-y-4 scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-transparent">
           {messages.map((message, index) => (
@@ -190,20 +195,20 @@ What would you like to work on today?`,
               key={index}
               className={`flex ${
                 message.role === "user" ? "justify-end" : "justify-start"
-              }`}
+              } animate-in fade-in slide-in-from-bottom-4 duration-500`}
             >
               <div
-                className={`max-w-[80%] rounded-2xl px-6 py-4 ${
+                className={`max-w-[80%] rounded-2xl px-6 py-4 shadow-lg hover:scale-[1.02] transition-transform duration-200 ${
                   message.role === "user"
                     ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white"
                     : message.isError
                     ? "bg-red-900/50 border border-red-500/50 text-red-200"
-                    : "bg-gray-800 text-gray-100 border border-gray-700"
+                    : "glass-effect text-gray-100"
                 }`}
               >
                 {/* Message Header */}
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-2xl">
+                  <span className="text-2xl animate-float-slow">
                     {message.role === "user" ? "👤" : "🤖"}
                   </span>
                   <span className="font-semibold text-sm">
@@ -229,10 +234,10 @@ What would you like to work on today?`,
 
           {/* Loading Indicator */}
           {isLoading && (
-            <div className="flex justify-start">
-              <div className="bg-gray-800 rounded-2xl px-6 py-4 border border-gray-700">
+            <div className="flex justify-start animate-in fade-in slide-in-from-bottom-4 duration-500">
+              <div className="glass-effect rounded-2xl px-6 py-4">
                 <div className="flex items-center gap-2">
-                  <span className="text-2xl">🤖</span>
+                  <span className="text-2xl animate-float-slow">🤖</span>
                   <span className="font-semibold text-sm">AI Assistant</span>
                 </div>
                 <div className="flex gap-2 mt-2">
@@ -255,7 +260,7 @@ What would you like to work on today?`,
 
         {/* Quick Actions (shown at start) */}
         {showQuickActions && messages.length <= 1 && (
-          <div className="mb-4">
+          <div className="mb-4 animate-in fade-in slide-in-from-bottom-4 duration-700">
             <p className="text-sm text-gray-400 mb-3 text-center">
               Quick Actions - Get started fast:
             </p>
@@ -265,10 +270,10 @@ What would you like to work on today?`,
                   key={action.id}
                   onClick={() => handleQuickAction(action)}
                   disabled={isLoading}
-                  className="p-3 bg-gray-800 hover:bg-gray-700 rounded-xl border border-gray-700 hover:border-blue-500/50 transition-all text-left disabled:opacity-50 disabled:cursor-not-allowed group"
+                  className="p-3 glass-effect hover:bg-white/10 rounded-xl border border-gray-700 hover:border-blue-500/50 transition-all text-left disabled:opacity-50 disabled:cursor-not-allowed group hover-lift"
                 >
-                  <div className="text-2xl mb-1">{action.icon}</div>
-                  <div className="text-xs font-medium text-gray-300 group-hover:text-white">
+                  <div className="text-2xl mb-1 animate-float-slow">{action.icon}</div>
+                  <div className="text-xs font-medium text-gray-300 group-hover:text-white transition-colors">
                     {action.label}
                   </div>
                 </button>
@@ -278,7 +283,7 @@ What would you like to work on today?`,
         )}
 
         {/* Input Area */}
-        <div className="bg-gray-900 rounded-2xl border border-gray-800 p-4">
+        <div className="glass-effect rounded-2xl border border-gray-800 p-4 shadow-2xl">
           <div className="flex gap-3">
             <textarea
               ref={inputRef}
@@ -288,7 +293,7 @@ What would you like to work on today?`,
               placeholder="Ask me anything about interviews, coding, career advice..."
               disabled={isLoading}
               rows={1}
-              className="flex-1 bg-gray-800 text-white rounded-xl px-4 py-3 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 placeholder-gray-500"
+              className="flex-1 bg-gray-800/50 text-white rounded-xl px-4 py-3 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 placeholder-gray-500 transition-all"
               style={{
                 minHeight: "48px",
                 maxHeight: "120px",
@@ -301,7 +306,7 @@ What would you like to work on today?`,
             <button
               onClick={() => handleSendMessage()}
               disabled={!inputMessage.trim() || isLoading}
-              className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 rounded-xl font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+              className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 rounded-xl font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 hover:scale-105 shadow-lg hover:shadow-blue-500/50"
             >
               {isLoading ? (
                 <>
@@ -332,7 +337,10 @@ What would you like to work on today?`,
           {/* Tips */}
           <div className="mt-3 text-xs text-gray-500 flex items-center justify-between">
             <span>💡 Tip: Press Enter to send, Shift+Enter for new line</span>
-            <span className="text-gray-600">Powered by Groq AI</span>
+            <span className="text-gray-600 flex items-center gap-1">
+              <span className="animate-pulse">✨</span>
+              Powered by Groq AI
+            </span>
           </div>
         </div>
       </div>

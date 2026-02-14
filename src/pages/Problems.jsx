@@ -146,9 +146,14 @@ export default function Problems() {
   const topicStats = getTopicStats();
 
   return (
-    <div className="min-h-screen bg-[#0a0e27]">
+    <div className="min-h-screen bg-[#0a0e27] relative overflow-hidden">
+      {/* Animated Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/10 via-blue-900/10 to-pink-900/10 animate-gradient"></div>
+      <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+      
       {/* Header */}
-      <div className="relative bg-gradient-to-r from-slate-900 via-purple-900/20 to-slate-900 border-b border-purple-500/20">
+      <div className="relative bg-gradient-to-r from-slate-900 via-purple-900/20 to-slate-900 border-b border-purple-500/20 backdrop-blur-xl">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNnoiIHN0cm9rZT0iIzhjNWZmZiIgc3Ryb2tlLXdpZHRoPSIuNSIgb3BhY2l0eT0iLjEiLz48L2c+PC9zdmc+')] opacity-30"></div>
         
         <div className="relative px-8 py-6">
@@ -192,7 +197,7 @@ export default function Problems() {
               
               <button
                 onClick={() => navigate('/')}
-                className="px-5 py-2.5 bg-white/5 hover:bg-white/10 text-white rounded-xl transition-all duration-300 border border-white/10 backdrop-blur-sm flex items-center gap-2 group"
+                className="px-5 py-2.5 glass-effect hover:bg-white/10 text-white rounded-xl transition-all duration-300 border border-white/10 backdrop-blur-sm flex items-center gap-2 group hover-lift"
               >
                 <span className="group-hover:-translate-x-1 transition-transform">←</span>
                 <span>Back to Home</span>
@@ -259,7 +264,7 @@ export default function Problems() {
         )}
 
         {/* Topic Selection Cards */}
-        <div className="mb-8">
+        <div className="mb-8 relative z-10">
           <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
             <span>📚</span> Select Topics
           </h2>
@@ -268,7 +273,7 @@ export default function Problems() {
               <button
                 key={topic.id}
                 onClick={() => toggleTopic(topic.id)}
-                className={`group relative p-5 rounded-2xl transition-all duration-300 border-2 ${
+                className={`group relative p-5 rounded-2xl transition-all duration-300 border-2 hover-lift ${
                   selectedTopics.includes(topic.id)
                     ? 'border-purple-500/50 shadow-lg shadow-purple-500/20'
                     : 'border-white/10 hover:border-white/20'
@@ -277,9 +282,10 @@ export default function Problems() {
                 {selectedTopics.includes(topic.id) && (
                   <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${topic.color} opacity-10`}></div>
                 )}
+                <div className="absolute inset-0 animate-shimmer opacity-0 group-hover:opacity-100 rounded-2xl"></div>
                 <div className="relative">
                   <div className="flex items-start justify-between mb-3">
-                    <span className="text-3xl">{topic.icon}</span>
+                    <span className="text-3xl animate-float-slow">{topic.icon}</span>
                     <div className={`w-6 h-6 rounded-lg border-2 flex items-center justify-center transition-all ${
                       selectedTopics.includes(topic.id)
                         ? 'bg-purple-500 border-purple-500'
@@ -339,7 +345,7 @@ export default function Problems() {
         </div>
 
         {/* Problems List */}
-        <div className="bg-white/5 rounded-2xl border border-white/10 overflow-hidden">
+        <div className="glass-effect rounded-2xl border border-white/10 overflow-hidden relative z-10 shadow-2xl">
           <div className="bg-white/5 px-6 py-4 border-b border-white/10">
             <div className="flex items-center justify-between">
               <h3 className="text-lg font-bold text-white">
@@ -363,10 +369,11 @@ export default function Problems() {
             {filteredQuestions.map((question, index) => (
               <div
                 key={`${question.topicId}-${question.id}`}
-                className="group px-6 py-5 hover:bg-white/5 transition-all duration-200"
+                className="group px-6 py-5 hover:bg-white/5 transition-all duration-200 relative overflow-hidden"
               >
-                <div className="flex items-center gap-6">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-gray-400 font-bold group-hover:bg-white/10 transition-all">
+                <div className="absolute inset-0 animate-shimmer opacity-0 group-hover:opacity-100"></div>
+                <div className="flex items-center gap-6 relative z-10">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-xl glass-effect flex items-center justify-center text-gray-400 font-bold group-hover:bg-white/10 transition-all group-hover:scale-110">
                     {index + 1}
                   </div>
                   
@@ -381,7 +388,7 @@ export default function Problems() {
                     </div>
                     <div className="flex items-center gap-3 text-sm text-gray-400">
                       <span className="flex items-center gap-1.5">
-                        <span>{question.topicIcon}</span>
+                        <span className="animate-float-slow">{question.topicIcon}</span>
                         <span>{question.topic}</span>
                       </span>
                     </div>
@@ -389,7 +396,7 @@ export default function Problems() {
 
                   <button
                     onClick={() => handleSolve(question.topicId, question.id)}
-                    className="px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-xl font-semibold transition-all duration-300 shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 flex items-center gap-2 group-hover:scale-105"
+                    className="px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-xl font-semibold transition-all duration-300 shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 flex items-center gap-2 group-hover:scale-105 hover-lift"
                   >
                     <span>Solve</span>
                     <span className="group-hover:translate-x-1 transition-transform">→</span>
@@ -401,7 +408,7 @@ export default function Problems() {
 
           {filteredQuestions.length === 0 && (
             <div className="px-6 py-16 text-center">
-              <div className="text-6xl mb-4">🔍</div>
+              <div className="text-6xl mb-4 animate-float-slow">🔍</div>
               <h3 className="text-xl font-bold text-white mb-2">No problems found</h3>
               <p className="text-gray-400">Try adjusting your filters or search query</p>
             </div>

@@ -390,51 +390,63 @@ export default function Dashboard() {
 
               {/* Stats Cards */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 mb-8 sm:mb-12">
-                <div className="group p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 hover:scale-105">
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-xl font-bold text-white">
-                      Total Interviews
-                    </h3>
-                    <div className="text-3xl">🎯</div>
+                <div className="group p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 hover:scale-105 hover-lift overflow-hidden relative">
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 animate-shimmer opacity-0 group-hover:opacity-100"></div>
+                  <div className="relative z-10">
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className="text-xl font-bold text-white">
+                        Total Interviews
+                      </h3>
+                      <div className="text-3xl animate-float-slow">🎯</div>
+                    </div>
+                    <p className="text-4xl font-black text-blue-400 mb-2 group-hover:scale-110 transition-transform">
+                      {scores.length}
+                    </p>
+                    <p className="text-gray-400">Practice sessions completed</p>
                   </div>
-                  <p className="text-4xl font-black text-blue-400 mb-2">
-                    {scores.length}
-                  </p>
-                  <p className="text-gray-400">Practice sessions completed</p>
                 </div>
 
-                <div className="group p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 hover:border-green-500/50 transition-all duration-300 hover:scale-105">
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-xl font-bold text-white">
-                      Average Score
-                    </h3>
-                    <div className="text-3xl">📊</div>
+                <div className="group p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 hover:border-green-500/50 transition-all duration-300 hover:scale-105 hover-lift overflow-hidden relative">
+                  <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 animate-shimmer opacity-0 group-hover:opacity-100"></div>
+                  <div className="relative z-10">
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className="text-xl font-bold text-white">
+                        Average Score
+                      </h3>
+                      <div className="text-3xl animate-float-slow" style={{animationDelay: '0.5s'}}>📊</div>
+                    </div>
+                    <p
+                      className={`text-4xl font-black mb-2 group-hover:scale-110 transition-transform ${getScoreColor(
+                        getAverageScore()
+                      )}`}
+                    >
+                      {getAverageScore()}/10
+                    </p>
+                    <p className="text-gray-400">Overall performance</p>
                   </div>
-                  <p
-                    className={`text-4xl font-black mb-2 ${getScoreColor(
-                      getAverageScore()
-                    )}`}
-                  >
-                    {getAverageScore()}/10
-                  </p>
-                  <p className="text-gray-400">Overall performance</p>
                 </div>
 
-                <div className="group p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 hover:border-purple-500/50 transition-all duration-300 hover:scale-105">
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-xl font-bold text-white">
-                      Latest Score
-                    </h3>
-                    <div className="text-3xl">🏆</div>
+                <div className="group p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 hover:border-purple-500/50 transition-all duration-300 hover:scale-105 hover-lift overflow-hidden relative">
+                  <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 animate-shimmer opacity-0 group-hover:opacity-100"></div>
+                  <div className="relative z-10">
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className="text-xl font-bold text-white">
+                        Latest Score
+                      </h3>
+                      <div className="text-3xl animate-float-slow" style={{animationDelay: '1s'}}>🏆</div>
+                    </div>
+                    <p
+                      className={`text-4xl font-black mb-2 group-hover:scale-110 transition-transform ${getScoreColor(
+                        getLatestScore()
+                      )}`}
+                    >
+                      {getLatestScore()}/10
+                    </p>
+                    <p className="text-gray-400">Most recent attempt</p>
                   </div>
-                  <p
-                    className={`text-4xl font-black mb-2 ${getScoreColor(
-                      getLatestScore()
-                    )}`}
-                  >
-                    {getLatestScore()}/10
-                  </p>
-                  <p className="text-gray-400">Most recent attempt</p>
                 </div>
               </div>
 
@@ -447,46 +459,54 @@ export default function Dashboard() {
                   {/* Interview Practice Card */}
                   <div 
                     onClick={() => navigate("/interview")}
-                    className="group p-6 rounded-2xl bg-gradient-to-br from-blue-900/40 to-purple-900/40 border border-blue-500/30 hover:border-blue-500/60 transition-all duration-300 cursor-pointer hover:scale-105"
+                    className="group p-6 rounded-2xl bg-gradient-to-br from-blue-900/40 to-purple-900/40 border border-blue-500/30 hover:border-blue-500/60 transition-all duration-300 cursor-pointer hover:scale-105 hover-lift overflow-hidden relative"
                   >
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="text-4xl">🎯</div>
-                      <svg className="w-6 h-6 text-blue-400 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                      </svg>
-                    </div>
-                    <h4 className="text-xl font-bold text-white mb-2">
-                      AI Interview Practice
-                    </h4>
-                    <p className="text-gray-300 text-sm mb-4">
-                      Practice with AI-powered mock interviews and get instant feedback on your answers
-                    </p>
-                    <div className="flex items-center gap-2 text-blue-400 font-semibold text-sm">
-                      <span>Start Practice</span>
-                      <span>→</span>
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div className="absolute inset-0 animate-shimmer opacity-0 group-hover:opacity-100"></div>
+                    <div className="relative z-10">
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="text-4xl animate-float-slow">🎯</div>
+                        <svg className="w-6 h-6 text-blue-400 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+                      </div>
+                      <h4 className="text-xl font-bold text-white mb-2">
+                        AI Interview Practice
+                      </h4>
+                      <p className="text-gray-300 text-sm mb-4">
+                        Practice with AI-powered mock interviews and get instant feedback on your answers
+                      </p>
+                      <div className="flex items-center gap-2 text-blue-400 font-semibold text-sm">
+                        <span>Start Practice</span>
+                        <span>→</span>
+                      </div>
                     </div>
                   </div>
 
                   {/* Resume Analyzer Card */}
                   <div 
                     onClick={() => navigate("/resume-analyzer")}
-                    className="group p-6 rounded-2xl bg-gradient-to-br from-indigo-900/40 to-purple-900/40 border border-indigo-500/30 hover:border-indigo-500/60 transition-all duration-300 cursor-pointer hover:scale-105"
+                    className="group p-6 rounded-2xl bg-gradient-to-br from-indigo-900/40 to-purple-900/40 border border-indigo-500/30 hover:border-indigo-500/60 transition-all duration-300 cursor-pointer hover:scale-105 hover-lift overflow-hidden relative"
                   >
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="text-4xl">📄</div>
-                      <svg className="w-6 h-6 text-indigo-400 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                      </svg>
-                    </div>
-                    <h4 className="text-xl font-bold text-white mb-2">
-                      AI Resume Analyzer
-                    </h4>
-                    <p className="text-gray-300 text-sm mb-4">
-                      Get AI-powered insights and suggestions to improve your resume and increase interview chances
-                    </p>
-                    <div className="flex items-center gap-2 text-indigo-400 font-semibold text-sm">
-                      <span>Analyze Resume</span>
-                      <span>→</span>
+                    <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 to-purple-500/10 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div className="absolute inset-0 animate-shimmer opacity-0 group-hover:opacity-100"></div>
+                    <div className="relative z-10">
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="text-4xl animate-float-slow" style={{animationDelay: '0.5s'}}>📄</div>
+                        <svg className="w-6 h-6 text-indigo-400 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+                      </div>
+                      <h4 className="text-xl font-bold text-white mb-2">
+                        AI Resume Analyzer
+                      </h4>
+                      <p className="text-gray-300 text-sm mb-4">
+                        Get AI-powered insights and suggestions to improve your resume and increase interview chances
+                      </p>
+                      <div className="flex items-center gap-2 text-indigo-400 font-semibold text-sm">
+                        <span>Analyze Resume</span>
+                        <span>→</span>
+                      </div>
                     </div>
                   </div>
                 </div>

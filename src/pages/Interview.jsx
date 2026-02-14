@@ -165,11 +165,11 @@ export default function Interview() {
   // Role Selection Screen
   if (!assessmentStarted) {
     return (
-      <div className="min-h-screen bg-black text-white">
+      <div className="min-h-screen bg-black text-white relative overflow-hidden">
         {/* Background Effects */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-purple-900/10 to-pink-900/10"></div>
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-purple-900/10 to-pink-900/10 animate-gradient"></div>
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
 
         <div className="relative z-10">
           {/* Header */}
@@ -246,13 +246,15 @@ export default function Interview() {
               {roles.map((role) => (
                 <div
                   key={role.id}
-                  className={`group p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 hover:border-gray-500/50 transition-all duration-300 hover:scale-105 ${
+                  className={`group p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 hover:border-gray-500/50 transition-all duration-300 hover:scale-105 hover-lift ${
                     isGeneratingQuestions ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
-                  }`}
+                  } overflow-hidden relative`}
                   onClick={() => !isGeneratingQuestions && startAssessment(role.id)}
                 >
-                  <div className="text-center">
-                    <div className="text-6xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute inset-0 animate-shimmer opacity-0 group-hover:opacity-100"></div>
+                  <div className="text-center relative z-10">
+                    <div className="text-6xl mb-6 group-hover:scale-110 transition-transform duration-300 animate-float-slow">
                       {role.icon}
                     </div>
                     <h3 className="text-2xl font-bold text-white mb-4">
