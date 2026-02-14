@@ -174,22 +174,23 @@ export default function Interview() {
         <div className="relative z-10">
           {/* Header */}
           <header className="border-b border-gray-800 bg-gray-900/50 backdrop-blur-sm">
-            <div className="max-w-6xl mx-auto px-6 py-6">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
               <div className="flex justify-between items-center">
                 <div>
                   <h1 
                     onClick={() => navigate("/")}
-                    className="text-3xl font-black bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent cursor-pointer hover:scale-105 transition-transform duration-200"
+                    className="text-xl sm:text-2xl lg:text-3xl font-black bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent cursor-pointer hover:scale-105 transition-transform duration-200"
                   >
                     NextRound AI
                   </h1>
-                  <p className="text-gray-400 mt-1">Choose Your Assessment</p>
+                  <p className="text-gray-400 mt-1 text-xs sm:text-sm">Choose Your Assessment</p>
                 </div>
                 <button
                   onClick={() => navigate("/dashboard")}
-                  className="px-6 py-3 border border-gray-600 rounded-xl text-gray-300 hover:border-gray-400 hover:text-white transition-all duration-300"
+                  className="px-3 sm:px-6 py-2 sm:py-3 border border-gray-600 rounded-xl text-gray-300 hover:border-gray-400 hover:text-white transition-all duration-300 text-xs sm:text-base"
                 >
-                  Back to Dashboard
+                  <span className="hidden sm:inline">Back to Dashboard</span>
+                  <span className="sm:hidden">Dashboard</span>
                 </button>
               </div>
             </div>
@@ -340,26 +341,27 @@ export default function Interview() {
       <div className="relative z-10">
         {/* Header */}
         <header className="border-b border-gray-800 bg-gray-900/50 backdrop-blur-sm">
-          <div className="max-w-6xl mx-auto px-6 py-6">
-            <div className="flex justify-between items-center">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-0">
               <div>
                 <h1 
                   onClick={() => navigate("/")}
-                  className="text-3xl font-black bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent cursor-pointer hover:scale-105 transition-transform duration-200"
+                  className="text-xl sm:text-2xl lg:text-3xl font-black bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent cursor-pointer hover:scale-105 transition-transform duration-200"
                 >
                   NextRound AI
                 </h1>
-                <p className="text-gray-400 mt-1">{roleInfo?.name} Assessment</p>
+                <p className="text-gray-400 mt-1 text-xs sm:text-sm">{roleInfo?.name} Assessment</p>
               </div>
-              <div className="flex items-center gap-4">
-                <div className="text-gray-300">
-                  Question {currentQuestionIndex + 1} of {questions.length}
+              <div className="flex items-center gap-2 sm:gap-4 w-full sm:w-auto justify-between sm:justify-end">
+                <div className="text-gray-300 text-sm sm:text-base">
+                  Q {currentQuestionIndex + 1}/{questions.length}
                 </div>
                 <button
                   onClick={() => navigate("/dashboard")}
-                  className="px-6 py-3 border border-gray-600 rounded-xl text-gray-300 hover:border-gray-400 hover:text-white transition-all duration-300"
+                  className="px-3 sm:px-6 py-2 sm:py-3 border border-gray-600 rounded-xl text-gray-300 hover:border-gray-400 hover:text-white transition-all duration-300 text-xs sm:text-base"
                 >
-                  Exit Assessment
+                  <span className="hidden sm:inline">Exit Assessment</span>
+                  <span className="sm:hidden">Exit</span>
                 </button>
               </div>
             </div>

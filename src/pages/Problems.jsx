@@ -156,58 +156,64 @@ export default function Problems() {
       <div className="relative bg-gradient-to-r from-slate-900 via-purple-900/20 to-slate-900 border-b border-purple-500/20 backdrop-blur-xl">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNnoiIHN0cm9rZT0iIzhjNWZmZiIgc3Ryb2tlLXdpZHRoPSIuNSIgb3BhY2l0eT0iLjEiLz48L2c+PC9zdmc+')] opacity-30"></div>
         
-        <div className="relative px-8 py-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center shadow-lg shadow-purple-500/50">
-                <span className="text-2xl">🎯</span>
+        <div className="relative px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            {/* Title Section */}
+            <div className="flex items-center gap-3 sm:gap-4">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center shadow-lg shadow-purple-500/50">
+                <span className="text-xl sm:text-2xl">🎯</span>
               </div>
               <div>
-                <h1 className="text-3xl font-bold text-white">Practice Problems</h1>
-                <p className="text-sm text-purple-300">Choose a problem and start coding</p>
+                <h1 className="text-2xl sm:text-3xl font-bold text-white">Practice Problems</h1>
+                <p className="text-xs sm:text-sm text-purple-300">Choose a problem and start coding</p>
               </div>
             </div>
-            <div className="flex items-center gap-4">
+
+            {/* Actions */}
+            <div className="flex flex-wrap items-center gap-2 sm:gap-4 w-full sm:w-auto">
               {/* AI/Standard Toggle */}
-              <div className="flex items-center gap-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl px-4 py-2">
-                <span className="text-sm text-gray-300">Problem Source:</span>
+              <div className="flex items-center gap-2 sm:gap-3 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl px-3 sm:px-4 py-2 flex-1 sm:flex-initial">
+                <span className="text-xs sm:text-sm text-gray-300 hidden sm:inline">Source:</span>
                 <button
                   onClick={() => setUseAI(false)}
                   disabled={isGeneratingProblems}
-                  className={`px-4 py-1.5 rounded-lg text-sm font-semibold transition-all duration-300 ${
+                  className={`px-2 sm:px-4 py-1 sm:py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-300 ${
                     !useAI
                       ? 'bg-blue-500 text-white'
                       : 'bg-transparent text-gray-400 hover:text-white'
                   }`}
                 >
-                  📚 Standard
+                  <span className="hidden sm:inline">📚 Standard</span>
+                  <span className="sm:hidden">📚</span>
                 </button>
                 <button
                   onClick={() => setUseAI(true)}
                   disabled={isGeneratingProblems}
-                  className={`px-4 py-1.5 rounded-lg text-sm font-semibold transition-all duration-300 ${
+                  className={`px-2 sm:px-4 py-1 sm:py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all duration-300 ${
                     useAI
                       ? 'bg-emerald-500 text-white'
                       : 'bg-transparent text-gray-400 hover:text-white'
                   }`}
                 >
-                  🤖 AI-Generated
+                  <span className="hidden sm:inline">🤖 AI</span>
+                  <span className="sm:hidden">🤖</span>
                 </button>
               </div>
               
               <button
                 onClick={() => navigate('/')}
-                className="px-5 py-2.5 glass-effect hover:bg-white/10 text-white rounded-xl transition-all duration-300 border border-white/10 backdrop-blur-sm flex items-center gap-2 group hover-lift"
+                className="px-4 sm:px-5 py-2 sm:py-2.5 glass-effect hover:bg-white/10 text-white rounded-xl transition-all duration-300 border border-white/10 backdrop-blur-sm flex items-center gap-2 group text-sm sm:text-base"
               >
                 <span className="group-hover:-translate-x-1 transition-transform">←</span>
-                <span>Back to Home</span>
+                <span className="hidden sm:inline">Back to Home</span>
+                <span className="sm:hidden">Back</span>
               </button>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-8 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         {/* AI Mode Banner */}
         {useAI && (
           <div className="mb-6 p-4 bg-gradient-to-r from-emerald-900/30 to-green-900/30 border border-emerald-500/30 rounded-xl">
@@ -264,49 +270,48 @@ export default function Problems() {
         )}
 
         {/* Topic Selection Cards */}
-        <div className="mb-8 relative z-10">
-          <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+        <div className="mb-6 sm:mb-8 relative z-10">
+          <h2 className="text-lg sm:text-xl font-bold text-white mb-3 sm:mb-4 flex items-center gap-2 px-2">
             <span>📚</span> Select Topics
           </h2>
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-3 sm:gap-4">
             {topicStats.map(topic => (
               <button
                 key={topic.id}
                 onClick={() => toggleTopic(topic.id)}
-                className={`group relative p-5 rounded-2xl transition-all duration-300 border-2 hover-lift ${
+                className={`group relative p-4 sm:p-5 rounded-xl sm:rounded-2xl transition-all duration-300 border-2 ${
                   selectedTopics.includes(topic.id)
                     ? 'border-purple-500/50 shadow-lg shadow-purple-500/20'
                     : 'border-white/10 hover:border-white/20'
                 }`}
               >
                 {selectedTopics.includes(topic.id) && (
-                  <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${topic.color} opacity-10`}></div>
+                  <div className={`absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-br ${topic.color} opacity-10`}></div>
                 )}
-                <div className="absolute inset-0 animate-shimmer opacity-0 group-hover:opacity-100 rounded-2xl"></div>
                 <div className="relative">
-                  <div className="flex items-start justify-between mb-3">
-                    <span className="text-3xl animate-float-slow">{topic.icon}</span>
-                    <div className={`w-6 h-6 rounded-lg border-2 flex items-center justify-center transition-all ${
+                  <div className="flex items-start justify-between mb-2 sm:mb-3">
+                    <span className="text-2xl sm:text-3xl">{topic.icon}</span>
+                    <div className={`w-5 h-5 sm:w-6 sm:h-6 rounded-lg border-2 flex items-center justify-center transition-all ${
                       selectedTopics.includes(topic.id)
                         ? 'bg-purple-500 border-purple-500'
                         : 'border-white/20 group-hover:border-white/40'
                     }`}>
                       {selectedTopics.includes(topic.id) && (
-                        <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                         </svg>
                       )}
                     </div>
                   </div>
-                  <h3 className="text-lg font-bold text-white mb-2">{topic.name}</h3>
-                  <div className="flex items-center gap-2 text-xs">
+                  <h3 className="text-sm sm:text-lg font-bold text-white mb-1 sm:mb-2 truncate">{topic.name}</h3>
+                  <div className="flex items-center gap-1 sm:gap-2 text-xs flex-wrap">
                     <span className="text-emerald-400">{topic.easy}E</span>
                     <span className="text-gray-500">•</span>
                     <span className="text-amber-400">{topic.medium}M</span>
                     <span className="text-gray-500">•</span>
                     <span className="text-rose-400">{topic.hard}H</span>
                   </div>
-                  <div className="mt-2 text-xs text-gray-400">
+                  <div className="mt-1 text-xs text-gray-400">
                     {topic.total} problems
                   </div>
                 </div>
@@ -316,23 +321,23 @@ export default function Problems() {
         </div>
 
         {/* Filters */}
-        <div className="flex items-center gap-4 mb-6">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
           <div className="flex-1 relative">
             <input
               type="text"
               placeholder="Search problems..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full px-5 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-purple-500/50 transition-all"
+              className="w-full px-4 sm:px-5 py-2.5 sm:py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-purple-500/50 transition-all text-sm sm:text-base"
             />
-            <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500">🔍</span>
+            <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg">🔍</span>
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-2 overflow-x-auto pb-1 sm:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0">
             {['All', 'Easy', 'Medium', 'Hard'].map(diff => (
               <button
                 key={diff}
                 onClick={() => setDifficultyFilter(diff)}
-                className={`px-5 py-3 rounded-xl font-semibold text-sm transition-all ${
+                className={`px-4 sm:px-5 py-2 sm:py-3 rounded-xl font-semibold text-xs sm:text-sm transition-all whitespace-nowrap ${
                   difficultyFilter === diff
                     ? 'bg-purple-500 text-white shadow-lg shadow-purple-500/30'
                     : 'bg-white/5 text-gray-400 hover:bg-white/10 border border-white/10'
@@ -346,18 +351,19 @@ export default function Problems() {
 
         {/* Problems List */}
         <div className="glass-effect rounded-2xl border border-white/10 overflow-hidden relative z-10 shadow-2xl">
-          <div className="bg-white/5 px-6 py-4 border-b border-white/10">
-            <div className="flex items-center justify-between">
-              <h3 className="text-lg font-bold text-white">
+          <div className="bg-white/5 px-4 sm:px-6 py-3 sm:py-4 border-b border-white/10">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0">
+              <h3 className="text-base sm:text-lg font-bold text-white">
                 {filteredQuestions.length} Problems
               </h3>
-              <div className="flex items-center gap-2 text-sm text-gray-400">
-                <span>Showing problems from:</span>
+              <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-400 flex-wrap">
+                <span className="hidden sm:inline">Showing problems from:</span>
+                <span className="sm:hidden">From:</span>
                 {selectedTopics.map((topicId, index) => {
                   const topic = TOPICS.find(t => t.id === topicId);
                   return (
                     <span key={topicId} className="text-purple-300">
-                      {topic.icon} {topic.name}{index < selectedTopics.length - 1 ? ',' : ''}
+                      {topic.icon} <span className="hidden sm:inline">{topic.name}</span>{index < selectedTopics.length - 1 ? ',' : ''}
                     </span>
                   );
                 })}
@@ -369,37 +375,36 @@ export default function Problems() {
             {filteredQuestions.map((question, index) => (
               <div
                 key={`${question.topicId}-${question.id}`}
-                className="group px-6 py-5 hover:bg-white/5 transition-all duration-200 relative overflow-hidden"
+                className="group px-4 sm:px-6 py-4 sm:py-5 hover:bg-white/5 transition-all duration-200 relative overflow-hidden"
               >
-                <div className="absolute inset-0 animate-shimmer opacity-0 group-hover:opacity-100"></div>
-                <div className="flex items-center gap-6 relative z-10">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-xl glass-effect flex items-center justify-center text-gray-400 font-bold group-hover:bg-white/10 transition-all group-hover:scale-110">
+                <div className="flex items-start sm:items-center gap-3 sm:gap-6 relative z-10">
+                  <div className="flex-shrink-0 w-8 h-8 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl glass-effect flex items-center justify-center text-gray-400 font-bold group-hover:bg-white/10 transition-all text-xs sm:text-base">
                     {index + 1}
                   </div>
                   
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-3 mb-2">
-                      <h4 className="text-white font-semibold text-lg group-hover:text-purple-300 transition-colors">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-2">
+                      <h4 className="text-white font-semibold text-sm sm:text-lg group-hover:text-purple-300 transition-colors line-clamp-2 sm:line-clamp-1">
                         {question.title}
                       </h4>
-                      <span className={`px-3 py-1 rounded-lg text-xs font-bold border ${getDifficultyBadge(question.difficulty)}`}>
+                      <span className={`px-2 sm:px-3 py-1 rounded-lg text-xs font-bold border ${getDifficultyBadge(question.difficulty)} w-fit`}>
                         {question.difficulty}
                       </span>
                     </div>
-                    <div className="flex items-center gap-3 text-sm text-gray-400">
-                      <span className="flex items-center gap-1.5">
-                        <span className="animate-float-slow">{question.topicIcon}</span>
-                        <span>{question.topic}</span>
+                    <div className="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm text-gray-400">
+                      <span className="flex items-center gap-1 sm:gap-1.5">
+                        <span>{question.topicIcon}</span>
+                        <span className="hidden sm:inline">{question.topic}</span>
                       </span>
                     </div>
                   </div>
 
                   <button
                     onClick={() => handleSolve(question.topicId, question.id)}
-                    className="px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-xl font-semibold transition-all duration-300 shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 flex items-center gap-2 group-hover:scale-105 hover-lift"
+                    className="flex-shrink-0 px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-xl font-semibold transition-all duration-300 shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 flex items-center gap-1 sm:gap-2 text-sm sm:text-base"
                   >
                     <span>Solve</span>
-                    <span className="group-hover:translate-x-1 transition-transform">→</span>
+                    <span className="hidden sm:inline group-hover:translate-x-1 transition-transform">→</span>
                   </button>
                 </div>
               </div>

@@ -449,116 +449,126 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            {/* AI Chat Assistant */}
             <Link
               to="/chat"
-              className="group relative p-10 rounded-3xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 hover:border-green-500/50 transition-all duration-500 hover:scale-105 backdrop-blur-sm cursor-pointer hover-lift overflow-hidden"
+              className="group relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700 hover:border-green-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm cursor-pointer overflow-hidden"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-blue-500/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div className="absolute inset-0 animate-shimmer opacity-0 group-hover:opacity-100"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-blue-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative z-10">
-                <div className="text-6xl mb-8 group-hover:scale-125 transition-transform duration-500 animate-float-slow">
+                <div className="text-5xl sm:text-6xl mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
                   💬
                 </div>
-                <h3 className="text-2xl font-bold mb-6 text-white">
+                <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-white">
                   AI Chat Assistant
                 </h3>
-                <p className="text-gray-400 leading-relaxed mb-6">
-                  Chat with your personal AI coach for interview tips, career advice, and coding help 24/7
+                <p className="text-sm sm:text-base text-gray-400 leading-relaxed mb-4">
+                  Chat with your personal AI coach for interview tips and coding help 24/7
                 </p>
-                <div className="flex items-center text-green-400 font-semibold">
+                <div className="flex items-center text-green-400 font-semibold text-sm sm:text-base">
                   <span>Start chatting</span>
-                  <span className="ml-2 group-hover:translate-x-1 transition-transform">
-                    →
-                  </span>
+                  <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
                 </div>
               </div>
             </Link>
 
-            <div className="group relative p-10 rounded-3xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 hover:border-blue-500/50 transition-all duration-500 hover:scale-105 backdrop-blur-sm hover-lift overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div className="absolute inset-0 animate-shimmer opacity-0 group-hover:opacity-100"></div>
+            {/* AI Interview Practice */}
+            <div className="group relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700 hover:border-blue-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative z-10">
-                <div className="text-6xl mb-8 group-hover:scale-125 transition-transform duration-500 animate-float-slow" style={{animationDelay: '0.5s'}}>
+                <div className="text-5xl sm:text-6xl mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
                   🤖
                 </div>
-                <h3 className="text-2xl font-bold mb-6 text-white">
+                <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-white">
                   AI Interview Practice
                 </h3>
-                <p className="text-gray-400 leading-relaxed mb-6">
-                  Practice with AI interviewer that adapts to your responses and provides real-time feedback
+                <p className="text-sm sm:text-base text-gray-400 leading-relaxed mb-4">
+                  Practice with AI interviewer that adapts and provides real-time feedback
                 </p>
-                <div className="flex items-center text-blue-400 font-semibold">
+                <div className="flex items-center text-blue-400 font-semibold text-sm sm:text-base">
                   <span>Learn more</span>
-                  <span className="ml-2 group-hover:translate-x-1 transition-transform">
-                    →
-                  </span>
+                  <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
                 </div>
               </div>
             </div>
 
-            <div className="group relative p-10 rounded-3xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 hover:border-purple-500/50 transition-all duration-500 hover:scale-105 backdrop-blur-sm hover-lift overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div className="absolute inset-0 animate-shimmer opacity-0 group-hover:opacity-100"></div>
+            {/* Code-Based Questions */}
+            <div className="group relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700 hover:border-purple-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative z-10">
-                <div className="text-6xl mb-8 group-hover:scale-125 transition-transform duration-500 animate-float-slow" style={{animationDelay: '1s'}}>
+                <div className="text-5xl sm:text-6xl mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
                   💻
                 </div>
-                <h3 className="text-2xl font-bold mb-6 text-white">
-                  Code-Based Questions
+                <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-white">
+                  Multi-Language Support
                 </h3>
-                <p className="text-gray-400 leading-relaxed mb-6">
-                  Real coding challenges with JavaScript, C++, and pseudocode snippets for practical assessment
+                <p className="text-sm sm:text-base text-gray-400 leading-relaxed mb-4">
+                  Code in JavaScript, C++, or Java with real-time execution
                 </p>
-                <div className="flex items-center text-purple-400 font-semibold">
-                  <span>Learn more</span>
-                  <span className="ml-2 group-hover:translate-x-1 transition-transform">
-                    →
-                  </span>
+                <div className="flex items-center text-purple-400 font-semibold text-sm sm:text-base">
+                  <span>Start coding</span>
+                  <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
                 </div>
               </div>
             </div>
 
-            <div className="group relative p-10 rounded-3xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 hover:border-pink-500/50 transition-all duration-500 hover:scale-105 backdrop-blur-sm hover-lift overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 to-cyan-500/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div className="absolute inset-0 animate-shimmer opacity-0 group-hover:opacity-100"></div>
+            {/* Progress Tracking */}
+            <div className="group relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700 hover:border-pink-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 to-cyan-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative z-10">
-                <div className="text-6xl mb-8 group-hover:scale-125 transition-transform duration-500 animate-float-slow" style={{animationDelay: '1.5s'}}>
+                <div className="text-5xl sm:text-6xl mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
                   📊
                 </div>
-                <h3 className="text-2xl font-bold mb-6 text-white">
-                  Performance Analytics
+                <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-white">
+                  Progress Tracking
                 </h3>
-                <p className="text-gray-400 leading-relaxed mb-6">
-                  Track your progress with detailed analytics and identify areas for improvement
+                <p className="text-sm sm:text-base text-gray-400 leading-relaxed mb-4">
+                  Track your improvement with detailed analytics and performance insights
                 </p>
-                <div className="flex items-center text-pink-400 font-semibold">
-                  <span>Learn more</span>
-                  <span className="ml-2 group-hover:translate-x-1 transition-transform">
-                    →
-                  </span>
+                <div className="flex items-center text-pink-400 font-semibold text-sm sm:text-base">
+                  <span>View dashboard</span>
+                  <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
                 </div>
               </div>
             </div>
 
-            <div className="group relative p-10 rounded-3xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-500 hover:scale-105 backdrop-blur-sm hover-lift overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-blue-500/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div className="absolute inset-0 animate-shimmer opacity-0 group-hover:opacity-100"></div>
+            {/* Streak & Leaderboard */}
+            <div className="group relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700 hover:border-orange-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-red-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative z-10">
-                <div className="text-6xl mb-8 group-hover:scale-125 transition-transform duration-500 animate-float-slow" style={{animationDelay: '2s'}}>
-                  🎯
+                <div className="text-5xl sm:text-6xl mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
+                  🔥
                 </div>
-                <h3 className="text-2xl font-bold mb-6 text-white">
-                  Role-Based Assessments
+                <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-white">
+                  Streaks & Rankings
                 </h3>
-                <p className="text-gray-400 leading-relaxed mb-6">
-                  Choose from Developer, HR, Data Analyst, and SQL Developer role-specific questions
+                <p className="text-sm sm:text-base text-gray-400 leading-relaxed mb-4">
+                  Build daily streaks and compete on the leaderboard with other coders
                 </p>
-                <div className="flex items-center text-cyan-400 font-semibold">
-                  <span>Learn more</span>
-                  <span className="ml-2 group-hover:translate-x-1 transition-transform">
-                    →
-                  </span>
+                <div className="flex items-center text-orange-400 font-semibold text-sm sm:text-base">
+                  <span>View leaderboard</span>
+                  <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                </div>
+              </div>
+            </div>
+
+            {/* 96+ Problems */}
+            <div className="group relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700 hover:border-cyan-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-blue-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="relative z-10">
+                <div className="text-5xl sm:text-6xl mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
+                  📚
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-white">
+                  96+ Coding Problems
+                </h3>
+                <p className="text-sm sm:text-base text-gray-400 leading-relaxed mb-4">
+                  Curated problems across 8 topics with comprehensive test cases
+                </p>
+                <div className="flex items-center text-cyan-400 font-semibold text-sm sm:text-base">
+                  <span>Start practicing</span>
+                  <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
                 </div>
               </div>
             </div>
@@ -682,44 +692,6 @@ export default function Home() {
             <div className="text-center p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 backdrop-blur-sm">
               <div className="text-5xl font-black text-white mb-3">500+</div>
               <div className="text-gray-400 text-lg">Companies Hiring</div>
-            </div>
-          </div>
-
-          {/* Testimonials */}
-          <div className="mb-16 sm:mb-20">
-            <h3 className="text-2xl sm:text-3xl font-bold text-center text-white mb-8 sm:mb-12 px-4">
-              What Our Students Say
-            </h3>
-            <div className="grid md:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto">
-              <div className="p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 backdrop-blur-sm">
-                <div className="flex items-center mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white text-xl font-bold mr-4">
-                    A
-                  </div>
-                  <div>
-                    <div className="text-xl font-semibold text-white">Arjun K.</div>
-                    <div className="text-gray-400">Software Engineer @ Google</div>
-                  </div>
-                </div>
-                <p className="text-gray-300 text-lg leading-relaxed">
-                  "NextRound AI helped me crack Google's interview. The AI feedback was incredibly accurate and helped me improve my weak areas."
-                </p>
-              </div>
-
-              <div className="p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 backdrop-blur-sm">
-                <div className="flex items-center mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white text-xl font-bold mr-4">
-                    P
-                  </div>
-                  <div>
-                    <div className="text-xl font-semibold text-white">Priya S.</div>
-                    <div className="text-gray-400">Frontend Dev @ Microsoft</div>
-                  </div>
-                </div>
-                <p className="text-gray-300 text-lg leading-relaxed">
-                  "The code-based questions with real snippets made the practice feel like actual technical interviews. Highly recommend!"
-                </p>
-              </div>
             </div>
           </div>
 
