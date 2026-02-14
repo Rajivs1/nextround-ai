@@ -293,7 +293,7 @@
 ### Step 1: Clone Repository
 
 ```bash
-git clone https://github.com/yourusername/nextround-ai.git
+git clone https://github.com/rajivs1/nextround-ai.git
 cd nextround-ai
 ```
 
