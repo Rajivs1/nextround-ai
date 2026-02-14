@@ -385,7 +385,7 @@ export default function Home() {
 
       {/* Streak and Leaderboard Section - Only for Logged-in Users */}
       {user && (
-        <section className="relative px-4 sm:px-6 py-12 sm:py-16 bg-gradient-to-b from-black to-gray-900">
+        <section id="leaderboard-section" className="relative px-4 sm:px-6 py-12 sm:py-16 bg-gradient-to-b from-black to-gray-900">
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               
@@ -582,7 +582,10 @@ export default function Home() {
             </Link>
 
             {/* AI Interview Practice */}
-            <div className="group relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700 hover:border-blue-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden">
+            <Link
+              to="/interview"
+              className="group relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700 hover:border-blue-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden cursor-pointer"
+            >
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative z-10">
                 <div className="text-5xl sm:text-6xl mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
@@ -595,14 +598,17 @@ export default function Home() {
                   Practice with AI interviewer that adapts and provides real-time feedback
                 </p>
                 <div className="flex items-center text-blue-400 font-semibold text-sm sm:text-base">
-                  <span>Learn more</span>
+                  <span>Start interview</span>
                   <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
                 </div>
               </div>
-            </div>
+            </Link>
 
             {/* Code-Based Questions */}
-            <div className="group relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700 hover:border-purple-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden">
+            <Link
+              to="/problems"
+              className="group relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700 hover:border-purple-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden cursor-pointer"
+            >
               <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative z-10">
                 <div className="text-5xl sm:text-6xl mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
@@ -619,10 +625,13 @@ export default function Home() {
                   <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
                 </div>
               </div>
-            </div>
+            </Link>
 
             {/* Progress Tracking */}
-            <div className="group relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700 hover:border-pink-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden">
+            <Link
+              to="/dashboard"
+              className="group relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700 hover:border-pink-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden cursor-pointer"
+            >
               <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 to-cyan-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative z-10">
                 <div className="text-5xl sm:text-6xl mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
@@ -639,10 +648,17 @@ export default function Home() {
                   <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
                 </div>
               </div>
-            </div>
+            </Link>
 
             {/* Streak & Leaderboard */}
-            <div className="group relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700 hover:border-orange-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden">
+            <Link
+              to="/"
+              onClick={(e) => {
+                e.preventDefault();
+                document.querySelector('#leaderboard-section')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="group relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700 hover:border-orange-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden cursor-pointer"
+            >
               <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-red-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative z-10">
                 <div className="text-5xl sm:text-6xl mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
@@ -659,10 +675,13 @@ export default function Home() {
                   <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
                 </div>
               </div>
-            </div>
+            </Link>
 
             {/* 96+ Problems */}
-            <div className="group relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700 hover:border-cyan-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden">
+            <Link
+              to="/problems"
+              className="group relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700 hover:border-cyan-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden cursor-pointer"
+            >
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-blue-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative z-10">
                 <div className="text-5xl sm:text-6xl mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
@@ -679,7 +698,7 @@ export default function Home() {
                   <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
                 </div>
               </div>
-            </div>
+            </Link>
           </div>
         </div>
       </section>
