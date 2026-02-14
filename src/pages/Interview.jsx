@@ -243,30 +243,29 @@ export default function Interview() {
             </div>
 
             {/* Role Cards */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12 max-w-7xl mx-auto">
               {roles.map((role) => (
                 <div
                   key={role.id}
-                  className={`group p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 hover:border-gray-500/50 transition-all duration-300 hover:scale-105 hover-lift ${
+                  className={`group p-6 rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border-2 border-gray-700 hover:border-purple-500/50 transition-all duration-300 hover:scale-105 ${
                     isGeneratingQuestions ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
-                  } overflow-hidden relative`}
+                  } overflow-hidden relative shadow-xl hover:shadow-purple-500/20`}
                   onClick={() => !isGeneratingQuestions && startAssessment(role.id)}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <div className="absolute inset-0 animate-shimmer opacity-0 group-hover:opacity-100"></div>
+                  <div className={`absolute inset-0 bg-gradient-to-br ${role.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-2xl`}></div>
                   <div className="text-center relative z-10">
-                    <div className="text-6xl mb-6 group-hover:scale-110 transition-transform duration-300 animate-float-slow">
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">
                       {role.icon}
                     </div>
-                    <h3 className="text-2xl font-bold text-white mb-4">
+                    <h3 className="text-xl font-bold text-white mb-3">
                       {role.name}
                     </h3>
-                    <p className="text-gray-400 mb-6 leading-relaxed">
+                    <p className="text-gray-400 mb-4 leading-relaxed text-sm">
                       {role.description}
                     </p>
                     <button 
                       disabled={isGeneratingQuestions}
-                      className={`w-full py-3 bg-gradient-to-r ${role.color} text-white font-semibold rounded-xl hover:scale-105 transition-all duration-300 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed`}
+                      className={`w-full py-2.5 bg-gradient-to-r ${role.color} text-white font-semibold rounded-xl hover:scale-105 transition-all duration-300 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed text-sm`}
                     >
                       {isGeneratingQuestions ? 'Generating...' : 'Start Assessment'}
                     </button>
