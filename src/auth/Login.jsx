@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 import { useNavigate, Link } from "react-router-dom";
+import logo from "../assets/NexrRoundAi2.png";
 
 export default function Login() {
   // Add floating animation styles
@@ -110,9 +111,16 @@ export default function Login() {
         <div className="text-center mb-8 sm:mb-12">
           <Link 
             to="/"
-            className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-400 bg-clip-text text-transparent mb-4 inline-block hover:scale-105 transition-transform"
+            className="inline-flex items-center gap-3 mb-4 hover:scale-105 transition-transform"
           >
-            🤖 NextRound AI
+            <img 
+              src={logo} 
+              alt="NextRound AI Logo" 
+              className="w-10 h-10 sm:w-12 sm:h-12 object-contain"
+            />
+            <span className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-400 bg-clip-text text-transparent">
+              NextRound AI
+            </span>
           </Link>
           <h1 className="text-3xl sm:text-4xl font-black mb-3 sm:mb-4 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
             Welcome Back

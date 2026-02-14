@@ -101,7 +101,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
       {/* Navigation - Different for logged-in vs logged-out users */}
-      <nav className="relative z-50 px-4 sm:px-6 py-4 sm:py-6 backdrop-blur-sm bg-black/20">
+      <nav className="relative z-50 px-4 sm:px-6 py-4 sm:py-6 backdrop-blur-xl bg-gradient-to-r from-gray-900/95 via-gray-900/90 to-gray-900/95 border-b border-gray-800/50 shadow-lg">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-3 cursor-pointer hover:scale-105 transition-transform">
             <img 

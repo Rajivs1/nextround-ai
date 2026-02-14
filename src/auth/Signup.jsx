@@ -4,6 +4,7 @@ import { auth } from "../firebase";
 import { useNavigate, Link } from "react-router-dom";
 import { setDoc, doc } from "firebase/firestore";
 import { db } from "../firebase";
+import logo from "../assets/NexrRoundAi2.png";
 
 export default function Signup() {
   // Add floating animation styles
@@ -142,9 +143,16 @@ export default function Signup() {
         <div className="text-center mb-8 sm:mb-12">
           <Link
             to="/"
-            className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-fuchsia-400 bg-clip-text text-transparent mb-4 inline-block hover:scale-105 transition-transform"
+            className="inline-flex items-center gap-3 mb-4 hover:scale-105 transition-transform"
           >
-            🚀 NextRound AI
+            <img 
+              src={logo} 
+              alt="NextRound AI Logo" 
+              className="w-10 h-10 sm:w-12 sm:h-12 object-contain"
+            />
+            <span className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-fuchsia-400 bg-clip-text text-transparent">
+              NextRound AI
+            </span>
           </Link>
           <h1 className="text-3xl sm:text-4xl font-black mb-3 sm:mb-4 bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent">
             Join NextRound AI
