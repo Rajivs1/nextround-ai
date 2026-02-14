@@ -101,7 +101,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
       {/* Navigation - Different for logged-in vs logged-out users */}
-      <nav className="relative z-10 px-4 sm:px-6 py-4 sm:py-6 backdrop-blur-sm bg-black/20">
+      <nav className="relative z-50 px-4 sm:px-6 py-4 sm:py-6 backdrop-blur-sm bg-black/20">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-3 cursor-pointer hover:scale-105 transition-transform">
             <img 
@@ -183,26 +183,26 @@ export default function Home() {
         {/* Mobile Dropdown Menu with Backdrop */}
         {mobileMenuOpen && (
           <>
-            {/* Backdrop overlay */}
+            {/* Backdrop overlay - completely opaque with blur */}
             <div 
-              className="md:hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-40"
+              className="md:hidden fixed inset-0 bg-black/95 backdrop-blur-lg z-[100]"
               onClick={() => setMobileMenuOpen(false)}
             ></div>
             
-            {/* Menu dropdown */}
-            <div className="md:hidden absolute top-full left-0 right-0 mt-2 mx-4 bg-black border-2 border-gray-700 rounded-2xl shadow-2xl overflow-hidden animate-slideUp z-50">
-              <div className="py-2 bg-gradient-to-b from-gray-900 to-black">
+            {/* Menu dropdown - completely opaque dark blue */}
+            <div className="md:hidden absolute top-full left-0 right-0 mt-2 mx-4 bg-blue-950 border-2 border-blue-700 rounded-2xl shadow-2xl overflow-hidden animate-slideUp z-[110]">
+              <div className="py-2">
               {user ? (
                 // Logged-in user mobile menu
                 <>
-                  <div className="px-4 py-3 border-b border-gray-700 bg-gray-900/50">
-                    <span className="text-gray-400 text-xs">Welcome,</span>
+                  <div className="px-4 py-3 border-b border-blue-700 bg-blue-950">
+                    <span className="text-blue-300 text-xs">Welcome,</span>
                     <p className="text-white font-semibold">{displayName}</p>
                   </div>
                   <Link
                     to="/problems"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-gray-800 hover:text-white transition-all"
+                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-blue-800 hover:text-white transition-all"
                   >
                     <span className="text-xl">💻</span>
                     <span>Practice</span>
@@ -210,7 +210,7 @@ export default function Home() {
                   <Link
                     to="/chat"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-gray-800 hover:text-white transition-all"
+                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-blue-800 hover:text-white transition-all"
                   >
                     <span className="text-xl">💬</span>
                     <span>AI Chat</span>
@@ -218,7 +218,7 @@ export default function Home() {
                   <Link
                     to="/dashboard"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-gray-800 hover:text-white transition-all"
+                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-blue-800 hover:text-white transition-all"
                   >
                     <span className="text-xl">📊</span>
                     <span>Dashboard</span>
@@ -228,7 +228,7 @@ export default function Home() {
                       setMobileMenuOpen(false);
                       setShowLogoutModal(true);
                     }}
-                    className="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-gray-800 hover:text-white transition-all w-full text-left border-t border-gray-700"
+                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-blue-800 hover:text-white transition-all w-full text-left border-t border-blue-700"
                   >
                     <span className="text-xl">🚪</span>
                     <span>Logout</span>
@@ -240,7 +240,7 @@ export default function Home() {
                   <Link
                     to="/login"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-gray-800 hover:text-white transition-all"
+                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-blue-800 hover:text-white transition-all"
                   >
                     <span className="text-xl">🔐</span>
                     <span>Login</span>
@@ -248,7 +248,7 @@ export default function Home() {
                   <Link
                     to="/signup"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-gray-800 hover:text-white transition-all"
+                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-blue-800 hover:text-white transition-all"
                   >
                     <span className="text-xl">✨</span>
                     <span>Sign Up</span>
