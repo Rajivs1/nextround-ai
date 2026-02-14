@@ -18,6 +18,7 @@ export default function Home() {
   const [loadingLeaderboard, setLoadingLeaderboard] = useState(true);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Get user profile data for username
   useEffect(() => {
@@ -46,6 +47,18 @@ export default function Home() {
     
     migrate();
   }, [user]);
+
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (mobileMenuOpen && !event.target.closest('nav')) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [mobileMenuOpen]);
 
   // Fetch leaderboard data
   useEffect(() => {
@@ -100,11 +113,13 @@ export default function Home() {
               NextRound AI
             </span>
           </div>
-          <div className="flex items-center gap-2 sm:gap-4">
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-2 sm:gap-4">
             {user ? (
               // Logged-in user navigation
               <>
-                <span className="text-gray-300 text-sm sm:text-base hidden md:block">
+                <span className="text-gray-300 text-sm sm:text-base">
                   Welcome, <span className="text-white font-semibold">{displayName}</span>
                 </span>
                 <Link
@@ -127,7 +142,7 @@ export default function Home() {
                 </Link>
                 <button
                   onClick={() => setShowLogoutModal(true)}
-                  className="px-3 sm:px-6 py-2 text-sm sm:text-base text-gray-300 hover:text-white transition-all duration-300 hidden sm:block hover:scale-105"
+                  className="px-3 sm:px-6 py-2 text-sm sm:text-base text-gray-300 hover:text-white transition-all duration-300 hover:scale-105"
                 >
                   Logout
                 </button>
@@ -150,7 +165,100 @@ export default function Home() {
               </>
             )}
           </div>
+
+          {/* Mobile Menu Button (Three Dots) */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden p-2 text-gray-300 hover:text-white transition-colors"
+            aria-label="Toggle menu"
+          >
+            <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <circle cx="5" cy="12" r="2" />
+              <circle cx="12" cy="12" r="2" />
+              <circle cx="19" cy="12" r="2" />
+            </svg>
+          </button>
         </div>
+
+        {/* Mobile Dropdown Menu with Backdrop */}
+        {mobileMenuOpen && (
+          <>
+            {/* Backdrop overlay */}
+            <div 
+              className="md:hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-40"
+              onClick={() => setMobileMenuOpen(false)}
+            ></div>
+            
+            {/* Menu dropdown */}
+            <div className="md:hidden absolute top-full left-0 right-0 mt-2 mx-4 bg-black border-2 border-gray-700 rounded-2xl shadow-2xl overflow-hidden animate-slideUp z-50">
+              <div className="py-2 bg-gradient-to-b from-gray-900 to-black">
+              {user ? (
+                // Logged-in user mobile menu
+                <>
+                  <div className="px-4 py-3 border-b border-gray-700 bg-gray-900/50">
+                    <span className="text-gray-400 text-xs">Welcome,</span>
+                    <p className="text-white font-semibold">{displayName}</p>
+                  </div>
+                  <Link
+                    to="/problems"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-gray-800 hover:text-white transition-all"
+                  >
+                    <span className="text-xl">💻</span>
+                    <span>Practice</span>
+                  </Link>
+                  <Link
+                    to="/chat"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-gray-800 hover:text-white transition-all"
+                  >
+                    <span className="text-xl">💬</span>
+                    <span>AI Chat</span>
+                  </Link>
+                  <Link
+                    to="/dashboard"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-gray-800 hover:text-white transition-all"
+                  >
+                    <span className="text-xl">📊</span>
+                    <span>Dashboard</span>
+                  </Link>
+                  <button
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      setShowLogoutModal(true);
+                    }}
+                    className="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-gray-800 hover:text-white transition-all w-full text-left border-t border-gray-700"
+                  >
+                    <span className="text-xl">🚪</span>
+                    <span>Logout</span>
+                  </button>
+                </>
+              ) : (
+                // Logged-out user mobile menu
+                <>
+                  <Link
+                    to="/login"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-gray-800 hover:text-white transition-all"
+                  >
+                    <span className="text-xl">🔐</span>
+                    <span>Login</span>
+                  </Link>
+                  <Link
+                    to="/signup"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-gray-800 hover:text-white transition-all"
+                  >
+                    <span className="text-xl">✨</span>
+                    <span>Sign Up</span>
+                  </Link>
+                </>
+              )}
+            </div>
+          </div>
+          </>
+        )}
       </nav>
 
       {/* Hero Section */}
