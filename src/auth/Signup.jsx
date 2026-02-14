@@ -68,6 +68,12 @@ export default function Signup() {
         email,
         scores: [],
         createdAt: new Date(),
+        // Initialize streak and leaderboard fields
+        totalProblemsSolved: 0,
+        currentStreak: 0,
+        longestStreak: 0,
+        lastActivityDate: null,
+        solvedQuestions: [],
       });
 
       navigate("/dashboard");

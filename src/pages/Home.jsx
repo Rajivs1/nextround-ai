@@ -6,11 +6,18 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";
+import logo from "../assets/NexrRoundAi2.png";
+import { getLeaderboard } from "../utils/leaderboardUtils";
+import { migrateUserIfNeeded } from "../utils/migrationUtils";
 
 export default function Home() {
   const { user, loading } = useAuth();
   const navigate = useNavigate();
   const [userProfile, setUserProfile] = useState(null);
+  const [leaderboard, setLeaderboard] = useState([]);
+  const [loadingLeaderboard, setLoadingLeaderboard] = useState(true);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   // Get user profile data for username
   useEffect(() => {
@@ -25,12 +32,42 @@ export default function Home() {
     return () => unsub();
   }, [user]);
 
+  // Auto-migrate user if needed (for existing users)
+  useEffect(() => {
+    if (!user) return;
+    
+    const migrate = async () => {
+      try {
+        await migrateUserIfNeeded(user.uid);
+      } catch (error) {
+        console.error('Migration error:', error);
+      }
+    };
+    
+    migrate();
+  }, [user]);
+
+  // Fetch leaderboard data
+  useEffect(() => {
+    const fetchLeaderboard = async () => {
+      setLoadingLeaderboard(true);
+      const data = await getLeaderboard(10);
+      setLeaderboard(data);
+      setLoadingLeaderboard(false);
+    };
+
+    fetchLeaderboard();
+  }, []);
+
   const handleLogout = async () => {
+    setIsLoggingOut(true);
     try {
       await signOut(auth);
+      setShowLogoutModal(false);
       navigate("/");
     } catch (error) {
       console.error("Error signing out:", error);
+      setIsLoggingOut(false);
     }
   };
 
@@ -53,8 +90,15 @@ export default function Home() {
       {/* Navigation - Different for logged-in vs logged-out users */}
       <nav className="relative z-10 px-4 sm:px-6 py-4 sm:py-6 backdrop-blur-sm bg-black/20">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient cursor-pointer hover:scale-105 transition-transform">
-            NextRound AI
+          <div className="flex items-center gap-3 cursor-pointer hover:scale-105 transition-transform">
+            <img 
+              src={logo} 
+              alt="NextRound AI Logo" 
+              className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
+            />
+            <span className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient">
+              NextRound AI
+            </span>
           </div>
           <div className="flex items-center gap-2 sm:gap-4">
             {user ? (
@@ -82,7 +126,7 @@ export default function Home() {
                   Dashboard
                 </Link>
                 <button
-                  onClick={handleLogout}
+                  onClick={() => setShowLogoutModal(true)}
                   className="px-3 sm:px-6 py-2 text-sm sm:text-base text-gray-300 hover:text-white transition-all duration-300 hidden sm:block hover:scale-105"
                 >
                   Logout
@@ -230,6 +274,160 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Streak and Leaderboard Section - Only for Logged-in Users */}
+      {user && (
+        <section className="relative px-4 sm:px-6 py-12 sm:py-16 bg-gradient-to-b from-black to-gray-900">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              
+              {/* Streak Card */}
+              <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 sm:p-8 border border-gray-700 shadow-2xl hover:shadow-orange-500/20 transition-all duration-300">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="text-4xl">🔥</div>
+                  <h3 className="text-2xl sm:text-3xl font-bold text-white">Your Streak</h3>
+                </div>
+                
+                <div className="space-y-6">
+                  {/* Current Streak */}
+                  <div className="bg-gradient-to-r from-orange-500/10 to-red-500/10 rounded-xl p-6 border border-orange-500/30">
+                    <div className="text-center">
+                      <div className="text-sm text-gray-400 mb-2">Current Streak</div>
+                      <div className="text-5xl sm:text-6xl font-black bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent mb-2">
+                        {userProfile?.currentStreak || 0}
+                      </div>
+                      <div className="text-sm text-gray-400">
+                        {userProfile?.currentStreak === 1 ? 'day' : 'days'}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Longest Streak */}
+                  <div className="flex items-center justify-between p-4 bg-gray-800/50 rounded-lg border border-gray-700">
+                    <div className="flex items-center gap-3">
+                      <div className="text-2xl">🏆</div>
+                      <div>
+                        <div className="text-sm text-gray-400">Longest Streak</div>
+                        <div className="text-xl sm:text-2xl font-bold text-white">
+                          {userProfile?.longestStreak || 0} {userProfile?.longestStreak === 1 ? 'day' : 'days'}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Problems Solved */}
+                  <div className="flex items-center justify-between p-4 bg-gray-800/50 rounded-lg border border-gray-700">
+                    <div className="flex items-center gap-3">
+                      <div className="text-2xl">✅</div>
+                      <div>
+                        <div className="text-sm text-gray-400">Problems Solved</div>
+                        <div className="text-xl sm:text-2xl font-bold text-white">
+                          {userProfile?.totalProblemsSolved || 0}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Motivation */}
+                  <div className="text-center text-sm text-gray-400 italic">
+                    {userProfile?.currentStreak === 0 
+                      ? "Start solving to build your streak! 💪"
+                      : userProfile?.currentStreak < 7
+                      ? "Keep going! You're building momentum! 🚀"
+                      : userProfile?.currentStreak < 30
+                      ? "Amazing consistency! Keep it up! ⭐"
+                      : "You're on fire! Legendary streak! 🔥"}
+                  </div>
+                </div>
+              </div>
+
+              {/* Leaderboard Card */}
+              <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 sm:p-8 border border-gray-700 shadow-2xl hover:shadow-purple-500/20 transition-all duration-300">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="text-4xl">🏆</div>
+                  <h3 className="text-2xl sm:text-3xl font-bold text-white">Top Coders</h3>
+                </div>
+
+                {loadingLeaderboard ? (
+                  <div className="flex items-center justify-center py-12">
+                    <div className="w-8 h-8 border-4 border-purple-500 border-t-transparent rounded-full animate-spin"></div>
+                  </div>
+                ) : leaderboard.length === 0 ? (
+                  <div className="text-center py-12 text-gray-400">
+                    No users on the leaderboard yet. Be the first! 🚀
+                  </div>
+                ) : (
+                  <div className="space-y-3 max-h-[400px] overflow-y-auto custom-scrollbar">
+                    {leaderboard.map((userEntry, index) => {
+                      const isCurrentUser = userEntry.userId === user?.uid;
+                      const rankColors = ['text-yellow-400', 'text-gray-300', 'text-orange-400'];
+                      const rankEmojis = ['🥇', '🥈', '🥉'];
+                      
+                      return (
+                        <div
+                          key={userEntry.userId}
+                          className={`flex items-center gap-4 p-4 rounded-lg border transition-all duration-300 ${
+                            isCurrentUser
+                              ? 'bg-gradient-to-r from-blue-500/20 to-purple-500/20 border-purple-500/50 shadow-lg'
+                              : 'bg-gray-800/50 border-gray-700 hover:border-gray-600'
+                          }`}
+                        >
+                          {/* Rank */}
+                          <div className={`text-2xl font-bold ${index < 3 ? rankColors[index] : 'text-gray-400'} w-8 text-center`}>
+                            {index < 3 ? rankEmojis[index] : `#${index + 1}`}
+                          </div>
+
+                          {/* Profile Image */}
+                          <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 flex items-center justify-center text-white font-bold overflow-hidden">
+                            {userEntry.profileImage ? (
+                              <img src={userEntry.profileImage} alt={userEntry.username} className="w-full h-full object-cover" />
+                            ) : (
+                              userEntry.username?.charAt(0).toUpperCase() || '?'
+                            )}
+                          </div>
+
+                          {/* User Info */}
+                          <div className="flex-1 min-w-0">
+                            <div className="text-white font-semibold truncate flex items-center gap-2">
+                              {userEntry.username}
+                              {isCurrentUser && (
+                                <span className="text-xs px-2 py-0.5 bg-purple-500/30 text-purple-300 rounded-full">You</span>
+                              )}
+                            </div>
+                            <div className="text-xs text-gray-400">
+                              {userEntry.totalProblemsSolved} problems solved
+                            </div>
+                          </div>
+
+                          {/* Streak */}
+                          <div className="text-right">
+                            <div className="text-orange-400 font-bold flex items-center gap-1">
+                              🔥 {userEntry.currentStreak}
+                            </div>
+                            <div className="text-xs text-gray-400">day streak</div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+
+                {/* View Full Leaderboard Link */}
+                <div className="mt-6 text-center">
+                  <Link
+                    to="/dashboard"
+                    className="text-sm text-purple-400 hover:text-purple-300 transition-colors inline-flex items-center gap-2 group"
+                  >
+                    View your dashboard
+                    <span className="group-hover:translate-x-1 transition-transform">→</span>
+                  </Link>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Features Section */}
       <section className="relative px-4 sm:px-6 py-16 sm:py-24 lg:py-32 bg-gradient-to-b from-black via-gray-900 to-black">
@@ -598,6 +796,88 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* Logout Confirmation Modal */}
+      {showLogoutModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 animate-fadeIn">
+          {/* Backdrop */}
+          <div 
+            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+            onClick={() => !isLoggingOut && setShowLogoutModal(false)}
+          ></div>
+          
+          {/* Modal */}
+          <div className="relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl shadow-2xl border border-gray-700 max-w-md w-full p-6 sm:p-8 animate-slideUp">
+            {/* Icon */}
+            <div className="flex justify-center mb-6">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-red-500/20 to-orange-500/20 border-2 border-red-500/50 flex items-center justify-center">
+                <svg className="w-8 h-8 sm:w-10 sm:h-10 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                </svg>
+              </div>
+            </div>
+
+            {/* Title */}
+            <h3 className="text-2xl sm:text-3xl font-bold text-white text-center mb-3">
+              Logout Confirmation
+            </h3>
+
+            {/* Message */}
+            <p className="text-gray-300 text-center mb-8 text-base sm:text-lg">
+              Are you sure you want to logout?
+              <br />
+              <span className="text-sm text-gray-400 mt-2 inline-block">
+                You'll need to sign in again to access your account.
+              </span>
+            </p>
+
+            {/* Buttons */}
+            <div className="flex flex-col sm:flex-row gap-3">
+              {/* Cancel Button */}
+              <button
+                onClick={() => setShowLogoutModal(false)}
+                disabled={isLoggingOut}
+                className="flex-1 px-6 py-3 sm:py-4 bg-gray-700 hover:bg-gray-600 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 border border-gray-600"
+              >
+                Cancel
+              </button>
+
+              {/* Logout Button */}
+              <button
+                onClick={handleLogout}
+                disabled={isLoggingOut}
+                className="flex-1 px-6 py-3 sm:py-4 bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg shadow-red-500/30 hover:shadow-red-500/50 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-2"
+              >
+                {isLoggingOut ? (
+                  <>
+                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    <span>Logging out...</span>
+                  </>
+                ) : (
+                  <>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                    </svg>
+                    <span>Yes, Logout</span>
+                  </>
+                )}
+              </button>
+            </div>
+
+            {/* Close button (X) */}
+            {!isLoggingOut && (
+              <button
+                onClick={() => setShowLogoutModal(false)}
+                className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

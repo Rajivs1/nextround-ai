@@ -36,6 +36,8 @@ export default function Dashboard() {
   const [isDeleting, setIsDeleting] = useState(false);
   const [activeTab, setActiveTab] = useState("dashboard");
   const [isUploadingImage, setIsUploadingImage] = useState(false);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   // Force refresh when coming from result page
   useEffect(() => {
@@ -80,11 +82,14 @@ export default function Dashboard() {
   };
 
   const handleLogout = async () => {
+    setIsLoggingOut(true);
     try {
       await signOut(auth);
+      setShowLogoutModal(false);
       navigate("/");
     } catch (error) {
       console.error("Error signing out:", error);
+      setIsLoggingOut(false);
     }
   };
 
@@ -304,13 +309,7 @@ export default function Dashboard() {
                 </div>
               </div>
               <div className="flex flex-wrap gap-2 sm:gap-4">
-                <button
-                  onClick={handleRefresh}
-                  className="px-3 sm:px-6 py-2 sm:py-3 border border-gray-600 rounded-xl text-gray-300 hover:border-blue-400 hover:text-blue-400 transition-all duration-300 text-sm sm:text-base"
-                  title="Refresh data"
-                >
-                  🔄 <span className="hidden sm:inline">Refresh</span>
-                </button>
+                
                 <button
                   onClick={() => navigate("/chat")}
                   className="px-3 sm:px-6 py-2 sm:py-3 border border-green-600 rounded-xl text-green-400 hover:border-green-400 hover:bg-green-900/20 transition-all duration-300 text-sm sm:text-base"
@@ -325,7 +324,7 @@ export default function Dashboard() {
                   <span className="sm:hidden">Practice</span>
                 </button>
                 <button
-                  onClick={handleLogout}
+                  onClick={() => setShowLogoutModal(true)}
                   className="px-3 sm:px-6 py-2 sm:py-3 border border-gray-600 rounded-xl text-gray-300 hover:border-gray-400 hover:text-white transition-all duration-300 text-sm sm:text-base"
                 >
                   Logout
@@ -970,6 +969,88 @@ export default function Dashboard() {
                 )}
               </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Logout Confirmation Modal */}
+      {showLogoutModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 animate-fadeIn">
+          {/* Backdrop */}
+          <div 
+            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+            onClick={() => !isLoggingOut && setShowLogoutModal(false)}
+          ></div>
+          
+          {/* Modal */}
+          <div className="relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl shadow-2xl border border-gray-700 max-w-md w-full p-6 sm:p-8 animate-slideUp">
+            {/* Icon */}
+            <div className="flex justify-center mb-6">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-red-500/20 to-orange-500/20 border-2 border-red-500/50 flex items-center justify-center">
+                <svg className="w-8 h-8 sm:w-10 sm:h-10 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                </svg>
+              </div>
+            </div>
+
+            {/* Title */}
+            <h3 className="text-2xl sm:text-3xl font-bold text-white text-center mb-3">
+              Logout Confirmation
+            </h3>
+
+            {/* Message */}
+            <p className="text-gray-300 text-center mb-8 text-base sm:text-lg">
+              Are you sure you want to logout?
+              <br />
+              <span className="text-sm text-gray-400 mt-2 inline-block">
+                You'll need to sign in again to access your account.
+              </span>
+            </p>
+
+            {/* Buttons */}
+            <div className="flex flex-col sm:flex-row gap-3">
+              {/* Cancel Button */}
+              <button
+                onClick={() => setShowLogoutModal(false)}
+                disabled={isLoggingOut}
+                className="flex-1 px-6 py-3 sm:py-4 bg-gray-700 hover:bg-gray-600 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 border border-gray-600"
+              >
+                Cancel
+              </button>
+
+              {/* Logout Button */}
+              <button
+                onClick={handleLogout}
+                disabled={isLoggingOut}
+                className="flex-1 px-6 py-3 sm:py-4 bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg shadow-red-500/30 hover:shadow-red-500/50 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-2"
+              >
+                {isLoggingOut ? (
+                  <>
+                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    <span>Logging out...</span>
+                  </>
+                ) : (
+                  <>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                    </svg>
+                    <span>Yes, Logout</span>
+                  </>
+                )}
+              </button>
+            </div>
+
+            {/* Close button (X) */}
+            {!isLoggingOut && (
+              <button
+                onClick={() => setShowLogoutModal(false)}
+                className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            )}
           </div>
         </div>
       )}
