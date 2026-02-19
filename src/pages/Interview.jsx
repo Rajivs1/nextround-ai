@@ -165,7 +165,7 @@ export default function Interview() {
   // Role Selection Screen
   if (!assessmentStarted) {
     return (
-      <div className="min-h-screen bg-black text-white relative overflow-hidden">
+      <div className="min-h-screen bg-[#1a1a1a] text-gray-100 relative overflow-hidden">
         {/* Background Effects */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-purple-900/10 to-pink-900/10 animate-gradient"></div>
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-pulse"></div>
@@ -276,7 +276,7 @@ export default function Interview() {
             
             {/* Loading Indicator */}
             {isGeneratingQuestions && (
-              <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center">
+              <div className="fixed inset-0 bg-[#1a1a1a]/80 backdrop-blur-sm z-50 flex items-center justify-center">
                 <div className="bg-gradient-to-br from-gray-900 to-gray-800 p-8 rounded-2xl border border-gray-700 max-w-md mx-4 text-center">
                   <div className="animate-spin text-6xl mb-6">🤖</div>
                   <h3 className="text-2xl font-bold text-white mb-4">
@@ -331,7 +331,7 @@ export default function Interview() {
   const roleInfo = roles.find(r => r.id === selectedRole);
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-[#1a1a1a] text-gray-100">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-purple-900/10 to-pink-900/10"></div>
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>

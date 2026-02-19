@@ -67,7 +67,7 @@ const Modal = ({ isOpen, onClose, type = 'info', title, message, details }) => {
   const colors = getColors();
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fadeIn">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1a1a1a]/80 backdrop-blur-sm animate-fadeIn">
       <div className="bg-[#262626] rounded-2xl border-2 border-[#3a3a3a] shadow-2xl max-w-lg w-full overflow-hidden animate-slideUp">
         {/* Header */}
         <div className={`${colors.bg} border-b-2 ${colors.border} p-6`}>

@@ -146,7 +146,7 @@ export default function Problems() {
   const topicStats = getTopicStats();
 
   return (
-    <div className="min-h-screen bg-[#0a0e27] relative overflow-hidden">
+    <div className="min-h-screen bg-[#1a1a1a] relative overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-900/10 via-blue-900/10 to-pink-900/10 animate-gradient"></div>
       <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl animate-pulse"></div>
@@ -246,7 +246,7 @@ export default function Problems() {
 
         {/* Loading Overlay */}
         {isGeneratingProblems && (
-          <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center">
+          <div className="fixed inset-0 bg-[#1a1a1a]/80 backdrop-blur-sm z-50 flex items-center justify-center">
             <div className="bg-gradient-to-br from-gray-900 to-gray-800 p-8 rounded-2xl border border-gray-700 max-w-md mx-4 text-center">
               <div className="animate-spin text-6xl mb-6">🤖</div>
               <h3 className="text-2xl font-bold text-white mb-4">

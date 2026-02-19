@@ -87,7 +87,7 @@ export default function Home() {
   // Show loading state
   if (loading) {
     return (
-      <div className="min-h-screen bg-black text-white flex items-center justify-center">
+      <div className="min-h-screen bg-[#1a1a1a] text-gray-100 flex items-center justify-center">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-xl text-gray-300">Loading...</p>
@@ -99,7 +99,7 @@ export default function Home() {
   const displayName = userProfile?.username || user?.email?.split('@')[0] || "User";
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-hidden">
+    <div className="min-h-screen bg-[#1a1a1a] text-gray-100 overflow-hidden">
       {/* Navigation - Different for logged-in vs logged-out users */}
       <nav className="relative z-50 px-4 sm:px-6 py-4 sm:py-6 backdrop-blur-xl bg-gradient-to-r from-gray-900/95 via-gray-900/90 to-gray-900/95 border-b border-gray-800/50 shadow-lg">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
@@ -133,6 +133,12 @@ export default function Home() {
                   className="px-3 sm:px-6 py-2 text-sm sm:text-base text-gray-300 hover:text-white transition-all duration-300 hover:scale-105"
                 >
                   AI Chat
+                </Link>
+                <Link
+                  to="/resume-analyzer"
+                  className="px-3 sm:px-6 py-2 text-sm sm:text-base text-gray-300 hover:text-white transition-all duration-300 hover:scale-105"
+                >
+                  Resume
                 </Link>
                 <Link
                   to="/dashboard"
@@ -185,7 +191,7 @@ export default function Home() {
           <>
             {/* Backdrop overlay - completely opaque with blur */}
             <div 
-              className="md:hidden fixed inset-0 bg-black/95 backdrop-blur-lg z-[100]"
+              className="md:hidden fixed inset-0 bg-[#1a1a1a]/95 backdrop-blur-lg z-[100]"
               onClick={() => setMobileMenuOpen(false)}
             ></div>
             
@@ -214,6 +220,14 @@ export default function Home() {
                   >
                     <span className="text-xl">💬</span>
                     <span>AI Chat</span>
+                  </Link>
+                  <Link
+                    to="/resume-analyzer"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-blue-800 hover:text-white transition-all"
+                  >
+                    <span className="text-xl">📄</span>
+                    <span>Resume Analyzer</span>
                   </Link>
                   <Link
                     to="/dashboard"
@@ -316,21 +330,21 @@ export default function Home() {
                   </span>
                 </Link>
                 <Link
+                  to="/resume-analyzer"
+                  className="group px-8 sm:px-12 py-4 sm:py-6 border-2 border-indigo-500 rounded-full text-lg sm:text-xl font-semibold hover:bg-indigo-500 hover:border-indigo-400 transition-all duration-300 backdrop-blur-sm w-full sm:w-auto"
+                >
+                  <span className="flex items-center justify-center">
+                    Resume Analyzer
+                    <span className="ml-2 group-hover:translate-x-1 transition-transform">📄</span>
+                  </span>
+                </Link>
+                <Link
                   to="/chat"
                   className="group px-8 sm:px-12 py-4 sm:py-6 border-2 border-green-500 rounded-full text-lg sm:text-xl font-semibold hover:bg-green-500 hover:border-green-400 transition-all duration-300 backdrop-blur-sm w-full sm:w-auto"
                 >
                   <span className="flex items-center justify-center">
                     Chat with AI
                     <span className="ml-2 group-hover:translate-x-1 transition-transform">💬</span>
-                  </span>
-                </Link>
-                <Link
-                  to="/dashboard"
-                  className="group px-8 sm:px-12 py-4 sm:py-6 border-2 border-gray-600 rounded-full text-lg sm:text-xl font-semibold hover:border-purple-400 hover:bg-purple-900/20 transition-all duration-300 backdrop-blur-sm w-full sm:w-auto"
-                >
-                  <span className="flex items-center justify-center">
-                    View Progress
-                    <span className="ml-2 group-hover:translate-x-1 transition-transform">📊</span>
                   </span>
                 </Link>
               </>
@@ -385,7 +399,7 @@ export default function Home() {
 
       {/* Streak and Leaderboard Section - Only for Logged-in Users */}
       {user && (
-        <section id="leaderboard-section" className="relative px-4 sm:px-6 py-12 sm:py-16 bg-gradient-to-b from-black to-gray-900">
+        <section id="leaderboard-section" className="relative px-4 sm:px-6 py-12 sm:py-16 bg-gradient-to-b from-[#1a1a1a] to-gray-900">
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               
@@ -538,7 +552,7 @@ export default function Home() {
       )}
 
       {/* Features Section */}
-      <section className="relative px-4 sm:px-6 py-16 sm:py-24 lg:py-32 bg-gradient-to-b from-black via-gray-900 to-black">
+      <section className="relative px-4 sm:px-6 py-16 sm:py-24 lg:py-32 bg-gradient-to-b from-[#1a1a1a] via-gray-900 to-[#1a1a1a]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
             <div className="mb-6">
@@ -699,12 +713,35 @@ export default function Home() {
                 </div>
               </div>
             </Link>
+
+            {/* Resume Analyzer */}
+            <Link
+              to="/resume-analyzer"
+              className="group relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700 hover:border-indigo-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden cursor-pointer"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-purple-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="relative z-10">
+                <div className="text-5xl sm:text-6xl mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
+                  📄
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-white">
+                  AI Resume Analyzer
+                </h3>
+                <p className="text-sm sm:text-base text-gray-400 leading-relaxed mb-4">
+                  Get instant AI-powered feedback to optimize your resume for ATS and recruiters
+                </p>
+                <div className="flex items-center text-indigo-400 font-semibold text-sm sm:text-base">
+                  <span>Analyze resume</span>
+                  <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                </div>
+              </div>
+            </Link>
           </div>
         </div>
       </section>
 
       {/* How It Works Section */}
-      <section className="relative px-4 sm:px-6 py-16 sm:py-24 bg-gradient-to-b from-gray-900 to-black">
+      <section className="relative px-4 sm:px-6 py-16 sm:py-24 bg-gradient-to-b from-gray-900 to-[#1a1a1a]">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
@@ -771,9 +808,9 @@ export default function Home() {
       </section>
 
       {/* Call to Action Section */}
-      <section className="relative px-4 sm:px-6 py-16 sm:py-24 lg:py-32 overflow-hidden bg-gradient-to-b from-black to-gray-900">
+      <section className="relative px-4 sm:px-6 py-16 sm:py-24 lg:py-32 overflow-hidden bg-gradient-to-b from-[#1a1a1a] to-gray-900">
         {/* Professional Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-[#1a1a1a] to-gray-900"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.15),transparent_70%)]"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(168,85,247,0.15),transparent_70%)]"></div>
 
@@ -874,7 +911,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-black border-t border-gray-800 py-16">
+      <footer className="bg-[#1a1a1a] border-t border-gray-800 py-16">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <div className="mb-8">
             <h3 className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-4">
@@ -901,7 +938,7 @@ export default function Home() {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 animate-fadeIn">
           {/* Backdrop */}
           <div 
-            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+            className="absolute inset-0 bg-[#1a1a1a]/70 backdrop-blur-sm"
             onClick={() => !isLoggingOut && setShowLogoutModal(false)}
           ></div>
           

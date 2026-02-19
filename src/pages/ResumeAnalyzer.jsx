@@ -245,76 +245,68 @@ export default function ResumeAnalyzer() {
       const AI_PROVIDER = import.meta.env.VITE_AI_PROVIDER || 'groq';
       console.log('🎯 Using AI Provider:', AI_PROVIDER);
       
-      // Using Google's Gemini API for analysis
-      const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
-      
-      if (AI_PROVIDER === 'gemini' && (!GEMINI_API_KEY || GEMINI_API_KEY.length < 30)) {
-        throw new Error("Gemini API key is missing or invalid.");
-      }
-      
-      // Try different model names in order of availability
-      const possibleModels = [
-        'gemini-pro',
-        'gemini-1.5-flash-latest',
-        'gemini-1.5-flash'
-      ];
-      
-      // Truncate resume if too long
-      const maxResumeLength = 4000;
+      // Truncate resume if too long for faster processing
+      const maxResumeLength = 3500; // Reduced for faster analysis
       const truncatedResume = resumeText.length > maxResumeLength 
         ? resumeText.substring(0, maxResumeLength) + '...(truncated)' 
         : resumeText;
       
-      const prompt = `Analyze this resume and return ONLY a JSON object (no text before or after):
+      // Optimized prompt for faster, more efficient analysis
+      const prompt = `You are an expert ATS (Applicant Tracking System) and resume analyzer. Analyze this resume quickly and efficiently.
 
-Resume:
+Resume Content:
 ${truncatedResume}
 
-Return ONLY this JSON structure with detailed analysis:
+Provide a comprehensive JSON analysis with these exact fields (NO markdown, NO extra text):
 {
-  "overallScore": <number 1-100>,
-  "summary": "<2-3 detailed sentences about resume quality, main strengths and key improvements needed>",
+  "overallScore": <number 1-100 based on ATS compatibility, content quality, and formatting>,
+  "summary": "<2-3 sentences: overall quality, main strength, key improvement needed>",
   "strengths": [
-    "<Detailed strength 1 with specific examples from resume>",
-    "<Detailed strength 2 with reasoning>",
-    "<Detailed strength 3>",
-    "<Detailed strength 4>",
-    "<Detailed strength 5>"
+    "<Specific strength with evidence from resume>",
+    "<Another strength>",
+    "<Third strength>",
+    "<Fourth strength>",
+    "<Fifth strength>"
   ],
   "weaknesses": [
-    "<Specific weakness 1 with impact explanation>",
-    "<Specific weakness 2 with context>",
-    "<Specific weakness 3>",
-    "<Specific weakness 4>",
-    "<Specific weakness 5>"
+    "<Critical weakness with impact>",
+    "<Another weakness>",
+    "<Third weakness>",
+    "<Fourth weakness>",
+    "<Fifth weakness>"
   ],
   "suggestions": [
-    {"category": "Content", "title": "<Title>", "description": "<Detailed actionable suggestion with examples>", "priority": "high"},
-    {"category": "Format", "title": "<Title>", "description": "<Specific formatting improvement>", "priority": "medium"},
-    {"category": "Keywords", "title": "<Title>", "description": "<Keyword optimization advice>", "priority": "high"},
-    {"category": "Experience", "title": "<Title>", "description": "<How to improve experience section>", "priority": "medium"},
-    {"category": "Skills", "title": "<Title>", "description": "<Skills section improvement>", "priority": "low"},
-    {"category": "ATS", "title": "<Title>", "description": "<ATS optimization tip>", "priority": "high"}
+    {"category": "Content", "title": "<Actionable title>", "description": "<Specific improvement with example>", "priority": "high"},
+    {"category": "Format", "title": "<Actionable title>", "description": "<Formatting fix>", "priority": "medium"},
+    {"category": "Keywords", "title": "<Actionable title>", "description": "<Keywords to add>", "priority": "high"},
+    {"category": "Experience", "title": "<Actionable title>", "description": "<How to improve experience section>", "priority": "medium"},
+    {"category": "Skills", "title": "<Actionable title>", "description": "<Skills improvement>", "priority": "low"},
+    {"category": "ATS", "title": "<Actionable title>", "description": "<ATS optimization>", "priority": "high"}
   ],
   "keywords": {
     "present": ["<keyword1>", "<keyword2>", "<keyword3>", "<keyword4>", "<keyword5>"],
-    "missing": ["<missing1>", "<missing2>", "<missing3>", "<missing4>", "<missing5>"]
+    "missing": ["<industry-relevant keyword1>", "<keyword2>", "<keyword3>", "<keyword4>", "<keyword5>"]
   },
   "sections": {
-    "contact": {"score": <1-10>, "feedback": "<Detailed feedback on contact information>"},
-    "summary": {"score": <1-10>, "feedback": "<Detailed feedback on professional summary>"},
-    "experience": {"score": <1-10>, "feedback": "<Detailed feedback on work experience>"},
-    "education": {"score": <1-10>, "feedback": "<Detailed feedback on education>"},
-    "skills": {"score": <1-10>, "feedback": "<Detailed feedback on skills section>"}
+    "contact": {"score": <1-10>, "feedback": "<Brief feedback>"},
+    "summary": {"score": <1-10>, "feedback": "<Brief feedback>"},
+    "experience": {"score": <1-10>, "feedback": "<Brief feedback>"},
+    "education": {"score": <1-10>, "feedback": "<Brief feedback>"},
+    "skills": {"score": <1-10>, "feedback": "<Brief feedback>"}
   },
   "atsCompatibility": {
     "score": <1-100>,
-    "issues": ["<Specific ATS issue 1>", "<Specific ATS issue 2>", "<Specific ATS issue 3>"],
-    "recommendations": ["<Actionable recommendation 1>", "<Actionable recommendation 2>", "<Actionable recommendation 3>"]
+    "issues": ["<ATS issue 1>", "<ATS issue 2>", "<ATS issue 3>"],
+    "recommendations": ["<Fix 1>", "<Fix 2>", "<Fix 3>"]
+  },
+  "industryComparison": {
+    "percentile": <1-100, where this resume ranks compared to industry standards>,
+    "topCompaniesReady": <true/false, whether ready for FAANG/top companies>,
+    "estimatedCallbackRate": "<percentage estimate based on resume quality>"
   }
 }
 
-CRITICAL: Return ONLY the JSON. No markdown. No explanation. Just JSON starting with { and ending with }.`;
+Return ONLY valid JSON. No markdown, no explanation, just the JSON object.`;
 
       // Route to appropriate AI provider
       let generatedText;
@@ -330,6 +322,18 @@ CRITICAL: Return ONLY the JSON. No markdown. No explanation. Just JSON starting 
         console.log('✅ OpenAI analysis complete');
       } else {
         // Gemini (default)
+        const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
+        
+        if (!GEMINI_API_KEY || GEMINI_API_KEY.length < 30) {
+          throw new Error("Gemini API key is missing or invalid.");
+        }
+        
+        const possibleModels = [
+          'gemini-pro',
+          'gemini-1.5-flash-latest',
+          'gemini-1.5-flash'
+        ];
+        
         generatedText = await analyzeWithGemini(prompt, possibleModels, GEMINI_API_KEY);
       }
 
@@ -461,7 +465,7 @@ CRITICAL: Return ONLY the JSON. No markdown. No explanation. Just JSON starting 
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-indigo-950 to-slate-900 text-white overflow-hidden relative">
+    <div className="min-h-screen bg-gradient-to-br from-[#1a1a1a] via-gray-900 to-[#1a1a1a] text-gray-100 overflow-hidden relative">
       {/* Animated Background Effects */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-900/30 via-purple-900/20 to-transparent"></div>
       <div className="absolute top-1/4 left-1/4 w-72 sm:w-96 h-72 sm:h-96 bg-indigo-500/20 rounded-full blur-3xl animate-pulse"></div>
@@ -526,9 +530,27 @@ CRITICAL: Return ONLY the JSON. No markdown. No explanation. Just JSON starting 
                 <h2 className="text-3xl sm:text-4xl font-black mb-4">
                   Upload Your Resume
                 </h2>
-                <p className="text-gray-400 text-base sm:text-lg">
+                <p className="text-gray-400 text-base sm:text-lg mb-6">
                   Upload your resume and get instant AI-powered feedback
                 </p>
+                
+                {/* Quick Tips */}
+                <div className="max-w-2xl mx-auto mb-8 p-4 bg-indigo-500/10 border border-indigo-500/30 rounded-xl">
+                  <div className="flex items-start gap-3 text-left">
+                    <svg className="w-5 h-5 text-indigo-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <div className="flex-1">
+                      <h4 className="text-white font-semibold mb-2">💡 Pro Tips for Best Results:</h4>
+                      <ul className="text-sm text-gray-300 space-y-1">
+                        <li>• Use a clean, well-formatted resume (PDF preferred)</li>
+                        <li>• Include all sections: contact, summary, experience, education, skills</li>
+                        <li>• Analysis takes 10-30 seconds depending on resume length</li>
+                        <li>• Your data is processed securely and not stored</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               {/* File Upload Area */}
@@ -617,9 +639,14 @@ CRITICAL: Return ONLY the JSON. No markdown. No explanation. Just JSON starting 
                         className="w-full py-4 bg-gradient-to-r from-indigo-500 via-purple-600 to-pink-600 text-white font-bold rounded-xl hover:from-indigo-600 hover:via-purple-700 hover:to-pink-700 transition-all duration-300 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 group"
                       >
                         {isAnalyzing ? (
-                          <div className="flex items-center justify-center gap-3">
-                            <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                            <span>Analyzing Resume...</span>
+                          <div className="space-y-3">
+                            <div className="flex items-center justify-center gap-3">
+                              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                              <span>Analyzing Resume with AI...</span>
+                            </div>
+                            <div className="text-sm text-indigo-200">
+                              🔍 Scanning content • 📊 Checking ATS compatibility • 💡 Generating insights
+                            </div>
                           </div>
                         ) : (
                           <span className="flex items-center justify-center gap-2">
@@ -627,6 +654,7 @@ CRITICAL: Return ONLY the JSON. No markdown. No explanation. Just JSON starting 
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                             </svg>
                             Analyze Resume with AI
+                            <span className="text-xs bg-green-500/20 px-2 py-1 rounded-full">Fast Analysis</span>
                           </span>
                         )}
                       </button>
@@ -660,17 +688,37 @@ CRITICAL: Return ONLY the JSON. No markdown. No explanation. Just JSON starting 
             <div className="space-y-8">
               {/* Header with Score */}
               <div className="text-center">
-                <button
-                  onClick={() => {
-                    setAnalysis(null);
-                    setFile(null);
-                    setFileName("");
-                    setResumeText("");
-                  }}
-                  className="mb-6 px-4 py-2 border border-gray-600 rounded-xl text-gray-300 hover:border-gray-400 hover:text-white transition-all duration-300"
-                >
-                  ← Analyze Another Resume
-                </button>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
+                  <button
+                    onClick={() => {
+                      setAnalysis(null);
+                      setFile(null);
+                      setFileName("");
+                      setResumeText("");
+                    }}
+                    className="px-4 py-2 border border-gray-600 rounded-xl text-gray-300 hover:border-gray-400 hover:text-white transition-all duration-300"
+                  >
+                    ← Analyze Another Resume
+                  </button>
+                  <button
+                    onClick={() => {
+                      const dataStr = JSON.stringify(analysis, null, 2);
+                      const dataBlob = new Blob([dataStr], { type: 'application/json' });
+                      const url = URL.createObjectURL(dataBlob);
+                      const link = document.createElement('a');
+                      link.href = url;
+                      link.download = `resume-analysis-${Date.now()}.json`;
+                      link.click();
+                      URL.revokeObjectURL(url);
+                    }}
+                    className="px-4 py-2 bg-indigo-500 hover:bg-indigo-600 rounded-xl text-white transition-all duration-300 flex items-center gap-2"
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                    </svg>
+                    Export Report
+                  </button>
+                </div>
                 <h2 className="text-3xl sm:text-4xl font-black mb-4">
                   Analysis Complete!
                 </h2>
@@ -684,6 +732,51 @@ CRITICAL: Return ONLY the JSON. No markdown. No explanation. Just JSON starting 
                   {analysis.summary}
                 </p>
               </div>
+
+              {/* Industry Comparison - New Feature */}
+              {analysis.industryComparison && (
+                <div className="p-6 rounded-2xl bg-gradient-to-br from-indigo-900/40 to-purple-900/40 border border-indigo-500/50 backdrop-blur-sm">
+                  <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                    <svg className="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
+                    Industry Comparison
+                  </h3>
+                  <div className="grid sm:grid-cols-3 gap-4">
+                    <div className="text-center p-4 bg-gray-800/50 rounded-xl border border-gray-700">
+                      <div className="text-3xl font-black text-indigo-400 mb-2">
+                        {analysis.industryComparison.percentile}th
+                      </div>
+                      <div className="text-sm text-gray-400">Percentile Rank</div>
+                      <div className="text-xs text-gray-500 mt-1">
+                        Better than {analysis.industryComparison.percentile}% of resumes
+                      </div>
+                    </div>
+                    <div className="text-center p-4 bg-gray-800/50 rounded-xl border border-gray-700">
+                      <div className="text-3xl font-black mb-2">
+                        {analysis.industryComparison.topCompaniesReady ? (
+                          <span className="text-green-400">✓ Ready</span>
+                        ) : (
+                          <span className="text-orange-400">⚠ Not Yet</span>
+                        )}
+                      </div>
+                      <div className="text-sm text-gray-400">Top Companies</div>
+                      <div className="text-xs text-gray-500 mt-1">
+                        {analysis.industryComparison.topCompaniesReady ? 'FAANG-ready' : 'Needs improvement'}
+                      </div>
+                    </div>
+                    <div className="text-center p-4 bg-gray-800/50 rounded-xl border border-gray-700">
+                      <div className="text-3xl font-black text-purple-400 mb-2">
+                        {analysis.industryComparison.estimatedCallbackRate}
+                      </div>
+                      <div className="text-sm text-gray-400">Est. Callback Rate</div>
+                      <div className="text-xs text-gray-500 mt-1">
+                        Based on resume quality
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
 
               {/* Strengths and Weaknesses */}
               <div className="grid md:grid-cols-2 gap-6">
