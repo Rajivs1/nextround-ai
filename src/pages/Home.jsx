@@ -84,13 +84,17 @@ export default function Home() {
     }
   };
 
-  // Show loading state
+  // Show loading state with fun GIF
   if (loading) {
     return (
       <div className="min-h-screen bg-[#1a1a1a] text-gray-100 flex items-center justify-center">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-xl text-gray-300">Loading...</p>
+          <img 
+            src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" 
+            alt="Loading" 
+            className="w-32 h-32 mx-auto mb-4 rounded-xl"
+          />
+          <p className="text-xl text-gray-300">Loading your awesome experience...</p>
         </div>
       </div>
     );

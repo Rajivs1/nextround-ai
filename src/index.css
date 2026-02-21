@@ -2,11 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Global Styles - Modern Cyan & Violet Theme */
+/* Global Styles - Modern Blue & Teal Theme */
 @layer base {
   body {
     @apply text-white antialiased;
-    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #1f2937 100%);
+    background: linear-gradient(135deg, #0c1222 0%, #111827 50%, #1f2937 100%);
     background-attachment: fixed;
     font-feature-settings: 'cv11', 'ss01';
     font-variant-numeric: tabular-nums;
@@ -22,27 +22,27 @@
   }
 }
 
-/* Custom Scrollbar - Modern Cyan Style */
+/* Custom Scrollbar - Modern Blue & Teal Style */
 ::-webkit-scrollbar {
   width: 12px;
   height: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(15, 23, 42, 0.8);
+  background: rgba(12, 18, 34, 0.8);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #06b6d4 0%, #8b5cf6 100%);
+  background: linear-gradient(180deg, #3b82f6 0%, #14b8a6 100%);
   border-radius: 10px;
-  border: 2px solid rgba(15, 23, 42, 0.8);
-  box-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+  border: 2px solid rgba(12, 18, 34, 0.8);
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #22d3ee 0%, #a78bfa 100%);
-  box-shadow: 0 0 15px rgba(6, 182, 212, 0.8);
+  background: linear-gradient(180deg, #60a5fa 0%, #10b981 100%);
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.8);
 }
 
 /* Custom scrollbar class for specific elements */
@@ -52,20 +52,20 @@
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: rgba(15, 23, 42, 0.6);
+  background: rgba(12, 18, 34, 0.6);
   border-radius: 8px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #06b6d4 0%, #8b5cf6 100%);
+  background: linear-gradient(180deg, #3b82f6 0%, #14b8a6 100%);
   border-radius: 8px;
-  border: 2px solid rgba(15, 23, 42, 0.6);
-  box-shadow: 0 0 8px rgba(6, 182, 212, 0.4);
+  border: 2px solid rgba(12, 18, 34, 0.6);
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.4);
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #8b5cf6 0%, #ec4899 100%);
-  box-shadow: 0 0 12px rgba(139, 92, 246, 0.6);
+  background: linear-gradient(180deg, #14b8a6 0%, #10b981 100%);
+  box-shadow: 0 0 12px rgba(20, 184, 166, 0.6);
 }
 
 /* Smooth scrolling */
@@ -106,19 +106,19 @@ html {
 
 @keyframes pulse-glow {
   0%, 100% {
-    box-shadow: 0 0 30px rgba(6, 182, 212, 0.6), 0 0 60px rgba(139, 92, 246, 0.4);
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.6), 0 0 60px rgba(20, 184, 166, 0.4);
   }
   50% {
-    box-shadow: 0 0 50px rgba(6, 182, 212, 0.8), 0 0 100px rgba(139, 92, 246, 0.6);
+    box-shadow: 0 0 50px rgba(59, 130, 246, 0.8), 0 0 100px rgba(20, 184, 166, 0.6);
   }
 }
 
 @keyframes glow-pulse {
   0%, 100% {
-    box-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
   }
   50% {
-    box-shadow: 0 0 40px rgba(139, 92, 246, 0.8);
+    box-shadow: 0 0 40px rgba(20, 184, 166, 0.8);
   }
 }
 
@@ -164,7 +164,7 @@ html {
   background: linear-gradient(
     to right,
     transparent 0%,
-    rgba(6, 182, 212, 0.3) 50%,
+    rgba(59, 130, 246, 0.3) 50%,
     transparent 100%
   );
   background-size: 1000px 100%;
@@ -206,29 +206,29 @@ html {
 
 /* Modern Card Styles */
 .card-elevated {
-  background: linear-gradient(135deg, rgba(6, 182, 212, 0.08) 0%, rgba(139, 92, 246, 0.08) 100%);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(20, 184, 166, 0.08) 100%);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.15);
   box-shadow: 
     0 8px 16px -4px rgba(0, 0, 0, 0.4),
-    0 0 0 1px rgba(6, 182, 212, 0.2),
+    0 0 0 1px rgba(59, 130, 246, 0.2),
     inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card-elevated:hover {
-  border-color: rgba(6, 182, 212, 0.5);
+  border-color: rgba(59, 130, 246, 0.5);
   box-shadow: 
-    0 20px 40px -8px rgba(6, 182, 212, 0.3),
-    0 0 0 1px rgba(6, 182, 212, 0.4),
-    0 0 30px rgba(6, 182, 212, 0.25),
+    0 20px 40px -8px rgba(59, 130, 246, 0.3),
+    0 0 0 1px rgba(59, 130, 246, 0.4),
+    0 0 30px rgba(59, 130, 246, 0.25),
     inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
   transform: translateY(-4px);
 }
 
 /* Neon Card Effect */
 .card-neon {
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 27, 75, 0.9) 100%);
+  background: linear-gradient(135deg, rgba(12, 18, 34, 0.9) 0%, rgba(17, 24, 39, 0.9) 100%);
   backdrop-filter: blur(20px);
   border: 2px solid transparent;
   background-clip: padding-box;
@@ -242,7 +242,7 @@ html {
   inset: 0;
   border-radius: inherit;
   padding: 2px;
-  background: linear-gradient(135deg, #06b6d4, #8b5cf6, #ec4899);
+  background: linear-gradient(135deg, #3b82f6, #14b8a6, #10b981);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -256,7 +256,7 @@ html {
 
 /* Text gradient animation */
 .text-gradient-animate {
-  background: linear-gradient(90deg, #06b6d4, #8b5cf6, #ec4899, #06b6d4);
+  background: linear-gradient(90deg, #3b82f6, #14b8a6, #10b981, #3b82f6);
   background-size: 300% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -320,10 +320,10 @@ html {
 /* Modern Button Styles */
 .btn-primary {
   @apply relative overflow-hidden;
-  background: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #3b82f6 0%, #14b8a6 100%);
   box-shadow: 
-    0 8px 16px -4px rgba(6, 182, 212, 0.4),
-    0 0 20px rgba(6, 182, 212, 0.25),
+    0 8px 16px -4px rgba(59, 130, 246, 0.4),
+    0 0 20px rgba(59, 130, 246, 0.25),
     inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -331,8 +331,8 @@ html {
 .btn-primary:hover {
   transform: translateY(-3px) scale(1.02);
   box-shadow: 
-    0 20px 40px -8px rgba(6, 182, 212, 0.5),
-    0 0 40px rgba(139, 92, 246, 0.4),
+    0 20px 40px -8px rgba(59, 130, 246, 0.5),
+    0 0 40px rgba(20, 184, 166, 0.4),
     inset 0 1px 0 0 rgba(255, 255, 255, 0.3);
 }
 
@@ -343,7 +343,7 @@ html {
 /* Animated Gradient Text */
 .gradient-text {
   @apply bg-clip-text text-transparent;
-  background-image: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 50%, #ec4899 100%);
+  background-image: linear-gradient(135deg, #3b82f6 0%, #14b8a6 50%, #10b981 100%);
   background-size: 200% 200%;
   animation: gradient 3s ease infinite;
 }
@@ -352,23 +352,23 @@ html {
 .text-neon {
   color: #fff;
   text-shadow: 
-    0 0 10px rgba(6, 182, 212, 0.8),
-    0 0 20px rgba(6, 182, 212, 0.6),
-    0 0 30px rgba(6, 182, 212, 0.4),
-    0 0 40px rgba(139, 92, 246, 0.3);
+    0 0 10px rgba(59, 130, 246, 0.8),
+    0 0 20px rgba(59, 130, 246, 0.6),
+    0 0 30px rgba(59, 130, 246, 0.4),
+    0 0 40px rgba(20, 184, 166, 0.3);
 }
 
 /* Focus Styles */
 *:focus-visible {
   @apply outline-none;
   box-shadow: 
-    0 0 0 3px rgba(6, 182, 212, 0.4),
-    0 0 20px rgba(6, 182, 212, 0.3);
+    0 0 0 3px rgba(59, 130, 246, 0.4),
+    0 0 20px rgba(59, 130, 246, 0.3);
 }
 
 /* Selection */
 ::selection {
-  background: linear-gradient(135deg, rgba(6, 182, 212, 0.5), rgba(139, 92, 246, 0.5));
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.5), rgba(20, 184, 166, 0.5));
   color: #ffffff;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
@@ -384,41 +384,41 @@ html {
 .shadow-soft {
   box-shadow: 
     0 4px 8px -2px rgba(0, 0, 0, 0.3),
-    0 0 10px rgba(6, 182, 212, 0.1);
+    0 0 10px rgba(59, 130, 246, 0.1);
 }
 
 .shadow-medium {
   box-shadow: 
     0 8px 16px -4px rgba(0, 0, 0, 0.4),
-    0 0 20px rgba(6, 182, 212, 0.15);
+    0 0 20px rgba(59, 130, 246, 0.15);
 }
 
 .shadow-strong {
   box-shadow: 
     0 20px 40px -8px rgba(0, 0, 0, 0.5),
-    0 0 30px rgba(6, 182, 212, 0.2);
+    0 0 30px rgba(59, 130, 246, 0.2);
 }
 
 /* Neon Glow Effects */
-.glow-cyan {
+.glow-blue {
   box-shadow: 
-    0 0 20px rgba(6, 182, 212, 0.5),
-    0 0 40px rgba(6, 182, 212, 0.3),
-    0 0 60px rgba(6, 182, 212, 0.15);
+    0 0 20px rgba(59, 130, 246, 0.5),
+    0 0 40px rgba(59, 130, 246, 0.3),
+    0 0 60px rgba(59, 130, 246, 0.15);
 }
 
-.glow-violet {
+.glow-teal {
   box-shadow: 
-    0 0 20px rgba(139, 92, 246, 0.5),
-    0 0 40px rgba(139, 92, 246, 0.3),
-    0 0 60px rgba(139, 92, 246, 0.15);
+    0 0 20px rgba(20, 184, 166, 0.5),
+    0 0 40px rgba(20, 184, 166, 0.3),
+    0 0 60px rgba(20, 184, 166, 0.15);
 }
 
-.glow-pink {
+.glow-emerald {
   box-shadow: 
-    0 0 20px rgba(236, 72, 153, 0.5),
-    0 0 40px rgba(236, 72, 153, 0.3),
-    0 0 60px rgba(236, 72, 153, 0.15);
+    0 0 20px rgba(16, 185, 129, 0.5),
+    0 0 40px rgba(16, 185, 129, 0.3),
+    0 0 60px rgba(16, 185, 129, 0.15);
 }
 
 /* Animated Border Gradient */
@@ -433,7 +433,7 @@ html {
   position: absolute;
   inset: -2px;
   border-radius: inherit;
-  background: linear-gradient(135deg, #06b6d4, #8b5cf6, #ec4899, #06b6d4);
+  background: linear-gradient(135deg, #3b82f6, #14b8a6, #10b981, #3b82f6);
   background-size: 300% 300%;
   animation: gradient 3s ease infinite;
   z-index: -1;
@@ -458,8 +458,8 @@ html {
   top: -50%;
   left: -50%;
   background-image: 
-    radial-gradient(circle, rgba(6, 182, 212, 0.1) 1px, transparent 1px),
-    radial-gradient(circle, rgba(139, 92, 246, 0.1) 1px, transparent 1px);
+    radial-gradient(circle, rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+    radial-gradient(circle, rgba(20, 184, 166, 0.1) 1px, transparent 1px);
   background-size: 50px 50px, 80px 80px;
   background-position: 0 0, 40px 40px;
   animation: particle-float 20s linear infinite;
@@ -522,4 +522,1852 @@ html {
   bottom: 10%;
   left: 50%;
   animation-delay: 4s;
+}
+
+/* ============================================
+   LIGHT THEME STYLES - Comprehensive Coverage
+   ============================================ */
+
+/* Root level light theme */
+html.light,
+body.light {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%) !important;
+  color: #0f172a !important;
+}
+
+/* Main container backgrounds */
+.light .min-h-screen {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%) !important;
+}
+
+/* ============================================
+   TEXT COLORS
+   ============================================ */
+.light .text-white,
+.light .text-gray-100 {
+  color: #0f172a !important;
+}
+
+.light .text-gray-200 {
+  color: #1e293b !important;
+}
+
+.light .text-gray-300 {
+  color: #334155 !important;
+}
+
+.light .text-gray-400 {
+  color: #64748b !important;
+}
+
+.light .text-gray-500 {
+  color: #64748b !important;
+}
+
+/* ============================================
+   BACKGROUND COLORS
+   ============================================ */
+.light .bg-\[#1a1a1a\],
+.light .bg-gray-900,
+.light .bg-gray-900\/80,
+.light .bg-gray-900\/50,
+.light .bg-gray-900\/40,
+.light .bg-gray-900\/20 {
+  background-color: #ffffff !important;
+  background-image: none !important;
+}
+
+.light .bg-gray-800,
+.light .bg-gray-800\/80,
+.light .bg-gray-800\/50,
+.light .bg-gray-800\/30 {
+  background-color: #f8fafc !important;
+  background-image: none !important;
+}
+
+.light .bg-gray-700 {
+  background-color: #f1f5f9 !important;
+}
+
+.light .bg-\[#1e1e1e\] {
+  background-color: #ffffff !important;
+}
+
+.light .bg-\[#252526\] {
+  background-color: #f1f5f9 !important;
+}
+
+/* ============================================
+   BORDER COLORS
+   ============================================ */
+.light .border-gray-700,
+.light .border-gray-700\/50 {
+  border-color: #cbd5e1 !important;
+}
+
+.light .border-gray-600 {
+  border-color: #cbd5e1 !important;
+}
+
+.light .border-gray-800 {
+  border-color: #e2e8f0 !important;
+}
+
+.light .border-white\/10 {
+  border-color: rgba(148, 163, 184, 0.3) !important;
+}
+
+/* ============================================
+   GRADIENT BACKGROUNDS - Override
+   ============================================ */
+.light .bg-gradient-to-br.from-gray-900\/80,
+.light .bg-gradient-to-br.from-gray-900 {
+  --tw-gradient-from: #ffffff !important;
+  --tw-gradient-to: #f8fafc !important;
+}
+
+.light .bg-gradient-to-br.to-gray-800\/80,
+.light .bg-gradient-to-br.to-gray-800 {
+  --tw-gradient-to: #f8fafc !important;
+}
+
+.light .from-gray-900\/80 {
+  --tw-gradient-from: rgba(255, 255, 255, 0.95) !important;
+}
+
+.light .to-gray-800\/80 {
+  --tw-gradient-to: rgba(248, 250, 252, 0.95) !important;
+}
+
+.light .from-blue-900\/40 {
+  --tw-gradient-from: rgba(219, 234, 254, 0.7) !important;
+}
+
+.light .to-purple-900\/40 {
+  --tw-gradient-to: rgba(243, 232, 255, 0.7) !important;
+}
+
+.light .from-indigo-900\/40 {
+  --tw-gradient-from: rgba(224, 231, 255, 0.7) !important;
+}
+
+.light .from-red-900\/20 {
+  --tw-gradient-from: rgba(254, 226, 226, 0.5) !important;
+}
+
+.light .to-red-800\/20 {
+  --tw-gradient-to: rgba(254, 202, 202, 0.5) !important;
+}
+
+/* ============================================
+   BACKDROP AND OVERLAYS
+   ============================================ */
+.light .bg-gradient-to-br.from-blue-900\/10 {
+  --tw-gradient-from: rgba(219, 234, 254, 0.3) !important;
+}
+
+.light .bg-gradient-to-br.via-purple-900\/10 {
+  --tw-gradient-stops: var(--tw-gradient-from), rgba(243, 232, 255, 0.3), var(--tw-gradient-to) !important;
+}
+
+.light .bg-gradient-to-br.to-pink-900\/10 {
+  --tw-gradient-to: rgba(252, 231, 243, 0.3) !important;
+}
+
+.light .backdrop-blur-sm {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.light .bg-\[#1a1a1a\]\/80,
+.light .bg-\[#1a1a1a\]\/70 {
+  background-color: rgba(15, 23, 42, 0.85) !important;
+}
+
+/* ============================================
+   FLOATING ORBS - Reduce visibility
+   ============================================ */
+.light .absolute.top-1\/4.left-1\/4,
+.light .absolute.bottom-1\/4.right-1\/4 {
+  opacity: 0.15 !important;
+}
+
+/* ============================================
+   COLORED TEXT - Adjust for light mode
+   ============================================ */
+.light .text-blue-400,
+.light .text-blue-300 {
+  color: #1d4ed8 !important;
+}
+
+.light .text-green-400 {
+  color: #15803d !important;
+}
+
+.light .text-yellow-400 {
+  color: #a16207 !important;
+}
+
+.light .text-red-400 {
+  color: #b91c1c !important;
+}
+
+.light .text-purple-300,
+.light .text-purple-400 {
+  color: #7e22ce !important;
+}
+
+.light .text-pink-400 {
+  color: #be185d !important;
+}
+
+.light .text-teal-400 {
+  color: #0f766e !important;
+}
+
+.light .text-cyan-400 {
+  color: #0e7490 !important;
+}
+
+.light .text-indigo-400 {
+  color: #4338ca !important;
+}
+
+/* ============================================
+   COLORED BACKGROUNDS
+   ============================================ */
+.light .bg-blue-500\/20 {
+  background-color: rgba(59, 130, 246, 0.2) !important;
+}
+
+.light .bg-purple-500\/20 {
+  background-color: rgba(147, 51, 234, 0.2) !important;
+}
+
+.light .bg-green-500\/20 {
+  background-color: rgba(34, 197, 94, 0.2) !important;
+}
+
+.light .bg-red-500\/20 {
+  background-color: rgba(239, 68, 68, 0.2) !important;
+}
+
+.light .bg-green-900\/20 {
+  background-color: rgba(34, 197, 94, 0.15) !important;
+}
+
+/* ============================================
+   COLORED BORDERS
+   ============================================ */
+.light .border-blue-500\/30 {
+  border-color: rgba(59, 130, 246, 0.5) !important;
+}
+
+.light .border-blue-500\/60 {
+  border-color: rgba(59, 130, 246, 0.7) !important;
+}
+
+.light .border-purple-500\/30 {
+  border-color: rgba(147, 51, 234, 0.5) !important;
+}
+
+.light .border-indigo-500\/30 {
+  border-color: rgba(99, 102, 241, 0.5) !important;
+}
+
+.light .border-indigo-500\/60 {
+  border-color: rgba(99, 102, 241, 0.7) !important;
+}
+
+.light .border-red-500\/30,
+.light .border-red-500\/50 {
+  border-color: rgba(239, 68, 68, 0.6) !important;
+}
+
+.light .border-green-600 {
+  border-color: #16a34a !important;
+}
+
+/* ============================================
+   HOVER STATES
+   ============================================ */
+.light .hover\:bg-gray-600:hover {
+  background-color: #e2e8f0 !important;
+}
+
+.light .hover\:bg-gray-700:hover {
+  background-color: #cbd5e1 !important;
+}
+
+.light .hover\:bg-gray-800\/50:hover {
+  background-color: rgba(241, 245, 249, 0.9) !important;
+}
+
+.light .hover\:border-gray-400:hover {
+  border-color: #94a3b8 !important;
+}
+
+.light .hover\:text-white:hover {
+  color: #0f172a !important;
+}
+
+.light .hover\:border-blue-500\/50:hover {
+  border-color: rgba(59, 130, 246, 0.6) !important;
+}
+
+.light .hover\:border-blue-500\/60:hover {
+  border-color: rgba(59, 130, 246, 0.7) !important;
+}
+
+.light .hover\:bg-green-900\/20:hover {
+  background-color: rgba(34, 197, 94, 0.15) !important;
+}
+
+/* ============================================
+   INPUT FIELDS
+   ============================================ */
+.light input,
+.light textarea,
+.light select {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+.light input::placeholder,
+.light textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+.light input:focus,
+.light textarea:focus,
+.light select:focus {
+  border-color: #3b82f6 !important;
+  background-color: #ffffff !important;
+}
+
+/* ============================================
+   CODE BLOCKS
+   ============================================ */
+.light pre {
+  background-color: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+}
+
+.light code {
+  color: #334155 !important;
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+.light ::-webkit-scrollbar-track {
+  background: rgba(241, 245, 249, 0.9) !important;
+}
+
+.light ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #3b82f6 0%, #14b8a6 100%) !important;
+  border: 2px solid rgba(241, 245, 249, 0.9) !important;
+}
+
+.light ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #2563eb 0%, #0d9488 100%) !important;
+}
+
+/* ============================================
+   SELECTION
+   ============================================ */
+.light ::selection {
+  background: rgba(59, 130, 246, 0.3) !important;
+  color: #0f172a !important;
+}
+
+/* ============================================
+   CHARTS (Recharts)
+   ============================================ */
+.light .recharts-cartesian-grid line {
+  stroke: #cbd5e1 !important;
+}
+
+.light .recharts-text {
+  fill: #64748b !important;
+}
+
+.light .recharts-tooltip-wrapper {
+  background-color: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+/* ============================================
+   SHADOWS - Adjust for light mode
+   ============================================ */
+.light .shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.15), 0 4px 6px -2px rgba(0, 0, 0, 0.1) !important;
+}
+
+.light .shadow-xl {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.1) !important;
+}
+
+.light .shadow-2xl {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* ============================================
+   SPECIFIC COMPONENT OVERRIDES
+   ============================================ */
+
+/* Header */
+.light header {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* Cards */
+.light .rounded-2xl,
+.light .rounded-xl {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Modals */
+.light .fixed.inset-0 {
+  background-color: rgba(15, 23, 42, 0.75) !important;
+}
+
+/* Tab buttons */
+.light .bg-gray-900\/50 {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Ensure text in gradient buttons stays white */
+.light button.bg-gradient-to-r .text-white,
+.light button.from-blue-500 .text-white,
+.light button.from-red-500 .text-white {
+  color: #ffffff !important;
+}
+
+
+/* ============================================
+   LIGHT THEME - PAGE SPECIFIC STYLES
+   ============================================ */
+
+/* ============================================
+   HOME PAGE
+   ============================================ */
+.light .hero-section,
+.light .features-section {
+  background: transparent !important;
+}
+
+/* Hero text gradient - keep vibrant */
+.light .bg-gradient-to-r.from-blue-400,
+.light .bg-gradient-to-r.from-cyan-400 {
+  background-clip: text !important;
+  -webkit-background-clip: text !important;
+}
+
+/* Feature cards on home page */
+.light .feature-card {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* ============================================
+   INTERVIEW PAGE
+   ============================================ */
+
+/* Interview container */
+.light .interview-container {
+  background: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Question card */
+.light .question-card {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+/* Answer textarea */
+.light .answer-textarea {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+/* Timer component */
+.light .timer {
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: #0f172a !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+/* Progress bar */
+.light .progress-bar {
+  background: #e2e8f0 !important;
+}
+
+.light .progress-fill {
+  background: linear-gradient(90deg, #3b82f6, #14b8a6) !important;
+}
+
+/* ============================================
+   PRACTICE PAGE
+   ============================================ */
+
+/* Code editor container */
+.light .code-editor-container {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+/* Code editor */
+.light .monaco-editor,
+.light .monaco-editor-background {
+  background-color: #ffffff !important;
+}
+
+.light .monaco-editor .margin {
+  background-color: #f8fafc !important;
+}
+
+/* Problem description */
+.light .problem-description {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+/* Test cases */
+.light .test-case {
+  background: #f8fafc !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+.light .test-case-passed {
+  background: rgba(34, 197, 94, 0.1) !important;
+  border-color: #22c55e !important;
+}
+
+.light .test-case-failed {
+  background: rgba(239, 68, 68, 0.1) !important;
+  border-color: #ef4444 !important;
+}
+
+/* Console output */
+.light .console-output {
+  background: #f8fafc !important;
+  color: #0f172a !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+/* Language selector */
+.light .language-selector {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+/* ============================================
+   PROBLEMS PAGE
+   ============================================ */
+
+/* Problem list */
+.light .problem-list-item {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+.light .problem-list-item:hover {
+  background: #f8fafc !important;
+  border-color: #3b82f6 !important;
+}
+
+/* Difficulty badges */
+.light .difficulty-easy {
+  background: rgba(34, 197, 94, 0.15) !important;
+  color: #15803d !important;
+}
+
+.light .difficulty-medium {
+  background: rgba(234, 179, 8, 0.15) !important;
+  color: #a16207 !important;
+}
+
+.light .difficulty-hard {
+  background: rgba(239, 68, 68, 0.15) !important;
+  color: #b91c1c !important;
+}
+
+/* ============================================
+   RESULT PAGE
+   ============================================ */
+
+/* Score card */
+.light .score-card {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+/* Feedback section */
+.light .feedback-section {
+  background: #f8fafc !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+/* ============================================
+   CHAT ASSISTANT PAGE
+   ============================================ */
+
+/* Chat container */
+.light .chat-container {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+/* Message bubbles */
+.light .message-user {
+  background: #3b82f6 !important;
+  color: #ffffff !important;
+}
+
+.light .message-assistant {
+  background: #f8fafc !important;
+  color: #0f172a !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+/* Chat input */
+.light .chat-input {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+/* ============================================
+   RESUME ANALYZER PAGE
+   ============================================ */
+
+/* Upload area */
+.light .upload-area {
+  background: #f8fafc !important;
+  border: 2px dashed #cbd5e1 !important;
+  color: #64748b !important;
+}
+
+.light .upload-area:hover {
+  background: #f1f5f9 !important;
+  border-color: #3b82f6 !important;
+}
+
+/* Analysis results */
+.light .analysis-result {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+/* Score indicators */
+.light .score-indicator {
+  background: #f8fafc !important;
+}
+
+/* ============================================
+   ADDITIONAL COMPONENT STYLES
+   ============================================ */
+
+/* Dropdown menus */
+.light .dropdown-menu {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
+}
+
+.light .dropdown-item:hover {
+  background: #f8fafc !important;
+}
+
+/* Tooltips */
+.light .tooltip {
+  background: #1e293b !important;
+  color: #ffffff !important;
+}
+
+/* Loading spinners */
+.light .spinner {
+  border-color: #e2e8f0 !important;
+  border-top-color: #3b82f6 !important;
+}
+
+/* Badges */
+.light .badge {
+  background: #f1f5f9 !important;
+  color: #334155 !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+/* Alerts */
+.light .alert-success {
+  background: rgba(34, 197, 94, 0.1) !important;
+  color: #15803d !important;
+  border: 1px solid #22c55e !important;
+}
+
+.light .alert-error {
+  background: rgba(239, 68, 68, 0.1) !important;
+  color: #b91c1c !important;
+  border: 1px solid #ef4444 !important;
+}
+
+.light .alert-warning {
+  background: rgba(234, 179, 8, 0.1) !important;
+  color: #a16207 !important;
+  border: 1px solid #eab308 !important;
+}
+
+.light .alert-info {
+  background: rgba(59, 130, 246, 0.1) !important;
+  color: #1d4ed8 !important;
+  border: 1px solid #3b82f6 !important;
+}
+
+/* ============================================
+   SYNTAX HIGHLIGHTING (Code blocks)
+   ============================================ */
+.light .hljs {
+  background: #f8fafc !important;
+  color: #334155 !important;
+}
+
+.light .hljs-keyword {
+  color: #7e22ce !important;
+}
+
+.light .hljs-string {
+  color: #15803d !important;
+}
+
+.light .hljs-number {
+  color: #1d4ed8 !important;
+}
+
+.light .hljs-comment {
+  color: #94a3b8 !important;
+  font-style: italic;
+}
+
+.light .hljs-function {
+  color: #0e7490 !important;
+}
+
+/* ============================================
+   TABS
+   ============================================ */
+.light .tab-button {
+  color: #64748b !important;
+}
+
+.light .tab-button.active {
+  color: #0f172a !important;
+  border-bottom-color: #3b82f6 !important;
+}
+
+.light .tab-button:hover {
+  color: #334155 !important;
+  background: #f8fafc !important;
+}
+
+/* ============================================
+   DIVIDERS
+   ============================================ */
+.light hr,
+.light .divider {
+  border-color: #e2e8f0 !important;
+}
+
+/* ============================================
+   LINKS
+   ============================================ */
+.light a {
+  color: #1d4ed8 !important;
+}
+
+.light a:hover {
+  color: #1e40af !important;
+}
+
+/* ============================================
+   SPECIFIC FIXES FOR COMMON ISSUES
+   ============================================ */
+
+/* Ensure proper contrast for all text */
+.light h1, .light h2, .light h3, .light h4, .light h5, .light h6 {
+  color: #0f172a !important;
+}
+
+.light p {
+  color: #334155 !important;
+}
+
+.light span {
+  color: inherit !important;
+}
+
+/* Fix for gradient text to remain visible */
+.light .gradient-text,
+.light .text-gradient-animate {
+  background-clip: text !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* Ensure icons remain visible */
+.light svg {
+  color: inherit !important;
+}
+
+/* Fix for disabled states */
+.light .disabled,
+.light :disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+@media (max-width: 768px) {
+  .light .mobile-menu {
+    background: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+  }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+@media print {
+  .light {
+    background: white !important;
+    color: black !important;
+  }
+}
+
+
+/* ============================================
+   LIGHT THEME - HOME PAGE SPECIFIC FIXES
+   ============================================ */
+
+/* Navigation Bar */
+.light nav {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  backdrop-filter: blur(20px) !important;
+}
+
+.light nav .bg-gradient-to-r {
+  background: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Mobile menu backdrop */
+.light .fixed.inset-0.bg-\[#1a1a1a\]\/95 {
+  background-color: rgba(15, 23, 42, 0.9) !important;
+}
+
+/* Mobile menu dropdown */
+.light .bg-blue-950 {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+}
+
+.light .border-blue-700 {
+  border-color: #cbd5e1 !important;
+}
+
+.light .text-blue-300 {
+  color: #64748b !important;
+}
+
+.light .text-gray-200 {
+  color: #334155 !important;
+}
+
+.light .hover\:bg-blue-800:hover {
+  background-color: #f1f5f9 !important;
+}
+
+/* Hero Section Background */
+.light section {
+  background: transparent !important;
+}
+
+.light .bg-gradient-to-br.from-blue-900\/30 {
+  background: linear-gradient(135deg, rgba(219, 234, 254, 0.4), rgba(243, 232, 255, 0.4), rgba(252, 231, 243, 0.4)) !important;
+}
+
+/* Floating particles - make visible in light mode */
+.light .animate-ping {
+  opacity: 0.6 !important;
+}
+
+/* Stats section */
+.light .bg-gradient-to-b.from-\[#1a1a1a\] {
+  background: linear-gradient(to bottom, #f8fafc, #f1f5f9) !important;
+}
+
+.light .to-gray-900 {
+  background: linear-gradient(to bottom, #f8fafc, #f1f5f9) !important;
+}
+
+/* Feature cards */
+.light .from-gray-900\/90 {
+  background: rgba(255, 255, 255, 0.95) !important;
+}
+
+.light .to-gray-800\/90 {
+  background: rgba(248, 250, 252, 0.95) !important;
+}
+
+/* Leaderboard and Streak cards */
+.light .from-gray-900.to-gray-800 {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%) !important;
+}
+
+/* ============================================
+   LIGHT THEME - PRACTICE PAGE CODE EDITOR
+   ============================================ */
+
+/* Main practice container */
+.light .practice-page {
+  background: #f8fafc !important;
+}
+
+/* Split panes */
+.light .split-pane {
+  background: #ffffff !important;
+}
+
+/* Problem panel */
+.light .problem-panel {
+  background: #ffffff !important;
+  border-right: 1px solid #e2e8f0 !important;
+}
+
+/* Code editor panel */
+.light .editor-panel {
+  background: #ffffff !important;
+}
+
+/* Monaco Editor - Force light theme */
+.light .monaco-editor {
+  background-color: #ffffff !important;
+}
+
+.light .monaco-editor .view-lines {
+  background-color: #ffffff !important;
+}
+
+.light .monaco-editor .margin {
+  background-color: #f8fafc !important;
+}
+
+.light .monaco-editor .line-numbers {
+  color: #94a3b8 !important;
+}
+
+.light .monaco-editor .current-line {
+  background-color: #f1f5f9 !important;
+}
+
+.light .monaco-editor .selected-text {
+  background-color: rgba(59, 130, 246, 0.2) !important;
+}
+
+.light .monaco-editor .cursor {
+  background-color: #0f172a !important;
+}
+
+/* Editor toolbar */
+.light .editor-toolbar {
+  background: #f8fafc !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+
+/* Language selector dropdown */
+.light .language-dropdown {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+.light .language-dropdown option {
+  background: #ffffff !important;
+  color: #0f172a !important;
+}
+
+/* Run button */
+.light .run-button {
+  background: linear-gradient(135deg, #3b82f6, #14b8a6) !important;
+  color: #ffffff !important;
+}
+
+/* Submit button */
+.light .submit-button {
+  background: linear-gradient(135deg, #10b981, #14b8a6) !important;
+  color: #ffffff !important;
+}
+
+/* Reset button */
+.light .reset-button {
+  background: #f1f5f9 !important;
+  color: #334155 !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+/* Console/Output panel */
+.light .console-panel {
+  background: #f8fafc !important;
+  border-top: 1px solid #e2e8f0 !important;
+}
+
+.light .console-header {
+  background: #f1f5f9 !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+.light .console-content {
+  background: #ffffff !important;
+  color: #0f172a !important;
+}
+
+/* Test results */
+.light .test-result-pass {
+  background: rgba(34, 197, 94, 0.1) !important;
+  border-left: 3px solid #22c55e !important;
+  color: #15803d !important;
+}
+
+.light .test-result-fail {
+  background: rgba(239, 68, 68, 0.1) !important;
+  border-left: 3px solid #ef4444 !important;
+  color: #b91c1c !important;
+}
+
+/* Problem description styling */
+.light .problem-title {
+  color: #0f172a !important;
+}
+
+.light .problem-description {
+  color: #334155 !important;
+}
+
+.light .problem-examples {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+}
+
+.light .problem-constraints {
+  color: #64748b !important;
+}
+
+/* Tabs in practice page */
+.light .tab-list {
+  background: #f8fafc !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+
+.light .tab-button {
+  color: #64748b !important;
+  border-bottom: 2px solid transparent !important;
+}
+
+.light .tab-button.active {
+  color: #0f172a !important;
+  border-bottom-color: #3b82f6 !important;
+  background: #ffffff !important;
+}
+
+.light .tab-button:hover {
+  color: #334155 !important;
+  background: #f1f5f9 !important;
+}
+
+/* Resizer handle */
+.light .resizer {
+  background: #e2e8f0 !important;
+}
+
+.light .resizer:hover {
+  background: #cbd5e1 !important;
+}
+
+/* ============================================
+   LIGHT THEME - ADDITIONAL OVERRIDES
+   ============================================ */
+
+/* Ensure all dark backgrounds become light */
+.light [class*="bg-[#"] {
+  background-color: #ffffff !important;
+}
+
+.light [class*="bg-gray-9"] {
+  background-color: #ffffff !important;
+}
+
+.light [class*="bg-gray-8"] {
+  background-color: #f8fafc !important;
+}
+
+/* Force text visibility */
+.light * {
+  color: inherit !important;
+}
+
+.light h1, .light h2, .light h3, .light h4, .light h5, .light h6,
+.light .text-white,
+.light .text-gray-100,
+.light .text-gray-200 {
+  color: #0f172a !important;
+}
+
+.light .text-gray-300,
+.light .text-gray-400 {
+  color: #64748b !important;
+}
+
+/* Keep gradient text visible */
+.light .bg-clip-text {
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* Ensure buttons with gradients keep white text */
+.light button[class*="from-blue"],
+.light button[class*="from-purple"],
+.light button[class*="from-green"],
+.light button[class*="from-red"],
+.light a[class*="from-blue"],
+.light a[class*="from-purple"] {
+  color: #ffffff !important;
+}
+
+.light button[class*="from-blue"] *,
+.light button[class*="from-purple"] *,
+.light a[class*="from-blue"] *,
+.light a[class*="from-purple"] * {
+  color: #ffffff !important;
+}
+
+
+/* ============================================
+   LIGHT THEME - NAVIGATION BUTTON FIXES
+   ============================================ */
+
+/* Ensure all navigation links are visible */
+.light nav a,
+.light nav button,
+.light nav span {
+  color: #334155 !important;
+}
+
+/* Hover states for nav links */
+.light nav a:hover,
+.light nav button:hover {
+  color: #0f172a !important;
+}
+
+/* Dashboard button - gradient background with white text */
+.light nav a[class*="from-blue"][class*="to-purple"],
+.light nav button[class*="from-blue"][class*="to-purple"] {
+  background: linear-gradient(to right, #3b82f6, #8b5cf6) !important;
+  color: #ffffff !important;
+}
+
+/* Ensure text inside gradient buttons stays white */
+.light nav a[class*="from-blue"] *,
+.light nav a[class*="to-purple"] *,
+.light nav button[class*="from-blue"] *,
+.light nav button[class*="to-purple"] * {
+  color: #ffffff !important;
+}
+
+/* Sign Up / Start Practicing buttons */
+.light a[class*="from-blue"][class*="via-purple"][class*="to-pink"],
+.light button[class*="from-blue"][class*="via-purple"][class*="to-pink"] {
+  background: linear-gradient(to right, #3b82f6, #8b5cf6, #ec4899) !important;
+  color: #ffffff !important;
+}
+
+.light a[class*="from-blue"][class*="via-purple"] *,
+.light button[class*="from-blue"][class*="via-purple"] * {
+  color: #ffffff !important;
+}
+
+/* Welcome text in navbar */
+.light nav .text-gray-300 {
+  color: #64748b !important;
+}
+
+.light nav .text-white {
+  color: #0f172a !important;
+}
+
+/* Border buttons (Login, etc) */
+.light nav a[class*="border-gray"],
+.light nav button[class*="border-gray"] {
+  border-color: #cbd5e1 !important;
+  color: #334155 !important;
+}
+
+.light nav a[class*="border-gray"]:hover,
+.light nav button[class*="border-gray"]:hover {
+  border-color: #94a3b8 !important;
+  color: #0f172a !important;
+  background-color: #f1f5f9 !important;
+}
+
+/* Specific fix for Dashboard link */
+.light nav a[href="/dashboard"] {
+  background: linear-gradient(to right, #3b82f6, #8b5cf6) !important;
+  color: #ffffff !important;
+}
+
+.light nav a[href="/dashboard"]:hover {
+  background: linear-gradient(to right, #2563eb, #7c3aed) !important;
+}
+
+/* Logo text gradient - keep visible */
+.light nav .bg-gradient-to-r.from-blue-400 {
+  background: linear-gradient(to right, #3b82f6, #8b5cf6, #ec4899) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* Mobile menu items */
+.light .mobile-menu a,
+.light .mobile-menu button {
+  color: #334155 !important;
+}
+
+.light .mobile-menu a:hover,
+.light .mobile-menu button:hover {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+
+/* ============================================
+   LIGHT THEME - HEADINGS AND CTA TEXT
+   ============================================ */
+
+/* Main headings - ensure dark, readable text */
+.light h1,
+.light h2,
+.light h3,
+.light h4,
+.light h5,
+.light h6 {
+  color: #0f172a !important;
+}
+
+/* Hero section headings */
+.light section h1,
+.light section h2 {
+  color: #0f172a !important;
+}
+
+/* Gradient text in headings - keep vibrant */
+.light h1 .bg-gradient-to-r,
+.light h2 .bg-gradient-to-r,
+.light h3 .bg-gradient-to-r {
+  background: linear-gradient(to right, #3b82f6, #8b5cf6, #ec4899) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* Text gradient animate class */
+.light .text-gradient-animate {
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899, #3b82f6) !important;
+  background-size: 300% 100% !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  animation: gradient 3s ease infinite !important;
+}
+
+/* Specific gradient combinations */
+.light .from-blue-400.via-purple-400.to-pink-400,
+.light .from-cyan-400.via-blue-400.to-purple-400,
+.light .from-yellow-400.to-orange-400 {
+  background: linear-gradient(to right, #3b82f6, #8b5cf6, #ec4899) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+/* Paragraph text */
+.light section p,
+.light .text-gray-300,
+.light .text-gray-400 {
+  color: #64748b !important;
+}
+
+/* CTA sections */
+.light .cta-section,
+.light section[class*="py-"] {
+  color: #0f172a !important;
+}
+
+/* Badge/pill text */
+.light span[class*="bg-gradient-to-r"] {
+  color: #ffffff !important;
+}
+
+/* Ensure emojis are visible */
+.light .text-xl,
+.light .text-2xl,
+.light .text-3xl,
+.light .text-4xl {
+  opacity: 1 !important;
+}
+
+/* Stats numbers */
+.light .font-black,
+.light .font-bold {
+  color: #0f172a !important;
+}
+
+/* Feature card titles */
+.light .feature-card h3,
+.light [class*="rounded-2xl"] h3 {
+  color: #0f172a !important;
+}
+
+/* Feature card descriptions */
+.light .feature-card p,
+.light [class*="rounded-2xl"] p {
+  color: #64748b !important;
+}
+
+/* Links in feature cards */
+.light .feature-card a,
+.light [class*="rounded-2xl"] a {
+  color: #3b82f6 !important;
+}
+
+/* Success story section */
+.light .success-section h2,
+.light .success-section h3 {
+  color: #0f172a !important;
+}
+
+/* Testimonial text */
+.light .testimonial {
+  color: #334155 !important;
+}
+
+/* Footer text */
+.light footer {
+  background: #ffffff !important;
+  border-top: 1px solid #e2e8f0 !important;
+  color: #64748b !important;
+}
+
+.light footer h4 {
+  color: #0f172a !important;
+}
+
+.light footer a {
+  color: #64748b !important;
+}
+
+.light footer a:hover {
+  color: #3b82f6 !important;
+}
+
+/* Specific text color overrides for readability */
+.light .leading-tight,
+.light .leading-relaxed {
+  color: inherit !important;
+}
+
+/* Ensure all span elements inherit proper color */
+.light span:not([class*="bg-gradient"]):not([class*="bg-clip-text"]) {
+  color: inherit !important;
+}
+
+/* Badge text with background */
+.light .badge,
+.light [class*="rounded-full"][class*="px-"] {
+  color: #ffffff !important;
+}
+
+/* Specific fix for "Join the Success Story" and similar CTAs */
+.light section[class*="bg-gradient"] h2,
+.light section[class*="bg-gradient"] h3,
+.light section[class*="bg-gradient"] p {
+  color: #0f172a !important;
+}
+
+/* Ensure contrast for all text on light backgrounds */
+.light [class*="bg-white"] *:not([class*="bg-gradient"]),
+.light [class*="bg-gray-"] *:not([class*="bg-gradient"]) {
+  color: inherit !important;
+}
+
+/* Override any remaining white text */
+.light .text-white:not([class*="bg-gradient"]):not(button *):not(a[class*="from-"] *) {
+  color: #0f172a !important;
+}
+
+/* Subheadings */
+.light .text-lg,
+.light .text-xl:not([class*="bg-gradient"]) {
+  color: #334155 !important;
+}
+
+/* Small text / captions */
+.light .text-sm,
+.light .text-xs {
+  color: #64748b !important;
+}
+
+
+/* ============================================
+   LIGHT THEME - BUTTON VISIBILITY FIXES
+   ============================================ */
+
+/* Resume Analyzer button - border style */
+.light a[href="/resume-analyzer"],
+.light button[class*="border-indigo"] {
+  border-color: #6366f1 !important;
+  color: #4338ca !important;
+  background-color: transparent !important;
+}
+
+.light a[href="/resume-analyzer"]:hover,
+.light button[class*="border-indigo"]:hover {
+  background-color: #6366f1 !important;
+  color: #ffffff !important;
+}
+
+/* Chat with AI button - border style */
+.light a[href="/chat"],
+.light button[class*="border-green"] {
+  border-color: #22c55e !important;
+  color: #16a34a !important;
+  background-color: transparent !important;
+}
+
+.light a[href="/chat"]:hover,
+.light button[class*="border-green"]:hover {
+  background-color: #22c55e !important;
+  color: #ffffff !important;
+}
+
+/* Ensure text inside these buttons is visible */
+.light a[href="/resume-analyzer"] span,
+.light a[href="/chat"] span {
+  color: inherit !important;
+}
+
+/* Hero section buttons */
+.light section a[class*="border-2"] {
+  border-width: 2px !important;
+  border-style: solid !important;
+}
+
+.light section a[class*="border-indigo"] {
+  border-color: #6366f1 !important;
+  color: #4338ca !important;
+}
+
+.light section a[class*="border-green"] {
+  border-color: #22c55e !important;
+  color: #16a34a !important;
+}
+
+.light section a[class*="border-gray"] {
+  border-color: #94a3b8 !important;
+  color: #334155 !important;
+}
+
+/* Hover states for hero buttons */
+.light section a[class*="border-indigo"]:hover {
+  background-color: #6366f1 !important;
+  border-color: #4f46e5 !important;
+  color: #ffffff !important;
+}
+
+.light section a[class*="border-green"]:hover {
+  background-color: #22c55e !important;
+  border-color: #16a34a !important;
+  color: #ffffff !important;
+}
+
+.light section a[class*="border-gray"]:hover {
+  background-color: #f1f5f9 !important;
+  border-color: #64748b !important;
+  color: #0f172a !important;
+}
+
+/* Ensure emojis in buttons are visible */
+.light button span,
+.light a span {
+  opacity: 1 !important;
+}
+
+/* Practice button in navbar */
+.light nav a[href="/problems"] {
+  color: #334155 !important;
+}
+
+.light nav a[href="/problems"]:hover {
+  color: #0f172a !important;
+}
+
+/* All navigation links */
+.light nav a[href="/chat"],
+.light nav a[href="/resume-analyzer"],
+.light nav a[href="/problems"] {
+  color: #334155 !important;
+}
+
+.light nav a[href="/chat"]:hover,
+.light nav a[href="/resume-analyzer"]:hover,
+.light nav a[href="/problems"]:hover {
+  color: #0f172a !important;
+}
+
+/* Feature cards with links */
+.light .group[href="/chat"],
+.light .group[href="/resume-analyzer"] {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+.light .group[href="/chat"]:hover,
+.light .group[href="/resume-analyzer"]:hover {
+  border-color: #3b82f6 !important;
+  background: #f8fafc !important;
+}
+
+.light .group[href="/chat"] h3,
+.light .group[href="/resume-analyzer"] h3 {
+  color: #0f172a !important;
+}
+
+.light .group[href="/chat"] p,
+.light .group[href="/resume-analyzer"] p {
+  color: #64748b !important;
+}
+
+/* Ensure all button text is visible */
+.light button,
+.light a[class*="px-"] {
+  color: inherit !important;
+}
+
+/* Override for gradient buttons to keep white text */
+.light button[class*="from-blue"],
+.light button[class*="from-purple"],
+.light button[class*="from-green"],
+.light button[class*="from-red"],
+.light a[class*="from-blue"],
+.light a[class*="from-purple"],
+.light a[class*="from-green"],
+.light a[class*="from-red"] {
+  color: #ffffff !important;
+}
+
+.light button[class*="from-blue"] *,
+.light button[class*="from-purple"] *,
+.light button[class*="from-green"] *,
+.light a[class*="from-blue"] *,
+.light a[class*="from-purple"] *,
+.light a[class*="from-green"] * {
+  color: #ffffff !important;
+}
+
+/* Specific fix for bordered buttons with hover background */
+.light a[class*="border-"][class*="hover:bg-"] {
+  transition: all 0.3s ease !important;
+}
+
+/* Mobile menu links */
+.light .mobile-menu a[href="/chat"],
+.light .mobile-menu a[href="/resume-analyzer"] {
+  color: #334155 !important;
+}
+
+.light .mobile-menu a[href="/chat"]:hover,
+.light .mobile-menu a[href="/resume-analyzer"]:hover {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+
+/* ============================================
+   LIGHT THEME - HERO SECTION BUTTONS FORCE VISIBLE
+   ============================================ */
+
+/* Target all buttons in hero section with border-2 class */
+.light section a.border-2,
+.light section button.border-2 {
+  border-width: 2px !important;
+  border-style: solid !important;
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+/* Resume Analyzer button - force indigo */
+.light section a.border-2.border-indigo-500,
+.light section a[class*="border-indigo"] {
+  border-color: #6366f1 !important;
+  color: #4338ca !important;
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+.light section a.border-2.border-indigo-500:hover,
+.light section a[class*="border-indigo"]:hover {
+  background-color: #6366f1 !important;
+  border-color: #4f46e5 !important;
+  color: #ffffff !important;
+}
+
+/* Chat with AI button - force green */
+.light section a.border-2.border-green-500,
+.light section a[class*="border-green"] {
+  border-color: #22c55e !important;
+  color: #16a34a !important;
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+.light section a.border-2.border-green-500:hover,
+.light section a[class*="border-green"]:hover {
+  background-color: #22c55e !important;
+  border-color: #16a34a !important;
+  color: #ffffff !important;
+}
+
+/* Login/Already have account button */
+.light section a.border-2.border-gray-600,
+.light section a[class*="border-gray"] {
+  border-color: #94a3b8 !important;
+  color: #334155 !important;
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+.light section a.border-2.border-gray-600:hover,
+.light section a[class*="border-gray"]:hover {
+  background-color: #f1f5f9 !important;
+  border-color: #64748b !important;
+  color: #0f172a !important;
+}
+
+/* Force text visibility in all hero buttons */
+.light section a.border-2 span,
+.light section button.border-2 span {
+  color: inherit !important;
+  opacity: 1 !important;
+}
+
+/* Ensure flex items inside buttons are visible */
+.light section a.border-2 .flex,
+.light section button.border-2 .flex {
+  color: inherit !important;
+}
+
+/* Override any conflicting styles */
+.light section .flex.gap-4 a,
+.light section .flex.gap-8 a {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Specific targeting for the button container */
+.light section .flex.flex-col.sm\:flex-row a:not([class*="from-blue"]) {
+  border-width: 2px !important;
+  border-style: solid !important;
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Force all bordered links in hero to be visible */
+.light section[class*="py-16"] a[class*="border"],
+.light section[class*="py-24"] a[class*="border"],
+.light section[class*="py-32"] a[class*="border"] {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Ensure rounded-full buttons are visible */
+.light a.rounded-full[class*="border"] {
+  border-width: 2px !important;
+  border-style: solid !important;
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Text inside rounded-full bordered buttons */
+.light a.rounded-full[class*="border"] * {
+  color: inherit !important;
+}
+
+/* Group class buttons */
+.light .group.rounded-full[class*="border"] {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Hover effects for group buttons */
+.light .group.rounded-full[class*="border-indigo"]:hover {
+  background-color: #6366f1 !important;
+  color: #ffffff !important;
+}
+
+.light .group.rounded-full[class*="border-green"]:hover {
+  background-color: #22c55e !important;
+  color: #ffffff !important;
+}
+
+/* Force visibility with !important on everything */
+.light section a[href="/resume-analyzer"] {
+  border: 2px solid #6366f1 !important;
+  color: #4338ca !important;
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.light section a[href="/chat"] {
+  border: 2px solid #22c55e !important;
+  color: #16a34a !important;
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Hover states with specificity */
+.light section a[href="/resume-analyzer"]:hover {
+  background-color: #6366f1 !important;
+  border-color: #4f46e5 !important;
+  color: #ffffff !important;
+}
+
+.light section a[href="/chat"]:hover {
+  background-color: #22c55e !important;
+  border-color: #16a34a !important;
+  color: #ffffff !important;
+}
+
+/* Text and emojis inside these specific buttons */
+.light section a[href="/resume-analyzer"] span,
+.light section a[href="/chat"] span {
+  color: inherit !important;
+  opacity: 1 !important;
+}
+
+/* Override backdrop-blur that might hide content */
+.light section a[class*="backdrop-blur"] {
+  backdrop-filter: blur(10px) !important;
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+
+/* ============================================
+   SPLASH SCREEN ANIMATIONS
+   ============================================ */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) rotate(-180deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1) rotate(10deg);
+  }
+  70% {
+    transform: scale(0.9) rotate(-5deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
+
+@keyframes spinOut {
+  from {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: rotate(360deg) scale(0.5);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+.animate-fadeOut {
+  animation: fadeOut 0.5s ease-out forwards;
+}
+
+.animate-bounceIn {
+  animation: bounceIn 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+.animate-slideUp {
+  animation: slideUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-scaleOut {
+  animation: scaleOut 0.5s ease-out forwards;
+}
+
+.animate-spinOut {
+  animation: spinOut 0.5s ease-out forwards;
 }

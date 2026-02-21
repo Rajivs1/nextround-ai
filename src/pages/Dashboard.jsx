@@ -14,6 +14,7 @@ import {
   deleteUser,
 } from "firebase/auth";
 import { auth } from "../firebase";
+import ThemeToggle from "../components/ThemeToggle";
 
 import {
   LineChart,
@@ -309,6 +310,8 @@ export default function Dashboard() {
                 </div>
               </div>
               <div className="flex flex-wrap gap-2 sm:gap-4">
+                {/* Theme Toggle Button */}
+                <ThemeToggle />
                 
                 <button
                   onClick={() => navigate("/chat")}
