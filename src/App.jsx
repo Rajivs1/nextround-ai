@@ -12,6 +12,7 @@ import Problems from "./pages/Problems";
 import Practice from "./pages/Practice";
 import ResumeAnalyzer from "./pages/ResumeAnalyzer";
 import ChatAssistant from "./pages/ChatAssistant";
+import DailyChallenge from "./pages/DailyChallenge";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 export default function App() {
@@ -83,6 +84,14 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <ChatAssistant />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/daily-challenge"
+            element={
+              <ProtectedRoute>
+                <DailyChallenge />
               </ProtectedRoute>
             }
           />

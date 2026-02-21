@@ -575,21 +575,21 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-5 lg:gap-6 px-2 sm:px-0">
             {/* AI Chat Assistant */}
             <Link
               to="/chat"
-              className="group relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700 hover:border-green-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm cursor-pointer overflow-hidden"
+              className="group relative p-5 sm:p-6 md:p-7 lg:p-8 rounded-xl sm:rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700 hover:border-green-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm cursor-pointer overflow-hidden"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-blue-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-blue-500/5 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative z-10">
-                <div className="text-5xl sm:text-6xl mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div className="text-4xl sm:text-5xl md:text-6xl mb-3 sm:mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300">
                   💬
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-white">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4 text-white">
                   AI Chat Assistant
                 </h3>
-                <p className="text-sm sm:text-base text-gray-400 leading-relaxed mb-4">
+                <p className="text-sm sm:text-base text-gray-400 leading-relaxed mb-3 sm:mb-4">
                   Chat with your personal AI coach for interview tips and coding help 24/7
                 </p>
                 <div className="flex items-center text-green-400 font-semibold text-sm sm:text-base">
@@ -602,17 +602,17 @@ export default function Home() {
             {/* AI Interview Practice */}
             <Link
               to="/interview"
-              className="group relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700 hover:border-blue-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden cursor-pointer"
+              className="group relative p-5 sm:p-6 md:p-7 lg:p-8 rounded-xl sm:rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700 hover:border-blue-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden cursor-pointer"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative z-10">
-                <div className="text-5xl sm:text-6xl mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div className="text-4xl sm:text-5xl md:text-6xl mb-3 sm:mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300">
                   🤖
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-white">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4 text-white">
                   AI Interview Practice
                 </h3>
-                <p className="text-sm sm:text-base text-gray-400 leading-relaxed mb-4">
+                <p className="text-sm sm:text-base text-gray-400 leading-relaxed mb-3 sm:mb-4">
                   Practice with AI interviewer that adapts and provides real-time feedback
                 </p>
                 <div className="flex items-center text-blue-400 font-semibold text-sm sm:text-base">
@@ -625,17 +625,17 @@ export default function Home() {
             {/* Code-Based Questions */}
             <Link
               to="/problems"
-              className="group relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700 hover:border-purple-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden cursor-pointer"
+              className="group relative p-5 sm:p-6 md:p-7 lg:p-8 rounded-xl sm:rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700 hover:border-purple-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden cursor-pointer"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative z-10">
-                <div className="text-5xl sm:text-6xl mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div className="text-4xl sm:text-5xl md:text-6xl mb-3 sm:mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300">
                   💻
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-white">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4 text-white">
                   Multi-Language Support
                 </h3>
-                <p className="text-sm sm:text-base text-gray-400 leading-relaxed mb-4">
+                <p className="text-sm sm:text-base text-gray-400 leading-relaxed mb-3 sm:mb-4">
                   Code in JavaScript, C++, or Java with real-time execution
                 </p>
                 <div className="flex items-center text-purple-400 font-semibold text-sm sm:text-base">
@@ -648,17 +648,17 @@ export default function Home() {
             {/* Progress Tracking */}
             <Link
               to="/dashboard"
-              className="group relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700 hover:border-pink-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden cursor-pointer"
+              className="group relative p-5 sm:p-6 md:p-7 lg:p-8 rounded-xl sm:rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700 hover:border-pink-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden cursor-pointer"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 to-cyan-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 to-cyan-500/5 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative z-10">
-                <div className="text-5xl sm:text-6xl mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div className="text-4xl sm:text-5xl md:text-6xl mb-3 sm:mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300">
                   📊
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-white">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4 text-white">
                   Progress Tracking
                 </h3>
-                <p className="text-sm sm:text-base text-gray-400 leading-relaxed mb-4">
+                <p className="text-sm sm:text-base text-gray-400 leading-relaxed mb-3 sm:mb-4">
                   Track your improvement with detailed analytics and performance insights
                 </p>
                 <div className="flex items-center text-pink-400 font-semibold text-sm sm:text-base">
@@ -675,17 +675,17 @@ export default function Home() {
                 e.preventDefault();
                 document.querySelector('#leaderboard-section')?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="group relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700 hover:border-orange-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden cursor-pointer"
+              className="group relative p-5 sm:p-6 md:p-7 lg:p-8 rounded-xl sm:rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700 hover:border-orange-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden cursor-pointer"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-red-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-red-500/5 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative z-10">
-                <div className="text-5xl sm:text-6xl mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div className="text-4xl sm:text-5xl md:text-6xl mb-3 sm:mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300">
                   🔥
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-white">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4 text-white">
                   Streaks & Rankings
                 </h3>
-                <p className="text-sm sm:text-base text-gray-400 leading-relaxed mb-4">
+                <p className="text-sm sm:text-base text-gray-400 leading-relaxed mb-3 sm:mb-4">
                   Build daily streaks and compete on the leaderboard with other coders
                 </p>
                 <div className="flex items-center text-orange-400 font-semibold text-sm sm:text-base">
@@ -698,17 +698,17 @@ export default function Home() {
             {/* 96+ Problems */}
             <Link
               to="/problems"
-              className="group relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700 hover:border-cyan-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden cursor-pointer"
+              className="group relative p-5 sm:p-6 md:p-7 lg:p-8 rounded-xl sm:rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700 hover:border-cyan-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden cursor-pointer"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-blue-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-blue-500/5 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative z-10">
-                <div className="text-5xl sm:text-6xl mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div className="text-4xl sm:text-5xl md:text-6xl mb-3 sm:mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300">
                   📚
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-white">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4 text-white">
                   96+ Coding Problems
                 </h3>
-                <p className="text-sm sm:text-base text-gray-400 leading-relaxed mb-4">
+                <p className="text-sm sm:text-base text-gray-400 leading-relaxed mb-3 sm:mb-4">
                   Curated problems across 8 topics with comprehensive test cases
                 </p>
                 <div className="flex items-center text-cyan-400 font-semibold text-sm sm:text-base">
@@ -721,21 +721,44 @@ export default function Home() {
             {/* Resume Analyzer */}
             <Link
               to="/resume-analyzer"
-              className="group relative p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700 hover:border-indigo-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden cursor-pointer"
+              className="group relative p-5 sm:p-6 md:p-7 lg:p-8 rounded-xl sm:rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700 hover:border-indigo-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden cursor-pointer"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-purple-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-purple-500/5 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative z-10">
-                <div className="text-5xl sm:text-6xl mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div className="text-4xl sm:text-5xl md:text-6xl mb-3 sm:mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300">
                   📄
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-white">
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4 text-white">
                   AI Resume Analyzer
                 </h3>
-                <p className="text-sm sm:text-base text-gray-400 leading-relaxed mb-4">
+                <p className="text-sm sm:text-base text-gray-400 leading-relaxed mb-3 sm:mb-4">
                   Get instant AI-powered feedback to optimize your resume for ATS and recruiters
                 </p>
                 <div className="flex items-center text-indigo-400 font-semibold text-sm sm:text-base">
                   <span>Analyze resume</span>
+                  <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                </div>
+              </div>
+            </Link>
+
+            {/* Daily Challenge */}
+            <Link
+              to="/daily-challenge"
+              className="group relative p-5 sm:p-6 md:p-7 lg:p-8 rounded-xl sm:rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700 hover:border-yellow-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden cursor-pointer"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-orange-500/5 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="relative z-10">
+                <div className="text-4xl sm:text-5xl md:text-6xl mb-3 sm:mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300">
+                  🔥
+                </div>
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4 text-white">
+                  Daily Challenge
+                </h3>
+                <p className="text-sm sm:text-base text-gray-400 leading-relaxed mb-3 sm:mb-4">
+                  Solve AI-generated coding challenges daily and compete on the global leaderboard
+                </p>
+                <div className="flex items-center text-yellow-400 font-semibold text-sm sm:text-base">
+                  <span>Today's challenge</span>
                   <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
                 </div>
               </div>
@@ -1018,6 +1041,31 @@ export default function Home() {
           </div>
         </div>
       )}
+
+      {/* Floating Daily Challenge Button */}
+      <Link
+        to="/daily-challenge"
+        className="fixed bottom-8 right-8 z-50 group"
+      >
+        <div className="relative">
+          {/* Pulsing ring effect */}
+          <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full blur-xl opacity-75 animate-pulse"></div>
+          
+          {/* Main button */}
+          <div className="relative bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-bold px-6 py-4 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 flex items-center gap-3 animate-float">
+            <span className="text-3xl animate-bounce-slow">🔥</span>
+            <div className="flex flex-col items-start">
+              <span className="text-sm font-semibold">Daily Challenge</span>
+              <span className="text-xs opacity-90">Solve & Compete!</span>
+            </div>
+          </div>
+          
+          {/* Notification badge */}
+          <div className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center animate-ping-slow">
+            NEW
+          </div>
+        </div>
+      </Link>
     </div>
   );
 }

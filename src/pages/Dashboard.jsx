@@ -596,6 +596,12 @@ export default function Dashboard() {
                     </div>
                     <div className="space-y-3">
                       <button
+                        onClick={() => navigate("/daily-challenge")}
+                        className="w-full p-3 bg-gradient-to-r from-yellow-500 to-orange-500 text-white font-semibold rounded-xl hover:from-yellow-600 hover:to-orange-600 transition-all duration-300 flex items-center justify-center gap-2"
+                      >
+                        🔥 Daily Challenge
+                      </button>
+                      <button
                         onClick={() => navigate("/interview")}
                         className="w-full p-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold rounded-xl hover:from-blue-600 hover:to-purple-600 transition-all duration-300"
                       >
