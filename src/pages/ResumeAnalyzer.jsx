@@ -114,12 +114,16 @@ export default function ResumeAnalyzer() {
         model: 'grok-beta',
         messages: [
           {
+            role: 'system',
+            content: 'You are a senior technical recruiter and ATS expert. Provide precise, actionable feedback. Be honest and specific. Focus on what actually matters for getting interviews.'
+          },
+          {
             role: 'user',
             content: prompt
           }
         ],
-        temperature: 0.7,
-        max_tokens: 8000
+        temperature: 0.3, // Lower temperature for more consistent, accurate analysis
+        max_tokens: 10000 // Increased for detailed feedback
       },
       {
         headers: {
@@ -156,8 +160,8 @@ export default function ResumeAnalyzer() {
               content: prompt
             }
           ],
-          temperature: 0.5,
-          max_tokens: 8000
+          temperature: 0.3, // Lower for more precise analysis
+          max_tokens: 10000 // Increased for comprehensive feedback
         };
         
         const response = await axios.post(
@@ -216,8 +220,8 @@ export default function ResumeAnalyzer() {
             content: prompt
           }
         ],
-        temperature: 0.7,
-        max_tokens: 4000
+        temperature: 0.3, // Lower for consistency
+        max_tokens: 6000 // Increased for detailed analysis
       },
       {
         headers: {
@@ -245,68 +249,83 @@ export default function ResumeAnalyzer() {
       const AI_PROVIDER = import.meta.env.VITE_AI_PROVIDER || 'groq';
       console.log('🎯 Using AI Provider:', AI_PROVIDER);
       
-      // Truncate resume if too long for faster processing
-      const maxResumeLength = 3500; // Reduced for faster analysis
+      // Truncate resume if too long, but keep more content for better analysis
+      const maxResumeLength = 4500; // Increased for more accurate analysis
       const truncatedResume = resumeText.length > maxResumeLength 
-        ? resumeText.substring(0, maxResumeLength) + '...(truncated)' 
+        ? resumeText.substring(0, maxResumeLength) + '\n\n...(content truncated for analysis)' 
         : resumeText;
       
-      // Optimized prompt for faster, more efficient analysis
-      const prompt = `You are an expert ATS (Applicant Tracking System) and resume analyzer. Analyze this resume quickly and efficiently.
+      // Enhanced prompt for more accurate and precise analysis
+      const prompt = `You are a senior technical recruiter and ATS expert with 15+ years of experience at FAANG companies. Analyze this resume with extreme precision and accuracy.
 
 Resume Content:
 ${truncatedResume}
 
-Provide a comprehensive JSON analysis with these exact fields (NO markdown, NO extra text):
+CRITICAL ANALYSIS REQUIREMENTS:
+1. Be brutally honest - identify real issues that would cause rejection
+2. Provide specific, actionable feedback with examples
+3. Focus on what actually matters to recruiters and ATS systems
+4. Consider industry standards and best practices
+5. Evaluate quantifiable achievements and impact metrics
+6. Check for proper formatting, keywords, and structure
+
+SCORING CRITERIA:
+- Overall Score: Based on ATS pass rate (40%), content quality (30%), formatting (15%), keywords (15%)
+- Section Scores: Rate 1-10 based on completeness, relevance, and impact
+- ATS Score: Technical compatibility with parsing systems
+
+Provide a comprehensive JSON analysis with these exact fields (NO markdown, NO extra text, ONLY JSON):
 {
-  "overallScore": <number 1-100 based on ATS compatibility, content quality, and formatting>,
-  "summary": "<2-3 sentences: overall quality, main strength, key improvement needed>",
+  "overallScore": <number 1-100, be strict: 90+ = exceptional, 80-89 = strong, 70-79 = good, 60-69 = needs work, <60 = major issues>,
+  "summary": "<3-4 sentences: honest assessment of resume quality, biggest strength, most critical weakness, and overall hiring potential>",
   "strengths": [
-    "<Specific strength with evidence from resume>",
-    "<Another strength>",
-    "<Third strength>",
-    "<Fourth strength>",
-    "<Fifth strength>"
+    "<Specific strength with concrete evidence from resume - mention actual achievements/metrics>",
+    "<Another strength with quantifiable impact>",
+    "<Third strength - focus on unique value proposition>",
+    "<Fourth strength - highlight technical/domain expertise>",
+    "<Fifth strength - mention presentation/formatting if excellent>"
   ],
   "weaknesses": [
-    "<Critical weakness with impact>",
-    "<Another weakness>",
-    "<Third weakness>",
-    "<Fourth weakness>",
-    "<Fifth weakness>"
+    "<Critical weakness that would cause rejection - be specific about impact>",
+    "<Another major weakness with explanation of why it matters>",
+    "<Third weakness - missing elements or poor execution>",
+    "<Fourth weakness - formatting or ATS compatibility issues>",
+    "<Fifth weakness - areas where candidate falls short of industry standards>"
   ],
   "suggestions": [
-    {"category": "Content", "title": "<Actionable title>", "description": "<Specific improvement with example>", "priority": "high"},
-    {"category": "Format", "title": "<Actionable title>", "description": "<Formatting fix>", "priority": "medium"},
-    {"category": "Keywords", "title": "<Actionable title>", "description": "<Keywords to add>", "priority": "high"},
-    {"category": "Experience", "title": "<Actionable title>", "description": "<How to improve experience section>", "priority": "medium"},
-    {"category": "Skills", "title": "<Actionable title>", "description": "<Skills improvement>", "priority": "low"},
-    {"category": "ATS", "title": "<Actionable title>", "description": "<ATS optimization>", "priority": "high"}
+    {"category": "Content", "title": "<Specific, actionable improvement>", "description": "<Detailed explanation with before/after example or specific action to take>", "priority": "high"},
+    {"category": "Achievements", "title": "<How to quantify impact>", "description": "<Explain how to add metrics, percentages, or concrete results to accomplishments>", "priority": "high"},
+    {"category": "Keywords", "title": "<Industry-specific keywords to add>", "description": "<List 5-7 relevant keywords/technologies missing from resume that recruiters search for>", "priority": "high"},
+    {"category": "Format", "title": "<ATS-friendly formatting fix>", "description": "<Specific formatting change to improve ATS parsing (e.g., avoid tables, use standard headings)>", "priority": "medium"},
+    {"category": "Experience", "title": "<Improve experience descriptions>", "description": "<Show how to rewrite bullet points using action verbs and STAR method>", "priority": "high"},
+    {"category": "Skills", "title": "<Skills section optimization>", "description": "<Suggest how to organize skills by category and add missing relevant skills>", "priority": "medium"},
+    {"category": "Summary", "title": "<Professional summary enhancement>", "description": "<Provide template or example of compelling summary statement>", "priority": "medium"},
+    {"category": "ATS", "title": "<Critical ATS optimization>", "description": "<Specific technical fix to ensure ATS can parse resume correctly>", "priority": "high"}
   ],
   "keywords": {
-    "present": ["<keyword1>", "<keyword2>", "<keyword3>", "<keyword4>", "<keyword5>"],
-    "missing": ["<industry-relevant keyword1>", "<keyword2>", "<keyword3>", "<keyword4>", "<keyword5>"]
+    "present": ["<actual keyword found in resume>", "<another keyword>", "<third keyword>", "<fourth keyword>", "<fifth keyword>", "<sixth keyword>", "<seventh keyword>"],
+    "missing": ["<critical industry keyword missing>", "<important technology/skill>", "<relevant certification/tool>", "<common job requirement>", "<trending skill in field>", "<another missing keyword>", "<seventh missing keyword>"]
   },
   "sections": {
-    "contact": {"score": <1-10>, "feedback": "<Brief feedback>"},
-    "summary": {"score": <1-10>, "feedback": "<Brief feedback>"},
-    "experience": {"score": <1-10>, "feedback": "<Brief feedback>"},
-    "education": {"score": <1-10>, "feedback": "<Brief feedback>"},
-    "skills": {"score": <1-10>, "feedback": "<Brief feedback>"}
+    "contact": {"score": <1-10, deduct for missing LinkedIn, portfolio, or professional email>, "feedback": "<Specific feedback on what's good/missing in contact info>"},
+    "summary": {"score": <1-10, rate based on clarity, impact, and relevance>, "feedback": "<Explain if summary is compelling or needs work>"},
+    "experience": {"score": <1-10, focus on achievements, metrics, and relevance>, "feedback": "<Detailed feedback on experience section quality and what to improve>"},
+    "education": {"score": <1-10, consider relevance and completeness>, "feedback": "<Feedback on education section>"},
+    "skills": {"score": <1-10, evaluate organization and relevance>, "feedback": "<Feedback on skills section organization and content>"}
   },
   "atsCompatibility": {
-    "score": <1-100>,
-    "issues": ["<ATS issue 1>", "<ATS issue 2>", "<ATS issue 3>"],
-    "recommendations": ["<Fix 1>", "<Fix 2>", "<Fix 3>"]
+    "score": <1-100, be strict: check for tables, images, columns, unusual fonts, graphics>,
+    "issues": ["<Specific ATS parsing issue with technical explanation>", "<Another compatibility problem>", "<Third issue that would cause parsing failure>", "<Fourth technical issue>"],
+    "recommendations": ["<Specific fix with exact action to take>", "<Another actionable recommendation>", "<Third concrete improvement>", "<Fourth technical fix>"]
   },
   "industryComparison": {
-    "percentile": <1-100, where this resume ranks compared to industry standards>,
-    "topCompaniesReady": <true/false, whether ready for FAANG/top companies>,
-    "estimatedCallbackRate": "<percentage estimate based on resume quality>"
+    "percentile": <1-100, honest ranking: 90+ = top 10%, 75-89 = above average, 50-74 = average, 25-49 = below average, <25 = needs major work>,
+    "topCompaniesReady": <true only if resume would pass FAANG/top-tier company screening, false otherwise>,
+    "estimatedCallbackRate": "<realistic percentage: 1-5% = weak, 5-10% = below average, 10-20% = average, 20-35% = good, 35-50% = strong, 50%+ = exceptional>"
   }
 }
 
-Return ONLY valid JSON. No markdown, no explanation, just the JSON object.`;
+IMPORTANT: Return ONLY the JSON object. No markdown code blocks, no explanations, no extra text. Start with { and end with }.`;
 
       // Route to appropriate AI provider
       let generatedText;
@@ -415,10 +434,10 @@ Return ONLY valid JSON. No markdown, no explanation, just the JSON object.`;
                 }
               ],
               generationConfig: {
-                temperature: 0.7,
+                temperature: 0.3, // Lower for more accurate, consistent analysis
                 topK: 40,
                 topP: 0.95,
-                maxOutputTokens: 8192,
+                maxOutputTokens: 10000, // Increased for comprehensive feedback
               }
             },
             {
