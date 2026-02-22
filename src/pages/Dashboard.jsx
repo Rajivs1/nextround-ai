@@ -16,6 +16,7 @@ import {
 import { auth } from "../firebase";
 import ThemeToggle from "../components/ThemeToggle";
 import { checkAndResetStreak } from "../utils/streakUtils";
+import { getUserChallengeHistory } from "../services/dailyChallengeService";
 
 import {
   LineChart,
@@ -40,6 +41,8 @@ export default function Dashboard() {
   const [isUploadingImage, setIsUploadingImage] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const [challengeHistory, setChallengeHistory] = useState([]);
+  const [loadingChallenges, setLoadingChallenges] = useState(false);
 
   // Force refresh when coming from result page
   useEffect(() => {
@@ -76,6 +79,25 @@ export default function Dashboard() {
 
     return () => unsub();
   }, [user, refreshTrigger]);
+
+  // Load daily challenge history
+  useEffect(() => {
+    if (!user || activeTab !== "challenges") return;
+    
+    const loadChallengeHistory = async () => {
+      setLoadingChallenges(true);
+      try {
+        const history = await getUserChallengeHistory(user.uid);
+        setChallengeHistory(history);
+      } catch (error) {
+        console.error("Error loading challenge history:", error);
+      } finally {
+        setLoadingChallenges(false);
+      }
+    };
+    
+    loadChallengeHistory();
+  }, [user, activeTab]);
 
   const handleRefresh = async () => {
     if (!user) return;
@@ -348,7 +370,7 @@ export default function Dashboard() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
           {/* Tab Navigation */}
           <div className="mb-8 sm:mb-12">
-            <div className="flex space-x-1 bg-gray-900/50 p-1 rounded-2xl backdrop-blur-sm border border-gray-700/50 max-w-2xl mx-auto overflow-x-auto">
+            <div className="flex space-x-1 bg-gray-900/50 p-1 rounded-2xl backdrop-blur-sm border border-gray-700/50 max-w-3xl mx-auto overflow-x-auto">
               <button
                 onClick={() => setActiveTab("dashboard")}
                 className={`flex-1 px-3 sm:px-6 py-2 sm:py-3 rounded-xl font-semibold transition-all duration-300 text-sm sm:text-base whitespace-nowrap ${
@@ -368,6 +390,16 @@ export default function Dashboard() {
                 }`}
               >
                 ✅ <span className="hidden sm:inline">Solved</span>
+              </button>
+              <button
+                onClick={() => setActiveTab("challenges")}
+                className={`flex-1 px-3 sm:px-6 py-2 sm:py-3 rounded-xl font-semibold transition-all duration-300 text-sm sm:text-base whitespace-nowrap ${
+                  activeTab === "challenges"
+                    ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg"
+                    : "text-gray-400 hover:text-white hover:bg-gray-800/50"
+                }`}
+              >
+                � <span className="hidden sm:inline">Daily</span>
               </button>
               <button
                 onClick={() => setActiveTab("profile")}
@@ -712,6 +744,105 @@ export default function Dashboard() {
                     className="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold rounded-xl hover:from-blue-600 hover:to-purple-600 transition-all duration-300 shadow-lg hover:shadow-blue-500/25"
                   >
                     Browse Problems
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Daily Challenges Tab Content */}
+          {activeTab === "challenges" && (
+            <div className="max-w-7xl mx-auto">
+              <div className="text-center mb-8 sm:mb-12 px-4">
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black mb-4">
+                  Your{" "}
+                  <span className="bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 bg-clip-text text-transparent">
+                    Daily Challenges
+                  </span>
+                </h2>
+                <p className="text-lg sm:text-xl text-gray-300">
+                  Track your daily challenge progress and solutions
+                </p>
+              </div>
+
+              {loadingChallenges ? (
+                <div className="text-center py-20">
+                  <div className="w-16 h-16 border-4 border-yellow-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+                  <p className="text-gray-400">Loading your challenges...</p>
+                </div>
+              ) : challengeHistory.length > 0 ? (
+                <div className="grid gap-4 sm:gap-6">
+                  {challengeHistory.map((challenge, index) => (
+                    <div
+                      key={index}
+                      className="p-4 sm:p-6 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 hover:border-yellow-500/50 transition-all duration-300"
+                    >
+                      <div className="flex flex-col sm:flex-row items-start justify-between mb-4 gap-3">
+                        <div className="flex-1 min-w-0">
+                          <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-2">
+                            <h3 className="text-lg sm:text-2xl font-bold text-white">
+                              {challenge.challengeTitle}
+                            </h3>
+                            <span className={`px-2 sm:px-3 py-1 rounded-lg text-xs sm:text-sm font-semibold border ${
+                              challenge.difficulty === 'Easy' ? 'bg-green-500/20 text-green-300 border-green-500/30' :
+                              challenge.difficulty === 'Medium' ? 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30' :
+                              'bg-red-500/20 text-red-300 border-red-500/30'
+                            }`}>
+                              {challenge.difficulty}
+                            </span>
+                            <span className="px-2 sm:px-3 py-1 rounded-lg bg-purple-500/20 text-purple-300 text-xs sm:text-sm font-semibold border border-purple-500/30">
+                              {challenge.language === 'javascript' ? '🟨 JS' : challenge.language === 'cpp' ? '🔵 C++' : '☕ Java'}
+                            </span>
+                          </div>
+                          <div className="flex flex-wrap items-center gap-3 text-xs sm:text-sm text-gray-400">
+                            <span>📅 {challenge.challengeId}</span>
+                            <span>⏱️ {Math.floor(challenge.timeSpent / 60)}:{(challenge.timeSpent % 60).toString().padStart(2, '0')}</span>
+                            <span>⭐ {challenge.score} points</span>
+                          </div>
+                        </div>
+                        <button
+                          onClick={() => navigate('/daily-challenge')}
+                          className="px-3 sm:px-4 py-2 bg-yellow-600 hover:bg-yellow-700 text-white font-semibold rounded-lg transition-colors duration-300 text-sm whitespace-nowrap w-full sm:w-auto"
+                        >
+                          View Challenge
+                        </button>
+                      </div>
+
+                      <div className="mt-4">
+                        <div className="bg-[#1e1e1e] rounded-xl overflow-hidden border border-gray-700">
+                          <div className="bg-[#252526] px-3 sm:px-4 py-2 border-b border-gray-700 flex items-center justify-between">
+                            <span className="text-gray-300 text-xs sm:text-sm font-medium">
+                              Your Solution
+                            </span>
+                            <span className="text-green-400 text-xs flex items-center gap-1">
+                              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                              </svg>
+                              Solved
+                            </span>
+                          </div>
+                          <pre className="p-3 sm:p-4 text-xs sm:text-sm text-gray-300 overflow-x-auto max-h-64">
+                            <code>{challenge.code}</code>
+                          </pre>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-20">
+                  <div className="text-8xl mb-6">🔥</div>
+                  <h3 className="text-3xl font-bold text-white mb-4">
+                    No Challenges Solved Yet
+                  </h3>
+                  <p className="text-xl text-gray-400 mb-8">
+                    Start solving daily challenges to see your progress here!
+                  </p>
+                  <button
+                    onClick={() => navigate("/daily-challenge")}
+                    className="px-8 py-4 bg-gradient-to-r from-yellow-500 to-orange-500 text-white font-bold rounded-xl hover:from-yellow-600 hover:to-orange-600 transition-all duration-300 shadow-lg hover:shadow-yellow-500/25"
+                  >
+                    Try Today's Challenge
                   </button>
                 </div>
               )}

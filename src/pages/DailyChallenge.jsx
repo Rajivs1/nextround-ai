@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { deleteDoc, doc } from "firebase/firestore";
+import { db } from "../firebase";
 import {
   getTodaysChallenge,
   submitChallengeSolution,
@@ -28,6 +30,7 @@ export default function DailyChallenge() {
   const [showHints, setShowHints] = useState(false);
   const [testResults, setTestResults] = useState(null);
   const [error, setError] = useState(null);
+  const [isRegenerating, setIsRegenerating] = useState(false);
 
   // Load today's challenge
   useEffect(() => {
@@ -175,6 +178,29 @@ export default function DailyChallenge() {
     }
   };
 
+  const handleRegenerateChallenge = async () => {
+    if (!window.confirm("⚠️ Delete current challenge and generate a new one?\n\nThis will:\n- Delete the current challenge from database\n- Generate a completely new challenge\n- Reset all submissions for today\n\nAre you sure?")) {
+      return;
+    }
+
+    setIsRegenerating(true);
+    try {
+      // Delete the current challenge
+      await deleteDoc(doc(db, "dailyChallenges", getTodayDateString()));
+      console.log("Challenge deleted successfully");
+      
+      // Reload to generate new challenge
+      await loadChallenge();
+      
+      alert("✅ New challenge generated successfully!");
+    } catch (error) {
+      console.error("Error regenerating challenge:", error);
+      alert("Failed to regenerate challenge: " + error.message);
+    } finally {
+      setIsRegenerating(false);
+    }
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-[#1a1a1a] flex items-center justify-center">
@@ -271,13 +297,41 @@ export default function DailyChallenge() {
       </header>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6">
-        {/* Debug Info (remove in production) */}
-        <div className="mb-4 p-4 bg-gray-800 rounded-lg text-sm">
-          <p className="text-gray-400">Debug Info:</p>
-          <p className="text-gray-300">Date: {getTodayDateString()}</p>
-          <p className="text-gray-300">Challenge ID: {challenge?.id || 'Not loaded'}</p>
-          <p className="text-gray-300">Has Title: {challenge?.title ? 'Yes' : 'No'}</p>
-        </div>
+        {/* Debug Info with Regenerate Button - Only for Admin */}
+        {user?.email === "rajeev04632@gmail.com" && (
+          <div className="mb-4 p-4 bg-gray-800 rounded-lg text-sm border border-gray-700">
+            <div className="flex items-start justify-between gap-4">
+              <div className="flex-1">
+                <p className="text-gray-400 mb-2 font-semibold">🔧 Admin Debug Info:</p>
+                <div className="space-y-1">
+                  <p className="text-gray-300">📅 Current Date String: <span className="text-blue-400 font-mono">{getTodayDateString()}</span></p>
+                  <p className="text-gray-300">🆔 Challenge ID: <span className="text-blue-400 font-mono">{challenge?.id || 'Not loaded'}</span></p>
+                  <p className="text-gray-300">📝 Challenge Title: <span className="text-green-400">{challenge?.title || 'N/A'}</span></p>
+                  <p className="text-gray-300">🕐 Created: <span className="text-purple-400">{challenge?.createdAt ? new Date(challenge.createdAt.seconds * 1000).toLocaleString() : 'N/A'}</span></p>
+                </div>
+              </div>
+              <button
+                onClick={handleRegenerateChallenge}
+                disabled={isRegenerating || loading}
+                className="px-4 py-2 bg-red-600 hover:bg-red-700 disabled:bg-gray-600 disabled:cursor-not-allowed text-white font-semibold rounded-lg transition-all flex items-center gap-2 whitespace-nowrap"
+              >
+                {isRegenerating ? (
+                  <>
+                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    Regenerating...
+                  </>
+                ) : (
+                  <>
+                    🔄 Delete & Regenerate
+                  </>
+                )}
+              </button>
+            </div>
+            <p className="text-yellow-400 mt-3 text-xs">
+              💡 Admin Only: Use "Delete & Regenerate" button to get a completely new challenge for today
+            </p>
+          </div>
+        )}
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Left: Problem Description */}

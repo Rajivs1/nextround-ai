@@ -27,48 +27,65 @@ export const generateDailyChallenge = async () => {
     throw new Error("Groq API key not found");
   }
 
-  const prompt = `Generate a coding challenge suitable for technical interviews. Return ONLY valid JSON (no markdown, no code blocks, no extra text).
+  // Add randomization to ensure different challenges
+  const topics = [
+    "arrays and hash tables",
+    "strings and string manipulation", 
+    "linked lists",
+    "trees and graphs",
+    "dynamic programming",
+    "sorting and searching",
+    "stack and queue",
+    "recursion and backtracking",
+    "greedy algorithms",
+    "bit manipulation"
+  ];
+  
+  const difficulties = ["Easy", "Medium", "Hard"];
+  const randomTopic = topics[Math.floor(Math.random() * topics.length)];
+  const randomDifficulty = difficulties[Math.floor(Math.random() * difficulties.length)];
+  const timestamp = Date.now();
+
+  const prompt = `Generate a UNIQUE coding challenge about ${randomTopic} at ${randomDifficulty} difficulty level. 
+  
+IMPORTANT: Create a COMPLETELY NEW and ORIGINAL problem. DO NOT repeat common problems like "Two Sum" or "Find Maximum".
+
+Timestamp for uniqueness: ${timestamp}
+
+Return ONLY valid JSON (no markdown, no code blocks, no extra text).
 
 Structure:
 {
-  "title": "Two Sum Problem",
-  "difficulty": "Medium",
-  "description": "Given an array of integers nums and an integer target, return indices of the two numbers that add up to target. You may assume each input has exactly one solution.",
+  "title": "Unique Problem Title (not a common LeetCode problem)",
+  "difficulty": "${randomDifficulty}",
+  "description": "Clear problem description with real-world context (2-3 paragraphs)",
   "examples": [
     {
-      "input": "nums = [2,7,11,15], target = 9",
-      "output": "[0,1]",
-      "explanation": "nums[0] + nums[1] = 2 + 7 = 9"
+      "input": "example input",
+      "output": "example output",
+      "explanation": "why this output"
     }
   ],
-  "constraints": ["2 <= nums.length <= 10^4", "-10^9 <= nums[i] <= 10^9"],
-  "hints": ["Use a hash map to store values", "Check if target - current exists"],
-  "tags": ["array", "hash-table"],
+  "constraints": ["constraint 1", "constraint 2"],
+  "hints": ["hint 1", "hint 2"],
+  "tags": ["${randomTopic.split(' ')[0]}", "algorithms"],
   "timeLimit": 30,
   "starterCode": {
-    "javascript": "function solution(nums, target) {\n  // Your code here\n  return [];\n}",
-    "cpp": "class Solution {\npublic:\n    vector<int> solution(vector<int>& nums, int target) {\n        // Your code here\n        return {};\n    }\n};",
-    "java": "class Solution {\n    public int[] solution(int[] nums, int target) {\n        // Your code here\n        return new int[0];\n    }\n}"
+    "javascript": "function solution(params) {\n  // Your code here\n  return result;\n}",
+    "cpp": "class Solution {\npublic:\n    returnType solution(params) {\n        // Your code here\n        return result;\n    }\n};",
+    "java": "class Solution {\n    public returnType solution(params) {\n        // Your code here\n        return result;\n    }\n}"
   },
   "testCases": [
-    {"input": "[2,7,11,15], 9", "expectedOutput": "[0,1]"},
-    {"input": "[3,2,4], 6", "expectedOutput": "[1,2]"}
+    {"input": "test1", "expectedOutput": "output1"},
+    {"input": "test2", "expectedOutput": "output2"}
   ]
 }
 
-IMPORTANT: For C++ starter code, ALWAYS use this format with class:
-class Solution {
-public:
-    returnType functionName(parameters) {
-        // Your code here
-        return defaultValue;
-    }
-};
-
-Create a unique, interview-relevant problem. Return ONLY the JSON object.`;
+CRITICAL: Make this problem UNIQUE and CREATIVE. Avoid standard problems.`;
 
   try {
     console.log("Generating challenge with AI...");
+    console.log("Topic:", randomTopic, "Difficulty:", randomDifficulty);
     
     const response = await axios.post(
       GROQ_API_URL,
@@ -77,14 +94,14 @@ Create a unique, interview-relevant problem. Return ONLY the JSON object.`;
         messages: [
           {
             role: "system",
-            content: "You are a coding challenge generator. Return only valid JSON without any markdown formatting or code blocks."
+            content: "You are a creative coding challenge generator. Create UNIQUE, ORIGINAL problems that are different from common LeetCode problems. Return only valid JSON without any markdown formatting or code blocks."
           },
           {
             role: "user",
             content: prompt
           }
         ],
-        temperature: 0.8,
+        temperature: 0.9, // Higher temperature for more creativity
         max_tokens: 2500,
       },
       {
@@ -118,64 +135,104 @@ Create a unique, interview-relevant problem. Return ONLY the JSON object.`;
     console.error("Error generating challenge:", error);
     console.error("Error details:", error.response?.data || error.message);
     
-    // Return a fallback challenge if AI fails
-    return {
-      title: "Find Maximum in Array",
-      difficulty: "Easy",
-      description: "Write a function that takes an array of numbers and returns the maximum value.\n\nYou need to iterate through the array and keep track of the largest number seen so far.",
-      examples: [
-        {
-          input: "[1, 5, 3, 9, 2]",
-          output: "9",
-          explanation: "9 is the largest number in the array"
+    // Return a random fallback challenge if AI fails
+    const fallbackChallenges = [
+      {
+        title: "Find Maximum in Array",
+        difficulty: "Easy",
+        description: "Write a function that takes an array of numbers and returns the maximum value.\n\nYou need to iterate through the array and keep track of the largest number seen so far.",
+        examples: [
+          { input: "[1, 5, 3, 9, 2]", output: "9", explanation: "9 is the largest number" }
+        ],
+        constraints: ["1 <= array.length <= 1000"],
+        hints: ["Initialize with first element", "Compare each element"],
+        tags: ["array", "basics"],
+        timeLimit: 15,
+        starterCode: {
+          javascript: "function findMax(arr) {\n  // Your code here\n  return 0;\n}",
+          cpp: "class Solution {\npublic:\n    int findMax(vector<int>& arr) {\n        // Your code here\n        return 0;\n    }\n};",
+          java: "class Solution {\n    public int findMax(int[] arr) {\n        // Your code here\n        return 0;\n    }\n}"
         },
-        {
-          input: "[-1, -5, -3]",
-          output: "-1",
-          explanation: "-1 is the largest among negative numbers"
-        }
-      ],
-      constraints: [
-        "1 <= array.length <= 1000",
-        "-10^6 <= array[i] <= 10^6"
-      ],
-      hints: [
-        "Initialize a variable with the first element",
-        "Compare each element with the current maximum",
-        "Update the maximum if you find a larger value"
-      ],
-      tags: ["array", "basics"],
-      timeLimit: 15,
-      starterCode: {
-        javascript: "function findMax(arr) {\n  // Your code here\n  return 0;\n}",
-        cpp: "class Solution {\npublic:\n    int findMax(vector<int>& arr) {\n        // Your code here\n        return 0;\n    }\n};",
-        java: "class Solution {\n    public int findMax(int[] arr) {\n        // Your code here\n        return 0;\n    }\n}"
+        testCases: [
+          { input: "[1, 5, 3, 9, 2]", expectedOutput: "9" },
+          { input: "[-1, -5, -3]", expectedOutput: "-1" }
+        ]
       },
-      testCases: [
-        { input: "[1, 5, 3, 9, 2]", expectedOutput: "9" },
-        { input: "[-1, -5, -3]", expectedOutput: "-1" },
-        { input: "[42]", expectedOutput: "42" }
-      ]
-    };
+      {
+        title: "Count Vowels in String",
+        difficulty: "Easy",
+        description: "Write a function that counts the number of vowels (a, e, i, o, u) in a given string.\n\nThe function should be case-insensitive.",
+        examples: [
+          { input: "Hello World", output: "3", explanation: "e, o, o are vowels" }
+        ],
+        constraints: ["1 <= string.length <= 1000"],
+        hints: ["Convert to lowercase first", "Check each character"],
+        tags: ["string", "basics"],
+        timeLimit: 15,
+        starterCode: {
+          javascript: "function countVowels(str) {\n  // Your code here\n  return 0;\n}",
+          cpp: "class Solution {\npublic:\n    int countVowels(string str) {\n        // Your code here\n        return 0;\n    }\n};",
+          java: "class Solution {\n    public int countVowels(String str) {\n        // Your code here\n        return 0;\n    }\n}"
+        },
+        testCases: [
+          { input: "Hello World", expectedOutput: "3" },
+          { input: "Programming", expectedOutput: "3" }
+        ]
+      },
+      {
+        title: "Reverse Array In-Place",
+        difficulty: "Easy",
+        description: "Write a function that reverses an array in-place without using extra space.\n\nYou should modify the original array.",
+        examples: [
+          { input: "[1, 2, 3, 4, 5]", output: "[5, 4, 3, 2, 1]", explanation: "Array reversed" }
+        ],
+        constraints: ["1 <= array.length <= 1000"],
+        hints: ["Use two pointers", "Swap elements"],
+        tags: ["array", "two-pointers"],
+        timeLimit: 20,
+        starterCode: {
+          javascript: "function reverseArray(arr) {\n  // Your code here\n  return arr;\n}",
+          cpp: "class Solution {\npublic:\n    void reverseArray(vector<int>& arr) {\n        // Your code here\n    }\n};",
+          java: "class Solution {\n    public void reverseArray(int[] arr) {\n        // Your code here\n    }\n}"
+        },
+        testCases: [
+          { input: "[1, 2, 3, 4, 5]", expectedOutput: "[5, 4, 3, 2, 1]" },
+          { input: "[10, 20]", expectedOutput: "[20, 10]" }
+        ]
+      }
+    ];
+    
+    // Return a random fallback
+    return fallbackChallenges[Math.floor(Math.random() * fallbackChallenges.length)];
   }
 };
 
 /**
- * Get today's challenge date string (YYYY-MM-DD)
- * Challenges reset at 7 AM instead of midnight
+ * Get today's challenge date string (YYYY-MM-DD) based on IST timezone
+ * Challenges reset at 7 AM IST instead of midnight
  */
 export const getTodayDateString = () => {
+  // Get current time in IST (UTC+5:30)
   const now = new Date();
+  const utcTime = now.getTime() + (now.getTimezoneOffset() * 60000);
+  const istTime = new Date(utcTime + (5.5 * 60 * 60 * 1000)); // IST is UTC+5:30
   
-  // If it's before 7 AM, use yesterday's date
-  // This means the challenge from yesterday continues until 7 AM today
-  if (now.getHours() < 7) {
-    const yesterday = new Date(now);
+  console.log('IST Time:', istTime.toISOString());
+  console.log('IST Hour:', istTime.getHours());
+  
+  // If it's before 7 AM IST, use yesterday's date
+  // This means the challenge from yesterday continues until 7 AM IST today
+  if (istTime.getHours() < 7) {
+    const yesterday = new Date(istTime);
     yesterday.setDate(yesterday.getDate() - 1);
-    return yesterday.toISOString().split('T')[0];
+    const dateStr = yesterday.toISOString().split('T')[0];
+    console.log('Before 7 AM IST, using yesterday:', dateStr);
+    return dateStr;
   }
   
-  return now.toISOString().split('T')[0];
+  const dateStr = istTime.toISOString().split('T')[0];
+  console.log('After 7 AM IST, using today:', dateStr);
+  return dateStr;
 };
 
 /**
@@ -377,6 +434,55 @@ export const getChallengeStats = async (challengeId) => {
   }
 };
 
+/**
+ * Get user's daily challenge submission history
+ * @param {string} userId - User ID
+ * @param {number} limitCount - Number of recent submissions to fetch
+ * @returns {Promise<Array>} User's challenge history
+ */
+export const getUserChallengeHistory = async (userId, limitCount = 10) => {
+  try {
+    const submissionsRef = collection(db, "challengeSubmissions");
+    const q = query(
+      submissionsRef,
+      where("userId", "==", userId),
+      where("passed", "==", true)
+    );
+    
+    const querySnapshot = await getDocs(q);
+    const history = [];
+    
+    for (const docSnap of querySnapshot.docs) {
+      const data = docSnap.data();
+      
+      // Fetch challenge data
+      const challengeRef = doc(db, "dailyChallenges", data.challengeId);
+      const challengeDoc = await getDoc(challengeRef);
+      const challengeData = challengeDoc.exists() ? challengeDoc.data() : {};
+      
+      history.push({
+        challengeId: data.challengeId,
+        challengeTitle: challengeData.title || "Daily Challenge",
+        difficulty: challengeData.difficulty || "Medium",
+        timeSpent: data.timeSpent,
+        score: data.score,
+        language: data.language,
+        submittedAt: data.submittedAt,
+        timestamp: data.timestamp || 0,
+        code: data.code
+      });
+    }
+    
+    // Sort by timestamp (most recent first)
+    history.sort((a, b) => b.timestamp - a.timestamp);
+    
+    return history.slice(0, limitCount);
+  } catch (error) {
+    console.error("Error fetching user challenge history:", error);
+    return [];
+  }
+};
+
 export default {
   generateDailyChallenge,
   getTodaysChallenge,
@@ -384,5 +490,6 @@ export default {
   getChallengeLeaderboard,
   getUserSubmission,
   getChallengeStats,
-  getTodayDateString
+  getTodayDateString,
+  getUserChallengeHistory
 };
