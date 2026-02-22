@@ -15,6 +15,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../firebase";
 import ThemeToggle from "../components/ThemeToggle";
+import { checkAndResetStreak } from "../utils/streakUtils";
 
 import {
   LineChart,
@@ -52,6 +53,13 @@ export default function Dashboard() {
   // Real-time listener
   useEffect(() => {
     if (!user) return;
+
+    // Check and reset streak if needed
+    checkAndResetStreak(user.uid).then((result) => {
+      if (result.streakReset) {
+        console.log("Streak was reset due to inactivity");
+      }
+    });
 
     const unsub = onSnapshot(
       doc(db, "users", user.uid),

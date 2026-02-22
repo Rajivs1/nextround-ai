@@ -9,6 +9,7 @@ import { db } from "../firebase";
 import logo from "../assets/NexrRoundAi2.png";
 import { getLeaderboard } from "../utils/leaderboardUtils";
 import { migrateUserIfNeeded } from "../utils/migrationUtils";
+import { checkAndResetStreak } from "../utils/streakUtils";
 
 export default function Home() {
   const { user, loading } = useAuth();
@@ -23,6 +24,13 @@ export default function Home() {
   // Get user profile data for username
   useEffect(() => {
     if (!user) return;
+
+    // Check and reset streak if needed
+    checkAndResetStreak(user.uid).then((result) => {
+      if (result.streakReset) {
+        console.log("Streak was reset due to inactivity");
+      }
+    });
 
     const unsub = onSnapshot(doc(db, "users", user.uid), (snap) => {
       if (snap.exists()) {

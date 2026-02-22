@@ -162,10 +162,20 @@ Create a unique, interview-relevant problem. Return ONLY the JSON object.`;
 
 /**
  * Get today's challenge date string (YYYY-MM-DD)
+ * Challenges reset at 7 AM instead of midnight
  */
 export const getTodayDateString = () => {
-  const today = new Date();
-  return today.toISOString().split('T')[0];
+  const now = new Date();
+  
+  // If it's before 7 AM, use yesterday's date
+  // This means the challenge from yesterday continues until 7 AM today
+  if (now.getHours() < 7) {
+    const yesterday = new Date(now);
+    yesterday.setDate(yesterday.getDate() - 1);
+    return yesterday.toISOString().split('T')[0];
+  }
+  
+  return now.toISOString().split('T')[0];
 };
 
 /**

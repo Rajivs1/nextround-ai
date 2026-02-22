@@ -27,8 +27,65 @@ export const calculateStreak = (lastActivityDate, currentStreak) => {
     // Next day - increment streak
     return currentStreak + 1;
   } else {
-    // Streak broken - reset to 1
-    return 1;
+    // Streak broken - reset to 0
+    return 0;
+  }
+};
+
+/**
+ * Check if user's streak should be reset due to inactivity
+ * Call this when user visits the app
+ * @param {string} userId - Firebase user ID
+ * @returns {Promise<Object>} - Current streak data
+ */
+export const checkAndResetStreak = async (userId) => {
+  try {
+    const userRef = doc(db, 'users', userId);
+    const userSnap = await getDoc(userRef);
+    
+    if (!userSnap.exists()) {
+      return { currentStreak: 0, longestStreak: 0 };
+    }
+    
+    const userData = userSnap.data();
+    const lastActivityDate = userData.lastActivityDate;
+    const currentStreak = userData.currentStreak || 0;
+    
+    if (!lastActivityDate) {
+      return { currentStreak, longestStreak: userData.longestStreak || 0 };
+    }
+    
+    const now = new Date();
+    const lastDate = new Date(lastActivityDate);
+    
+    // Reset time to start of day
+    now.setHours(0, 0, 0, 0);
+    lastDate.setHours(0, 0, 0, 0);
+    
+    const diffTime = now - lastDate;
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    
+    // If more than 1 day has passed, reset streak to 0
+    if (diffDays > 1 && currentStreak > 0) {
+      await updateDoc(userRef, {
+        currentStreak: 0,
+      });
+      
+      return {
+        currentStreak: 0,
+        longestStreak: userData.longestStreak || 0,
+        streakReset: true,
+      };
+    }
+    
+    return {
+      currentStreak,
+      longestStreak: userData.longestStreak || 0,
+      streakReset: false,
+    };
+  } catch (error) {
+    console.error('Error checking streak:', error);
+    return { currentStreak: 0, longestStreak: 0, streakReset: false };
   }
 };
 
