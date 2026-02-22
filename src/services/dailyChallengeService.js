@@ -54,6 +54,8 @@ Timestamp for uniqueness: ${timestamp}
 
 Return ONLY valid JSON (no markdown, no code blocks, no extra text).
 
+CRITICAL: In the starterCode, use actual newline characters (\\n) for proper formatting.
+
 Structure:
 {
   "title": "Unique Problem Title (not a common LeetCode problem)",
@@ -71,9 +73,9 @@ Structure:
   "tags": ["${randomTopic.split(' ')[0]}", "algorithms"],
   "timeLimit": 30,
   "starterCode": {
-    "javascript": "function solution(params) {\n  // Your code here\n  return result;\n}",
-    "cpp": "class Solution {\npublic:\n    returnType solution(params) {\n        // Your code here\n        return result;\n    }\n};",
-    "java": "class Solution {\n    public returnType solution(params) {\n        // Your code here\n        return result;\n    }\n}"
+    "javascript": "function solution(params) {\\n  // Your code here\\n  return result;\\n}",
+    "cpp": "class Solution {\\npublic:\\n    returnType solution(params) {\\n        // Your code here\\n        return result;\\n    }\\n};",
+    "java": "class Solution {\\n    public returnType solution(params) {\\n        // Your code here\\n        return result;\\n    }\\n}"
   },
   "testCases": [
     {"input": "test1", "expectedOutput": "output1"},
@@ -81,7 +83,7 @@ Structure:
   ]
 }
 
-CRITICAL: Make this problem UNIQUE and CREATIVE. Avoid standard problems.`;
+CRITICAL: Make this problem UNIQUE and CREATIVE. Avoid standard problems. Use \\n for newlines in code.`;
 
   try {
     console.log("Generating challenge with AI...");
@@ -130,6 +132,19 @@ CRITICAL: Make this problem UNIQUE and CREATIVE. Avoid standard problems.`;
     const challenge = JSON.parse(content);
     console.log("Parsed challenge:", challenge);
     
+    // Ensure starter code has proper newlines and formatting
+    // Override AI-generated code with properly formatted templates
+    if (challenge.starterCode) {
+      const functionName = "solution";
+      
+      // Create properly formatted starter code for each language
+      challenge.starterCode = {
+        javascript: `function ${functionName}(params) {\n  // Your code here\n  return result;\n}`,
+        cpp: `class Solution {\npublic:\n    returnType ${functionName}(params) {\n        // Your code here\n        return result;\n    }\n};`,
+        java: `class Solution {\n    public returnType ${functionName}(params) {\n        // Your code here\n        return result;\n    }\n}`
+      };
+    }
+    
     return challenge;
   } catch (error) {
     console.error("Error generating challenge:", error);
@@ -149,9 +164,9 @@ CRITICAL: Make this problem UNIQUE and CREATIVE. Avoid standard problems.`;
         tags: ["array", "basics"],
         timeLimit: 15,
         starterCode: {
-          javascript: "function findMax(arr) {\n  // Your code here\n  return 0;\n}",
-          cpp: "class Solution {\npublic:\n    int findMax(vector<int>& arr) {\n        // Your code here\n        return 0;\n    }\n};",
-          java: "class Solution {\n    public int findMax(int[] arr) {\n        // Your code here\n        return 0;\n    }\n}"
+          javascript: `function findMax(arr) {\n  // Your code here\n  return 0;\n}`,
+          cpp: `class Solution {\npublic:\n    int findMax(vector<int>& arr) {\n        // Your code here\n        return 0;\n    }\n};`,
+          java: `class Solution {\n    public int findMax(int[] arr) {\n        // Your code here\n        return 0;\n    }\n}`
         },
         testCases: [
           { input: "[1, 5, 3, 9, 2]", expectedOutput: "9" },
@@ -170,9 +185,9 @@ CRITICAL: Make this problem UNIQUE and CREATIVE. Avoid standard problems.`;
         tags: ["string", "basics"],
         timeLimit: 15,
         starterCode: {
-          javascript: "function countVowels(str) {\n  // Your code here\n  return 0;\n}",
-          cpp: "class Solution {\npublic:\n    int countVowels(string str) {\n        // Your code here\n        return 0;\n    }\n};",
-          java: "class Solution {\n    public int countVowels(String str) {\n        // Your code here\n        return 0;\n    }\n}"
+          javascript: `function countVowels(str) {\n  // Your code here\n  return 0;\n}`,
+          cpp: `class Solution {\npublic:\n    int countVowels(string str) {\n        // Your code here\n        return 0;\n    }\n};`,
+          java: `class Solution {\n    public int countVowels(String str) {\n        // Your code here\n        return 0;\n    }\n}`
         },
         testCases: [
           { input: "Hello World", expectedOutput: "3" },
@@ -191,9 +206,9 @@ CRITICAL: Make this problem UNIQUE and CREATIVE. Avoid standard problems.`;
         tags: ["array", "two-pointers"],
         timeLimit: 20,
         starterCode: {
-          javascript: "function reverseArray(arr) {\n  // Your code here\n  return arr;\n}",
-          cpp: "class Solution {\npublic:\n    void reverseArray(vector<int>& arr) {\n        // Your code here\n    }\n};",
-          java: "class Solution {\n    public void reverseArray(int[] arr) {\n        // Your code here\n    }\n}"
+          javascript: `function reverseArray(arr) {\n  // Your code here\n  return arr;\n}`,
+          cpp: `class Solution {\npublic:\n    void reverseArray(vector<int>& arr) {\n        // Your code here\n    }\n};`,
+          java: `class Solution {\n    public void reverseArray(int[] arr) {\n        // Your code here\n    }\n}`
         },
         testCases: [
           { input: "[1, 2, 3, 4, 5]", expectedOutput: "[5, 4, 3, 2, 1]" },

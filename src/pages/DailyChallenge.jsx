@@ -59,9 +59,91 @@ export default function DailyChallenge() {
       
       setChallenge(todaysChallenge);
       
-      // Load starter code
+      // Load starter code with AGGRESSIVE formatting
       if (todaysChallenge.starterCode) {
-        setCode(todaysChallenge.starterCode[selectedLanguage] || "");
+        let starterCode = todaysChallenge.starterCode[selectedLanguage] || "";
+        
+        console.log("RAW CODE FROM DB:", JSON.stringify(starterCode));
+        
+        // Try multiple replacement strategies
+        starterCode = starterCode
+          .replace(/\\n/g, '\n')      // Replace escaped \n
+          .replace(/\\r\\n/g, '\n')   // Replace Windows line endings
+          .replace(/\\t/g, '    ')    // Replace tabs with spaces
+          .replace(/\r\n/g, '\n')     // Normalize line endings
+          .replace(/\r/g, '\n');      // Mac line endings
+        
+        // If still no newlines, try to add them based on language syntax
+        if (!starterCode.includes('\n')) {
+          console.log("NO NEWLINES FOUND - Adding them manually");
+          
+          if (selectedLanguage === 'cpp') {
+            starterCode = starterCode
+              .replace(/class Solution \{ ?public: ?/g, 'class Solution {\npublic:\n    ')
+              .replace(/\( ?/g, '(')
+              .replace(/ ?\)/g, ')')
+              .replace(/ ?\{ ?/g, ' {\n        ')
+              .replace(/ ?\} ?;/g, '\n    }\n};')
+              .replace(/\/\/ Your code here/g, '// Your code here')
+              .replace(/return /g, 'return ')
+              .trim();
+          } else if (selectedLanguage === 'java') {
+            starterCode = starterCode
+              .replace(/class Solution \{ ?public /g, 'class Solution {\n    public ')
+              .replace(/\( ?/g, '(')
+              .replace(/ ?\)/g, ')')
+              .replace(/ ?\{ ?/g, ' {\n        ')
+              .replace(/ ?\} ?}/g, '\n    }\n}')
+              .replace(/\/\/ Your code here/g, '// Your code here')
+              .replace(/return /g, 'return ')
+              .trim();
+          } else if (selectedLanguage === 'javascript') {
+            starterCode = starterCode
+              .replace(/function /g, 'function ')
+              .replace(/\( ?/g, '(')
+              .replace(/ ?\)/g, ')')
+              .replace(/ ?\{ ?/g, ' {\n  ')
+              .replace(/ ?\}/g, '\n}')
+              .replace(/\/\/ Your code here/g, '// Your code here')
+              .replace(/return /g, 'return ')
+              .trim();
+          }
+        } else {
+          // Clean up existing formatting
+          starterCode = starterCode
+            .split('\n')
+            .map(line => line.trim())
+            .join('\n')
+            .replace(/\n\n+/g, '\n'); // Remove multiple blank lines
+          
+          // Re-indent based on language
+          const lines = starterCode.split('\n');
+          let indentLevel = 0;
+          const indentSize = selectedLanguage === 'javascript' ? 2 : 4;
+          
+          starterCode = lines.map(line => {
+            const trimmed = line.trim();
+            if (!trimmed) return '';
+            
+            // Decrease indent for closing braces
+            if (trimmed.startsWith('}')) {
+              indentLevel = Math.max(0, indentLevel - 1);
+            }
+            
+            const indented = ' '.repeat(indentLevel * indentSize) + trimmed;
+            
+            // Increase indent after opening braces
+            if (trimmed.endsWith('{') || trimmed === 'public:') {
+              indentLevel++;
+            }
+            
+            return indented;
+          }).join('\n');
+        }
+        
+        console.log("FORMATTED CODE:", starterCode);
+        console.log("HAS NEWLINES:", starterCode.includes('\n'));
+        setCode(starterCode);
       }
       
       // Load user's previous submission (non-blocking)
@@ -100,7 +182,84 @@ export default function DailyChallenge() {
   const handleLanguageChange = (lang) => {
     setSelectedLanguage(lang);
     if (challenge?.starterCode) {
-      setCode(challenge.starterCode[lang] || "");
+      let starterCode = challenge.starterCode[lang] || "";
+      
+      console.log("SWITCHING TO", lang, "RAW:", JSON.stringify(starterCode));
+      
+      // Try multiple replacement strategies
+      starterCode = starterCode
+        .replace(/\\n/g, '\n')
+        .replace(/\\r\\n/g, '\n')
+        .replace(/\\t/g, '    ')
+        .replace(/\r\n/g, '\n')
+        .replace(/\r/g, '\n');
+      
+      // If still no newlines, add them manually
+      if (!starterCode.includes('\n')) {
+        if (lang === 'cpp') {
+          starterCode = starterCode
+            .replace(/class Solution \{ ?public: ?/g, 'class Solution {\npublic:\n    ')
+            .replace(/\( ?/g, '(')
+            .replace(/ ?\)/g, ')')
+            .replace(/ ?\{ ?/g, ' {\n        ')
+            .replace(/ ?\} ?;/g, '\n    }\n};')
+            .replace(/\/\/ Your code here/g, '// Your code here')
+            .replace(/return /g, 'return ')
+            .trim();
+        } else if (lang === 'java') {
+          starterCode = starterCode
+            .replace(/class Solution \{ ?public /g, 'class Solution {\n    public ')
+            .replace(/\( ?/g, '(')
+            .replace(/ ?\)/g, ')')
+            .replace(/ ?\{ ?/g, ' {\n        ')
+            .replace(/ ?\} ?}/g, '\n    }\n}')
+            .replace(/\/\/ Your code here/g, '// Your code here')
+            .replace(/return /g, 'return ')
+            .trim();
+        } else if (lang === 'javascript') {
+          starterCode = starterCode
+            .replace(/function /g, 'function ')
+            .replace(/\( ?/g, '(')
+            .replace(/ ?\)/g, ')')
+            .replace(/ ?\{ ?/g, ' {\n  ')
+            .replace(/ ?\}/g, '\n}')
+            .replace(/\/\/ Your code here/g, '// Your code here')
+            .replace(/return /g, 'return ')
+            .trim();
+        }
+      } else {
+        // Clean up existing formatting
+        starterCode = starterCode
+          .split('\n')
+          .map(line => line.trim())
+          .join('\n')
+          .replace(/\n\n+/g, '\n');
+        
+        // Re-indent based on language
+        const lines = starterCode.split('\n');
+        let indentLevel = 0;
+        const indentSize = lang === 'javascript' ? 2 : 4;
+        
+        starterCode = lines.map(line => {
+          const trimmed = line.trim();
+          if (!trimmed) return '';
+          
+          if (trimmed.startsWith('}')) {
+            indentLevel = Math.max(0, indentLevel - 1);
+          }
+          
+          const indented = ' '.repeat(indentLevel * indentSize) + trimmed;
+          
+          if (trimmed.endsWith('{') || trimmed === 'public:') {
+            indentLevel++;
+          }
+          
+          return indented;
+        }).join('\n');
+      }
+      
+      console.log("FORMATTED:", starterCode);
+      setCode(starterCode);
     }
   };
 
@@ -496,11 +655,20 @@ export default function DailyChallenge() {
             </div>
 
             {/* Code Editor */}
-            <div className="glass-effect rounded-xl border border-gray-800 overflow-hidden">
-              <div className="bg-gray-900/50 px-4 py-2 border-b border-gray-800 flex items-center justify-between">
-                <span className="text-sm text-gray-400">Code Editor</span>
+            <div className="glass-effect rounded-xl border border-gray-800 overflow-hidden shadow-2xl">
+              <div className="bg-[#1e1e1e] px-4 py-3 border-b border-gray-700 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="flex gap-1.5">
+                    <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                    <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                    <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                  </div>
+                  <span className="text-gray-400 text-sm font-medium">
+                    solution.{selectedLanguage === 'javascript' ? 'js' : selectedLanguage === 'cpp' ? 'cpp' : 'java'}
+                  </span>
+                </div>
                 {userSubmission?.passed && (
-                  <span className="text-green-400 text-sm flex items-center gap-1">
+                  <span className="text-green-400 text-sm flex items-center gap-1.5 bg-green-500/10 px-3 py-1 rounded-full border border-green-500/30">
                     <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
@@ -508,16 +676,42 @@ export default function DailyChallenge() {
                   </span>
                 )}
               </div>
-              <textarea
-                value={code}
-                onChange={(e) => {
-                  setCode(e.target.value);
-                  startTimer();
-                }}
-                className="w-full h-96 bg-gray-900/30 text-gray-100 p-4 font-mono text-sm focus:outline-none resize-none"
-                placeholder="Write your solution here..."
-                spellCheck="false"
-              />
+              <div className="relative">
+                {/* Line numbers */}
+                <div className="absolute left-0 top-0 bottom-0 w-12 bg-[#1e1e1e] border-r border-gray-700 pt-4 pb-4 text-right pr-3 select-none">
+                  {code.split('\n').map((_, index) => (
+                    <div key={index} className="text-gray-600 text-sm font-mono leading-6">
+                      {index + 1}
+                    </div>
+                  ))}
+                </div>
+                <textarea
+                  value={code}
+                  onChange={(e) => {
+                    setCode(e.target.value);
+                    startTimer();
+                  }}
+                  className="w-full h-[500px] bg-[#1e1e1e] text-gray-100 pl-16 pr-4 py-4 font-mono text-sm leading-6 focus:outline-none resize-none overflow-auto"
+                  placeholder="Write your solution here..."
+                  spellCheck="false"
+                  style={{
+                    tabSize: 4,
+                    fontFamily: "'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace",
+                  }}
+                />
+              </div>
+              {/* Editor footer */}
+              <div className="bg-[#252526] px-4 py-2 border-t border-gray-700 flex items-center justify-between text-xs text-gray-400">
+                <div className="flex items-center gap-4">
+                  <span>Lines: {code.split('\n').length}</span>
+                  <span>Characters: {code.length}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="px-2 py-1 bg-blue-500/10 text-blue-400 rounded border border-blue-500/30">
+                    {selectedLanguage === 'javascript' ? 'JavaScript' : selectedLanguage === 'cpp' ? 'C++' : 'Java'}
+                  </span>
+                </div>
+              </div>
             </div>
 
             {/* Test Results */}
