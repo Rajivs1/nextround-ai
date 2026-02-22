@@ -3,6 +3,7 @@ import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { deleteDoc, doc } from "firebase/firestore";
 import { db } from "../firebase";
+import SubmissionModal from "../components/SubmissionModal";
 import {
   getTodaysChallenge,
   submitChallengeSolution,
@@ -31,6 +32,15 @@ export default function DailyChallenge() {
   const [testResults, setTestResults] = useState(null);
   const [error, setError] = useState(null);
   const [isRegenerating, setIsRegenerating] = useState(false);
+  const [modal, setModal] = useState({ isOpen: false, type: '', title: '', message: '', details: null });
+
+  const showModal = (type, title, message, details = null) => {
+    setModal({ isOpen: true, type, title, message, details });
+  };
+
+  const closeModal = () => {
+    setModal({ isOpen: false, type: '', title: '', message: '', details: null });
+  };
 
   // Load today's challenge
   useEffect(() => {
@@ -276,39 +286,187 @@ export default function DailyChallenge() {
   };
 
   const runTests = () => {
-    // Simple test runner (you can enhance this)
     try {
+      if (!code.trim()) {
+        showModal('warning', 'No Code Found', 'Please write some code before running tests!');
+        return false;
+      }
+
       const results = challenge.testCases.map((testCase, index) => {
-        // This is a simplified version - in production, you'd run this in a sandbox
-        return {
-          index: index + 1,
-          passed: true, // Placeholder
-          input: testCase.input,
-          expected: testCase.expectedOutput,
-          actual: testCase.expectedOutput // Placeholder
-        };
+        try {
+          let actual;
+          let passed = false;
+
+          if (selectedLanguage === 'javascript') {
+            // Execute JavaScript code
+            try {
+              // Create a safe execution context
+              const userFunction = new Function('return ' + code)();
+              
+              // Parse input - handle different formats
+              let parsedInput;
+              try {
+                parsedInput = JSON.parse(testCase.input);
+              } catch {
+                parsedInput = testCase.input;
+              }
+
+              // Execute the function
+              if (Array.isArray(parsedInput)) {
+                actual = userFunction(...parsedInput);
+              } else {
+                actual = userFunction(parsedInput);
+              }
+
+              // Convert actual to string for comparison
+              actual = JSON.stringify(actual);
+              
+              // Compare with expected output
+              const expected = typeof testCase.expectedOutput === 'string' 
+                ? testCase.expectedOutput 
+                : JSON.stringify(testCase.expectedOutput);
+              
+              passed = actual === expected;
+            } catch (execError) {
+              console.error(`Test ${index + 1} execution error:`, execError);
+              actual = `Error: ${execError.message}`;
+              passed = false;
+            }
+          } else {
+            // For C++ and Java, we can't execute directly in browser
+            actual = "Cannot run in browser";
+            passed = false;
+          }
+
+          return {
+            index: index + 1,
+            passed,
+            input: testCase.input,
+            expected: testCase.expectedOutput,
+            actual
+          };
+        } catch (error) {
+          console.error(`Test case ${index + 1} error:`, error);
+          return {
+            index: index + 1,
+            passed: false,
+            input: testCase.input,
+            expected: testCase.expectedOutput,
+            actual: `Error: ${error.message}`
+          };
+        }
       });
       
       setTestResults(results);
-      return results.every(r => r.passed);
+      const allPassed = results.every(r => r.passed);
+      const passedCount = results.filter(r => r.passed).length;
+      const totalCount = results.length;
+      
+      if (selectedLanguage !== 'javascript') {
+        showModal(
+          'warning',
+          'Browser Testing Not Available',
+          'C++ and Java code cannot be tested directly in the browser.',
+          [
+            'JavaScript is recommended for instant feedback',
+            'You can still submit, but validation is limited',
+            'Consider switching to JavaScript for this challenge'
+          ]
+        );
+      } else if (allPassed) {
+        showModal(
+          'success',
+          'All Tests Passed! 🎉',
+          `Congratulations! Your solution passed all ${totalCount} test cases.`,
+          [
+            'Your code is working correctly',
+            'You can now submit your solution',
+            'Click "Submit Solution" to complete the challenge'
+          ]
+        );
+      } else {
+        const failedTests = results.filter(r => !r.passed).map(r => `Test ${r.index}`).join(', ');
+        showModal(
+          'error',
+          'Tests Failed',
+          `${passedCount} out of ${totalCount} test cases passed.`,
+          [
+            `Failed tests: ${failedTests}`,
+            'Check the test results below for details',
+            'Fix your code and try again'
+          ]
+        );
+      }
+      
+      return allPassed;
     } catch (error) {
       console.error("Test execution error:", error);
+      showModal('error', 'Test Execution Error', `Failed to run tests: ${error.message}`);
       return false;
     }
   };
 
   const handleSubmit = async () => {
     if (!code.trim()) {
-      alert("Please write some code before submitting!");
+      showModal('warning', 'No Code Found', 'Please write some code before submitting!');
       return;
+    }
+
+    // STRICT VALIDATION: Must run tests first
+    if (!testResults) {
+      showModal(
+        'warning',
+        'Run Tests First',
+        'You must run tests before submitting your solution.',
+        [
+          'Click "Run Tests" to validate your code',
+          'Ensure all test cases pass',
+          'Then you can submit your solution'
+        ]
+      );
+      return;
+    }
+
+    // Check if all tests passed
+    const allPassed = testResults.every(r => r.passed);
+    const passedCount = testResults.filter(r => r.passed).length;
+    const totalCount = testResults.length;
+
+    // BLOCK SUBMISSION if tests failed for JavaScript
+    if (selectedLanguage === 'javascript' && !allPassed) {
+      const failedTests = testResults.filter(r => !r.passed).map(r => `Test ${r.index}`).join(', ');
+      showModal(
+        'error',
+        'Cannot Submit - Tests Failed',
+        `Your solution failed ${totalCount - passedCount} out of ${totalCount} test cases.`,
+        [
+          `Failed tests: ${failedTests}`,
+          'All test cases must pass before submission',
+          'Review the test results and fix your code',
+          'Run tests again after making changes'
+        ]
+      );
+      return;
+    }
+
+    // For C++ and Java, show warning but allow submission
+    if (selectedLanguage !== 'javascript') {
+      showModal(
+        'warning',
+        'Limited Validation',
+        'C++ and Java code cannot be fully validated in the browser.',
+        [
+          'Your code will be submitted without complete validation',
+          'Make sure you have tested your logic carefully',
+          'Consider using JavaScript for instant feedback'
+        ]
+      );
+      // Don't return - allow submission to continue
     }
 
     setIsSubmitting(true);
     
     try {
-      // Run tests
-      const allPassed = runTests();
-      
       const submission = {
         code,
         language: selectedLanguage,
@@ -323,15 +481,44 @@ export default function DailyChallenge() {
       await loadChallenge();
       
       if (allPassed) {
-        alert("🎉 Congratulations! You solved today's challenge!");
+        const timeBonus = timeSpent < 300 ? ' (Speed Bonus!)' : '';
+        showModal(
+          'success',
+          'Challenge Completed! 🎉',
+          `Congratulations! You successfully solved today's challenge${timeBonus}`,
+          [
+            `Score: ${submission.score} points`,
+            `Time: ${formatTime(timeSpent)}`,
+            `Language: ${selectedLanguage}`,
+            'Check the leaderboard to see your ranking!'
+          ]
+        );
         setShowLeaderboard(true);
       } else {
-        alert("Some tests failed. Keep trying!");
+        showModal(
+          'info',
+          'Solution Submitted',
+          'Your solution has been submitted but did not pass all tests.',
+          [
+            'Keep practicing to improve',
+            'Try again tomorrow for a new challenge',
+            'Review the test results to learn more'
+          ]
+        );
       }
       
     } catch (error) {
       console.error("Error submitting solution:", error);
-      alert("Failed to submit solution. Please try again.");
+      showModal(
+        'error',
+        'Submission Failed',
+        'Failed to submit your solution. Please try again.',
+        [
+          'Check your internet connection',
+          'Make sure you are logged in',
+          'Try refreshing the page if the problem persists'
+        ]
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -726,11 +913,22 @@ export default function DailyChallenge() {
                         result.passed ? 'bg-green-500/10 border border-green-500/30' : 'bg-red-500/10 border border-red-500/30'
                       }`}
                     >
-                      <div className="flex items-center justify-between">
+                      <div className="flex items-center justify-between mb-2">
                         <span className="text-sm font-medium">Test Case {result.index}</span>
                         <span className={result.passed ? 'text-green-400' : 'text-red-400'}>
                           {result.passed ? '✓ Passed' : '✗ Failed'}
                         </span>
+                      </div>
+                      <div className="text-xs space-y-1">
+                        <div className="text-gray-400">
+                          <span className="text-blue-400">Input:</span> {result.input}
+                        </div>
+                        <div className="text-gray-400">
+                          <span className="text-green-400">Expected:</span> {typeof result.expected === 'string' ? result.expected : JSON.stringify(result.expected)}
+                        </div>
+                        <div className="text-gray-400">
+                          <span className={result.passed ? 'text-green-400' : 'text-red-400'}>Your Output:</span> {result.actual}
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -767,6 +965,16 @@ export default function DailyChallenge() {
           </div>
         </div>
       </div>
+
+      {/* Submission Modal */}
+      <SubmissionModal
+        isOpen={modal.isOpen}
+        onClose={closeModal}
+        type={modal.type}
+        title={modal.title}
+        message={modal.message}
+        details={modal.details}
+      />
     </div>
   );
 }
