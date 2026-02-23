@@ -6,14 +6,12 @@ import {
   getDoc, 
   getDocs, 
   query, 
-  where, 
-  orderBy, 
-  limit,
+  where,
   updateDoc,
-  serverTimestamp,
-  Timestamp
+  serverTimestamp
 } from "firebase/firestore";
 import { db } from "../firebase";
+import { updateUserStreak } from "../utils/streakUtils";
 
 const GROQ_API_KEY = import.meta.env.VITE_GROQ_API_KEY;
 const GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions";
@@ -54,7 +52,19 @@ Timestamp for uniqueness: ${timestamp}
 
 Return ONLY valid JSON (no markdown, no code blocks, no extra text).
 
-CRITICAL: In the starterCode, use actual newline characters (\\n) for proper formatting.
+CRITICAL REQUIREMENTS FOR STARTER CODE:
+1. Use ACTUAL newline characters (\\n) in the starterCode strings
+2. Create REAL function signatures that match the problem (not generic placeholders)
+3. Use proper parameter names and return types based on the problem
+4. DO NOT include any implementation - only function signature and a comment
+5. The starter code should be EMPTY inside - users need to write the solution themselves
+6. Follow LeetCode style - just the function signature with "// Your code here" comment
+
+Example of GOOD starter code (EMPTY implementation):
+"javascript": "function findLongestWord(sentence) {\\n  // Your code here\\n}"
+
+Example of BAD starter code (DO NOT DO THIS - has implementation):
+"javascript": "function findLongestWord(sentence) {\\n  let longest = '';\\n  const words = sentence.split(' ');\\n  for (let word of words) {\\n    if (word.length > longest.length) longest = word;\\n  }\\n  return longest;\\n}"
 
 Structure:
 {
@@ -63,8 +73,8 @@ Structure:
   "description": "Clear problem description with real-world context (2-3 paragraphs)",
   "examples": [
     {
-      "input": "example input",
-      "output": "example output",
+      "input": "example input as string",
+      "output": "example output as string",
       "explanation": "why this output"
     }
   ],
@@ -73,17 +83,25 @@ Structure:
   "tags": ["${randomTopic.split(' ')[0]}", "algorithms"],
   "timeLimit": 30,
   "starterCode": {
-    "javascript": "function solution(params) {\\n  // Your code here\\n  return result;\\n}",
-    "cpp": "class Solution {\\npublic:\\n    returnType solution(params) {\\n        // Your code here\\n        return result;\\n    }\\n};",
-    "java": "class Solution {\\n    public returnType solution(params) {\\n        // Your code here\\n        return result;\\n    }\\n}"
+    "javascript": "function functionName(param1, param2) {\\n  // Your code here\\n}",
+    "cpp": "class Solution {\\npublic:\\n    returnType functionName(paramType1 param1, paramType2 param2) {\\n        // Your code here\\n    }\\n};",
+    "java": "class Solution {\\n    public returnType functionName(paramType1 param1, paramType2 param2) {\\n        // Your code here\\n    }\\n}"
   },
   "testCases": [
-    {"input": "test1", "expectedOutput": "output1"},
-    {"input": "test2", "expectedOutput": "output2"}
+    {"input": "test1 as string", "expectedOutput": "output1 as string"},
+    {"input": "test2 as string", "expectedOutput": "output2 as string"},
+    {"input": "test3 as string", "expectedOutput": "output3 as string"}
   ]
 }
 
-CRITICAL: Make this problem UNIQUE and CREATIVE. Avoid standard problems. Use \\n for newlines in code.`;
+CRITICAL RULES:
+- Make this problem UNIQUE and CREATIVE
+- Use \\n for newlines in starterCode
+- Use REAL function names and parameters that match the problem
+- DO NOT include any implementation in starter code - ONLY function signature
+- Keep starter code MINIMAL like LeetCode - just signature + comment
+- Provide at least 3 test cases
+- All inputs and outputs should be strings for proper display`;
 
   try {
     console.log("Generating challenge with AI...");
@@ -96,7 +114,7 @@ CRITICAL: Make this problem UNIQUE and CREATIVE. Avoid standard problems. Use \\
         messages: [
           {
             role: "system",
-            content: "You are a creative coding challenge generator. Create UNIQUE, ORIGINAL problems that are different from common LeetCode problems. Return only valid JSON without any markdown formatting or code blocks."
+            content: "You are a creative coding challenge generator. Create UNIQUE, ORIGINAL problems that are different from common LeetCode problems. CRITICAL: Starter code must be EMPTY - only function signature with '// Your code here' comment, NO implementation. Return only valid JSON without any markdown formatting or code blocks."
           },
           {
             role: "user",
@@ -132,17 +150,35 @@ CRITICAL: Make this problem UNIQUE and CREATIVE. Avoid standard problems. Use \\
     const challenge = JSON.parse(content);
     console.log("Parsed challenge:", challenge);
     
-    // Ensure starter code has proper newlines and formatting
-    // Override AI-generated code with properly formatted templates
+    // Ensure starter code has proper newlines (don't override AI-generated code)
     if (challenge.starterCode) {
-      const functionName = "solution";
-      
-      // Create properly formatted starter code for each language
-      challenge.starterCode = {
-        javascript: `function ${functionName}(params) {\n  // Your code here\n  return result;\n}`,
-        cpp: `class Solution {\npublic:\n    returnType ${functionName}(params) {\n        // Your code here\n        return result;\n    }\n};`,
-        java: `class Solution {\n    public returnType ${functionName}(params) {\n        // Your code here\n        return result;\n    }\n}`
-      };
+      // Just ensure the code has proper newline characters
+      Object.keys(challenge.starterCode).forEach(lang => {
+        if (challenge.starterCode[lang]) {
+          // Replace escaped newlines with actual newlines
+          challenge.starterCode[lang] = challenge.starterCode[lang]
+            .replace(/\\n/g, '\n')
+            .replace(/\\t/g, '  ')
+            .trim();
+        }
+      });
+    }
+    
+    // Ensure all test case inputs and outputs are strings (for React rendering)
+    if (challenge.testCases) {
+      challenge.testCases = challenge.testCases.map(tc => ({
+        input: typeof tc.input === 'string' ? tc.input : JSON.stringify(tc.input),
+        expectedOutput: typeof tc.expectedOutput === 'string' ? tc.expectedOutput : JSON.stringify(tc.expectedOutput)
+      }));
+    }
+    
+    // Ensure all example inputs and outputs are strings (for React rendering)
+    if (challenge.examples) {
+      challenge.examples = challenge.examples.map(ex => ({
+        input: typeof ex.input === 'string' ? ex.input : JSON.stringify(ex.input),
+        output: typeof ex.output === 'string' ? ex.output : JSON.stringify(ex.output),
+        explanation: ex.explanation
+      }));
     }
     
     return challenge;
@@ -330,6 +366,24 @@ export const submitChallengeSolution = async (userId, challengeId, submission) =
       await updateDoc(challengeRef, {
         completionCount: (await getDoc(challengeRef)).data().completionCount + 1
       });
+      
+      // Update user's streak when they successfully complete the challenge
+      try {
+        const streakData = await updateUserStreak(userId);
+        console.log("Streak updated:", streakData);
+        
+        // Return streak data along with submission result
+        await setDoc(submissionRef, submissionData);
+        
+        return { 
+          success: true, 
+          submissionId: submissionRef.id,
+          streakData: streakData
+        };
+      } catch (streakError) {
+        console.error("Error updating streak:", streakError);
+        // Continue even if streak update fails
+      }
     }
     
     await setDoc(submissionRef, submissionData);

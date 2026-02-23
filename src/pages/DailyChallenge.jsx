@@ -69,87 +69,18 @@ export default function DailyChallenge() {
       
       setChallenge(todaysChallenge);
       
-      // Load starter code with AGGRESSIVE formatting
+      // Load starter code - just ensure proper newlines
       if (todaysChallenge.starterCode) {
         let starterCode = todaysChallenge.starterCode[selectedLanguage] || "";
         
         console.log("RAW CODE FROM DB:", JSON.stringify(starterCode));
         
-        // Try multiple replacement strategies
+        // Simple newline normalization
         starterCode = starterCode
           .replace(/\\n/g, '\n')      // Replace escaped \n
-          .replace(/\\r\\n/g, '\n')   // Replace Windows line endings
-          .replace(/\\t/g, '    ')    // Replace tabs with spaces
-          .replace(/\r\n/g, '\n')     // Normalize line endings
-          .replace(/\r/g, '\n');      // Mac line endings
-        
-        // If still no newlines, try to add them based on language syntax
-        if (!starterCode.includes('\n')) {
-          console.log("NO NEWLINES FOUND - Adding them manually");
-          
-          if (selectedLanguage === 'cpp') {
-            starterCode = starterCode
-              .replace(/class Solution \{ ?public: ?/g, 'class Solution {\npublic:\n    ')
-              .replace(/\( ?/g, '(')
-              .replace(/ ?\)/g, ')')
-              .replace(/ ?\{ ?/g, ' {\n        ')
-              .replace(/ ?\} ?;/g, '\n    }\n};')
-              .replace(/\/\/ Your code here/g, '// Your code here')
-              .replace(/return /g, 'return ')
-              .trim();
-          } else if (selectedLanguage === 'java') {
-            starterCode = starterCode
-              .replace(/class Solution \{ ?public /g, 'class Solution {\n    public ')
-              .replace(/\( ?/g, '(')
-              .replace(/ ?\)/g, ')')
-              .replace(/ ?\{ ?/g, ' {\n        ')
-              .replace(/ ?\} ?}/g, '\n    }\n}')
-              .replace(/\/\/ Your code here/g, '// Your code here')
-              .replace(/return /g, 'return ')
-              .trim();
-          } else if (selectedLanguage === 'javascript') {
-            starterCode = starterCode
-              .replace(/function /g, 'function ')
-              .replace(/\( ?/g, '(')
-              .replace(/ ?\)/g, ')')
-              .replace(/ ?\{ ?/g, ' {\n  ')
-              .replace(/ ?\}/g, '\n}')
-              .replace(/\/\/ Your code here/g, '// Your code here')
-              .replace(/return /g, 'return ')
-              .trim();
-          }
-        } else {
-          // Clean up existing formatting
-          starterCode = starterCode
-            .split('\n')
-            .map(line => line.trim())
-            .join('\n')
-            .replace(/\n\n+/g, '\n'); // Remove multiple blank lines
-          
-          // Re-indent based on language
-          const lines = starterCode.split('\n');
-          let indentLevel = 0;
-          const indentSize = selectedLanguage === 'javascript' ? 2 : 4;
-          
-          starterCode = lines.map(line => {
-            const trimmed = line.trim();
-            if (!trimmed) return '';
-            
-            // Decrease indent for closing braces
-            if (trimmed.startsWith('}')) {
-              indentLevel = Math.max(0, indentLevel - 1);
-            }
-            
-            const indented = ' '.repeat(indentLevel * indentSize) + trimmed;
-            
-            // Increase indent after opening braces
-            if (trimmed.endsWith('{') || trimmed === 'public:') {
-              indentLevel++;
-            }
-            
-            return indented;
-          }).join('\n');
-        }
+          .replace(/\\t/g, '  ')      // Replace escaped tabs with 2 spaces
+          .replace(/\r\n/g, '\n')     // Normalize Windows line endings
+          .replace(/\r/g, '\n');      // Normalize Mac line endings
         
         console.log("FORMATTED CODE:", starterCode);
         console.log("HAS NEWLINES:", starterCode.includes('\n'));
@@ -196,77 +127,12 @@ export default function DailyChallenge() {
       
       console.log("SWITCHING TO", lang, "RAW:", JSON.stringify(starterCode));
       
-      // Try multiple replacement strategies
+      // Simple newline normalization
       starterCode = starterCode
         .replace(/\\n/g, '\n')
-        .replace(/\\r\\n/g, '\n')
-        .replace(/\\t/g, '    ')
+        .replace(/\\t/g, '  ')
         .replace(/\r\n/g, '\n')
         .replace(/\r/g, '\n');
-      
-      // If still no newlines, add them manually
-      if (!starterCode.includes('\n')) {
-        if (lang === 'cpp') {
-          starterCode = starterCode
-            .replace(/class Solution \{ ?public: ?/g, 'class Solution {\npublic:\n    ')
-            .replace(/\( ?/g, '(')
-            .replace(/ ?\)/g, ')')
-            .replace(/ ?\{ ?/g, ' {\n        ')
-            .replace(/ ?\} ?;/g, '\n    }\n};')
-            .replace(/\/\/ Your code here/g, '// Your code here')
-            .replace(/return /g, 'return ')
-            .trim();
-        } else if (lang === 'java') {
-          starterCode = starterCode
-            .replace(/class Solution \{ ?public /g, 'class Solution {\n    public ')
-            .replace(/\( ?/g, '(')
-            .replace(/ ?\)/g, ')')
-            .replace(/ ?\{ ?/g, ' {\n        ')
-            .replace(/ ?\} ?}/g, '\n    }\n}')
-            .replace(/\/\/ Your code here/g, '// Your code here')
-            .replace(/return /g, 'return ')
-            .trim();
-        } else if (lang === 'javascript') {
-          starterCode = starterCode
-            .replace(/function /g, 'function ')
-            .replace(/\( ?/g, '(')
-            .replace(/ ?\)/g, ')')
-            .replace(/ ?\{ ?/g, ' {\n  ')
-            .replace(/ ?\}/g, '\n}')
-            .replace(/\/\/ Your code here/g, '// Your code here')
-            .replace(/return /g, 'return ')
-            .trim();
-        }
-      } else {
-        // Clean up existing formatting
-        starterCode = starterCode
-          .split('\n')
-          .map(line => line.trim())
-          .join('\n')
-          .replace(/\n\n+/g, '\n');
-        
-        // Re-indent based on language
-        const lines = starterCode.split('\n');
-        let indentLevel = 0;
-        const indentSize = lang === 'javascript' ? 2 : 4;
-        
-        starterCode = lines.map(line => {
-          const trimmed = line.trim();
-          if (!trimmed) return '';
-          
-          if (trimmed.startsWith('}')) {
-            indentLevel = Math.max(0, indentLevel - 1);
-          }
-          
-          const indented = ' '.repeat(indentLevel * indentSize) + trimmed;
-          
-          if (trimmed.endsWith('{') || trimmed === 'public:') {
-            indentLevel++;
-          }
-          
-          return indented;
-        }).join('\n');
-      }
       
       console.log("FORMATTED:", starterCode);
       setCode(starterCode);
@@ -285,56 +151,103 @@ export default function DailyChallenge() {
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
-  const runTests = () => {
+  const runTests = async () => {
     try {
       if (!code.trim()) {
         showModal('warning', 'No Code Found', 'Please write some code before running tests!');
         return false;
       }
 
+      // For C++ and Java, show limitation message
+      if (selectedLanguage === 'cpp' || selectedLanguage === 'java') {
+        showModal(
+          'info',
+          `${selectedLanguage === 'cpp' ? 'C++' : 'Java'} Testing Not Available`,
+          'C++ and Java code cannot be tested in the browser environment.',
+          [
+            '💡 Browsers can only execute JavaScript natively',
+            '🔧 C++ and Java require compilation and runtime environments',
+            '✅ Use JavaScript for instant test feedback and validation',
+            '📝 You can still write C++/Java code for practice',
+            '⚠️ Submission will be saved without test validation'
+          ]
+        );
+        
+        // Create placeholder results showing tests cannot be run
+        const placeholderResults = challenge.testCases.map((testCase, index) => ({
+          index: index + 1,
+          passed: false,
+          input: testCase.input,
+          expected: testCase.expectedOutput,
+          actual: '⚠️ Cannot test in browser - use JavaScript for validation'
+        }));
+        
+        setTestResults(placeholderResults);
+        return false;
+      }
+
+      // JavaScript execution
       const results = challenge.testCases.map((testCase, index) => {
         try {
           let actual;
           let passed = false;
 
-          if (selectedLanguage === 'javascript') {
-            // Execute JavaScript code
-            try {
-              // Create a safe execution context
-              const userFunction = new Function('return ' + code)();
-              
-              // Parse input - handle different formats
-              let parsedInput;
-              try {
-                parsedInput = JSON.parse(testCase.input);
-              } catch {
-                parsedInput = testCase.input;
-              }
-
-              // Execute the function
-              if (Array.isArray(parsedInput)) {
-                actual = userFunction(...parsedInput);
-              } else {
-                actual = userFunction(parsedInput);
-              }
-
-              // Convert actual to string for comparison
-              actual = JSON.stringify(actual);
-              
-              // Compare with expected output
-              const expected = typeof testCase.expectedOutput === 'string' 
-                ? testCase.expectedOutput 
-                : JSON.stringify(testCase.expectedOutput);
-              
-              passed = actual === expected;
-            } catch (execError) {
-              console.error(`Test ${index + 1} execution error:`, execError);
-              actual = `Error: ${execError.message}`;
-              passed = false;
+          // Execute JavaScript code in browser
+          try {
+            // Extract function name from code
+            const functionMatch = code.match(/function\s+(\w+)/);
+            const functionName = functionMatch ? functionMatch[1] : null;
+            
+            if (!functionName) {
+              throw new Error('Could not find function definition');
             }
-          } else {
-            // For C++ and Java, we can't execute directly in browser
-            actual = "Cannot run in browser";
+
+            // Create execution context with the user's code
+            const executionCode = `
+              ${code}
+              
+              // Parse test input
+              let testInput;
+              try {
+                testInput = JSON.parse(\`${testCase.input}\`);
+              } catch (e) {
+                testInput = \`${testCase.input}\`;
+              }
+              
+              // Execute function with parsed input
+              let result;
+              if (Array.isArray(testInput)) {
+                result = ${functionName}(...testInput);
+              } else if (typeof testInput === 'object' && testInput !== null) {
+                // If input is an object, pass its values as separate arguments
+                result = ${functionName}(...Object.values(testInput));
+              } else {
+                result = ${functionName}(testInput);
+              }
+              
+              result;
+            `;
+            
+            // Execute the code
+            const executeFunction = new Function(executionCode);
+            const result = executeFunction();
+            
+            // Normalize the result for comparison
+            actual = JSON.stringify(result);
+            
+            // Parse expected output
+            let expectedValue;
+            try {
+              expectedValue = JSON.parse(testCase.expectedOutput);
+            } catch {
+              expectedValue = testCase.expectedOutput;
+            }
+            
+            const expected = JSON.stringify(expectedValue);
+            passed = actual === expected;
+          } catch (execError) {
+            console.error(`Test ${index + 1} execution error:`, execError);
+            actual = `Error: ${execError.message}`;
             passed = false;
           }
 
@@ -358,28 +271,19 @@ export default function DailyChallenge() {
       });
       
       setTestResults(results);
+      
       const allPassed = results.every(r => r.passed);
       const passedCount = results.filter(r => r.passed).length;
       const totalCount = results.length;
       
-      if (selectedLanguage !== 'javascript') {
-        showModal(
-          'warning',
-          'Browser Testing Not Available',
-          'C++ and Java code cannot be tested directly in the browser.',
-          [
-            'JavaScript is recommended for instant feedback',
-            'You can still submit, but validation is limited',
-            'Consider switching to JavaScript for this challenge'
-          ]
-        );
-      } else if (allPassed) {
+      if (allPassed) {
         showModal(
           'success',
           'All Tests Passed! 🎉',
           `Congratulations! Your solution passed all ${totalCount} test cases.`,
           [
             'Your code is working correctly',
+            'Language: JavaScript',
             'You can now submit your solution',
             'Click "Submit Solution" to complete the challenge'
           ]
@@ -412,7 +316,53 @@ export default function DailyChallenge() {
       return;
     }
 
-    // STRICT VALIDATION: Must run tests first
+    // For C++/Java, allow submission without test validation
+    if (selectedLanguage === 'cpp' || selectedLanguage === 'java') {
+      const confirmSubmit = window.confirm(
+        `⚠️ ${selectedLanguage === 'cpp' ? 'C++' : 'Java'} Submission\n\n` +
+        'Your code cannot be validated in the browser.\n\n' +
+        'Your code will be saved for practice purposes only.\n' +
+        'No points or streak updates will be awarded.\n\n' +
+        'Do you want to proceed?'
+      );
+      
+      if (!confirmSubmit) return;
+      
+      setIsSubmitting(true);
+      
+      try {
+        const submission = {
+          code,
+          language: selectedLanguage,
+          timeSpent,
+          passed: false, // Cannot validate
+          score: 0 // No score for unvalidated code
+        };
+        
+        await submitChallengeSolution(user.uid, getTodayDateString(), submission);
+        await loadChallenge();
+        
+        showModal(
+          'info',
+          'Code Saved',
+          `Your ${selectedLanguage === 'cpp' ? 'C++' : 'Java'} code has been saved for practice.`,
+          [
+            'Code saved successfully',
+            'No validation was performed',
+            'No points or streak updates',
+            '💡 Use JavaScript for full validation and streak tracking'
+          ]
+        );
+      } catch (error) {
+        console.error("Error submitting solution:", error);
+        showModal('error', 'Submission Failed', 'Failed to save your code. Please try again.');
+      } finally {
+        setIsSubmitting(false);
+      }
+      return;
+    }
+
+    // JavaScript validation
     if (!testResults) {
       showModal(
         'warning',
@@ -427,13 +377,11 @@ export default function DailyChallenge() {
       return;
     }
 
-    // Check if all tests passed
     const allPassed = testResults.every(r => r.passed);
     const passedCount = testResults.filter(r => r.passed).length;
     const totalCount = testResults.length;
 
-    // BLOCK SUBMISSION if tests failed for JavaScript
-    if (selectedLanguage === 'javascript' && !allPassed) {
+    if (!allPassed) {
       const failedTests = testResults.filter(r => !r.passed).map(r => `Test ${r.index}`).join(', ');
       showModal(
         'error',
@@ -449,21 +397,6 @@ export default function DailyChallenge() {
       return;
     }
 
-    // For C++ and Java, show warning but allow submission
-    if (selectedLanguage !== 'javascript') {
-      showModal(
-        'warning',
-        'Limited Validation',
-        'C++ and Java code cannot be fully validated in the browser.',
-        [
-          'Your code will be submitted without complete validation',
-          'Make sure you have tested your logic carefully',
-          'Consider using JavaScript for instant feedback'
-        ]
-      );
-      // Don't return - allow submission to continue
-    }
-
     setIsSubmitting(true);
     
     try {
@@ -475,37 +408,33 @@ export default function DailyChallenge() {
         score: allPassed ? Math.max(100 - timeSpent, 50) : 0
       };
       
-      await submitChallengeSolution(user.uid, getTodayDateString(), submission);
-      
-      // Reload data
+      const result = await submitChallengeSolution(user.uid, getTodayDateString(), submission);
       await loadChallenge();
       
-      if (allPassed) {
-        const timeBonus = timeSpent < 300 ? ' (Speed Bonus!)' : '';
-        showModal(
-          'success',
-          'Challenge Completed! 🎉',
-          `Congratulations! You successfully solved today's challenge${timeBonus}`,
-          [
-            `Score: ${submission.score} points`,
-            `Time: ${formatTime(timeSpent)}`,
-            `Language: ${selectedLanguage}`,
-            'Check the leaderboard to see your ranking!'
-          ]
-        );
-        setShowLeaderboard(true);
-      } else {
-        showModal(
-          'info',
-          'Solution Submitted',
-          'Your solution has been submitted but did not pass all tests.',
-          [
-            'Keep practicing to improve',
-            'Try again tomorrow for a new challenge',
-            'Review the test results to learn more'
-          ]
-        );
+      const timeBonus = timeSpent < 300 ? ' (Speed Bonus!)' : '';
+      const details = [
+        `Score: ${submission.score} points`,
+        `Time: ${formatTime(timeSpent)}`,
+        'Language: JavaScript',
+      ];
+      
+      if (result.streakData) {
+        if (result.streakData.streakIncreased) {
+          details.push(`🔥 Streak: ${result.streakData.currentStreak} days (New!)${result.streakData.currentStreak === result.streakData.longestStreak ? ' 🏆 Personal Best!' : ''}`);
+        } else {
+          details.push(`🔥 Streak maintained: ${result.streakData.currentStreak} days`);
+        }
       }
+      
+      details.push('Check the leaderboard to see your ranking!');
+      
+      showModal(
+        'success',
+        'Challenge Completed! 🎉',
+        `Congratulations! You successfully solved today's challenge${timeBonus}`,
+        details
+      );
+      setShowLeaderboard(true);
       
     } catch (error) {
       console.error("Error submitting solution:", error);
@@ -718,11 +647,11 @@ export default function DailyChallenge() {
                   <div className="bg-gray-900/50 rounded-lg p-3 space-y-2">
                     <div>
                       <span className="text-blue-400">Input:</span>
-                      <code className="ml-2 text-gray-300">{example.input}</code>
+                      <code className="ml-2 text-gray-300">{typeof example.input === 'string' ? example.input : JSON.stringify(example.input)}</code>
                     </div>
                     <div>
                       <span className="text-green-400">Output:</span>
-                      <code className="ml-2 text-gray-300">{example.output}</code>
+                      <code className="ml-2 text-gray-300">{typeof example.output === 'string' ? example.output : JSON.stringify(example.output)}</code>
                     </div>
                     {example.explanation && (
                       <div className="text-sm text-gray-400 italic">
@@ -921,13 +850,13 @@ export default function DailyChallenge() {
                       </div>
                       <div className="text-xs space-y-1">
                         <div className="text-gray-400">
-                          <span className="text-blue-400">Input:</span> {result.input}
+                          <span className="text-blue-400">Input:</span> {typeof result.input === 'string' ? result.input : JSON.stringify(result.input)}
                         </div>
                         <div className="text-gray-400">
                           <span className="text-green-400">Expected:</span> {typeof result.expected === 'string' ? result.expected : JSON.stringify(result.expected)}
                         </div>
                         <div className="text-gray-400">
-                          <span className={result.passed ? 'text-green-400' : 'text-red-400'}>Your Output:</span> {result.actual}
+                          <span className={result.passed ? 'text-green-400' : 'text-red-400'}>Your Output:</span> {typeof result.actual === 'string' ? result.actual : JSON.stringify(result.actual)}
                         </div>
                       </div>
                     </div>
