@@ -8,6 +8,17 @@ import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase";
 import logo from "../assets/NexrRoundAi2.png";
 import { getLeaderboard } from "../utils/leaderboardUtils";
+import { 
+  FireIcon, 
+  TrophyIcon, 
+  CodeIcon, 
+  ChartIcon, 
+  RocketIcon, 
+  TargetIcon,
+  StarIcon,
+  TrendingUpIcon,
+  CheckCircleIcon
+} from "../components/Icons";
 import { migrateUserIfNeeded } from "../utils/migrationUtils";
 import { checkAndResetStreak } from "../utils/streakUtils";
 
@@ -222,7 +233,7 @@ export default function Home() {
                     onClick={() => setMobileMenuOpen(false)}
                     className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-blue-800 hover:text-white transition-all"
                   >
-                    <span className="text-xl">💻</span>
+                    <CodeIcon className="w-5 h-5" />
                     <span>Practice</span>
                   </Link>
                   <Link
@@ -246,7 +257,7 @@ export default function Home() {
                     onClick={() => setMobileMenuOpen(false)}
                     className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-blue-800 hover:text-white transition-all"
                   >
-                    <span className="text-xl">📊</span>
+                    <ChartIcon className="w-5 h-5" />
                     <span>Dashboard</span>
                   </Link>
                   <button
@@ -305,7 +316,7 @@ export default function Home() {
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="mb-8 sm:mb-12">
             <span className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full text-sm sm:text-lg font-semibold border border-blue-500/30 backdrop-blur-sm">
-              <span className="mr-2 text-xl sm:text-2xl">🚀</span>
+              <RocketIcon className="w-5 h-5 sm:w-6 sm:h-6 mr-2" />
               <span className="hidden sm:inline">AI-Powered Interview Preparation Platform</span>
               <span className="sm:hidden">AI Interview Prep</span>
             </span>
@@ -418,7 +429,7 @@ export default function Home() {
               {/* Streak Card */}
               <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 sm:p-8 border border-gray-700 shadow-2xl hover:shadow-orange-500/20 transition-all duration-300">
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="text-4xl">🔥</div>
+                  <FireIcon className="w-10 h-10 text-orange-500" />
                   <h3 className="text-2xl sm:text-3xl font-bold text-white">Your Streak</h3>
                 </div>
                 
@@ -439,7 +450,7 @@ export default function Home() {
                   {/* Longest Streak */}
                   <div className="flex items-center justify-between p-4 bg-gray-800/50 rounded-lg border border-gray-700">
                     <div className="flex items-center gap-3">
-                      <div className="text-2xl">🏆</div>
+                      <TrophyIcon className="w-6 h-6 text-yellow-500" />
                       <div>
                         <div className="text-sm text-gray-400">Longest Streak</div>
                         <div className="text-xl sm:text-2xl font-bold text-white">
@@ -452,7 +463,7 @@ export default function Home() {
                   {/* Problems Solved */}
                   <div className="flex items-center justify-between p-4 bg-gray-800/50 rounded-lg border border-gray-700">
                     <div className="flex items-center gap-3">
-                      <div className="text-2xl">✅</div>
+                      <CheckCircleIcon className="w-6 h-6 text-green-500" />
                       <div>
                         <div className="text-sm text-gray-400">Problems Solved</div>
                         <div className="text-xl sm:text-2xl font-bold text-white">
@@ -465,12 +476,12 @@ export default function Home() {
                   {/* Motivation */}
                   <div className="text-center text-sm text-gray-400 italic">
                     {userProfile?.currentStreak === 0 
-                      ? "Start solving to build your streak! 💪"
+                      ? "Start solving to build your streak! "
                       : userProfile?.currentStreak < 7
-                      ? "Keep going! You're building momentum! 🚀"
+                      ? "Keep going! You're building momentum! "
                       : userProfile?.currentStreak < 30
-                      ? "Amazing consistency! Keep it up! ⭐"
-                      : "You're on fire! Legendary streak! 🔥"}
+                      ? "Amazing consistency! Keep it up! "
+                      : "You're on fire! Legendary streak! "}
                   </div>
                 </div>
               </div>
@@ -478,7 +489,7 @@ export default function Home() {
               {/* Leaderboard Card */}
               <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 sm:p-8 border border-gray-700 shadow-2xl hover:shadow-purple-500/20 transition-all duration-300">
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="text-4xl">🏆</div>
+                  <TrophyIcon className="w-10 h-10 text-yellow-500" />
                   <h3 className="text-2xl sm:text-3xl font-bold text-white">Top Coders</h3>
                 </div>
 
@@ -488,7 +499,7 @@ export default function Home() {
                   </div>
                 ) : leaderboard.length === 0 ? (
                   <div className="text-center py-12 text-gray-400">
-                    No users on the leaderboard yet. Be the first! 🚀
+                    No users on the leaderboard yet. Be the first! 
                   </div>
                 ) : (
                   <div className="space-y-3 max-h-[400px] overflow-y-auto custom-scrollbar">
@@ -536,7 +547,7 @@ export default function Home() {
                           {/* Streak */}
                           <div className="text-right">
                             <div className="text-orange-400 font-bold flex items-center gap-1">
-                              🔥 {userEntry.currentStreak}
+                               {userEntry.currentStreak}
                             </div>
                             <div className="text-xs text-gray-400">day streak</div>
                           </div>
@@ -638,7 +649,7 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative z-10">
                 <div className="text-4xl sm:text-5xl md:text-6xl mb-3 sm:mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300">
-                  💻
+                  
                 </div>
                 <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4 text-white">
                   Multi-Language Support
@@ -661,7 +672,7 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 to-cyan-500/5 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative z-10">
                 <div className="text-4xl sm:text-5xl md:text-6xl mb-3 sm:mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300">
-                  📊
+                  
                 </div>
                 <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4 text-white">
                   Progress Tracking
@@ -688,7 +699,7 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-red-500/5 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative z-10">
                 <div className="text-4xl sm:text-5xl md:text-6xl mb-3 sm:mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300">
-                  🔥
+                  
                 </div>
                 <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4 text-white">
                   Streaks & Rankings
@@ -757,7 +768,7 @@ export default function Home() {
               <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-orange-500/5 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative z-10">
                 <div className="text-4xl sm:text-5xl md:text-6xl mb-3 sm:mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300">
-                  🔥
+                  
                 </div>
                 <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 md:mb-4 text-white">
                   Daily Challenge
@@ -858,7 +869,7 @@ export default function Home() {
           <div className="text-center mb-20">
             <div className="mb-8">
               <span className="px-6 py-3 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full text-lg font-semibold border border-blue-500/30 backdrop-blur-sm">
-                🎯 Join the Success Story
+                 Join the Success Story
               </span>
             </div>
 
@@ -902,7 +913,7 @@ export default function Home() {
                 className="group inline-flex items-center px-10 sm:px-16 py-4 sm:py-6 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full text-lg sm:text-2xl font-bold text-white hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 transition-all duration-500 shadow-2xl hover:shadow-purple-500/50 hover:scale-110"
               >
                 <span className="relative z-10">Start Assessment Now</span>
-                <span className="ml-4 text-2xl sm:text-3xl group-hover:rotate-12 transition-transform">🚀</span>
+                <span className="ml-4 text-2xl sm:text-3xl group-hover:rotate-12 transition-transform"></span>
               </Link>
             ) : (
               <Link
@@ -910,7 +921,7 @@ export default function Home() {
                 className="group inline-flex items-center px-10 sm:px-16 py-4 sm:py-6 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full text-lg sm:text-2xl font-bold text-white hover:from-blue-600 hover:via-purple-600 hover:to-pink-600 transition-all duration-500 shadow-2xl hover:shadow-purple-500/50 hover:scale-110"
               >
                 <span className="relative z-10">Start Your Journey</span>
-                <span className="ml-4 text-2xl sm:text-3xl group-hover:rotate-12 transition-transform">🚀</span>
+                <span className="ml-4 text-2xl sm:text-3xl group-hover:rotate-12 transition-transform"></span>
               </Link>
             )}
 
@@ -1061,7 +1072,7 @@ export default function Home() {
           
           {/* Main button */}
           <div className="relative bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white font-bold px-6 py-4 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 flex items-center gap-3 animate-float">
-            <span className="text-3xl animate-bounce-slow">🔥</span>
+            <span className="text-3xl animate-bounce-slow"></span>
             <div className="flex flex-col items-start">
               <span className="text-sm font-semibold">Daily Challenge</span>
               <span className="text-xs opacity-90">Solve & Compete!</span>
@@ -1077,3 +1088,5 @@ export default function Home() {
     </div>
   );
 }
+
+

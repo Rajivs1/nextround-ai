@@ -4,6 +4,20 @@ import { useNavigate } from "react-router-dom";
 import { deleteDoc, doc } from "firebase/firestore";
 import { db } from "../firebase";
 import SubmissionModal from "../components/SubmissionModal";
+import { 
+  FireIcon, 
+  TrophyIcon, 
+  LightningIcon,
+  DocumentIcon,
+  CheckCircleIcon,
+  CalendarIcon,
+  CogIcon,
+  ClockIcon,
+  BadgeCheckIcon,
+  XCircleIcon,
+  ExclamationIcon,
+  SparklesIcon
+} from "../components/Icons";
 import {
   getTodaysChallenge,
   submitChallengeSolution,
@@ -165,11 +179,11 @@ export default function DailyChallenge() {
           `${selectedLanguage === 'cpp' ? 'C++' : 'Java'} Testing Not Available`,
           'C++ and Java code cannot be tested in the browser environment.',
           [
-            '💡 Browsers can only execute JavaScript natively',
-            '🔧 C++ and Java require compilation and runtime environments',
-            '✅ Use JavaScript for instant test feedback and validation',
-            '📝 You can still write C++/Java code for practice',
-            '⚠️ Submission will be saved without test validation'
+            'Browsers can only execute JavaScript natively',
+            'C++ and Java require compilation and runtime environments',
+            'Use JavaScript for instant test feedback and validation',
+            'You can still write C++/Java code for practice',
+            'Submission will be saved without test validation'
           ]
         );
         
@@ -179,7 +193,7 @@ export default function DailyChallenge() {
           passed: false,
           input: testCase.input,
           expected: testCase.expectedOutput,
-          actual: '⚠️ Cannot test in browser - use JavaScript for validation'
+          actual: 'Cannot test in browser - use JavaScript for validation'
         }));
         
         setTestResults(placeholderResults);
@@ -279,7 +293,7 @@ export default function DailyChallenge() {
       if (allPassed) {
         showModal(
           'success',
-          'All Tests Passed! 🎉',
+          'All Tests Passed!',
           `Congratulations! Your solution passed all ${totalCount} test cases.`,
           [
             'Your code is working correctly',
@@ -319,7 +333,7 @@ export default function DailyChallenge() {
     // For C++/Java, allow submission without test validation
     if (selectedLanguage === 'cpp' || selectedLanguage === 'java') {
       const confirmSubmit = window.confirm(
-        `⚠️ ${selectedLanguage === 'cpp' ? 'C++' : 'Java'} Submission\n\n` +
+        `${selectedLanguage === 'cpp' ? 'C++' : 'Java'} Submission\n\n` +
         'Your code cannot be validated in the browser.\n\n' +
         'Your code will be saved for practice purposes only.\n' +
         'No points or streak updates will be awarded.\n\n' +
@@ -350,7 +364,7 @@ export default function DailyChallenge() {
             'Code saved successfully',
             'No validation was performed',
             'No points or streak updates',
-            '💡 Use JavaScript for full validation and streak tracking'
+            'Use JavaScript for full validation and streak tracking'
           ]
         );
       } catch (error) {
@@ -420,9 +434,9 @@ export default function DailyChallenge() {
       
       if (result.streakData) {
         if (result.streakData.streakIncreased) {
-          details.push(`🔥 Streak: ${result.streakData.currentStreak} days (New!)${result.streakData.currentStreak === result.streakData.longestStreak ? ' 🏆 Personal Best!' : ''}`);
+          details.push(`Streak: ${result.streakData.currentStreak} days (New!)${result.streakData.currentStreak === result.streakData.longestStreak ? ' Personal Best!' : ''}`);
         } else {
-          details.push(`🔥 Streak maintained: ${result.streakData.currentStreak} days`);
+          details.push(`Streak maintained: ${result.streakData.currentStreak} days`);
         }
       }
       
@@ -430,7 +444,7 @@ export default function DailyChallenge() {
       
       showModal(
         'success',
-        'Challenge Completed! 🎉',
+        'Challenge Completed!',
         `Congratulations! You successfully solved today's challenge${timeBonus}`,
         details
       );
@@ -454,7 +468,7 @@ export default function DailyChallenge() {
   };
 
   const handleRegenerateChallenge = async () => {
-    if (!window.confirm("⚠️ Delete current challenge and generate a new one?\n\nThis will:\n- Delete the current challenge from database\n- Generate a completely new challenge\n- Reset all submissions for today\n\nAre you sure?")) {
+    if (!window.confirm("Delete current challenge and generate a new one?\n\nThis will:\n- Delete the current challenge from database\n- Generate a completely new challenge\n- Reset all submissions for today\n\nAre you sure?")) {
       return;
     }
 
@@ -467,7 +481,7 @@ export default function DailyChallenge() {
       // Reload to generate new challenge
       await loadChallenge();
       
-      alert("✅ New challenge generated successfully!");
+      alert("New challenge generated successfully!");
     } catch (error) {
       console.error("Error regenerating challenge:", error);
       alert("Failed to regenerate challenge: " + error.message);
@@ -492,7 +506,7 @@ export default function DailyChallenge() {
     return (
       <div className="min-h-screen bg-[#1a1a1a] flex items-center justify-center">
         <div className="text-center max-w-md mx-auto p-6">
-          <div className="text-6xl mb-4">❌</div>
+          <XCircleIcon className="w-16 h-16 text-red-500 mx-auto mb-4" />
           <h2 className="text-2xl font-bold text-white mb-4">Failed to Load Challenge</h2>
           <p className="text-gray-400 mb-6">{error}</p>
           <div className="space-y-3">
@@ -541,8 +555,9 @@ export default function DailyChallenge() {
                 </svg>
               </button>
               <div>
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 bg-clip-text text-transparent">
-                  🔥 Daily Challenge
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 bg-clip-text text-transparent flex items-center gap-2">
+                  <FireIcon className="w-6 h-6 text-orange-500" />
+                  Daily Challenge
                 </h1>
                 <p className="text-sm text-gray-400">{new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
               </div>
@@ -577,12 +592,27 @@ export default function DailyChallenge() {
           <div className="mb-4 p-4 bg-gray-800 rounded-lg text-sm border border-gray-700">
             <div className="flex items-start justify-between gap-4">
               <div className="flex-1">
-                <p className="text-gray-400 mb-2 font-semibold">🔧 Admin Debug Info:</p>
+                <p className="text-gray-400 mb-2 font-semibold flex items-center gap-2">
+                  <CogIcon className="w-4 h-4" />
+                  Admin Debug Info:
+                </p>
                 <div className="space-y-1">
-                  <p className="text-gray-300">📅 Current Date String: <span className="text-blue-400 font-mono">{getTodayDateString()}</span></p>
-                  <p className="text-gray-300">🆔 Challenge ID: <span className="text-blue-400 font-mono">{challenge?.id || 'Not loaded'}</span></p>
-                  <p className="text-gray-300">📝 Challenge Title: <span className="text-green-400">{challenge?.title || 'N/A'}</span></p>
-                  <p className="text-gray-300">🕐 Created: <span className="text-purple-400">{challenge?.createdAt ? new Date(challenge.createdAt.seconds * 1000).toLocaleString() : 'N/A'}</span></p>
+                  <p className="text-gray-300 flex items-center gap-2">
+                    <CalendarIcon className="w-4 h-4 text-blue-400" />
+                    Current Date String: <span className="text-blue-400 font-mono">{getTodayDateString()}</span>
+                  </p>
+                  <p className="text-gray-300 flex items-center gap-2">
+                    <BadgeCheckIcon className="w-4 h-4 text-blue-400" />
+                    Challenge ID: <span className="text-blue-400 font-mono">{challenge?.id || 'Not loaded'}</span>
+                  </p>
+                  <p className="text-gray-300 flex items-center gap-2">
+                    <DocumentIcon className="w-4 h-4 text-green-400" />
+                    Challenge Title: <span className="text-green-400">{challenge?.title || 'N/A'}</span>
+                  </p>
+                  <p className="text-gray-300 flex items-center gap-2">
+                    <ClockIcon className="w-4 h-4 text-purple-400" />
+                    Created: <span className="text-purple-400">{challenge?.createdAt ? new Date(challenge.createdAt.seconds * 1000).toLocaleString() : 'N/A'}</span>
+                  </p>
                 </div>
               </div>
               <button
@@ -602,8 +632,9 @@ export default function DailyChallenge() {
                 )}
               </button>
             </div>
-            <p className="text-yellow-400 mt-3 text-xs">
-              💡 Admin Only: Use "Delete & Regenerate" button to get a completely new challenge for today
+            <p className="text-yellow-400 mt-3 text-xs flex items-center gap-1">
+              <LightningIcon className="w-4 h-4" />
+              Admin Only: Use "Delete & Regenerate" button to get a completely new challenge for today
             </p>
           </div>
         )}
@@ -682,7 +713,10 @@ export default function DailyChallenge() {
                 onClick={() => setShowHints(!showHints)}
                 className="flex items-center justify-between w-full text-left"
               >
-                <h3 className="text-lg font-bold">💡 Hints</h3>
+                <h3 className="text-lg font-bold flex items-center gap-2">
+                  <LightningIcon className="w-5 h-5 text-yellow-500" />
+                  Hints
+                </h3>
                 <span className="text-gray-400">{showHints ? '▼' : '▶'}</span>
               </button>
               {showHints && (
@@ -703,7 +737,10 @@ export default function DailyChallenge() {
               className="w-full glass-effect rounded-xl p-4 border border-gray-800 hover:border-yellow-500/50 transition-all"
             >
               <div className="flex items-center justify-between">
-                <span className="font-bold">🏆 View Leaderboard</span>
+                <span className="font-bold flex items-center gap-2">
+                  <TrophyIcon className="w-5 h-5 text-yellow-500" />
+                  View Leaderboard
+                </span>
                 <span className="text-gray-400">{showLeaderboard ? '▼' : '▶'}</span>
               </div>
             </button>
@@ -711,7 +748,10 @@ export default function DailyChallenge() {
             {/* Leaderboard */}
             {showLeaderboard && (
               <div className="glass-effect rounded-xl p-6 border border-gray-800">
-                <h3 className="text-lg font-bold mb-4">🏆 Today's Leaderboard</h3>
+                <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                  <TrophyIcon className="w-6 h-6 text-yellow-500" />
+                  Today's Leaderboard
+                </h3>
                 {leaderboard.length === 0 ? (
                   <p className="text-gray-400 text-center py-4">No submissions yet. Be the first!</p>
                 ) : (
@@ -845,7 +885,7 @@ export default function DailyChallenge() {
                       <div className="flex items-center justify-between mb-2">
                         <span className="text-sm font-medium">Test Case {result.index}</span>
                         <span className={result.passed ? 'text-green-400' : 'text-red-400'}>
-                          {result.passed ? '✓ Passed' : '✗ Failed'}
+                          {result.passed ? 'Passed' : 'Failed'}
                         </span>
                       </div>
                       <div className="text-xs space-y-1">
@@ -885,7 +925,7 @@ export default function DailyChallenge() {
                     Submitting...
                   </>
                 ) : userSubmission?.passed ? (
-                  '✓ Already Solved'
+                  'Already Solved'
                 ) : (
                   'Submit Solution'
                 )}
