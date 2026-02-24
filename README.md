@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🚀 NextRound AI
+# 🚀 NextRound AI ♊
 
 ### AI-Powered Interview Preparation Platform
 
