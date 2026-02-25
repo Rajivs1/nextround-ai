@@ -76,11 +76,11 @@
   animation: ping-slow 2s ease-in-out infinite;
 }
 
-/* Global Styles - Modern Blue & Teal Theme */
+/* Global Styles - Glass Black Theme */
 @layer base {
   body {
     @apply text-white antialiased;
-    background: linear-gradient(135deg, #0c1222 0%, #111827 50%, #1f2937 100%);
+    background: #000000;
     background-attachment: fixed;
     font-feature-settings: 'cv11', 'ss01';
     font-variant-numeric: tabular-nums;
@@ -88,7 +88,7 @@
   
   #root {
     @apply min-h-screen;
-    background: transparent;
+    background: #000000;
   }
   
   * {
@@ -96,21 +96,21 @@
   }
 }
 
-/* Custom Scrollbar - Modern Blue & Teal Style */
+/* Custom Scrollbar - Glass Black Style */
 ::-webkit-scrollbar {
   width: 12px;
   height: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(12, 18, 34, 0.8);
+  background: rgba(0, 0, 0, 0.8);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, #3b82f6 0%, #14b8a6 100%);
   border-radius: 10px;
-  border: 2px solid rgba(12, 18, 34, 0.8);
+  border: 2px solid rgba(0, 0, 0, 0.8);
   box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
 }
 
@@ -126,14 +126,14 @@
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: rgba(12, 18, 34, 0.6);
+  background: rgba(0, 0, 0, 0.6);
   border-radius: 8px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, #3b82f6 0%, #14b8a6 100%);
   border-radius: 8px;
-  border: 2px solid rgba(12, 18, 34, 0.6);
+  border: 2px solid rgba(0, 0, 0, 0.6);
   box-shadow: 0 0 8px rgba(59, 130, 246, 0.4);
 }
 
@@ -233,6 +233,97 @@ html {
   }
 }
 
+@keyframes spinGrowUp {
+  0% {
+    opacity: 0;
+    transform: translateY(100px) scale(0.2) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0) scale(1.1) rotate(360deg);
+  }
+  70% {
+    transform: translateY(-10px) scale(0.95) rotate(360deg);
+  }
+  85% {
+    transform: translateY(5px) scale(1.02) rotate(360deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(360deg);
+  }
+}
+
+@keyframes shootingStar {
+  0% {
+    transform: translateX(0) translateY(0);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(300px) translateY(300px);
+    opacity: 0;
+  }
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes gridMove {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(50px, 50px);
+  }
+}
+
+@keyframes progressBar {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes spin-reverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes spin-slower {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes gradient-text {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
 .animate-shimmer {
   animation: shimmer 2s infinite linear;
   background: linear-gradient(
@@ -269,24 +360,53 @@ html {
   animation: bounce-in 0.6s ease-out;
 }
 
+.animate-spinGrowUp {
+  animation: spinGrowUp 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.animate-shootingStar {
+  animation: shootingStar 3s ease-in infinite;
+}
+
+.animate-sparkle {
+  animation: sparkle 2s ease-in-out infinite;
+}
+
+.animate-progressBar {
+  animation: progressBar 2s ease-in-out infinite;
+}
+
+.animate-spin-reverse {
+  animation: spin-reverse 20s linear infinite;
+}
+
+.animate-spin-slower {
+  animation: spin-slower 30s linear infinite;
+}
+
+.animate-gradient-text {
+  background-size: 200% 200%;
+  animation: gradient-text 3s ease infinite;
+}
+
 .glass-effect {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 
-    0 8px 32px 0 rgba(0, 0, 0, 0.4),
+    0 8px 32px 0 rgba(0, 0, 0, 0.6),
     inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
 }
 
 /* Modern Card Styles */
 .card-elevated {
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(20, 184, 166, 0.08) 100%);
+  background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 
-    0 8px 16px -4px rgba(0, 0, 0, 0.4),
+    0 8px 16px -4px rgba(0, 0, 0, 0.6),
     0 0 0 1px rgba(59, 130, 246, 0.2),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -296,13 +416,13 @@ html {
     0 20px 40px -8px rgba(59, 130, 246, 0.3),
     0 0 0 1px rgba(59, 130, 246, 0.4),
     0 0 30px rgba(59, 130, 246, 0.25),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.1);
   transform: translateY(-4px);
 }
 
 /* Neon Card Effect */
 .card-neon {
-  background: linear-gradient(135deg, rgba(12, 18, 34, 0.9) 0%, rgba(17, 24, 39, 0.9) 100%);
+  background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(20px);
   border: 2px solid transparent;
   background-clip: padding-box;
