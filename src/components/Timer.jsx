@@ -35,7 +35,7 @@ export default function Timer({ duration = 120, onTimeUp, isActive = true }) {
   };
 
   return (
-    <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50">
+    <div className="text-center p-6 rounded-2xl bg-black/70 backdrop-blur-xl border border-gray-700/50">
       <div className="mb-4">
         <div className={`text-5xl font-black ${getTimerColor()} mb-2`}>
           {formatTime(timeLeft)}
@@ -63,3 +63,6 @@ export default function Timer({ duration = 120, onTimeUp, isActive = true }) {
     </div>
   );
 }
+
+
+

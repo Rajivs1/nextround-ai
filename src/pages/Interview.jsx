@@ -165,7 +165,7 @@ export default function Interview() {
   // Role Selection Screen
   if (!assessmentStarted) {
     return (
-      <div className="min-h-screen bg-[#1a1a1a] text-gray-100 relative overflow-hidden">
+      <div className="min-h-screen bg-black text-gray-100 relative overflow-hidden">
         {/* Background Effects */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-purple-900/10 to-pink-900/10 animate-gradient"></div>
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-pulse"></div>
@@ -173,7 +173,7 @@ export default function Interview() {
 
         <div className="relative z-10">
           {/* Header */}
-          <header className="border-b border-gray-800 bg-gray-900/50 backdrop-blur-sm">
+          <header className="border-b border-gray-800 bg-black/50 backdrop-blur-sm">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
               <div className="flex justify-between items-center">
                 <div>
@@ -211,14 +211,14 @@ export default function Interview() {
               
               {/* AI Toggle */}
               <div className="max-w-2xl mx-auto mb-8">
-                <div className="inline-flex items-center gap-4 bg-gradient-to-r from-gray-900/90 to-gray-800/90 border border-gray-700/50 rounded-2xl p-4">
+                <div className="inline-flex items-center gap-4 bg-gradient-to-r from-black/90 to-gray-800/90 border border-gray-700/50 rounded-2xl p-4">
                   <span className="text-gray-300 font-medium">Question Type:</span>
                   <button
                     onClick={() => setUseAI(false)}
                     className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
                       !useAI
                         ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg scale-105'
-                        : 'bg-gray-800 text-gray-400 hover:text-white'
+                        : 'bg-black/90 text-gray-400 hover:text-white'
                     }`}
                   >
                     📚 Standard Questions
@@ -228,7 +228,7 @@ export default function Interview() {
                     className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
                       useAI
                         ? 'bg-gradient-to-r from-emerald-500 to-green-500 text-white shadow-lg scale-105'
-                        : 'bg-gray-800 text-gray-400 hover:text-white'
+                        : 'bg-black/90 text-gray-400 hover:text-white'
                     }`}
                   >
                     🤖 AI-Generated Questions
@@ -247,7 +247,7 @@ export default function Interview() {
               {roles.map((role) => (
                 <div
                   key={role.id}
-                  className={`group p-6 rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border-2 border-gray-700 hover:border-purple-500/50 transition-all duration-300 hover:scale-105 ${
+                  className={`group p-6 rounded-2xl bg-black/70 backdrop-blur-xl border-2 border-gray-700 hover:border-purple-500/50 transition-all duration-300 hover:scale-105 ${
                     isGeneratingQuestions ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
                   } overflow-hidden relative shadow-xl hover:shadow-purple-500/20`}
                   onClick={() => !isGeneratingQuestions && startAssessment(role.id)}
@@ -276,8 +276,8 @@ export default function Interview() {
             
             {/* Loading Indicator */}
             {isGeneratingQuestions && (
-              <div className="fixed inset-0 bg-[#1a1a1a]/80 backdrop-blur-sm z-50 flex items-center justify-center">
-                <div className="bg-gradient-to-br from-gray-900 to-gray-800 p-8 rounded-2xl border border-gray-700 max-w-md mx-4 text-center">
+              <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center">
+                <div className="bg-black/80 backdrop-blur-xl p-8 rounded-2xl border border-gray-700 max-w-md mx-4 text-center">
                   <div className="animate-spin text-6xl mb-6">🤖</div>
                   <h3 className="text-2xl font-bold text-white mb-4">
                     {useAI ? 'Generating AI Questions...' : 'Loading Questions...'}
@@ -298,7 +298,7 @@ export default function Interview() {
             )}
 
             {/* Assessment Info */}
-            <div className="max-w-4xl mx-auto p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50">
+            <div className="max-w-4xl mx-auto p-8 rounded-2xl bg-black/70 backdrop-blur-xl border border-gray-700/50">
               <div className="text-center">
                 <h3 className="text-2xl font-bold text-white mb-6">Assessment Details</h3>
                 <div className="grid md:grid-cols-3 gap-8">
@@ -331,7 +331,7 @@ export default function Interview() {
   const roleInfo = roles.find(r => r.id === selectedRole);
 
   return (
-    <div className="min-h-screen bg-[#1a1a1a] text-gray-100">
+    <div className="min-h-screen bg-black text-gray-100">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-purple-900/10 to-pink-900/10"></div>
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
@@ -339,7 +339,7 @@ export default function Interview() {
 
       <div className="relative z-10">
         {/* Header */}
-        <header className="border-b border-gray-800 bg-gray-900/50 backdrop-blur-sm">
+        <header className="border-b border-gray-800 bg-black/50 backdrop-blur-sm">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-0">
               <div>
@@ -372,7 +372,7 @@ export default function Interview() {
             {/* Main Question Area */}
             <div className="lg:col-span-3 space-y-8">
               {/* Progress Bar */}
-              <div className="p-6 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50">
+              <div className="p-6 rounded-2xl bg-black/70 backdrop-blur-xl border border-gray-700/50">
                 <div className="flex justify-between items-center mb-4">
                   <h3 className="text-lg font-semibold text-white">Progress</h3>
                   <span className="text-gray-400">{Math.round(getProgressPercentage())}% Complete</span>
@@ -386,7 +386,7 @@ export default function Interview() {
               </div>
 
               {/* Question Card */}
-              <div className="p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50">
+              <div className="p-8 rounded-2xl bg-black/70 backdrop-blur-xl border border-gray-700/50">
                 <div className="flex items-center mb-6">
                   <div className="text-3xl mr-4">{roleInfo?.icon}</div>
                   <div>
@@ -410,7 +410,7 @@ export default function Interview() {
                       className={`w-full p-4 text-left rounded-xl border-2 transition-all duration-300 ${
                         selectedAnswer === index
                           ? 'border-blue-500 bg-blue-500/20 text-white'
-                          : 'border-gray-600 bg-gray-800/50 text-gray-300 hover:border-gray-500 hover:bg-gray-700/50'
+                          : 'border-gray-600 bg-black/50 text-gray-300 hover:border-gray-500 hover:bg-gray-700/50'
                       }`}
                     >
                       <div className="flex items-start">
@@ -477,7 +477,7 @@ export default function Interview() {
               />
 
               {/* Assessment Stats */}
-              <div className="p-6 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50">
+              <div className="p-6 rounded-2xl bg-black/70 backdrop-blur-xl border border-gray-700/50">
                 <h3 className="text-lg font-bold text-white mb-4">Assessment Stats</h3>
                 <div className="space-y-4">
                   <div className="flex justify-between">
@@ -500,7 +500,7 @@ export default function Interview() {
               </div>
 
               {/* Tips */}
-              <div className="p-6 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50">
+              <div className="p-6 rounded-2xl bg-black/70 backdrop-blur-xl border border-gray-700/50">
                 <h3 className="text-lg font-bold text-white mb-4">Assessment Tips</h3>
                 <ul className="space-y-3 text-sm text-gray-300">
                   <li className="flex items-start">
@@ -528,3 +528,6 @@ export default function Interview() {
     </div>
   );
 }
+
+
+

@@ -492,7 +492,7 @@ export default function DailyChallenge() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#1a1a1a] flex items-center justify-center">
+      <div className="min-h-screen bg-black flex items-center justify-center">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-gray-400">Loading today's challenge...</p>
@@ -504,7 +504,7 @@ export default function DailyChallenge() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-[#1a1a1a] flex items-center justify-center">
+      <div className="min-h-screen bg-black flex items-center justify-center">
         <div className="text-center max-w-md mx-auto p-6">
           <XCircleIcon className="w-16 h-16 text-red-500 mx-auto mb-4" />
           <h2 className="text-2xl font-bold text-white mb-4">Failed to Load Challenge</h2>
@@ -530,7 +530,7 @@ export default function DailyChallenge() {
 
   if (!challenge) {
     return (
-      <div className="min-h-screen bg-[#1a1a1a] flex items-center justify-center">
+      <div className="min-h-screen bg-black flex items-center justify-center">
         <div className="text-center">
           <div className="text-6xl mb-4">🤔</div>
           <p className="text-gray-400">No challenge available</p>
@@ -540,9 +540,9 @@ export default function DailyChallenge() {
   }
 
   return (
-    <div className="min-h-screen bg-[#1a1a1a] text-gray-100">
+    <div className="min-h-screen bg-black text-gray-100">
       {/* Header */}
-      <header className="bg-gray-900/80 border-b border-gray-800 sticky top-0 z-10 backdrop-blur-xl">
+      <header className="bg-black/80 border-b border-gray-800 sticky top-0 z-10 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
@@ -565,7 +565,7 @@ export default function DailyChallenge() {
             
             <div className="flex items-center gap-4">
               {/* Timer */}
-              <div className="px-4 py-2 bg-gray-800 rounded-lg">
+              <div className="px-4 py-2 bg-black/90 rounded-lg">
                 <span className="text-sm text-gray-400">Time: </span>
                 <span className="text-lg font-bold text-blue-400">{formatTime(timeSpent)}</span>
               </div>
@@ -589,7 +589,7 @@ export default function DailyChallenge() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6">
         {/* Debug Info with Regenerate Button - Only for Admin */}
         {user?.email === "rajeev04632@gmail.com" && (
-          <div className="mb-4 p-4 bg-gray-800 rounded-lg text-sm border border-gray-700">
+          <div className="mb-4 p-4 bg-black/90 rounded-lg text-sm border border-gray-700">
             <div className="flex items-start justify-between gap-4">
               <div className="flex-1">
                 <p className="text-gray-400 mb-2 font-semibold flex items-center gap-2">
@@ -675,7 +675,7 @@ export default function DailyChallenge() {
               {challenge?.examples?.map((example, index) => (
                 <div key={index} className="mb-4 last:mb-0">
                   <p className="text-sm text-gray-400 mb-1">Example {index + 1}:</p>
-                  <div className="bg-gray-900/50 rounded-lg p-3 space-y-2">
+                  <div className="bg-black/50 rounded-lg p-3 space-y-2">
                     <div>
                       <span className="text-blue-400">Input:</span>
                       <code className="ml-2 text-gray-300">{typeof example.input === 'string' ? example.input : JSON.stringify(example.input)}</code>
@@ -760,7 +760,7 @@ export default function DailyChallenge() {
                       <div
                         key={entry.userId}
                         className={`flex items-center justify-between p-3 rounded-lg ${
-                          entry.userId === user.uid ? 'bg-blue-500/10 border border-blue-500/30' : 'bg-gray-900/50'
+                          entry.userId === user.uid ? 'bg-blue-500/10 border border-blue-500/30' : 'bg-black/50'
                         }`}
                       >
                         <div className="flex items-center gap-3">
@@ -800,7 +800,7 @@ export default function DailyChallenge() {
                       className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
                         selectedLanguage === lang
                           ? 'bg-blue-500 text-white'
-                          : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
+                          : 'bg-black/90 text-gray-400 hover:bg-gray-700'
                       }`}
                     >
                       {lang === 'javascript' ? 'JavaScript' : lang === 'cpp' ? 'C++' : 'Java'}
@@ -812,7 +812,7 @@ export default function DailyChallenge() {
 
             {/* Code Editor */}
             <div className="glass-effect rounded-xl border border-gray-800 overflow-hidden shadow-2xl">
-              <div className="bg-[#1e1e1e] px-4 py-3 border-b border-gray-700 flex items-center justify-between">
+              <div className="bg-black/90 px-4 py-3 border-b border-gray-700 flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="flex gap-1.5">
                     <div className="w-3 h-3 rounded-full bg-red-500"></div>
@@ -834,7 +834,7 @@ export default function DailyChallenge() {
               </div>
               <div className="relative">
                 {/* Line numbers */}
-                <div className="absolute left-0 top-0 bottom-0 w-12 bg-[#1e1e1e] border-r border-gray-700 pt-4 pb-4 text-right pr-3 select-none">
+                <div className="absolute left-0 top-0 bottom-0 w-12 bg-black/90 border-r border-gray-700 pt-4 pb-4 text-right pr-3 select-none">
                   {code.split('\n').map((_, index) => (
                     <div key={index} className="text-gray-600 text-sm font-mono leading-6">
                       {index + 1}
@@ -847,7 +847,7 @@ export default function DailyChallenge() {
                     setCode(e.target.value);
                     startTimer();
                   }}
-                  className="w-full h-[500px] bg-[#1e1e1e] text-gray-100 pl-16 pr-4 py-4 font-mono text-sm leading-6 focus:outline-none resize-none overflow-auto"
+                  className="w-full h-[500px] bg-black/90 text-gray-100 pl-16 pr-4 py-4 font-mono text-sm leading-6 focus:outline-none resize-none overflow-auto"
                   placeholder="Write your solution here..."
                   spellCheck="false"
                   style={{
@@ -857,7 +857,7 @@ export default function DailyChallenge() {
                 />
               </div>
               {/* Editor footer */}
-              <div className="bg-[#252526] px-4 py-2 border-t border-gray-700 flex items-center justify-between text-xs text-gray-400">
+              <div className="bg-black/90 px-4 py-2 border-t border-gray-700 flex items-center justify-between text-xs text-gray-400">
                 <div className="flex items-center gap-4">
                   <span>Lines: {code.split('\n').length}</span>
                   <span>Characters: {code.length}</span>
@@ -910,7 +910,7 @@ export default function DailyChallenge() {
               <button
                 onClick={runTests}
                 disabled={isSubmitting || !code.trim()}
-                className="flex-1 px-6 py-3 bg-gray-800 hover:bg-gray-700 rounded-xl font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1 px-6 py-3 bg-black/90 hover:bg-gray-700 rounded-xl font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Run Tests
               </button>
@@ -947,3 +947,7 @@ export default function DailyChallenge() {
     </div>
   );
 }
+
+
+
+

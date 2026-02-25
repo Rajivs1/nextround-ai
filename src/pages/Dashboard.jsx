@@ -250,7 +250,7 @@ export default function Dashboard() {
 
   if (!profile) {
     return (
-      <div className="min-h-screen bg-[#1a1a1a] text-gray-100 flex items-center justify-center">
+      <div className="min-h-screen bg-black text-gray-100 flex items-center justify-center">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-xl text-gray-300">Loading your dashboard...</p>
@@ -290,7 +290,7 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-[#1a1a1a] text-gray-100">
+    <div className="min-h-screen bg-black text-gray-100">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-purple-900/10 to-pink-900/10"></div>
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
@@ -298,7 +298,7 @@ export default function Dashboard() {
 
       <div className="relative z-10">
         {/* Header */}
-        <header className="border-b border-gray-800 bg-gray-900/50 backdrop-blur-sm">
+        <header className="border-b border-gray-800 bg-black/50 backdrop-blur-sm">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
               <div className="flex items-center space-x-3 sm:space-x-4">
@@ -370,13 +370,13 @@ export default function Dashboard() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
           {/* Tab Navigation */}
           <div className="mb-8 sm:mb-12">
-            <div className="flex space-x-1 bg-gray-900/50 p-1 rounded-2xl backdrop-blur-sm border border-gray-700/50 max-w-3xl mx-auto overflow-x-auto">
+            <div className="flex space-x-1 bg-black/50 p-1 rounded-2xl backdrop-blur-sm border border-gray-700/50 max-w-3xl mx-auto overflow-x-auto">
               <button
                 onClick={() => setActiveTab("dashboard")}
                 className={`flex-1 px-3 sm:px-6 py-2 sm:py-3 rounded-xl font-semibold transition-all duration-300 text-sm sm:text-base whitespace-nowrap ${
                   activeTab === "dashboard"
                     ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg"
-                    : "text-gray-400 hover:text-white hover:bg-gray-800/50"
+                    : "text-gray-400 hover:text-white hover:bg-black/50"
                 }`}
               >
                 📊 <span className="hidden sm:inline">Dashboard</span>
@@ -386,7 +386,7 @@ export default function Dashboard() {
                 className={`flex-1 px-3 sm:px-6 py-2 sm:py-3 rounded-xl font-semibold transition-all duration-300 text-sm sm:text-base whitespace-nowrap ${
                   activeTab === "solved"
                     ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg"
-                    : "text-gray-400 hover:text-white hover:bg-gray-800/50"
+                    : "text-gray-400 hover:text-white hover:bg-black/50"
                 }`}
               >
                 ✅ <span className="hidden sm:inline">Solved</span>
@@ -396,7 +396,7 @@ export default function Dashboard() {
                 className={`flex-1 px-3 sm:px-6 py-2 sm:py-3 rounded-xl font-semibold transition-all duration-300 text-sm sm:text-base whitespace-nowrap ${
                   activeTab === "challenges"
                     ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg"
-                    : "text-gray-400 hover:text-white hover:bg-gray-800/50"
+                    : "text-gray-400 hover:text-white hover:bg-black/50"
                 }`}
               >
                 � <span className="hidden sm:inline">Daily</span>
@@ -406,7 +406,7 @@ export default function Dashboard() {
                 className={`flex-1 px-3 sm:px-6 py-2 sm:py-3 rounded-xl font-semibold transition-all duration-300 text-sm sm:text-base whitespace-nowrap ${
                   activeTab === "profile"
                     ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg"
-                    : "text-gray-400 hover:text-white hover:bg-gray-800/50"
+                    : "text-gray-400 hover:text-white hover:bg-black/50"
                 }`}
               >
                 👤 <span className="hidden sm:inline">Profile</span>
@@ -432,7 +432,7 @@ export default function Dashboard() {
 
               {/* Stats Cards */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 mb-8 sm:mb-12">
-                <div className="group p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 hover:scale-105 hover-lift overflow-hidden relative">
+                <div className="group p-8 rounded-2xl bg-black/70 backdrop-blur-xl border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 hover:scale-105 hover-lift overflow-hidden relative">
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <div className="absolute inset-0 animate-shimmer opacity-0 group-hover:opacity-100"></div>
                   <div className="relative z-10">
@@ -449,7 +449,7 @@ export default function Dashboard() {
                   </div>
                 </div>
 
-                <div className="group p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 hover:border-green-500/50 transition-all duration-300 hover:scale-105 hover-lift overflow-hidden relative">
+                <div className="group p-8 rounded-2xl bg-black/70 backdrop-blur-xl border border-gray-700/50 hover:border-green-500/50 transition-all duration-300 hover:scale-105 hover-lift overflow-hidden relative">
                   <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 to-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <div className="absolute inset-0 animate-shimmer opacity-0 group-hover:opacity-100"></div>
                   <div className="relative z-10">
@@ -470,7 +470,7 @@ export default function Dashboard() {
                   </div>
                 </div>
 
-                <div className="group p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 hover:border-purple-500/50 transition-all duration-300 hover:scale-105 hover-lift overflow-hidden relative">
+                <div className="group p-8 rounded-2xl bg-black/70 backdrop-blur-xl border border-gray-700/50 hover:border-purple-500/50 transition-all duration-300 hover:scale-105 hover-lift overflow-hidden relative">
                   <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <div className="absolute inset-0 animate-shimmer opacity-0 group-hover:opacity-100"></div>
                   <div className="relative z-10">
@@ -501,7 +501,7 @@ export default function Dashboard() {
                   {/* Interview Practice Card */}
                   <div 
                     onClick={() => navigate("/interview")}
-                    className="group p-6 rounded-2xl bg-gradient-to-br from-blue-900/40 to-purple-900/40 border border-blue-500/30 hover:border-blue-500/60 transition-all duration-300 cursor-pointer hover:scale-105 hover-lift overflow-hidden relative"
+                    className="group p-6 rounded-2xl bg-black/60 backdrop-blur-xl border border-blue-500/30 hover:border-blue-500/60 transition-all duration-300 cursor-pointer hover:scale-105 hover-lift overflow-hidden relative"
                   >
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-purple-500/10 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     <div className="absolute inset-0 animate-shimmer opacity-0 group-hover:opacity-100"></div>
@@ -528,7 +528,7 @@ export default function Dashboard() {
                   {/* Resume Analyzer Card */}
                   <div 
                     onClick={() => navigate("/resume-analyzer")}
-                    className="group p-6 rounded-2xl bg-gradient-to-br from-indigo-900/40 to-purple-900/40 border border-indigo-500/30 hover:border-indigo-500/60 transition-all duration-300 cursor-pointer hover:scale-105 hover-lift overflow-hidden relative"
+                    className="group p-6 rounded-2xl bg-black/60 backdrop-blur-xl border border-indigo-500/30 hover:border-indigo-500/60 transition-all duration-300 cursor-pointer hover:scale-105 hover-lift overflow-hidden relative"
                   >
                     <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 to-purple-500/10 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     <div className="absolute inset-0 animate-shimmer opacity-0 group-hover:opacity-100"></div>
@@ -557,7 +557,7 @@ export default function Dashboard() {
               {/* Chart and Quick Actions */}
               <div className="grid lg:grid-cols-4 gap-6 sm:gap-8">
                 {/* Chart */}
-                <div className="lg:col-span-3 p-4 sm:p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50">
+                <div className="lg:col-span-3 p-4 sm:p-8 rounded-2xl bg-black/70 backdrop-blur-xl border border-gray-700/50">
                   <div className="flex items-center justify-between mb-8">
                     <h3 className="text-2xl font-bold text-white">
                       Performance Trend
@@ -627,7 +627,7 @@ export default function Dashboard() {
 
                 {/* Quick Actions Sidebar */}
                 <div className="space-y-6">
-                  <div className="p-6 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50">
+                  <div className="p-6 rounded-2xl bg-black/70 backdrop-blur-xl border border-gray-700/50">
                     <div className="flex items-center justify-between mb-4">
                       <h3 className="text-lg font-bold text-white">
                         Quick Actions
@@ -688,7 +688,7 @@ export default function Dashboard() {
                     .map((solution, index) => (
                       <div
                         key={index}
-                        className="p-4 sm:p-6 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300"
+                        className="p-4 sm:p-6 rounded-2xl bg-black/70 backdrop-blur-xl border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300"
                       >
                         <div className="flex flex-col sm:flex-row items-start justify-between mb-4 gap-3">
                           <div className="flex-1 min-w-0">
@@ -716,8 +716,8 @@ export default function Dashboard() {
                         </div>
 
                         <div className="mt-4">
-                          <div className="bg-[#1e1e1e] rounded-xl overflow-hidden border border-gray-700">
-                            <div className="bg-[#252526] px-3 sm:px-4 py-2 border-b border-gray-700">
+                          <div className="bg-black/90 rounded-xl overflow-hidden border border-gray-700">
+                            <div className="bg-black/90 px-3 sm:px-4 py-2 border-b border-gray-700">
                               <span className="text-gray-300 text-xs sm:text-sm font-medium">
                                 Your Solution
                               </span>
@@ -775,7 +775,7 @@ export default function Dashboard() {
                   {challengeHistory.map((challenge, index) => (
                     <div
                       key={index}
-                      className="p-4 sm:p-6 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 hover:border-yellow-500/50 transition-all duration-300"
+                      className="p-4 sm:p-6 rounded-2xl bg-black/70 backdrop-blur-xl border border-gray-700/50 hover:border-yellow-500/50 transition-all duration-300"
                     >
                       <div className="flex flex-col sm:flex-row items-start justify-between mb-4 gap-3">
                         <div className="flex-1 min-w-0">
@@ -809,8 +809,8 @@ export default function Dashboard() {
                       </div>
 
                       <div className="mt-4">
-                        <div className="bg-[#1e1e1e] rounded-xl overflow-hidden border border-gray-700">
-                          <div className="bg-[#252526] px-3 sm:px-4 py-2 border-b border-gray-700 flex items-center justify-between">
+                        <div className="bg-black/90 rounded-xl overflow-hidden border border-gray-700">
+                          <div className="bg-black/90 px-3 sm:px-4 py-2 border-b border-gray-700 flex items-center justify-between">
                             <span className="text-gray-300 text-xs sm:text-sm font-medium">
                               Your Solution
                             </span>
@@ -867,7 +867,7 @@ export default function Dashboard() {
 
               <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
                 {/* Profile Picture & Account Information */}
-                <div className="p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50">
+                <div className="p-8 rounded-2xl bg-black/70 backdrop-blur-xl border border-gray-700/50">
                   <div className="flex items-center justify-between mb-6">
                     <h3 className="text-2xl font-bold text-white">
                       Profile & Account
@@ -906,7 +906,7 @@ export default function Dashboard() {
                           </div>
                         </div>
                         {isUploadingImage && (
-                          <div className="absolute inset-0 bg-[#1a1a1a]/50 rounded-full flex items-center justify-center">
+                          <div className="absolute inset-0 bg-black/50 rounded-full flex items-center justify-center">
                             <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                           </div>
                         )}
@@ -955,7 +955,7 @@ export default function Dashboard() {
                       <label className="block text-sm font-semibold text-gray-400 mb-2">
                         Username
                       </label>
-                      <div className="p-4 bg-gray-800/50 border border-gray-600 rounded-xl">
+                      <div className="p-4 bg-black/50 border border-gray-600 rounded-xl">
                         <p className="text-white font-semibold text-lg">
                           {profile.username || "Not set"}
                         </p>
@@ -965,7 +965,7 @@ export default function Dashboard() {
                       <label className="block text-sm font-semibold text-gray-400 mb-2">
                         Email Address
                       </label>
-                      <div className="p-4 bg-gray-800/50 border border-gray-600 rounded-xl">
+                      <div className="p-4 bg-black/50 border border-gray-600 rounded-xl">
                         <p className="text-white font-semibold">
                           {profile.email}
                         </p>
@@ -975,7 +975,7 @@ export default function Dashboard() {
                       <label className="block text-sm font-semibold text-gray-400 mb-2">
                         Member Since
                       </label>
-                      <div className="p-4 bg-gray-800/50 border border-gray-600 rounded-xl">
+                      <div className="p-4 bg-black/50 border border-gray-600 rounded-xl">
                         <p className="text-white font-semibold">
                           {profile.createdAt
                             ?.toDate?.()
@@ -987,7 +987,7 @@ export default function Dashboard() {
                 </div>
 
                 {/* Account Statistics */}
-                <div className="p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50">
+                <div className="p-8 rounded-2xl bg-black/70 backdrop-blur-xl border border-gray-700/50">
                   <div className="flex items-center justify-between mb-6">
                     <h3 className="text-2xl font-bold text-white">
                       Your Statistics
@@ -995,13 +995,13 @@ export default function Dashboard() {
                     <div className="text-3xl">📈</div>
                   </div>
                   <div className="space-y-6">
-                    <div className="flex justify-between items-center p-4 bg-gray-800/30 rounded-xl">
+                    <div className="flex justify-between items-center p-4 bg-black/90/30 rounded-xl">
                       <span className="text-gray-300">Total Assessments:</span>
                       <span className="text-2xl font-bold text-blue-400">
                         {scores.length}
                       </span>
                     </div>
-                    <div className="flex justify-between items-center p-4 bg-gray-800/30 rounded-xl">
+                    <div className="flex justify-between items-center p-4 bg-black/90/30 rounded-xl">
                       <span className="text-gray-300">Average Score:</span>
                       <span
                         className={`text-2xl font-bold ${getScoreColor(
@@ -1011,13 +1011,13 @@ export default function Dashboard() {
                         {getAverageScore()}/10
                       </span>
                     </div>
-                    <div className="flex justify-between items-center p-4 bg-gray-800/30 rounded-xl">
+                    <div className="flex justify-between items-center p-4 bg-black/90/30 rounded-xl">
                       <span className="text-gray-300">Best Score:</span>
                       <span className="text-2xl font-bold text-green-400">
                         {scores.length > 0 ? Math.max(...scores) : 0}/10
                       </span>
                     </div>
-                    <div className="flex justify-between items-center p-4 bg-gray-800/30 rounded-xl">
+                    <div className="flex justify-between items-center p-4 bg-black/90/30 rounded-xl">
                       <span className="text-gray-300">Account Status:</span>
                       <span className="text-green-400 font-semibold">
                         Active
@@ -1028,7 +1028,7 @@ export default function Dashboard() {
               </div>
 
               {/* Danger Zone */}
-              <div className="mt-12 p-8 rounded-2xl bg-gradient-to-br from-red-900/20 to-red-800/20 border border-red-500/30">
+              <div className="mt-12 p-8 rounded-2xl bg-black/60 backdrop-blur-xl border border-red-500/30">
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="text-2xl font-bold text-red-400">
                     Danger Zone
@@ -1065,8 +1065,8 @@ export default function Dashboard() {
 
       {/* Delete Account Modal */}
       {showDeleteModal && (
-        <div className="fixed inset-0 bg-[#1a1a1a]/80 backdrop-blur-sm flex items-center justify-center z-50 p-6">
-          <div className="bg-gradient-to-br from-gray-900 to-gray-800 border border-red-500/50 rounded-2xl p-8 max-w-md w-full">
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-6">
+          <div className="bg-black/80 backdrop-blur-xl border border-red-500/50 rounded-2xl p-8 max-w-md w-full">
             <div className="text-center mb-6">
               <div className="text-6xl mb-4">⚠️</div>
               <h3 className="text-2xl font-bold text-white mb-2">
@@ -1086,7 +1086,7 @@ export default function Dashboard() {
                 type="text"
                 value={deleteConfirmText}
                 onChange={(e) => setDeleteConfirmText(e.target.value)}
-                className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/20 transition-all duration-300"
+                className="w-full px-4 py-3 bg-black/90 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-red-500 focus:ring-2 focus:ring-red-500/20 transition-all duration-300"
                 placeholder="Type DELETE here"
               />
             </div>
@@ -1126,12 +1126,12 @@ export default function Dashboard() {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 animate-fadeIn">
           {/* Backdrop */}
           <div 
-            className="absolute inset-0 bg-[#1a1a1a]/70 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
             onClick={() => !isLoggingOut && setShowLogoutModal(false)}
           ></div>
           
           {/* Modal */}
-          <div className="relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl shadow-2xl border border-gray-700 max-w-md w-full p-6 sm:p-8 animate-slideUp">
+          <div className="relative bg-black/80 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-700 max-w-md w-full p-6 sm:p-8 animate-slideUp">
             {/* Icon */}
             <div className="flex justify-center mb-6">
               <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-red-500/20 to-orange-500/20 border-2 border-red-500/50 flex items-center justify-center">
@@ -1205,3 +1205,7 @@ export default function Dashboard() {
     </div>
   );
 }
+
+
+
+

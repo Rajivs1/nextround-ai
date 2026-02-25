@@ -146,14 +146,14 @@ export default function Problems() {
   const topicStats = getTopicStats();
 
   return (
-    <div className="min-h-screen bg-[#1a1a1a] relative overflow-hidden">
+    <div className="min-h-screen bg-black relative overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-purple-900/10 via-blue-900/10 to-pink-900/10 animate-gradient"></div>
       <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl animate-pulse"></div>
       <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
       
       {/* Header */}
-      <div className="relative bg-gradient-to-r from-slate-900 via-purple-900/20 to-slate-900 border-b border-purple-500/20 backdrop-blur-xl">
+      <div className="relative bg-gradient-to-r from-slate-900 via-purple-900/20 to-black border-b border-purple-500/20 backdrop-blur-xl">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMzLjMxNCAwIDYgMi42ODYgNiA2cy0yLjY4NiA2LTYgNi02LTIuNjg2LTYtNiAyLjY4Ni02IDYtNnoiIHN0cm9rZT0iIzhjNWZmZiIgc3Ryb2tlLXdpZHRoPSIuNSIgb3BhY2l0eT0iLjEiLz48L2c+PC9zdmc+')] opacity-30"></div>
         
         <div className="relative px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
@@ -246,8 +246,8 @@ export default function Problems() {
 
         {/* Loading Overlay */}
         {isGeneratingProblems && (
-          <div className="fixed inset-0 bg-[#1a1a1a]/80 backdrop-blur-sm z-50 flex items-center justify-center">
-            <div className="bg-gradient-to-br from-gray-900 to-gray-800 p-8 rounded-2xl border border-gray-700 max-w-md mx-4 text-center">
+          <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center">
+            <div className="bg-black/80 backdrop-blur-xl p-8 rounded-2xl border border-gray-700 max-w-md mx-4 text-center">
               <div className="animate-spin text-6xl mb-6">🤖</div>
               <h3 className="text-2xl font-bold text-white mb-4">
                 Generating AI Problems...
@@ -423,3 +423,7 @@ export default function Problems() {
     </div>
   );
 }
+
+
+
+

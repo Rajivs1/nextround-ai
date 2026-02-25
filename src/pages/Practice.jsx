@@ -56,7 +56,7 @@ const Modal = ({ isOpen, onClose, type = 'info', title, message, details }) => {
         };
       default:
         return {
-          border: 'border-[#3a3a3a]',
+          border: 'border-gray-800',
           bg: 'bg-[#2d2d2d]',
           text: 'text-white',
           button: 'bg-[#3a3a3a] hover:bg-[#4a4a4a]'
@@ -67,8 +67,8 @@ const Modal = ({ isOpen, onClose, type = 'info', title, message, details }) => {
   const colors = getColors();
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1a1a1a]/80 backdrop-blur-sm animate-fadeIn">
-      <div className="bg-[#262626] rounded-2xl border-2 border-[#3a3a3a] shadow-2xl max-w-lg w-full overflow-hidden animate-slideUp">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-fadeIn">
+      <div className="bg-black/90 rounded-2xl border-2 border-gray-800 shadow-2xl max-w-lg w-full overflow-hidden animate-slideUp">
         {/* Header */}
         <div className={`${colors.bg} border-b-2 ${colors.border} p-6`}>
           <div className="flex items-center gap-4">
@@ -93,7 +93,7 @@ const Modal = ({ isOpen, onClose, type = 'info', title, message, details }) => {
         </div>
 
         {/* Footer */}
-        <div className="p-6 bg-[#1e1e1e] border-t border-[#3a3a3a] flex justify-end gap-3">
+        <div className="p-6 bg-black/90 border-t border-gray-800 flex justify-end gap-3">
           <button
             onClick={onClose}
             className={`px-6 py-3 rounded-lg font-semibold text-white transition-all duration-200 ${colors.button}`}
@@ -792,9 +792,9 @@ class Main {
   const totalRun = consoleOutput.length;
 
   return (
-    <div className="h-screen flex flex-col bg-[#1a1a1a]">
+    <div className="h-screen flex flex-col bg-black">
       {/* Header */}
-      <div className="bg-[#282828] border-b border-[#3a3a3a] px-4 sm:px-6 py-3">
+      <div className="bg-black/90 border-b border-gray-800 px-4 sm:px-6 py-3">
         <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-3 flex-1 min-w-0">
             <button 
@@ -828,7 +828,7 @@ class Main {
               className={`px-4 sm:px-6 py-2 rounded-lg font-medium text-sm transition-colors ${
                 isRunning || !currentQuestion.testCases || visibleTestCases.length === 0
                   ? 'bg-[#3a3a3a] text-gray-500 cursor-not-allowed' 
-                  : 'bg-[#2d2d2d] hover:bg-[#3a3a3a] text-white border border-[#3a3a3a]'
+                  : 'bg-[#2d2d2d] hover:bg-[#3a3a3a] text-white border border-gray-800'
               }`}
             >
               {isRunning ? 'Running...' : 'Run'}
@@ -851,9 +851,9 @@ class Main {
       {/* Main Content */}
       <div className="flex-1 flex flex-col lg:flex-row overflow-hidden">
         {/* Left Panel */}
-        <div className="w-full lg:w-[45%] bg-[#262626] border-b lg:border-b-0 lg:border-r border-[#3a3a3a] overflow-y-auto max-h-[40vh] lg:max-h-none">
+        <div className="w-full lg:w-[45%] bg-black/90 border-b lg:border-b-0 lg:border-r border-gray-800 overflow-y-auto max-h-[40vh] lg:max-h-none">
           {/* Tabs */}
-          <div className="flex border-b border-[#3a3a3a] bg-[#282828]">
+          <div className="flex border-b border-gray-800 bg-black/90">
             <button
               onClick={() => setActiveTab('description')}
               className={`px-6 py-3 text-sm font-medium transition-colors relative ${
@@ -887,7 +887,7 @@ class Main {
 
               <div>
                 <div className="text-white font-semibold mb-3">Example 1:</div>
-                <div className="bg-[#2d2d2d] rounded-lg p-4 border border-[#3a3a3a]">
+                <div className="bg-[#2d2d2d] rounded-lg p-4 border border-gray-800">
                   <div className="font-mono text-sm space-y-2">
                     <div>
                       <span className="text-[#eff1f6bf] font-semibold">Input:</span>
@@ -902,7 +902,7 @@ class Main {
                       </span>
                     </div>
                     {currentQuestion.example.split('\n')[2] && (
-                      <div className="pt-2 border-t border-[#3a3a3a] text-[#eff1f6bf] text-xs">
+                      <div className="pt-2 border-t border-gray-800 text-[#eff1f6bf] text-xs">
                         {currentQuestion.example.split('\n').slice(2).join('\n')}
                       </div>
                     )}
@@ -916,7 +916,7 @@ class Main {
                   <div className="text-white font-semibold mb-3">Test Cases:</div>
                   <div className="space-y-3">
                     {visibleTestCases.map((testCase, index) => (
-                      <div key={index} className="bg-[#2d2d2d] rounded-lg p-4 border border-[#3a3a3a]">
+                      <div key={index} className="bg-[#2d2d2d] rounded-lg p-4 border border-gray-800">
                         <div className="font-mono text-sm space-y-2">
                           <div>
                             <span className="text-[#eff1f6bf] font-semibold">Input:</span>
@@ -934,7 +934,7 @@ class Main {
               )}
 
               {visibleTestCases.length === 0 && (
-                <div className="bg-[#2d2d2d] rounded-lg p-6 border border-[#3a3a3a] text-center">
+                <div className="bg-[#2d2d2d] rounded-lg p-6 border border-gray-800 text-center">
                   <div className="text-4xl mb-2">📝</div>
                   <p className="text-[#eff1f6bf] text-sm">No test cases available for this question yet</p>
                 </div>
@@ -946,7 +946,7 @@ class Main {
           {activeTab === 'result' && (
             <div className="p-6 space-y-4">
               {consoleOutput.length === 0 ? (
-                <div className="bg-[#2d2d2d] rounded-lg p-12 border border-[#3a3a3a] text-center">
+                <div className="bg-[#2d2d2d] rounded-lg p-12 border border-gray-800 text-center">
                   <div className="text-5xl mb-4">💻</div>
                   <p className="text-[#eff1f6bf] text-sm">You must run your code first</p>
                 </div>
@@ -972,7 +972,7 @@ class Main {
 
                   {/* Individual Results */}
                   {consoleOutput.map((result, index) => (
-                    <div key={index} className="bg-[#2d2d2d] rounded-lg p-4 border border-[#3a3a3a]">
+                    <div key={index} className="bg-[#2d2d2d] rounded-lg p-4 border border-gray-800">
                       <div className="flex items-center justify-between mb-3">
                         <span className="text-white font-semibold">Case {result.caseNumber}</span>
                         <span className={`text-sm font-medium ${
@@ -1013,9 +1013,9 @@ class Main {
         </div>
 
         {/* Right Panel - Code Editor */}
-        <div className="flex-1 flex flex-col bg-[#1e1e1e] min-h-0">
+        <div className="flex-1 flex flex-col bg-black/90 min-h-0">
           {/* Editor Header */}
-          <div className="bg-[#282828] border-b border-[#3a3a3a] px-5 py-2.5 flex items-center justify-between">
+          <div className="bg-black/90 border-b border-gray-800 px-5 py-2.5 flex items-center justify-between">
             <span className="text-[#eff1f6bf] text-sm font-medium">
               Code
             </span>
@@ -1067,9 +1067,9 @@ class Main {
           </div>
 
           {/* Console Output - LeetCode Style */}
-          <div className="h-56 border-t border-[#3a3a3a]">
-            <div className="h-full flex flex-col bg-[#262626]">
-              <div className="bg-[#282828] px-5 py-2.5 border-b border-[#3a3a3a] flex items-center justify-between">
+          <div className="h-56 border-t border-gray-800">
+            <div className="h-full flex flex-col bg-black/90">
+              <div className="bg-black/90 px-5 py-2.5 border-b border-gray-800 flex items-center justify-between">
                 <span className="text-[#eff1f6bf] text-sm font-medium">Testcase</span>
                 {consoleOutput.length > 0 && (
                   <button
@@ -1098,7 +1098,7 @@ class Main {
                     
                     {/* Individual Results */}
                     {consoleOutput.map((result, index) => (
-                      <div key={index} className="space-y-2 pb-4 border-b border-[#3a3a3a] last:border-b-0">
+                      <div key={index} className="space-y-2 pb-4 border-b border-gray-800 last:border-b-0">
                         <div className="flex items-center gap-2">
                           <span className="text-[#eff1f6bf] text-sm">Case {result.caseNumber}:</span>
                           <span className={`text-sm font-medium ${
@@ -1158,3 +1158,7 @@ class Main {
 }
 
 export default Practice;
+
+
+
+

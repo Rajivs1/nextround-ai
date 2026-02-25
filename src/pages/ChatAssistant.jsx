@@ -124,14 +124,14 @@ What would you like to work on today?`,
   };
 
   return (
-    <div className="min-h-screen bg-[#1a1a1a] text-gray-100 relative overflow-hidden">
+    <div className="min-h-screen bg-black text-gray-100 relative overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-purple-900/10 to-pink-900/10 animate-gradient"></div>
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-green-500/5 rounded-full blur-3xl animate-pulse"></div>
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
       
       {/* Header */}
-      <header className="bg-gray-900/80 border-b border-gray-800 sticky top-0 z-10 backdrop-blur-xl">
+      <header className="bg-black/80 border-b border-gray-800 sticky top-0 z-10 backdrop-blur-xl">
         <div className="max-w-6xl mx-auto px-3 sm:px-4 lg:px-6 py-3 sm:py-4">
           <div className="flex items-center justify-between gap-2 sm:gap-4">
             <div className="flex items-center gap-2 sm:gap-4 min-w-0">
@@ -165,7 +165,7 @@ What would you like to work on today?`,
 
             <button
               onClick={clearChat}
-              className="px-3 sm:px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-lg transition-all duration-300 text-xs sm:text-sm flex items-center gap-1.5 sm:gap-2 hover:scale-105 flex-shrink-0"
+              className="px-3 sm:px-4 py-2 bg-black/90 hover:bg-gray-700 rounded-lg transition-all duration-300 text-xs sm:text-sm flex items-center gap-1.5 sm:gap-2 hover:scale-105 flex-shrink-0"
             >
               <svg
                 className="w-3.5 h-3.5 sm:w-4 sm:h-4"
@@ -294,7 +294,7 @@ What would you like to work on today?`,
               placeholder="Ask me anything about interviews, coding, career advice..."
               disabled={isLoading}
               rows={1}
-              className="flex-1 bg-gray-800/50 text-white rounded-lg sm:rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 placeholder-gray-500 transition-all text-sm sm:text-base"
+              className="flex-1 bg-black/50 text-white rounded-lg sm:rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 placeholder-gray-500 transition-all text-sm sm:text-base"
               style={{
                 minHeight: "44px",
                 maxHeight: "120px",
@@ -348,3 +348,7 @@ What would you like to work on today?`,
     </div>
   );
 }
+
+
+
+

@@ -37,7 +37,7 @@ export default function Result() {
     const percentage = Math.round((correctAnswers / totalQuestions) * 100);
 
     return (
-      <div className="min-h-screen bg-[#1a1a1a] text-gray-100">
+      <div className="min-h-screen bg-black text-gray-100">
         {/* Background Effects */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-purple-900/10 to-pink-900/10"></div>
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
@@ -45,7 +45,7 @@ export default function Result() {
 
         <div className="relative z-10">
           {/* Header */}
-          <header className="border-b border-gray-800 bg-gray-900/50 backdrop-blur-sm">
+          <header className="border-b border-gray-800 bg-black/50 backdrop-blur-sm">
             <div className="max-w-6xl mx-auto px-6 py-6">
               <div className="flex justify-between items-center">
                 <div>
@@ -116,7 +116,7 @@ export default function Result() {
                 </div>
 
                 {/* Detailed Results */}
-                <div className="p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50">
+                <div className="p-8 rounded-2xl bg-black/70 backdrop-blur-xl border border-gray-700/50">
                   <h3 className="text-2xl font-bold text-white mb-6">
                     Detailed Results
                   </h3>
@@ -200,7 +200,7 @@ export default function Result() {
               {/* Right Column - Actions and Stats */}
               <div className="space-y-8">
                 {/* Quick Actions */}
-                <div className="p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50">
+                <div className="p-8 rounded-2xl bg-black/70 backdrop-blur-xl border border-gray-700/50">
                   <div className="flex items-center mb-6">
                     <div className="text-3xl mr-4">⚡</div>
                     <h3 className="text-xl font-bold text-white">
@@ -224,7 +224,7 @@ export default function Result() {
                 </div>
 
                 {/* Performance Breakdown */}
-                <div className="p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50">
+                <div className="p-8 rounded-2xl bg-black/70 backdrop-blur-xl border border-gray-700/50">
                   <div className="flex items-center mb-6">
                     <div className="text-3xl mr-4">📊</div>
                     <h3 className="text-xl font-bold text-white">
@@ -260,7 +260,7 @@ export default function Result() {
                 </div>
 
                 {/* Improvement Tips */}
-                <div className="p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50">
+                <div className="p-8 rounded-2xl bg-black/70 backdrop-blur-xl border border-gray-700/50">
                   <div className="flex items-center mb-6">
                     <div className="text-3xl mr-4">💡</div>
                     <h3 className="text-xl font-bold text-white">Next Steps</h3>
@@ -443,7 +443,7 @@ export default function Result() {
     : 0;
 
   return (
-    <div className="min-h-screen bg-[#1a1a1a] text-gray-100">
+    <div className="min-h-screen bg-black text-gray-100">
       {/* Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-purple-900/10 to-pink-900/10"></div>
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
@@ -451,7 +451,7 @@ export default function Result() {
 
       <div className="relative z-10">
         {/* Header */}
-        <header className="border-b border-gray-800 bg-gray-900/50 backdrop-blur-sm">
+        <header className="border-b border-gray-800 bg-black/50 backdrop-blur-sm">
           <div className="max-w-6xl mx-auto px-6 py-6">
             <div className="flex justify-between items-center">
               <div>
@@ -504,7 +504,7 @@ export default function Result() {
               </div>
 
               {/* Question Review */}
-              <div className="p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50">
+              <div className="p-8 rounded-2xl bg-black/70 backdrop-blur-xl border border-gray-700/50">
                 <div className="flex items-center mb-6">
                   <div className="text-3xl mr-4">❓</div>
                   <h3 className="text-2xl font-bold text-white">
@@ -519,7 +519,7 @@ export default function Result() {
               </div>
 
               {/* Answer Review */}
-              <div className="p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50">
+              <div className="p-8 rounded-2xl bg-black/70 backdrop-blur-xl border border-gray-700/50">
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center">
                     <div className="text-3xl mr-4">💬</div>
@@ -543,7 +543,7 @@ export default function Result() {
                   </div>
                 </div>
 
-                <div className="p-6 bg-gray-800/50 rounded-xl border border-gray-600 max-h-64 overflow-y-auto">
+                <div className="p-6 bg-black/50 rounded-xl border border-gray-600 max-h-64 overflow-y-auto">
                   <p className="text-gray-200 whitespace-pre-wrap leading-relaxed">
                     {answer || "No answer provided"}
                   </p>
@@ -565,7 +565,7 @@ export default function Result() {
             {/* Right Column - Actions and Tips */}
             <div className="space-y-8">
               {/* Quick Actions */}
-              <div className="p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50">
+              <div className="p-8 rounded-2xl bg-black/70 backdrop-blur-xl border border-gray-700/50">
                 <div className="flex items-center mb-6">
                   <div className="text-3xl mr-4">⚡</div>
                   <h3 className="text-xl font-bold text-white">
@@ -589,7 +589,7 @@ export default function Result() {
               </div>
 
               {/* Performance Metrics */}
-              <div className="p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50">
+              <div className="p-8 rounded-2xl bg-black/70 backdrop-blur-xl border border-gray-700/50">
                 <div className="flex items-center mb-6">
                   <div className="text-3xl mr-4">📊</div>
                   <h3 className="text-xl font-bold text-white">
@@ -635,7 +635,7 @@ export default function Result() {
               </div>
 
               {/* Improvement Tips */}
-              <div className="p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50">
+              <div className="p-8 rounded-2xl bg-black/70 backdrop-blur-xl border border-gray-700/50">
                 <div className="flex items-center mb-6">
                   <div className="text-3xl mr-4">💡</div>
                   <h3 className="text-xl font-bold text-white">
@@ -660,3 +660,7 @@ export default function Result() {
     </div>
   );
 }
+
+
+
+

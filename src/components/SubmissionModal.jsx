@@ -93,7 +93,7 @@ export default function SubmissionModal({ isOpen, onClose, type, title, message,
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fadeIn">
       <div 
-        className={`bg-gray-900 rounded-2xl border ${colors.border} shadow-2xl max-w-md w-full transform transition-all animate-scaleIn`}
+        className={`bg-black rounded-2xl border ${colors.border} shadow-2xl max-w-md w-full transform transition-all animate-scaleIn`}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="p-6">
@@ -108,7 +108,7 @@ export default function SubmissionModal({ isOpen, onClose, type, title, message,
           </p>
 
           {details && (
-            <div className="bg-gray-800/50 rounded-lg p-4 mb-4 border border-gray-700">
+            <div className="bg-black/50 rounded-lg p-4 mb-4 border border-gray-700">
               <div className="space-y-2 text-sm">
                 {details.map((detail, index) => (
                   <div key={index} className="flex items-start gap-2">
@@ -131,3 +131,7 @@ export default function SubmissionModal({ isOpen, onClose, type, title, message,
     </div>
   );
 }
+
+
+
+

@@ -231,7 +231,7 @@ export default function Home() {
                   <Link
                     to="/problems"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-gray-800/50 hover:text-white transition-all"
+                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-black/50 hover:text-white transition-all"
                   >
                     <CodeIcon className="w-5 h-5" />
                     <span>Practice</span>
@@ -239,7 +239,7 @@ export default function Home() {
                   <Link
                     to="/chat"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-gray-800/50 hover:text-white transition-all"
+                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-black/50 hover:text-white transition-all"
                   >
                     <span className="text-xl">💬</span>
                     <span>AI Chat</span>
@@ -247,7 +247,7 @@ export default function Home() {
                   <Link
                     to="/resume-analyzer"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-gray-800/50 hover:text-white transition-all"
+                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-black/50 hover:text-white transition-all"
                   >
                     <span className="text-xl">📄</span>
                     <span>Resume Analyzer</span>
@@ -255,7 +255,7 @@ export default function Home() {
                   <Link
                     to="/dashboard"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-gray-800/50 hover:text-white transition-all"
+                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-black/50 hover:text-white transition-all"
                   >
                     <ChartIcon className="w-5 h-5" />
                     <span>Dashboard</span>
@@ -265,7 +265,7 @@ export default function Home() {
                       setMobileMenuOpen(false);
                       setShowLogoutModal(true);
                     }}
-                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-gray-800/50 hover:text-white transition-all w-full text-left border-t border-gray-800"
+                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-black/50 hover:text-white transition-all w-full text-left border-t border-gray-800"
                   >
                     <span className="text-xl">🚪</span>
                     <span>Logout</span>
@@ -277,7 +277,7 @@ export default function Home() {
                   <Link
                     to="/login"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-gray-800/50 hover:text-white transition-all"
+                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-black/50 hover:text-white transition-all"
                   >
                     <span className="text-xl">🔐</span>
                     <span>Login</span>
@@ -285,7 +285,7 @@ export default function Home() {
                   <Link
                     to="/signup"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-gray-800/50 hover:text-white transition-all"
+                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-black/50 hover:text-white transition-all"
                   >
                     <span className="text-xl">✨</span>
                     <span>Sign Up</span>
@@ -448,7 +448,7 @@ export default function Home() {
                   </div>
 
                   {/* Longest Streak */}
-                  <div className="flex items-center justify-between p-4 bg-gray-800/50 rounded-lg border border-gray-700">
+                  <div className="flex items-center justify-between p-4 bg-black/50 rounded-lg border border-gray-700">
                     <div className="flex items-center gap-3">
                       <TrophyIcon className="w-6 h-6 text-yellow-500" />
                       <div>
@@ -461,7 +461,7 @@ export default function Home() {
                   </div>
 
                   {/* Problems Solved */}
-                  <div className="flex items-center justify-between p-4 bg-gray-800/50 rounded-lg border border-gray-700">
+                  <div className="flex items-center justify-between p-4 bg-black/50 rounded-lg border border-gray-700">
                     <div className="flex items-center gap-3">
                       <CheckCircleIcon className="w-6 h-6 text-green-500" />
                       <div>
@@ -514,7 +514,7 @@ export default function Home() {
                           className={`flex items-center gap-4 p-4 rounded-lg border transition-all duration-300 ${
                             isCurrentUser
                               ? 'bg-gradient-to-r from-blue-500/20 to-purple-500/20 border-purple-500/50 shadow-lg'
-                              : 'bg-gray-800/50 border-gray-700 hover:border-gray-600'
+                              : 'bg-black/50 border-gray-700 hover:border-gray-600'
                           }`}
                         >
                           {/* Rank */}
@@ -1088,5 +1088,9 @@ export default function Home() {
     </div>
   );
 }
+
+
+
+
 
 

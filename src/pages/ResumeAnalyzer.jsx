@@ -484,9 +484,9 @@ IMPORTANT: Return ONLY the JSON object. No markdown code blocks, no explanations
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#1a1a1a] via-gray-900 to-[#1a1a1a] text-gray-100 overflow-hidden relative">
+    <div className="min-h-screen bg-black text-gray-100 overflow-hidden relative">
       {/* Animated Background Effects */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-indigo-900/30 via-purple-900/20 to-transparent"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/10 via-purple-900/10 to-transparent"></div>
       <div className="absolute top-1/4 left-1/4 w-72 sm:w-96 h-72 sm:h-96 bg-indigo-500/20 rounded-full blur-3xl animate-pulse"></div>
       <div className="absolute bottom-1/4 right-1/4 w-72 sm:w-96 h-72 sm:h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1.5s'}}></div>
       
@@ -520,7 +520,7 @@ IMPORTANT: Return ONLY the JSON object. No markdown code blocks, no explanations
 
       <div className="relative z-10">
         {/* Header */}
-        <header className="border-b border-gray-800 bg-gray-900/50 backdrop-blur-sm">
+        <header className="border-b border-gray-800 bg-black/50 backdrop-blur-sm">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
               <div>
@@ -577,7 +577,7 @@ IMPORTANT: Return ONLY the JSON object. No markdown code blocks, no explanations
                 className={`relative p-8 sm:p-12 rounded-2xl border-2 border-dashed transition-all duration-300 ${
                   dragActive
                     ? "border-indigo-500 bg-indigo-500/10"
-                    : "border-gray-600 bg-gradient-to-br from-gray-900/80 to-gray-800/80"
+                    : "border-gray-600 bg-black/70 backdrop-blur-xl"
                 } backdrop-blur-sm`}
                 onDragEnter={handleDrag}
                 onDragLeave={handleDrag}
@@ -754,7 +754,7 @@ IMPORTANT: Return ONLY the JSON object. No markdown code blocks, no explanations
 
               {/* Industry Comparison - New Feature */}
               {analysis.industryComparison && (
-                <div className="p-6 rounded-2xl bg-gradient-to-br from-indigo-900/40 to-purple-900/40 border border-indigo-500/50 backdrop-blur-sm">
+                <div className="p-6 rounded-2xl bg-black/60 backdrop-blur-xl border border-indigo-500/50 backdrop-blur-sm">
                   <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
                     <svg className="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
@@ -762,7 +762,7 @@ IMPORTANT: Return ONLY the JSON object. No markdown code blocks, no explanations
                     Industry Comparison
                   </h3>
                   <div className="grid sm:grid-cols-3 gap-4">
-                    <div className="text-center p-4 bg-gray-800/50 rounded-xl border border-gray-700">
+                    <div className="text-center p-4 bg-black/50 rounded-xl border border-gray-700">
                       <div className="text-3xl font-black text-indigo-400 mb-2">
                         {analysis.industryComparison.percentile}th
                       </div>
@@ -771,7 +771,7 @@ IMPORTANT: Return ONLY the JSON object. No markdown code blocks, no explanations
                         Better than {analysis.industryComparison.percentile}% of resumes
                       </div>
                     </div>
-                    <div className="text-center p-4 bg-gray-800/50 rounded-xl border border-gray-700">
+                    <div className="text-center p-4 bg-black/50 rounded-xl border border-gray-700">
                       <div className="text-3xl font-black mb-2">
                         {analysis.industryComparison.topCompaniesReady ? (
                           <span className="text-green-400">✓ Ready</span>
@@ -784,7 +784,7 @@ IMPORTANT: Return ONLY the JSON object. No markdown code blocks, no explanations
                         {analysis.industryComparison.topCompaniesReady ? 'FAANG-ready' : 'Needs improvement'}
                       </div>
                     </div>
-                    <div className="text-center p-4 bg-gray-800/50 rounded-xl border border-gray-700">
+                    <div className="text-center p-4 bg-black/50 rounded-xl border border-gray-700">
                       <div className="text-3xl font-black text-purple-400 mb-2">
                         {analysis.industryComparison.estimatedCallbackRate}
                       </div>
@@ -800,7 +800,7 @@ IMPORTANT: Return ONLY the JSON object. No markdown code blocks, no explanations
               {/* Strengths and Weaknesses */}
               <div className="grid md:grid-cols-2 gap-6">
                 {/* Strengths */}
-                <div className="p-6 rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-green-500/30 backdrop-blur-sm">
+                <div className="p-6 rounded-2xl bg-black/70 backdrop-blur-xl border border-green-500/30 backdrop-blur-sm">
                   <div className="flex items-center gap-3 mb-4">
                     <svg className="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -818,7 +818,7 @@ IMPORTANT: Return ONLY the JSON object. No markdown code blocks, no explanations
                 </div>
 
                 {/* Weaknesses */}
-                <div className="p-6 rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-red-500/30 backdrop-blur-sm">
+                <div className="p-6 rounded-2xl bg-black/70 backdrop-blur-xl border border-red-500/30 backdrop-blur-sm">
                   <div className="flex items-center gap-3 mb-4">
                     <svg className="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -837,7 +837,7 @@ IMPORTANT: Return ONLY the JSON object. No markdown code blocks, no explanations
               </div>
 
               {/* Section Scores */}
-              <div className="p-6 rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700/50 backdrop-blur-sm">
+              <div className="p-6 rounded-2xl bg-black/70 backdrop-blur-xl border border-gray-700/50 backdrop-blur-sm">
                 <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
                   <svg className="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
@@ -846,7 +846,7 @@ IMPORTANT: Return ONLY the JSON object. No markdown code blocks, no explanations
                 </h3>
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   {Object.entries(analysis.sections).map(([section, data]) => (
-                    <div key={section} className="p-4 bg-gray-800/50 rounded-xl border border-gray-700">
+                    <div key={section} className="p-4 bg-black/50 rounded-xl border border-gray-700">
                       <div className="flex items-center justify-between mb-2">
                         <h4 className="font-semibold text-white capitalize">{section}</h4>
                         <span className={`text-2xl font-bold ${getScoreColor(data.score * 10)}`}>
@@ -860,7 +860,7 @@ IMPORTANT: Return ONLY the JSON object. No markdown code blocks, no explanations
               </div>
 
               {/* Suggestions */}
-              <div className="p-6 rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700/50 backdrop-blur-sm">
+              <div className="p-6 rounded-2xl bg-black/70 backdrop-blur-xl border border-gray-700/50 backdrop-blur-sm">
                 <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
                   <svg className="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
@@ -869,7 +869,7 @@ IMPORTANT: Return ONLY the JSON object. No markdown code blocks, no explanations
                 </h3>
                 <div className="space-y-4">
                   {analysis.suggestions.map((suggestion, idx) => (
-                    <div key={idx} className="p-5 bg-gray-800/50 rounded-xl border border-gray-700 hover:border-purple-500/50 transition-all">
+                    <div key={idx} className="p-5 bg-black/50 rounded-xl border border-gray-700 hover:border-purple-500/50 transition-all">
                       <div className="flex items-start justify-between gap-4 mb-2">
                         <div className="flex-1">
                           <div className="flex items-center gap-3 mb-2">
@@ -889,7 +889,7 @@ IMPORTANT: Return ONLY the JSON object. No markdown code blocks, no explanations
 
               {/* Keywords */}
               <div className="grid md:grid-cols-2 gap-6">
-                <div className="p-6 rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-green-500/30 backdrop-blur-sm">
+                <div className="p-6 rounded-2xl bg-black/70 backdrop-blur-xl border border-green-500/30 backdrop-blur-sm">
                   <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
                     <span>✓</span> Keywords Present
                   </h3>
@@ -902,7 +902,7 @@ IMPORTANT: Return ONLY the JSON object. No markdown code blocks, no explanations
                   </div>
                 </div>
 
-                <div className="p-6 rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-orange-500/30 backdrop-blur-sm">
+                <div className="p-6 rounded-2xl bg-black/70 backdrop-blur-xl border border-orange-500/30 backdrop-blur-sm">
                   <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
                     <span>+</span> Suggested Keywords
                   </h3>
@@ -917,7 +917,7 @@ IMPORTANT: Return ONLY the JSON object. No markdown code blocks, no explanations
               </div>
 
               {/* ATS Compatibility */}
-              <div className="p-6 rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-blue-500/30 backdrop-blur-sm">
+              <div className="p-6 rounded-2xl bg-black/70 backdrop-blur-xl border border-blue-500/30 backdrop-blur-sm">
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="text-2xl font-bold text-white flex items-center gap-3">
                     <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -965,3 +965,8 @@ IMPORTANT: Return ONLY the JSON object. No markdown code blocks, no explanations
     </div>
   );
 }
+
+
+
+
+

@@ -59,11 +59,11 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 text-white flex items-center justify-center p-4 sm:p-6 overflow-hidden relative">
+    <div className="min-h-screen bg-black text-white flex items-center justify-center p-4 sm:p-6 overflow-hidden relative">
       {/* Animated Background Effects */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/30 via-purple-900/20 to-transparent"></div>
-      <div className="absolute top-1/4 left-1/4 w-72 sm:w-96 h-72 sm:h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-72 sm:w-96 h-72 sm:h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-purple-900/10 to-transparent"></div>
+      <div className="absolute top-1/4 left-1/4 w-72 sm:w-96 h-72 sm:h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-72 sm:w-96 h-72 sm:h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
       
       {/* Floating AI Icons */}
       <div className="absolute top-20 left-[10%] text-blue-400/30 animate-float" style={{animationDelay: '0s'}}>
@@ -140,7 +140,7 @@ export default function Login() {
         </div>
 
         {/* Login Form */}
-        <div className="bg-gradient-to-br from-gray-900/90 to-gray-800/90 backdrop-blur-xl border border-gray-700/50 rounded-2xl p-6 sm:p-8 shadow-2xl shadow-blue-500/10 hover:shadow-blue-500/20 transition-all duration-500">
+        <div className="bg-black/70 backdrop-blur-xl backdrop-blur-xl border border-gray-700/50 rounded-2xl p-6 sm:p-8 shadow-2xl shadow-blue-500/10 hover:shadow-blue-500/20 transition-all duration-500">
           <div className="space-y-5 sm:space-y-6">
             <div className="group">
               <label className="block text-sm font-semibold text-gray-300 mb-2 flex items-center gap-2">
@@ -155,7 +155,7 @@ export default function Login() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   onKeyPress={handleKeyPress}
-                  className="w-full px-4 py-3 sm:py-4 bg-gray-800/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 focus:bg-gray-800/70 transition-all duration-300 group-hover:border-gray-500"
+                  className="w-full px-4 py-3 sm:py-4 bg-black/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 focus:bg-black/90/70 transition-all duration-300 group-hover:border-gray-500"
                   placeholder="Enter your email"
                   required
                 />
@@ -175,7 +175,7 @@ export default function Login() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   onKeyPress={handleKeyPress}
-                  className="w-full px-4 py-3 sm:py-4 bg-gray-800/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 focus:bg-gray-800/70 transition-all duration-300 group-hover:border-gray-500"
+                  className="w-full px-4 py-3 sm:py-4 bg-black/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 focus:bg-black/90/70 transition-all duration-300 group-hover:border-gray-500"
                   placeholder="Enter your password"
                   required
                 />
@@ -244,3 +244,7 @@ export default function Login() {
     </div>
   );
 }
+
+
+
+

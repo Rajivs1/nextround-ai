@@ -92,11 +92,11 @@ export default function Signup() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-purple-950 to-slate-900 text-white flex items-center justify-center p-4 sm:p-6 overflow-hidden relative">
+    <div className="min-h-screen bg-black text-white flex items-center justify-center p-4 sm:p-6 overflow-hidden relative">
       {/* Animated Background Effects */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-purple-900/30 via-pink-900/20 to-transparent"></div>
-      <div className="absolute top-1/4 left-1/4 w-72 sm:w-96 h-72 sm:h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-72 sm:w-96 h-72 sm:h-96 bg-pink-500/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1.5s'}}></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/10 via-pink-900/10 to-transparent"></div>
+      <div className="absolute top-1/4 left-1/4 w-72 sm:w-96 h-72 sm:h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-72 sm:w-96 h-72 sm:h-96 bg-pink-500/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1.5s'}}></div>
       
       {/* Floating AI Icons */}
       <div className="absolute top-24 left-[12%] text-purple-400/30 animate-float" style={{animationDelay: '0.5s'}}>
@@ -172,7 +172,7 @@ export default function Signup() {
         </div>
 
         {/* Signup Form */}
-        <div className="bg-gradient-to-br from-gray-900/90 to-gray-800/90 backdrop-blur-xl border border-gray-700/50 rounded-2xl p-6 sm:p-8 shadow-2xl shadow-purple-500/10 hover:shadow-purple-500/20 transition-all duration-500">
+        <div className="bg-black/70 backdrop-blur-xl backdrop-blur-xl border border-gray-700/50 rounded-2xl p-6 sm:p-8 shadow-2xl shadow-purple-500/10 hover:shadow-purple-500/20 transition-all duration-500">
           <div className="space-y-4 sm:space-y-5">
             <div className="group">
               <label className="block text-sm font-semibold text-gray-300 mb-2 flex items-center gap-2">
@@ -187,7 +187,7 @@ export default function Signup() {
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   onKeyPress={handleKeyPress}
-                  className="w-full px-4 py-3 sm:py-4 bg-gray-800/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30 focus:bg-gray-800/70 transition-all duration-300 group-hover:border-gray-500"
+                  className="w-full px-4 py-3 sm:py-4 bg-black/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30 focus:bg-black/90/70 transition-all duration-300 group-hover:border-gray-500"
                   placeholder="Choose a username (min 3 characters)"
                   required
                 />
@@ -207,7 +207,7 @@ export default function Signup() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   onKeyPress={handleKeyPress}
-                  className="w-full px-4 py-3 sm:py-4 bg-gray-800/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30 focus:bg-gray-800/70 transition-all duration-300 group-hover:border-gray-500"
+                  className="w-full px-4 py-3 sm:py-4 bg-black/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30 focus:bg-black/90/70 transition-all duration-300 group-hover:border-gray-500"
                   placeholder="Enter your email"
                   required
                 />
@@ -227,7 +227,7 @@ export default function Signup() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   onKeyPress={handleKeyPress}
-                  className="w-full px-4 py-3 sm:py-4 bg-gray-800/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30 focus:bg-gray-800/70 transition-all duration-300 group-hover:border-gray-500"
+                  className="w-full px-4 py-3 sm:py-4 bg-black/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30 focus:bg-black/90/70 transition-all duration-300 group-hover:border-gray-500"
                   placeholder="Create a password (min 6 characters)"
                   required
                 />
@@ -247,7 +247,7 @@ export default function Signup() {
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   onKeyPress={handleKeyPress}
-                  className="w-full px-4 py-3 sm:py-4 bg-gray-800/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30 focus:bg-gray-800/70 transition-all duration-300 group-hover:border-gray-500"
+                  className="w-full px-4 py-3 sm:py-4 bg-black/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30 focus:bg-black/90/70 transition-all duration-300 group-hover:border-gray-500"
                   placeholder="Confirm your password"
                   required
                 />
@@ -325,3 +325,8 @@ export default function Signup() {
     </div>
   );
 }
+
+
+
+
+
