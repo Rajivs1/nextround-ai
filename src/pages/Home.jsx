@@ -106,7 +106,7 @@ export default function Home() {
   // Show loading state with fun GIF
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#1a1a1a] text-gray-100 flex items-center justify-center">
+      <div className="min-h-screen bg-black text-gray-100 flex items-center justify-center">
         <div className="text-center">
           <img 
             src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" 
@@ -122,9 +122,9 @@ export default function Home() {
   const displayName = userProfile?.username || user?.email?.split('@')[0] || "User";
 
   return (
-    <div className="min-h-screen bg-[#1a1a1a] text-gray-100 overflow-hidden">
+    <div className="min-h-screen bg-black text-gray-100 overflow-hidden">
       {/* Navigation - Different for logged-in vs logged-out users */}
-      <nav className="relative z-50 px-4 sm:px-6 py-4 sm:py-6 backdrop-blur-xl bg-gradient-to-r from-gray-900/95 via-gray-900/90 to-gray-900/95 border-b border-gray-800/50 shadow-lg">
+      <nav className="relative z-50 px-4 sm:px-6 py-4 sm:py-6 backdrop-blur-xl bg-black/80 border-b border-gray-800/50 shadow-lg">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-3 cursor-pointer hover:scale-105 transition-transform">
             <img 
@@ -214,24 +214,24 @@ export default function Home() {
           <>
             {/* Backdrop overlay - completely opaque with blur */}
             <div 
-              className="md:hidden fixed inset-0 bg-[#1a1a1a]/95 backdrop-blur-lg z-[100]"
+              className="md:hidden fixed inset-0 bg-black/95 backdrop-blur-lg z-[100]"
               onClick={() => setMobileMenuOpen(false)}
             ></div>
             
-            {/* Menu dropdown - completely opaque dark blue */}
-            <div className="md:hidden absolute top-full left-0 right-0 mt-2 mx-4 bg-blue-950 border-2 border-blue-700 rounded-2xl shadow-2xl overflow-hidden animate-slideUp z-[110]">
+            {/* Menu dropdown - glass black theme */}
+            <div className="md:hidden absolute top-full left-0 right-0 mt-2 mx-4 bg-black/90 backdrop-blur-xl border-2 border-gray-800 rounded-2xl shadow-2xl overflow-hidden animate-slideUp z-[110]">
               <div className="py-2">
               {user ? (
                 // Logged-in user mobile menu
                 <>
-                  <div className="px-4 py-3 border-b border-blue-700 bg-blue-950">
+                  <div className="px-4 py-3 border-b border-gray-800 bg-black/80">
                     <span className="text-blue-300 text-xs">Welcome,</span>
                     <p className="text-white font-semibold">{displayName}</p>
                   </div>
                   <Link
                     to="/problems"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-blue-800 hover:text-white transition-all"
+                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-gray-800/50 hover:text-white transition-all"
                   >
                     <CodeIcon className="w-5 h-5" />
                     <span>Practice</span>
@@ -239,7 +239,7 @@ export default function Home() {
                   <Link
                     to="/chat"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-blue-800 hover:text-white transition-all"
+                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-gray-800/50 hover:text-white transition-all"
                   >
                     <span className="text-xl">💬</span>
                     <span>AI Chat</span>
@@ -247,7 +247,7 @@ export default function Home() {
                   <Link
                     to="/resume-analyzer"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-blue-800 hover:text-white transition-all"
+                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-gray-800/50 hover:text-white transition-all"
                   >
                     <span className="text-xl">📄</span>
                     <span>Resume Analyzer</span>
@@ -255,7 +255,7 @@ export default function Home() {
                   <Link
                     to="/dashboard"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-blue-800 hover:text-white transition-all"
+                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-gray-800/50 hover:text-white transition-all"
                   >
                     <ChartIcon className="w-5 h-5" />
                     <span>Dashboard</span>
@@ -265,7 +265,7 @@ export default function Home() {
                       setMobileMenuOpen(false);
                       setShowLogoutModal(true);
                     }}
-                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-blue-800 hover:text-white transition-all w-full text-left border-t border-blue-700"
+                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-gray-800/50 hover:text-white transition-all w-full text-left border-t border-gray-800"
                   >
                     <span className="text-xl">🚪</span>
                     <span>Logout</span>
@@ -277,7 +277,7 @@ export default function Home() {
                   <Link
                     to="/login"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-blue-800 hover:text-white transition-all"
+                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-gray-800/50 hover:text-white transition-all"
                   >
                     <span className="text-xl">🔐</span>
                     <span>Login</span>
@@ -285,7 +285,7 @@ export default function Home() {
                   <Link
                     to="/signup"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-blue-800 hover:text-white transition-all"
+                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-gray-800/50 hover:text-white transition-all"
                   >
                     <span className="text-xl">✨</span>
                     <span>Sign Up</span>
@@ -301,10 +301,10 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative px-4 sm:px-6 py-16 sm:py-24 lg:py-32 text-center overflow-hidden">
         {/* Enhanced Background Effects */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/30 via-purple-900/30 to-pink-900/30 animate-gradient"></div>
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-cyan-500/10 to-pink-500/10 rounded-full blur-3xl animate-float-slow"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 via-purple-900/10 to-pink-900/10 animate-gradient"></div>
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-cyan-500/5 to-pink-500/5 rounded-full blur-3xl animate-float-slow"></div>
 
         {/* Floating particles */}
         <div className="absolute top-20 left-20 w-2 h-2 bg-blue-400 rounded-full animate-ping"></div>
@@ -422,12 +422,12 @@ export default function Home() {
 
       {/* Streak and Leaderboard Section - Only for Logged-in Users */}
       {user && (
-        <section id="leaderboard-section" className="relative px-4 sm:px-6 py-12 sm:py-16 bg-gradient-to-b from-[#1a1a1a] to-gray-900">
+        <section id="leaderboard-section" className="relative px-4 sm:px-6 py-12 sm:py-16 bg-black">
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               
               {/* Streak Card */}
-              <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 sm:p-8 border border-gray-700 shadow-2xl hover:shadow-orange-500/20 transition-all duration-300">
+              <div className="bg-black/60 backdrop-blur-xl rounded-2xl p-6 sm:p-8 border border-gray-800 shadow-2xl hover:shadow-orange-500/20 transition-all duration-300">
                 <div className="flex items-center gap-3 mb-6">
                   <FireIcon className="w-10 h-10 text-orange-500" />
                   <h3 className="text-2xl sm:text-3xl font-bold text-white">Your Streak</h3>
@@ -487,7 +487,7 @@ export default function Home() {
               </div>
 
               {/* Leaderboard Card */}
-              <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-6 sm:p-8 border border-gray-700 shadow-2xl hover:shadow-purple-500/20 transition-all duration-300">
+              <div className="bg-black/60 backdrop-blur-xl rounded-2xl p-6 sm:p-8 border border-gray-800 shadow-2xl hover:shadow-purple-500/20 transition-all duration-300">
                 <div className="flex items-center gap-3 mb-6">
                   <TrophyIcon className="w-10 h-10 text-yellow-500" />
                   <h3 className="text-2xl sm:text-3xl font-bold text-white">Top Coders</h3>
@@ -575,7 +575,7 @@ export default function Home() {
       )}
 
       {/* Features Section */}
-      <section className="relative px-4 sm:px-6 py-16 sm:py-24 lg:py-32 bg-gradient-to-b from-[#1a1a1a] via-gray-900 to-[#1a1a1a]">
+      <section className="relative px-4 sm:px-6 py-16 sm:py-24 lg:py-32 bg-black">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
             <div className="mb-6">
@@ -598,7 +598,7 @@ export default function Home() {
             {/* AI Chat Assistant */}
             <Link
               to="/chat"
-              className="group relative p-5 sm:p-6 md:p-7 lg:p-8 rounded-xl sm:rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700 hover:border-green-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm cursor-pointer overflow-hidden"
+              className="group relative p-5 sm:p-6 md:p-7 lg:p-8 rounded-xl sm:rounded-2xl bg-black/70 backdrop-blur-xl border border-gray-700 hover:border-green-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm cursor-pointer overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-blue-500/5 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative z-10">
@@ -621,7 +621,7 @@ export default function Home() {
             {/* AI Interview Practice */}
             <Link
               to="/interview"
-              className="group relative p-5 sm:p-6 md:p-7 lg:p-8 rounded-xl sm:rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700 hover:border-blue-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden cursor-pointer"
+              className="group relative p-5 sm:p-6 md:p-7 lg:p-8 rounded-xl sm:rounded-2xl bg-black/70 backdrop-blur-xl border border-gray-700 hover:border-blue-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden cursor-pointer"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative z-10">
@@ -644,7 +644,7 @@ export default function Home() {
             {/* Code-Based Questions */}
             <Link
               to="/problems"
-              className="group relative p-5 sm:p-6 md:p-7 lg:p-8 rounded-xl sm:rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700 hover:border-purple-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden cursor-pointer"
+              className="group relative p-5 sm:p-6 md:p-7 lg:p-8 rounded-xl sm:rounded-2xl bg-black/70 backdrop-blur-xl border border-gray-700 hover:border-purple-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden cursor-pointer"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-pink-500/5 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative z-10">
@@ -667,7 +667,7 @@ export default function Home() {
             {/* Progress Tracking */}
             <Link
               to="/dashboard"
-              className="group relative p-5 sm:p-6 md:p-7 lg:p-8 rounded-xl sm:rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700 hover:border-pink-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden cursor-pointer"
+              className="group relative p-5 sm:p-6 md:p-7 lg:p-8 rounded-xl sm:rounded-2xl bg-black/70 backdrop-blur-xl border border-gray-700 hover:border-pink-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden cursor-pointer"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-pink-500/5 to-cyan-500/5 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative z-10">
@@ -694,7 +694,7 @@ export default function Home() {
                 e.preventDefault();
                 document.querySelector('#leaderboard-section')?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="group relative p-5 sm:p-6 md:p-7 lg:p-8 rounded-xl sm:rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700 hover:border-orange-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden cursor-pointer"
+              className="group relative p-5 sm:p-6 md:p-7 lg:p-8 rounded-xl sm:rounded-2xl bg-black/70 backdrop-blur-xl border border-gray-700 hover:border-orange-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden cursor-pointer"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-red-500/5 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative z-10">
@@ -717,7 +717,7 @@ export default function Home() {
             {/* 96+ Problems */}
             <Link
               to="/problems"
-              className="group relative p-5 sm:p-6 md:p-7 lg:p-8 rounded-xl sm:rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700 hover:border-cyan-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden cursor-pointer"
+              className="group relative p-5 sm:p-6 md:p-7 lg:p-8 rounded-xl sm:rounded-2xl bg-black/70 backdrop-blur-xl border border-gray-700 hover:border-cyan-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden cursor-pointer"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-blue-500/5 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative z-10">
@@ -740,7 +740,7 @@ export default function Home() {
             {/* Resume Analyzer */}
             <Link
               to="/resume-analyzer"
-              className="group relative p-5 sm:p-6 md:p-7 lg:p-8 rounded-xl sm:rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700 hover:border-indigo-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden cursor-pointer"
+              className="group relative p-5 sm:p-6 md:p-7 lg:p-8 rounded-xl sm:rounded-2xl bg-black/70 backdrop-blur-xl border border-gray-700 hover:border-indigo-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden cursor-pointer"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/5 to-purple-500/5 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative z-10">
@@ -763,7 +763,7 @@ export default function Home() {
             {/* Daily Challenge */}
             <Link
               to="/daily-challenge"
-              className="group relative p-5 sm:p-6 md:p-7 lg:p-8 rounded-xl sm:rounded-2xl bg-gradient-to-br from-gray-900/90 to-gray-800/90 border border-gray-700 hover:border-yellow-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden cursor-pointer"
+              className="group relative p-5 sm:p-6 md:p-7 lg:p-8 rounded-xl sm:rounded-2xl bg-black/70 backdrop-blur-xl border border-gray-700 hover:border-yellow-500/50 transition-all duration-300 hover:scale-[1.02] backdrop-blur-sm overflow-hidden cursor-pointer"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-orange-500/5 rounded-xl sm:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative z-10">
@@ -787,7 +787,7 @@ export default function Home() {
       </section>
 
       {/* How It Works Section */}
-      <section className="relative px-4 sm:px-6 py-16 sm:py-24 bg-gradient-to-b from-gray-900 to-[#1a1a1a]">
+      <section className="relative px-4 sm:px-6 py-16 sm:py-24 bg-black">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
@@ -854,9 +854,9 @@ export default function Home() {
       </section>
 
       {/* Call to Action Section */}
-      <section className="relative px-4 sm:px-6 py-16 sm:py-24 lg:py-32 overflow-hidden bg-gradient-to-b from-[#1a1a1a] to-gray-900">
+      <section className="relative px-4 sm:px-6 py-16 sm:py-24 lg:py-32 overflow-hidden bg-black">
         {/* Professional Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-[#1a1a1a] to-gray-900"></div>
+        <div className="absolute inset-0 bg-black"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.15),transparent_70%)]"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(168,85,247,0.15),transparent_70%)]"></div>
 
@@ -891,15 +891,15 @@ export default function Home() {
 
           {/* Stats Grid */}
           <div className="grid sm:grid-cols-3 gap-6 sm:gap-8 mb-16 sm:mb-20 max-w-4xl mx-auto">
-            <div className="text-center p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 backdrop-blur-sm">
+            <div className="text-center p-8 rounded-2xl bg-black/70 backdrop-blur-xl border border-gray-700/50 backdrop-blur-sm">
               <div className="text-5xl font-black text-white mb-3">10K+</div>
               <div className="text-gray-400 text-lg">Students Trained</div>
             </div>
-            <div className="text-center p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 backdrop-blur-sm">
+            <div className="text-center p-8 rounded-2xl bg-black/70 backdrop-blur-xl border border-gray-700/50 backdrop-blur-sm">
               <div className="text-5xl font-black text-white mb-3">95%</div>
               <div className="text-gray-400 text-lg">Success Rate</div>
             </div>
-            <div className="text-center p-8 rounded-2xl bg-gradient-to-br from-gray-900/80 to-gray-800/80 border border-gray-700/50 backdrop-blur-sm">
+            <div className="text-center p-8 rounded-2xl bg-black/70 backdrop-blur-xl border border-gray-700/50 backdrop-blur-sm">
               <div className="text-5xl font-black text-white mb-3">500+</div>
               <div className="text-gray-400 text-lg">Companies Hiring</div>
             </div>
@@ -957,7 +957,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-[#1a1a1a] border-t border-gray-800 py-16">
+      <footer className="bg-black border-t border-gray-800 py-16">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <div className="mb-8">
             <h3 className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-4">
@@ -984,12 +984,12 @@ export default function Home() {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 animate-fadeIn">
           {/* Backdrop */}
           <div 
-            className="absolute inset-0 bg-[#1a1a1a]/70 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
             onClick={() => !isLoggingOut && setShowLogoutModal(false)}
           ></div>
           
           {/* Modal */}
-          <div className="relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl shadow-2xl border border-gray-700 max-w-md w-full p-6 sm:p-8 animate-slideUp">
+          <div className="relative bg-black/80 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-700 max-w-md w-full p-6 sm:p-8 animate-slideUp">
             {/* Icon */}
             <div className="flex justify-center mb-6">
               <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-red-500/20 to-orange-500/20 border-2 border-red-500/50 flex items-center justify-center">
