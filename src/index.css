@@ -1368,6 +1368,40 @@ body.light {
    ADDITIONAL COMPONENT STYLES
    ============================================ */
 
+/* Mobile Navigation Menu - Home Page */
+.light .md\:hidden.absolute.top-full {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: #cbd5e1 !important;
+  backdrop-filter: blur(20px);
+}
+
+.light .md\:hidden.absolute.top-full .px-4.py-3.border-b {
+  background: rgba(248, 250, 252, 0.9) !important;
+  border-color: #cbd5e1 !important;
+}
+
+.light .md\:hidden.absolute.top-full .text-blue-300 {
+  color: #1d4ed8 !important;
+}
+
+.light .md\:hidden.absolute.top-full .text-white {
+  color: #0f172a !important;
+}
+
+.light .md\:hidden.absolute.top-full .text-gray-200 {
+  color: #334155 !important;
+}
+
+.light .md\:hidden.absolute.top-full a:hover,
+.light .md\:hidden.absolute.top-full button:hover {
+  background: rgba(241, 245, 249, 0.9) !important;
+  color: #0f172a !important;
+}
+
+.light .md\:hidden.absolute.top-full .border-gray-800 {
+  border-color: #cbd5e1 !important;
+}
+
 /* Dropdown menus */
 .light .dropdown-menu {
   background: #ffffff !important;

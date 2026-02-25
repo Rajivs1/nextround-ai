@@ -143,7 +143,7 @@ export default function Home() {
               // Logged-in user navigation
               <>
                 <span className="text-gray-300 text-sm sm:text-base">
-                  Welcome, <span className="text-white font-semibold">{displayName}</span>
+                  Welcome, <span className="text-white light:text-gray-900 font-semibold">{displayName}</span>
                 </span>
                 <Link
                   to="/problems"
@@ -219,19 +219,19 @@ export default function Home() {
             ></div>
             
             {/* Menu dropdown - glass black theme */}
-            <div className="md:hidden absolute top-full left-0 right-0 mt-2 mx-4 bg-black/90 backdrop-blur-xl border-2 border-gray-800 rounded-2xl shadow-2xl overflow-hidden animate-slideUp z-[110]">
+            <div className="md:hidden absolute top-full left-0 right-0 mt-2 mx-4 bg-black/90 dark:bg-black/90 light:bg-white/95 backdrop-blur-xl border-2 border-gray-800 light:border-gray-300 rounded-2xl shadow-2xl overflow-hidden animate-slideUp z-[110]">
               <div className="py-2">
               {user ? (
                 // Logged-in user mobile menu
                 <>
-                  <div className="px-4 py-3 border-b border-gray-800 bg-black/80">
-                    <span className="text-blue-300 text-xs">Welcome,</span>
-                    <p className="text-white font-semibold">{displayName}</p>
+                  <div className="px-4 py-3 border-b border-gray-800 light:border-gray-300 bg-black/80 light:bg-gray-50">
+                    <span className="text-blue-300 light:text-blue-600 text-xs">Welcome,</span>
+                    <p className="text-white light:text-gray-900 font-semibold">{displayName}</p>
                   </div>
                   <Link
                     to="/problems"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-black/50 hover:text-white transition-all"
+                    className="flex items-center gap-3 px-4 py-3 text-gray-200 light:text-gray-700 hover:bg-black/50 light:hover:bg-gray-100 hover:text-white light:hover:text-gray-900 transition-all"
                   >
                     <CodeIcon className="w-5 h-5" />
                     <span>Practice</span>
@@ -239,7 +239,7 @@ export default function Home() {
                   <Link
                     to="/chat"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-black/50 hover:text-white transition-all"
+                    className="flex items-center gap-3 px-4 py-3 text-gray-200 light:text-gray-700 hover:bg-black/50 light:hover:bg-gray-100 hover:text-white light:hover:text-gray-900 transition-all"
                   >
                     <span className="text-xl">💬</span>
                     <span>AI Chat</span>
@@ -247,7 +247,7 @@ export default function Home() {
                   <Link
                     to="/resume-analyzer"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-black/50 hover:text-white transition-all"
+                    className="flex items-center gap-3 px-4 py-3 text-gray-200 light:text-gray-700 hover:bg-black/50 light:hover:bg-gray-100 hover:text-white light:hover:text-gray-900 transition-all"
                   >
                     <span className="text-xl">📄</span>
                     <span>Resume Analyzer</span>
@@ -255,7 +255,7 @@ export default function Home() {
                   <Link
                     to="/dashboard"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-black/50 hover:text-white transition-all"
+                    className="flex items-center gap-3 px-4 py-3 text-gray-200 light:text-gray-700 hover:bg-black/50 light:hover:bg-gray-100 hover:text-white light:hover:text-gray-900 transition-all"
                   >
                     <ChartIcon className="w-5 h-5" />
                     <span>Dashboard</span>
@@ -265,7 +265,7 @@ export default function Home() {
                       setMobileMenuOpen(false);
                       setShowLogoutModal(true);
                     }}
-                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-black/50 hover:text-white transition-all w-full text-left border-t border-gray-800"
+                    className="flex items-center gap-3 px-4 py-3 text-gray-200 light:text-gray-700 hover:bg-black/50 light:hover:bg-gray-100 hover:text-white light:hover:text-gray-900 transition-all w-full text-left border-t border-gray-800 light:border-gray-300"
                   >
                     <span className="text-xl">🚪</span>
                     <span>Logout</span>
@@ -277,7 +277,7 @@ export default function Home() {
                   <Link
                     to="/login"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-black/50 hover:text-white transition-all"
+                    className="flex items-center gap-3 px-4 py-3 text-gray-200 light:text-gray-700 hover:bg-black/50 light:hover:bg-gray-100 hover:text-white light:hover:text-gray-900 transition-all"
                   >
                     <span className="text-xl">🔐</span>
                     <span>Login</span>
@@ -285,7 +285,7 @@ export default function Home() {
                   <Link
                     to="/signup"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="flex items-center gap-3 px-4 py-3 text-gray-200 hover:bg-black/50 hover:text-white transition-all"
+                    className="flex items-center gap-3 px-4 py-3 text-gray-200 light:text-gray-700 hover:bg-black/50 light:hover:bg-gray-100 hover:text-white light:hover:text-gray-900 transition-all"
                   >
                     <span className="text-xl">✨</span>
                     <span>Sign Up</span>
@@ -533,7 +533,7 @@ export default function Home() {
 
                           {/* User Info */}
                           <div className="flex-1 min-w-0">
-                            <div className="text-white font-semibold truncate flex items-center gap-2">
+                            <div className="text-white light:text-gray-900 font-semibold truncate flex items-center gap-2">
                               {userEntry.username}
                               {isCurrentUser && (
                                 <span className="text-xs px-2 py-0.5 bg-purple-500/30 text-purple-300 rounded-full">You</span>
@@ -941,7 +941,7 @@ export default function Home() {
           </div>
 
           {/* Trust Indicators */}
-          <div className="text-center pt-12 border-t border-gray-800">
+          <div className="text-center pt-12 border-t border-gray-800 light:border-gray-300">
             <p className="text-gray-400 text-lg mb-8">
               Trusted by students from top universities
             </p>
@@ -971,7 +971,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="pt-8 border-t border-gray-800">
+          <div className="pt-8 border-t border-gray-800 light:border-gray-300">
             <p className="text-gray-600">
               © 2026 NextRound AI. Empowering the next generation of developers.
             </p>
@@ -1019,7 +1019,7 @@ export default function Home() {
               <button
                 onClick={() => setShowLogoutModal(false)}
                 disabled={isLoggingOut}
-                className="flex-1 px-6 py-3 sm:py-4 bg-gray-700 hover:bg-gray-600 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 border border-gray-600"
+                className="flex-1 px-6 py-3 sm:py-4 bg-gray-700 hover:bg-gray-600 text-white light:text-gray-900 font-semibold rounded-xl transition-all duration-300 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 border border-gray-600"
               >
                 Cancel
               </button>
@@ -1088,6 +1088,7 @@ export default function Home() {
     </div>
   );
 }
+
 
 
 
