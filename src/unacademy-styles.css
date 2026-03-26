@@ -1,0 +1,845 @@
+/* ============================================
+   UNACADEMY-INSPIRED STYLES
+   Clean, Professional, Learner-Focused Design
+   ============================================ */
+
+/* Custom Scrollbar - Clean Style */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f7f8fa;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8c52ff;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #7340d9;
+}
+
+/* ============================================
+   CARD COMPONENTS
+   ============================================ */
+
+.una-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 24px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.una-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  transform: translateY(-4px);
+}
+
+.una-card-elevated {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.una-card-elevated:hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+/* ============================================
+   BUTTON COMPONENTS
+   ============================================ */
+
+.una-btn-primary {
+  background: linear-gradient(135deg, #8c52ff 0%, #7340d9 100%);
+  color: #ffffff;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(140, 82, 255, 0.3);
+}
+
+.una-btn-primary:hover {
+  box-shadow: 0 8px 20px rgba(140, 82, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+.una-btn-primary:active {
+  transform: translateY(0);
+}
+
+.una-btn-secondary {
+  background: transparent;
+  color: #8c52ff;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 12px;
+  border: 2px solid #8c52ff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.una-btn-secondary:hover {
+  background: #8c52ff;
+  color: #ffffff;
+}
+
+.una-btn-outline {
+  background: #ffffff;
+  color: #4b5563;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.una-btn-outline:hover {
+  border-color: #8c52ff;
+  color: #8c52ff;
+}
+
+/* ============================================
+   BADGE COMPONENTS
+   ============================================ */
+
+.una-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid;
+}
+
+.una-badge-success {
+  background: #ecfdf5;
+  color: #059669;
+  border-color: #a7f3d0;
+}
+
+.una-badge-warning {
+  background: #fffbeb;
+  color: #d97706;
+  border-color: #fde68a;
+}
+
+.una-badge-error {
+  background: #fef2f2;
+  color: #dc2626;
+  border-color: #fecaca;
+}
+
+.una-badge-info {
+  background: #eff6ff;
+  color: #2563eb;
+  border-color: #bfdbfe;
+}
+
+.una-badge-purple {
+  background: #f5f3ff;
+  color: #8c52ff;
+  border-color: #ddd6fe;
+}
+
+/* ============================================
+   INPUT COMPONENTS
+   ============================================ */
+
+.una-input {
+  width: 100%;
+  padding: 12px 16px;
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  color: #111827;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.una-input:focus {
+  outline: none;
+  border-color: #8c52ff;
+  box-shadow: 0 0 0 3px rgba(140, 82, 255, 0.1);
+}
+
+.una-input::placeholder {
+  color: #9ca3af;
+}
+
+.una-input-error {
+  border-color: #ef4444;
+}
+
+.una-input-error:focus {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+
+.una-nav {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.una-nav-link {
+  color: #6b7280;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.una-nav-link:hover {
+  color: #111827;
+  background: #f9fafb;
+}
+
+.una-nav-link-active {
+  color: #8c52ff;
+  font-weight: 600;
+}
+
+/* ============================================
+   SECTION STYLES
+   ============================================ */
+
+.una-section {
+  padding: 80px 24px;
+}
+
+.una-section-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.una-section-title {
+  font-size: 48px;
+  font-weight: 900;
+  color: #111827;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.una-section-subtitle {
+  font-size: 20px;
+  color: #6b7280;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+
+.una-hero {
+  background: linear-gradient(135deg, #faf5ff 0%, #ffffff 50%, #eff6ff 100%);
+  padding: 120px 24px;
+  text-align: center;
+}
+
+.una-hero-title {
+  font-size: 64px;
+  font-weight: 900;
+  color: #111827;
+  margin-bottom: 24px;
+  line-height: 1.1;
+}
+
+.una-hero-subtitle {
+  font-size: 24px;
+  color: #6b7280;
+  margin-bottom: 48px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ============================================
+   FEATURE CARDS
+   ============================================ */
+
+.una-feature-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 32px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.una-feature-card:hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  transform: translateY(-8px);
+  border-color: #8c52ff;
+}
+
+.una-feature-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-center;
+  font-size: 32px;
+  margin-bottom: 24px;
+  transition: transform 0.3s ease;
+}
+
+.una-feature-card:hover .una-feature-icon {
+  transform: scale(1.1);
+}
+
+.una-feature-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 12px;
+}
+
+.una-feature-description {
+  font-size: 16px;
+  color: #6b7280;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.una-feature-link {
+  color: #8c52ff;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: gap 0.3s ease;
+}
+
+.una-feature-card:hover .una-feature-link {
+  gap: 12px;
+}
+
+/* ============================================
+   STATS SECTION
+   ============================================ */
+
+.una-stat-card {
+  text-align: center;
+  padding: 32px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+}
+
+.una-stat-number {
+  font-size: 48px;
+  font-weight: 900;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.una-stat-label {
+  font-size: 14px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+/* ============================================
+   TOPIC CARDS
+   ============================================ */
+
+.una-topic-card {
+  background: #ffffff;
+  border: 2px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 24px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.una-topic-card:hover {
+  border-color: #d1d5db;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.una-topic-card-selected {
+  border-color: #8c52ff;
+  background: #faf5ff;
+  box-shadow: 0 4px 16px rgba(140, 82, 255, 0.15);
+}
+
+/* ============================================
+   PROBLEM LIST
+   ============================================ */
+
+.una-problem-item {
+  padding: 20px 24px;
+  border-bottom: 1px solid #e5e7eb;
+  transition: background 0.2s ease;
+}
+
+.una-problem-item:hover {
+  background: #f9fafb;
+}
+
+.una-problem-item:last-child {
+  border-bottom: none;
+}
+
+.una-problem-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.una-problem-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* ============================================
+   MODAL COMPONENTS
+   ============================================ */
+
+.una-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-center;
+  padding: 16px;
+}
+
+.una-modal {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  max-width: 500px;
+  width: 100%;
+  padding: 32px;
+}
+
+.una-modal-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.una-modal-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.una-modal-subtitle {
+  font-size: 16px;
+  color: #6b7280;
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+.una-text-gradient {
+  background: linear-gradient(135deg, #8c52ff 0%, #7340d9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.una-shadow-sm {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.una-shadow-md {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.una-shadow-lg {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.una-shadow-xl {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+.una-shadow-purple {
+  box-shadow: 0 8px 24px rgba(140, 82, 255, 0.25);
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes una-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes una-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes una-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.una-animate-fade-in {
+  animation: una-fade-in 0.5s ease-out;
+}
+
+.una-animate-scale-in {
+  animation: una-scale-in 0.4s ease-out;
+}
+
+.una-animate-slide-up {
+  animation: una-slide-up 0.6s ease-out;
+}
+
+/* ============================================
+   RESPONSIVE UTILITIES
+   ============================================ */
+
+@media (max-width: 640px) {
+  .una-section {
+    padding: 48px 16px;
+  }
+
+  .una-section-title {
+    font-size: 32px;
+  }
+
+  .una-hero-title {
+    font-size: 40px;
+  }
+
+  .una-hero-subtitle {
+    font-size: 18px;
+  }
+}
+
+/* ============================================
+   FOCUS STATES
+   ============================================ */
+
+*:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(140, 82, 255, 0.2);
+  border-radius: 4px;
+}
+
+/* ============================================
+   SELECTION
+   ============================================ */
+
+::selection {
+  background: rgba(140, 82, 255, 0.2);
+  color: #111827;
+}
+
+/* ============================================
+   LOADING STATES
+   ============================================ */
+
+.una-skeleton {
+  background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%);
+  background-size: 200% 100%;
+  animation: una-skeleton-loading 1.5s ease-in-out infinite;
+  border-radius: 8px;
+}
+
+@keyframes una-skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.una-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e5e7eb;
+  border-top-color: #8c52ff;
+  border-radius: 50%;
+  animation: una-spin 0.8s linear infinite;
+}
+
+@keyframes una-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================
+   EMPTY STATES
+   ============================================ */
+
+.una-empty-state {
+  text-align: center;
+  padding: 64px 24px;
+}
+
+.una-empty-icon {
+  font-size: 64px;
+  margin-bottom: 16px;
+}
+
+.una-empty-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 8px;
+}
+
+.una-empty-description {
+  font-size: 16px;
+  color: #6b7280;
+}
+
+/* ============================================
+   GRID LAYOUTS
+   ============================================ */
+
+.una-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.una-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.una-grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 1024px) {
+  .una-grid-3,
+  .una-grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .una-grid-2,
+  .una-grid-3,
+  .una-grid-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================
+   DIVIDERS
+   ============================================ */
+
+.una-divider {
+  height: 1px;
+  background: #e5e7eb;
+  margin: 32px 0;
+}
+
+.una-divider-vertical {
+  width: 1px;
+  background: #e5e7eb;
+  height: 100%;
+}
+
+/* ============================================
+   TOOLTIPS
+   ============================================ */
+
+.una-tooltip {
+  position: relative;
+}
+
+.una-tooltip-content {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #111827;
+  color: #ffffff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  white-space: nowrap;
+  margin-bottom: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.una-tooltip:hover .una-tooltip-content {
+  opacity: 1;
+}
+
+/* ============================================
+   PROGRESS BARS
+   ============================================ */
+
+.una-progress {
+  width: 100%;
+  height: 8px;
+  background: #e5e7eb;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.una-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #8c52ff 0%, #7340d9 100%);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+/* ============================================
+   TABS
+   ============================================ */
+
+.una-tabs {
+  display: flex;
+  gap: 8px;
+  background: #ffffff;
+  padding: 6px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.una-tab {
+  flex: 1;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #6b7280;
+}
+
+.una-tab:hover {
+  background: #f9fafb;
+  color: #111827;
+}
+
+.una-tab-active {
+  background: #8c52ff;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(140, 82, 255, 0.3);
+}
+
+/* ============================================
+   ALERTS
+   ============================================ */
+
+.una-alert {
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid;
+  display: flex;
+  align-items: start;
+  gap: 12px;
+}
+
+.una-alert-success {
+  background: #ecfdf5;
+  border-color: #a7f3d0;
+  color: #065f46;
+}
+
+.una-alert-warning {
+  background: #fffbeb;
+  border-color: #fde68a;
+  color: #92400e;
+}
+
+.una-alert-error {
+  background: #fef2f2;
+  border-color: #fecaca;
+  color: #991b1b;
+}
+
+.una-alert-info {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+  color: #1e40af;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.una-footer {
+  background: #ffffff;
+  border-top: 1px solid #e5e7eb;
+  padding: 48px 24px;
+}
+
+.una-footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.una-footer-logo {
+  font-size: 28px;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 16px;
+}
+
+.una-footer-text {
+  color: #6b7280;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.una-footer-copyright {
+  color: #9ca3af;
+  font-size: 14px;
+}

@@ -5,41 +5,41 @@ export default {
   theme: { 
     extend: {
       colors: {
-        // Modern Blue & Teal Palette
-        'primary': '#3b82f6',        // Blue 500
-        'primary-dark': '#2563eb',   // Blue 600
-        'primary-light': '#60a5fa',  // Blue 400
-        'secondary': '#14b8a6',      // Teal 500
-        'secondary-dark': '#0d9488', // Teal 600
-        'accent': '#10b981',         // Emerald 500
-        'accent-light': '#34d399',   // Emerald 400
+        // Unacademy-inspired Purple Palette
+        'primary': '#8c52ff',        // Unacademy Purple
+        'primary-dark': '#7340d9',   // Darker Purple
+        'primary-light': '#a370ff',  // Lighter Purple
+        'secondary': '#08bd80',      // Unacademy Green
+        'secondary-dark': '#06a06d', // Darker Green
+        'accent': '#ff5757',         // Accent Red
+        'accent-light': '#ff7b7b',   // Lighter Red
         
-        // Glass Black Background colors
-        'bg-primary': '#000000',     // Pure Black
-        'bg-secondary': '#0a0a0a',   // Near Black
-        'bg-tertiary': '#141414',    // Dark Gray
-        'bg-card': '#1a1a1a',        // Card Background
-        'glass-black': 'rgba(0, 0, 0, 0.7)',  // Glass Black
+        // Background colors - Clean & Professional
+        'bg-primary': '#ffffff',     // White
+        'bg-secondary': '#f7f8fa',   // Light Gray
+        'bg-tertiary': '#f0f2f5',    // Lighter Gray
+        'bg-card': '#ffffff',        // Card Background
+        'bg-dark': '#1c1d1f',        // Dark mode background
         
         // Success, Warning, Error
-        'success': '#10b981',        // Emerald 500
-        'warning': '#f59e0b',        // Amber 500
-        'error': '#ef4444',          // Red 500
+        'success': '#08bd80',        // Green
+        'warning': '#ffb800',        // Yellow
+        'error': '#ff5757',          // Red
       },
       backgroundColor: {
-        'primary': '#3b82f6',
-        'primary-dark': '#2563eb',
-        'secondary': '#14b8a6',
-        'bg-primary': '#000000',
-        'bg-secondary': '#0a0a0a',
-        'bg-tertiary': '#141414',
-        'bg-card': '#1a1a1a',
-        'glass-black': 'rgba(0, 0, 0, 0.7)',
+        'primary': '#8c52ff',
+        'primary-dark': '#7340d9',
+        'secondary': '#08bd80',
+        'bg-primary': '#ffffff',
+        'bg-secondary': '#f7f8fa',
+        'bg-tertiary': '#f0f2f5',
+        'bg-card': '#ffffff',
+        'bg-dark': '#1c1d1f',
       },
       borderColor: {
-        'primary': '#3b82f6',
-        'secondary': '#14b8a6',
-        'accent': '#10b981',
+        'primary': '#8c52ff',
+        'secondary': '#08bd80',
+        'accent': '#ff5757',
       },
       boxShadow: {
         'soft': '0 4px 8px -2px rgba(0, 0, 0, 0.3), 0 0 10px rgba(59, 130, 246, 0.1)',
